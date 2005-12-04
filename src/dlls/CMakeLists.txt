@@ -1,0 +1,760 @@
+SET( SERVER_SRCS
+	ai_activity.cpp
+	ai_baseactor.cpp
+	ai_basehumanoid.cpp
+	ai_basenpc.cpp
+	ai_basenpc_flyer.cpp
+	ai_basenpc_flyer_new.cpp
+	ai_basenpc_movement.cpp
+	ai_basenpc_physicsflyer.cpp
+	ai_basenpc_schedule.cpp
+	ai_basenpc_squad.cpp
+	ai_behavior.cpp
+	ai_behavior_assault.cpp
+	ai_behavior_follow.cpp
+	ai_behavior_lead.cpp
+	ai_behavior_rappel.cpp
+	ai_behavior_standoff.cpp
+	ai_blended_movement.cpp
+	ai_concommands.cpp
+	ai_condition.cpp
+	AI_Criteria.cpp
+	ai_default.cpp
+	ai_dynamiclink.cpp
+	ai_event.cpp
+	ai_goalentity.cpp
+	ai_hint.cpp
+	ai_hull.cpp
+	ai_initutils.cpp
+	AI_Interest_Target.cpp
+	ai_link.cpp
+	ai_localnavigator.cpp
+	ai_looktarget.cpp
+	ai_memory.cpp
+	ai_motor.cpp
+	ai_moveprobe.cpp
+	ai_moveshoot.cpp
+	ai_movesolver.cpp
+	ai_namespaces.cpp
+	ai_navigator.cpp
+	ai_network.cpp
+	ai_networkmanager.cpp
+	ai_node.cpp
+	ai_pathfinder.cpp
+	ai_planesolver.cpp
+	ai_playerally.cpp
+	AI_ResponseSystem.cpp
+	ai_route.cpp
+	ai_saverestore.cpp
+	ai_schedule.cpp
+	ai_scriptconditions.cpp
+	ai_senses.cpp
+	ai_sentence.cpp
+	ai_speech.cpp
+	ai_speechfilter.cpp
+	ai_squad.cpp
+	ai_squadslot.cpp
+	ai_tacticalservices.cpp
+	ai_task.cpp
+	ai_trackpather.cpp
+	ai_utils.cpp
+	ai_waypoint.cpp
+	base_transmit_proxy.cpp
+	baseanimating.cpp
+	BaseAnimatingOverlay.cpp
+	basecombatcharacter.cpp
+	basecombatweapon.cpp
+	baseentity.cpp
+	baseflex.cpp
+	basetempentity.cpp
+	baseviewmodel.cpp
+	bitstring.cpp
+	bmodels.cpp
+	buttons.cpp
+	cbase.cpp
+	client.cpp
+	controlentities.cpp
+	cplane.cpp
+	CRagdollMagnet.cpp
+	cterrainmorph.cpp
+	damagemodifier.cpp
+	doors.cpp
+	dynamiclight.cpp
+	effects.cpp
+	EffectsServer.cpp
+	entityblocker.cpp
+	EntityDissolve.cpp
+	EntityFlame.cpp
+	entitylist.cpp
+	EntityParticleTrail.cpp
+	env_effectsscript.cpp
+	env_entity_maker.cpp
+	env_particlescript.cpp
+	env_player_surface_trigger.cpp
+	env_screenoverlay.cpp
+	env_texturetoggle.cpp
+	env_zoom.cpp
+	EnvBeam.cpp
+	EnvFade.cpp
+	EnvHudHint.cpp
+	EnvLaser.cpp
+	EnvMessage.cpp
+	envmicrophone.cpp
+	EnvShake.cpp
+	EnvSpark.cpp
+	event_tempentity_tester.cpp
+	EventLog.cpp
+	explode.cpp
+	filters.cpp
+	fire.cpp
+	fire_smoke.cpp
+	fogcontroller.cpp
+	fourwheelvehiclephysics.cpp
+	func_areaportal.cpp
+	func_areaportalbase.cpp
+	func_areaportalwindow.cpp
+	func_break.cpp
+	func_breakablesurf.cpp
+	func_dust.cpp
+	func_ladder_endpoint.cpp
+	func_lod.cpp
+	func_movelinear.cpp
+	func_occluder.cpp
+	func_smokevolume.cpp
+	game.cpp
+	game_ui.cpp
+	gamehandle.cpp
+	gameinterface.cpp
+	gametrace_dll.cpp
+	genericactor.cpp
+	genericmonster.cpp
+	gib.cpp
+	globals.cpp
+	globalstate.cpp
+	guntarget.cpp
+	h_ai.cpp
+	h_export.cpp
+	hierarchy.cpp
+	hltvdirector.cpp
+	info_camera_link.cpp
+	init_factory.cpp
+	intermission.cpp
+	item_world.cpp
+	lightglow.cpp
+	lights.cpp
+	logic_measure_movement.cpp
+	logic_navigation.cpp
+	logicauto.cpp
+	logicentities.cpp
+	logicrelay.cpp
+	mapentities.cpp
+	maprules.cpp
+	MaterialModifyControl.cpp
+	message_entity.cpp
+	modelentities.cpp
+	movehelper_server.cpp
+	movement.cpp
+	movie_explosion.cpp
+	nav_area.cpp
+	nav_colors.cpp
+	nav_edit.cpp
+	nav_file.cpp
+	nav_generate.cpp
+	nav_ladder.cpp
+	nav_mesh.cpp
+	nav_node.cpp
+	ndebugoverlay.cpp
+	npc_vehicledriver.cpp
+	particle_fire.cpp
+	particle_light.cpp
+	particle_smokegrenade.cpp
+	pathcorner.cpp
+	pathtrack.cpp
+	phys_controller.cpp
+	physconstraint.cpp
+	physics.cpp
+	physics_bone_follower.cpp
+	physics_cannister.cpp
+	physics_fx.cpp
+	physics_impact_damage.cpp
+	physics_main.cpp
+	physics_npc_solver.cpp
+	physics_prop_ragdoll.cpp
+	physobj.cpp
+	plasma.cpp
+	player.cpp
+	player_command.cpp
+	player_lagcompensation.cpp
+	player_pickup.cpp
+	player_resource.cpp
+	playerinfomanager.cpp
+	playerlocaldata.cpp
+	plugin_check.cpp
+	point_camera.cpp
+	point_devshot_camera.cpp
+	point_playermoveconstraint.cpp
+	point_spotlight.cpp
+	point_template.cpp
+	pointanglesensor.cpp
+	PointAngularVelocitySensor.cpp
+	pointhurt.cpp
+	pointteleport.cpp
+	props.cpp
+	ragdoll_manager.cpp
+	RagdollBoogie.cpp
+	recipientfilter.cpp
+	rope.cpp
+	saverestore_gamedll.cpp
+	sceneentity.cpp
+	scratchpad_gamedll_helpers.cpp
+	scripted.cpp
+	scriptedtarget.cpp
+	sendproxy.cpp
+	ServerNetworkProperty.cpp
+	shadowcontrol.cpp
+	simtimer.cpp
+	SkyCamera.cpp
+	smoke_trail.cpp
+	smokestack.cpp
+	sound.cpp
+	soundent.cpp
+	soundscape.cpp
+	soundscape_system.cpp
+	spotlightend.cpp
+	stdafx.cpp
+	steamjet.cpp
+	subs.cpp
+	sun.cpp
+	tanktrain.cpp
+	te.cpp
+	te_armorricochet.cpp
+	te_basebeam.cpp
+	te_beamentpoint.cpp
+	te_beaments.cpp
+	te_beamfollow.cpp
+	te_beamlaser.cpp
+	te_beampoints.cpp
+	te_beamring.cpp
+	te_beamringpoint.cpp
+	te_beamspline.cpp
+	te_bloodsprite.cpp
+	te_bloodstream.cpp
+	te_breakmodel.cpp
+	te_bspdecal.cpp
+	te_bubbles.cpp
+	te_bubbletrail.cpp
+	te_decal.cpp
+	te_dynamiclight.cpp
+	te_effect_dispatch.cpp
+	te_energysplash.cpp
+	te_explosion.cpp
+	te_fizz.cpp
+	te_footprintdecal.cpp
+	te_glassshatter.cpp
+	te_glowsprite.cpp
+	te_impact.cpp
+	te_killplayerattachments.cpp
+	te_largefunnel.cpp
+	te_muzzleflash.cpp
+	te_particlesystem.cpp
+	te_physicsprop.cpp
+	te_playerdecal.cpp
+	te_projecteddecal.cpp
+	te_showline.cpp
+	te_smoke.cpp
+	te_sparks.cpp
+	te_sprite.cpp
+	te_spritespray.cpp
+	te_worlddecal.cpp
+	team.cpp
+	team_spawnpoint.cpp
+	TemplateEntities.cpp
+	tempmonster.cpp
+	terrainmodmgr.cpp
+	tesla.cpp
+	test_proxytoggle.cpp
+	test_stressentities.cpp
+	testfunctions.cpp
+	testtraceline.cpp
+	textstatsmgr.cpp
+	timedeventmgr.cpp
+	trains.cpp
+	triggers.cpp
+	util.cpp
+	variant_t.cpp
+	vehicle_base.cpp
+	vehicle_baseserver.cpp
+	vguiscreen.cpp
+	waterbullet.cpp
+	wcedit.cpp
+	world.cpp
+)
+
+IF(BUILD_HL2)
+	SET( SERVER_SRCS
+		${SERVER_SRCS}
+		ai_relationship.cpp
+		basebludgeonweapon.cpp
+		base_gameinterface.cpp
+		basegrenade_concussion.cpp
+		basegrenade_contact.cpp
+		basegrenade_timed.cpp
+		grenadethrown.cpp
+		h_cycler.cpp
+		monstermaker.cpp
+		npc_talker.cpp
+		weapon_cubemap.cpp
+	)
+ENDIF(BUILD_HL2)
+
+IF(BUILD_HL2MP)
+	SET( SERVER_SRCS
+		${SERVER_SRCS}
+		ai_relationship.cpp
+		basebludgeonweapon.cpp
+		basegrenade_concussion.cpp
+		basegrenade_contact.cpp
+		basegrenade_timed.cpp
+		grenadethrown.cpp
+		h_cycler.cpp
+		monstermaker.cpp
+		npc_talker.cpp
+		weapon_cubemap.cpp
+	)
+ENDIF(BUILD_HL2MP)
+
+SET( SERVER_HL2_SRCS
+	hl2_dll/te_gaussexplosion.cpp
+)
+
+IF(BUILD_HL2 OR BUILD_HL2MP)
+	SET( SERVER_HL2_SRCS
+		${SERVER_HL2_SRCS}
+		hl2_dll/ai_allymanager.cpp
+		hl2_dll/ai_behavior_actbusy.cpp
+		hl2_dll/ai_behavior_functank.cpp
+		hl2_dll/ai_behavior_holster.cpp
+		hl2_dll/ai_behavior_police.cpp
+		hl2_dll/ai_goal_police.cpp
+		hl2_dll/ai_spotlight.cpp
+		hl2_dll/antlion_dust.cpp
+		hl2_dll/antlion_maker.cpp
+		hl2_dll/ar2_explosion.cpp
+		hl2_dll/basehlcombatweapon.cpp
+		hl2_dll/cbasehelicopter.cpp
+		hl2_dll/cbasespriteprojectile.cpp
+		hl2_dll/citadel_effects.cpp
+		hl2_dll/combine_mine.cpp
+		hl2_dll/env_alyxemp.cpp
+		hl2_dll/env_headcrabcanister.cpp
+		hl2_dll/env_speaker.cpp
+		hl2_dll/env_starfield.cpp
+		hl2_dll/func_monitor.cpp
+		hl2_dll/func_recharge.cpp
+		hl2_dll/func_tank.cpp
+		hl2_dll/grenade_ar2.cpp
+		hl2_dll/grenade_beam.cpp
+		hl2_dll/grenade_bugbait.cpp
+		hl2_dll/grenade_frag.cpp
+		hl2_dll/grenade_homer.cpp
+		hl2_dll/grenade_pathfollower.cpp
+		hl2_dll/hl2_ai_network.cpp
+		hl2_dll/hl2_eventlog.cpp
+		hl2_dll/hl2_player.cpp
+		hl2_dll/hl2_playerlocaldata.cpp
+		hl2_dll/hl2_triggers.cpp
+		hl2_dll/hl_playermove.cpp
+		hl2_dll/info_teleporter_countdown.cpp
+		hl2_dll/item_ammo.cpp
+		hl2_dll/item_battery.cpp
+		hl2_dll/item_dynamic_resupply.cpp
+		hl2_dll/item_healthkit.cpp
+		hl2_dll/item_itemcrate.cpp
+		hl2_dll/item_suit.cpp
+		hl2_dll/look_door.cpp
+		hl2_dll/monster_dummy.cpp
+		hl2_dll/npc_alyx.cpp
+		hl2_dll/npc_antlion.cpp
+		hl2_dll/npc_antlionguard.cpp
+		hl2_dll/npc_apcdriver.cpp
+		hl2_dll/npc_attackchopper.cpp
+		hl2_dll/npc_barnacle.cpp
+		hl2_dll/npc_barney.cpp
+		hl2_dll/npc_basezombie.cpp
+		hl2_dll/npc_breen.cpp
+		hl2_dll/npc_bullseye.cpp
+		hl2_dll/npc_citizen17.cpp
+		hl2_dll/npc_combine.cpp
+		hl2_dll/npc_combinecamera.cpp
+		hl2_dll/npc_combinedropship.cpp
+		hl2_dll/npc_combinegunship.cpp
+		hl2_dll/npc_combines.cpp
+		hl2_dll/npc_cranedriver.cpp
+		hl2_dll/npc_crow.cpp
+		hl2_dll/npc_dog.cpp
+		hl2_dll/npc_eli.cpp
+		hl2_dll/npc_enemyfinder.cpp
+		hl2_dll/npc_fastzombie.cpp
+		hl2_dll/npc_gman.cpp
+		hl2_dll/npc_headcrab.cpp
+		hl2_dll/npc_ichthyosaur.cpp
+		hl2_dll/npc_kleiner.cpp
+		hl2_dll/npc_launcher.cpp
+		hl2_dll/npc_manhack.cpp
+		hl2_dll/npc_metropolice.cpp
+		hl2_dll/npc_missiledefense.cpp
+		hl2_dll/npc_monk.cpp
+		hl2_dll/npc_mossman.cpp
+		hl2_dll/npc_playercompanion.cpp
+		hl2_dll/npc_poisonzombie.cpp
+		hl2_dll/npc_rollermine.cpp
+		hl2_dll/npc_scanner.cpp
+		hl2_dll/npc_stalker.cpp
+		hl2_dll/npc_strider.cpp
+		hl2_dll/npc_turret_ceiling.cpp
+		hl2_dll/npc_turret_floor.cpp
+		hl2_dll/npc_turret_ground.cpp
+		hl2_dll/npc_vortigaunt.cpp
+		hl2_dll/npc_zombie.cpp
+		hl2_dll/player_control.cpp
+		hl2_dll/point_apc_controller.cpp
+		hl2_dll/prop_combine_ball.cpp
+		hl2_dll/prop_thumper.cpp
+		hl2_dll/proto_sniper.cpp
+		hl2_dll/rotorwash.cpp
+		hl2_dll/script_intro.cpp
+		hl2_dll/vehicle_airboat.cpp
+		hl2_dll/vehicle_apc.cpp
+		hl2_dll/vehicle_crane.cpp
+		hl2_dll/vehicle_jeep.cpp
+		hl2_dll/vehicle_prisoner_pod.cpp
+		hl2_dll/vehicle_viewcontroller.cpp
+		hl2_dll/WaterLODControl.cpp
+		hl2_dll/weapon_annabelle.cpp
+		hl2_dll/weapon_bugbait.cpp
+		hl2_dll/weapon_cguard.cpp
+		hl2_dll/weapon_citizenpackage.cpp
+		hl2_dll/weapon_flaregun.cpp
+	)
+ENDIF(BUILD_HL2 OR BUILD_HL2MP)
+
+IF(BUILD_HL2)
+	SET( SERVER_HL2_SRCS
+		${SERVER_HL2_SRCS}
+		hl2_dll/hl2_client.cpp
+		hl2_dll/vehicle_cannon.cpp
+		hl2_dll/weapon_357.cpp
+		hl2_dll/weapon_alyxgun.cpp
+		hl2_dll/weapon_ar2.cpp
+		hl2_dll/weapon_crossbow.cpp
+		hl2_dll/weapon_crowbar.cpp
+		hl2_dll/weapon_frag.cpp
+		hl2_dll/weapon_physcannon.cpp
+		hl2_dll/weapon_pistol.cpp
+		hl2_dll/weapon_rpg.cpp
+		hl2_dll/weapon_shotgun.cpp
+		hl2_dll/weapon_smg1.cpp
+		hl2_dll/weapon_stunstick.cpp
+	)
+ENDIF(BUILD_HL2)
+
+SET( SERVER_HL2MP_SRCS
+	hl2mp_dll/grenade_satchel.cpp
+	hl2mp_dll/grenade_tripmine.cpp
+	hl2mp_dll/hl2mp_client.cpp
+	hl2mp_dll/hl2mp_gameinterface.cpp
+	hl2mp_dll/hl2mp_player.cpp
+	hl2mp_dll/te_hl2mp_shotgun_shot.cpp
+	hl2mp_dll/te_hl2mp_shotgun_shot.cpp
+)
+
+SET( SERVER_SDK_SRCS
+	sdk/sdk_bot_temp.cpp
+	sdk/sdk_brushentity.cpp
+	sdk/sdk_client.cpp
+	sdk/sdk_env_message.cpp
+	sdk/sdk_env_sparkler.cpp
+	sdk/sdk_eventlog.cpp
+	sdk/sdk_gameinterface.cpp
+	sdk/sdk_logicalentity.cpp
+	sdk/sdk_modelentity.cpp
+	sdk/sdk_player.cpp
+	sdk/sdk_playermove.cpp
+	sdk/sdk_team.cpp
+	sdk/sdk_vehicle_jeep.cpp
+	sdk/te_firebullets.cpp
+)
+
+SET( COMMON_SRCS
+	../common/randoverride.cpp
+)
+
+SET( GAME_SHARED_SRCS
+	../game_shared/activitylist.cpp
+	../game_shared/ammodef.cpp
+	../game_shared/animation.cpp
+	../game_shared/base_playeranimstate.cpp
+	../game_shared/basecombatcharacter_shared.cpp
+	../game_shared/basecombatweapon_shared.cpp
+	../game_shared/baseentity_shared.cpp
+	../game_shared/basegrenade_shared.cpp
+	../game_shared/baseparticleentity.cpp
+	../game_shared/baseplayer_shared.cpp
+	../game_shared/baseviewmodel_shared.cpp
+	../game_shared/beam_shared.cpp
+	../game_shared/choreoactor.cpp
+	../game_shared/choreochannel.cpp
+	../game_shared/choreoevent.cpp
+	../game_shared/choreoscene.cpp
+	../game_shared/collisionproperty.cpp
+	../game_shared/death_pose.cpp
+	../game_shared/debugoverlay_shared.cpp
+	../game_shared/decals.cpp
+	../game_shared/effect_dispatch_data.cpp
+	../game_shared/ehandle.cpp
+	../game_shared/entitylist_base.cpp
+	../game_shared/EntityParticleTrail_Shared.cpp
+	../game_shared/env_detail_controller.cpp
+	../game_shared/env_wind_shared.cpp
+	../game_shared/eventlist.cpp
+	../game_shared/func_ladder.cpp
+	../game_shared/gamemovement.cpp
+	../game_shared/gamerules.cpp
+	../game_shared/gamerules_register.cpp
+	../game_shared/gamestringpool.cpp
+	../game_shared/gamevars_shared.cpp
+	../game_shared/igamesystem.cpp
+	../game_shared/interval.cpp
+	../game_shared/mapentities_shared.cpp
+	../game_shared/movevars_shared.cpp
+	../game_shared/multiplay_gamerules.cpp
+	../game_shared/physics_main_shared.cpp
+	../game_shared/physics_saverestore.cpp
+	../game_shared/physics_shared.cpp
+	../game_shared/precache_register.cpp
+	../game_shared/predictableid.cpp
+	../game_shared/props_shared.cpp
+	../game_shared/ragdoll_shared.cpp
+	../game_shared/rope_helpers.cpp
+	../game_shared/saverestore.cpp
+	../game_shared/sheetsimulator.cpp
+	../game_shared/singleplay_gamerules.cpp
+	../game_shared/SoundEmitterSystem.cpp
+	../game_shared/soundenvelope.cpp
+	../game_shared/Sprite.cpp
+	../game_shared/SpriteTrail.cpp
+	../game_shared/studio_shared.cpp
+	../game_shared/takedamageinfo.cpp
+	../game_shared/teamplay_gamerules.cpp
+	../game_shared/test_ehandle.cpp
+	../game_shared/usercmd.cpp
+	../game_shared/usermessages.cpp
+	../game_shared/util_shared.cpp
+	../game_shared/voice_gamemgr.cpp
+	../game_shared/weapon_parse.cpp
+	../game_shared/weapon_proficiency.cpp
+)
+
+IF(BUILD_HL2)
+	SET(GAME_SHARED_SRCS
+		${GAME_SHARED_SRCS}
+		../game_shared/weapon_parse_default.cpp
+	)
+ENDIF(BUILD_HL2)
+
+IF(BUILD_HL2MP)
+	SET(GAME_SHARED_SRCS
+		${GAME_SHARED_SRCS}
+		../game_shared/predicted_viewmodel.cpp
+	)
+ENDIF(BUILD_HL2MP)
+
+IF(BUILD_SDK)
+	SET(GAME_SHARED_SRCS
+		${GAME_SHARED_SRCS}
+		../game_shared/predicted_viewmodel.cpp
+	)
+ENDIF(BUILD_SDK)
+
+SET( GAME_SHARED_HL2_SRCS
+	../game_shared/hl2/basehlcombatweapon_shared.cpp
+	../game_shared/hl2/env_headcrabcanister_shared.cpp
+	../game_shared/hl2/hl2_gamerules.cpp
+	../game_shared/hl2/hl2_usermessages.cpp
+	../game_shared/hl2/hl_gamemovement.cpp
+)
+
+SET( GAME_SHARED_HL2MP_SRCS
+	../game_shared/hl2mp/hl2mp_gamerules.cpp
+	../game_shared/hl2mp/hl2mp_player_shared.cpp
+	../game_shared/hl2mp/hl2mp_weapon_parse.cpp
+	../game_shared/hl2mp/weapon_357.cpp
+	../game_shared/hl2mp/weapon_ar2.cpp
+	../game_shared/hl2mp/weapon_crossbow.cpp
+	../game_shared/hl2mp/weapon_crowbar.cpp
+	../game_shared/hl2mp/weapon_frag.cpp
+	../game_shared/hl2mp/weapon_hl2mpbase.cpp
+	../game_shared/hl2mp/weapon_hl2mpbase_machinegun.cpp
+	../game_shared/hl2mp/weapon_hl2mpbasebasebludgeon.cpp
+	../game_shared/hl2mp/weapon_hl2mpbasehlmpcombatweapon.cpp
+	../game_shared/hl2mp/weapon_physcannon.cpp
+	../game_shared/hl2mp/weapon_pistol.cpp
+	../game_shared/hl2mp/weapon_rpg.cpp
+	../game_shared/hl2mp/weapon_shotgun.cpp
+	../game_shared/hl2mp/weapon_slam.cpp
+	../game_shared/hl2mp/weapon_smg1.cpp
+	../game_shared/hl2mp/weapon_stunstick.cpp
+)
+
+SET( GAME_SHARED_SDK_SRCS
+	../game_shared/sdk/sdk_basegrenade_projectile.cpp
+	../game_shared/sdk/sdk_fx_shared.cpp
+	../game_shared/sdk/sdk_gamemovement.cpp
+	../game_shared/sdk/sdk_gamerules.cpp
+	../game_shared/sdk/sdk_player_shared.cpp
+	../game_shared/sdk/sdk_playeranimstate.cpp
+	../game_shared/sdk/sdk_usermessages.cpp
+	../game_shared/sdk/sdk_weapon_parse.cpp
+	../game_shared/sdk/weapon_basesdkgrenade.cpp
+	../game_shared/sdk/weapon_grenade.cpp
+	../game_shared/sdk/weapon_mp5.cpp
+	../game_shared/sdk/weapon_sdkbase.cpp
+	../game_shared/sdk/weapon_shotgun.cpp
+)
+
+SET( PUBLIC_SRCS
+	../public/bone_setup.cpp
+	../public/collisionutils.cpp
+	../public/dt_send.cpp
+	../public/dt_utlvector_common.cpp
+	../public/dt_utlvector_send.cpp
+	../public/editor_sendcommand.cpp
+	../public/filesystem_helpers.cpp
+	../public/IceKey.cpp
+	../public/map_utils.cpp
+	../public/mathlib.cpp
+	../public/networkvar.cpp
+	../public/rope_physics.cpp
+	../public/scratchpad3d.cpp
+	../public/ScratchPadUtils.cpp
+	../public/server_class.cpp
+	../public/simple_physics.cpp
+	../public/SoundParametersInternal.cpp
+	../public/stringregistry.cpp
+	../public/studio.cpp
+	../public/vmatrix.cpp
+)
+
+SET( KEYFRAME_SRCS
+	../public/keyframe/keyframe.cpp
+)
+
+SET( TIER0_SRCS
+	../public/tier0/memoverride.cpp
+)
+
+SET( TIER1_SRCS
+	../tier1/bitbuf.cpp
+	../tier1/characterset.cpp
+	../tier1/checksum_crc.cpp
+	../tier1/checksum_md5.cpp
+	../tier1/convar.cpp
+	../tier1/interface.cpp
+	../tier1/KeyValues.cpp
+	../tier1/mempool.cpp
+	../tier1/resourcemanager.cpp
+	../tier1/stringpool.cpp
+	../tier1/utlbuffer.cpp
+	../tier1/utlsymbol.cpp
+)
+
+IF(BUILD_HL2)
+	SET(SERVER_BUILD_SRCS
+		${GAME_SHARED_HL2_SRCS}
+		${SERVER_HL2_SRCS}
+	)	
+	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/hl2_dll )
+	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2 )
+ENDIF(BUILD_HL2)
+
+IF(BUILD_HL2MP)
+	SET(SERVER_BUILD_SRCS
+		${GAME_SHARED_HL2_SRCS}
+		${GAME_SHARED_HL2MP_SRCS}
+		${SERVER_HL2_SRCS}
+		${SERVER_HL2MP_SRCS}
+	)	
+	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/hl2mp_dll )
+	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2mp )
+ENDIF(BUILD_HL2MP)
+
+IF(BUILD_SDK)
+	SET(SERVER_BUILD_SRCS
+		${GAME_SHARED_SDK_SRCS}
+		${SERVER_SDK_SRCS}
+	)	
+	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/sdk )
+	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/sdk )
+ENDIF(BUILD_SDK)
+
+SET( SERVER_ALL_SRCS
+	${SERVER_SRCS}
+	${GAME_SHARED_SRCS}
+	${PUBLIC_SRCS}
+	${TIER0_SRCS}
+	${TIER1_SRCS}
+	${KEYFRAME_SRCS}
+	${COMMON_SRCS}
+	${SERVER_BUILD_SRCS}
+)
+
+SOURCE_GROUP(common			FILES ${COMMON_SRCS})
+SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS} ${GAME_SHARED_HL2_SRCS} ${GAME_SHARED_HL2MP_SRCS})
+SOURCE_GROUP(keyframe		FILES ${KEYFRAME_SRCS})
+SOURCE_GROUP(server			FILES ${SERVER_SRCS} ${SERVER_SDK_SRCS} ${SERVER_HL2_SRCS} ${SERVER_HL2MP_SRCS})
+SOURCE_GROUP(tier0			FILES ${TIER0_SRCS})
+SOURCE_GROUP(tier1			FILES ${TIER1_SRCS})
+SOURCE_GROUP(public			FILES ${PUBLIC_SRCS})
+
+INCLUDE_DIRECTORIES(
+	${HL2SDK_SOURCE_DIR}/src/public/tier1
+	${SERVER_BUILD_INC_GAME_SHARED}
+	${HL2SDK_SOURCE_DIR}/src/public
+	${HL2SDK_SOURCE_DIR}/src/game_shared
+	${HL2SDK_SOURCE_DIR}/src/utils/common
+	${HL2SDK_SOURCE_DIR}/src/dlls
+	${SERVER_BUILD_INC_DLLS}
+	${HL2SDK_SOURCE_DIR}/src/cl_dll
+	${HL2SDK_SOURCE_DIR}/src/dlls/hl2_dll
+	${HL2SDK_SOURCE_DIR}/src/game_shared/hl2
+)
+
+ADD_DEFINITIONS(
+	${SDK_BUILD_FLAGS}
+	${SDK_BUILD_SERVER_FLAGS}
+	-Dfopen=dont_use_fopen
+	-DBOTS
+	-DUSES_SAVERESTORE
+	-DGAME_DLL
+	-Dsprintf=use_Q_snprintf_instead_of_sprintf
+	-D_WINDOWS
+	-DVECTOR
+	-Dstrncpy=use_Q_strncpy_instead
+	-D_snprintf=use_Q_snprintf_instead
+	-D_WIN32
+	-DPROTECTED_THINGS_ENABLE
+)
+
+ADD_LIBRARY(server SHARED ${SERVER_ALL_SRCS})
+
+IF(WIN32)
+	SET_TARGET_PROPERTIES(server PROPERTIES LINK_FLAGS "/FORCE:MULTIPLE")
+ENDIF(WIN32)
+
+LINK_DIRECTORIES(
+	${HL2SDK_SOURCE_DIR}/src/lib/public
+)
+
+TARGET_LINK_LIBRARIES(server tier0 vstdlib)
+
+INSTALL_TARGETS(/bin server)

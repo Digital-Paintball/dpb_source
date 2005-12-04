@@ -1,0 +1,61 @@
+SET( VGUI_CONTROLS_SRCS
+	controls/AnimatingImagePanel.cpp
+	controls/AnimationController.cpp
+	controls/BitmapImagePanel.cpp
+	controls/BuildGroup.cpp
+	controls/BuildModeDialog.cpp
+	controls/Button.cpp
+	controls/CheckButton.cpp
+	controls/CheckButtonList.cpp
+	controls/ComboBox.cpp
+	controls/DirectorySelectDialog.cpp
+	controls/Divider.cpp
+	controls/EditablePanel.cpp
+	controls/FileOpenDialog.cpp
+	controls/FocusNavGroup.cpp
+	controls/Frame.cpp
+	controls/GraphPanel.cpp
+	controls/HTML.cpp
+	controls/Image.cpp
+	controls/ImageList.cpp
+	controls/ImagePanel.cpp
+	controls/Label.cpp
+	controls/ListPanel.cpp
+	controls/ListViewPanel.cpp
+	controls/Menu.cpp
+	controls/MenuBar.cpp
+	controls/MenuButton.cpp
+	controls/MenuItem.cpp
+	controls/MessageBox.cpp
+	controls/Panel.cpp
+	controls/PanelListPanel.cpp
+	controls/ProgressBar.cpp
+	controls/ProgressBox.cpp
+	controls/PropertyDialog.cpp
+	controls/PropertyPage.cpp
+	controls/PropertySheet.cpp
+	controls/QueryBox.cpp
+	controls/RadioButton.cpp
+	controls/RichText.cpp
+	controls/ScrollBar.cpp
+	controls/ScrollBarSlider.cpp
+	controls/SectionedListPanel.cpp
+	controls/Slider.cpp
+	controls/TextEntry.cpp
+	controls/TextImage.cpp
+	controls/ToggleButton.cpp
+	controls/Tooltip.cpp
+	controls/TreeView.cpp
+	controls/TreeViewListControl.cpp
+	controls/URLLabel.cpp
+	controls/WizardPanel.cpp
+	controls/WizardSubPanel.cpp
+	controls/controls.cpp
+)
+
+INCLUDE_DIRECTORIES(
+	${HL2SDK_SOURCE_DIR}/src/public/tier1
+	${HL2SDK_SOURCE_DIR}/src/public
+)
+
+ADD_LIBRARY(vgui_controls STATIC ${VGUI_CONTROLS_SRCS})
