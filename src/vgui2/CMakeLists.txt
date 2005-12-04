@@ -54,8 +54,8 @@ SET( VGUI_CONTROLS_SRCS
 )
 
 INCLUDE_DIRECTORIES(
-	${HL2SDK_SOURCE_DIR}/src/public/tier1
-	${HL2SDK_SOURCE_DIR}/src/public
+	${DPB_SOURCE_DIR}/src/public/tier1
+	${DPB_SOURCE_DIR}/src/public
 )
 
 ADD_LIBRARY(vgui_controls STATIC ${VGUI_CONTROLS_SRCS})

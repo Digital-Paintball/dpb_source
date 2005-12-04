@@ -285,187 +285,8 @@ SET( SERVER_SRCS
 	vehicle_base.cpp
 	vehicle_baseserver.cpp
 	vguiscreen.cpp
-	waterbullet.cpp
 	wcedit.cpp
 	world.cpp
-)
-
-IF(BUILD_HL2)
-	SET( SERVER_SRCS
-		${SERVER_SRCS}
-		ai_relationship.cpp
-		basebludgeonweapon.cpp
-		base_gameinterface.cpp
-		basegrenade_concussion.cpp
-		basegrenade_contact.cpp
-		basegrenade_timed.cpp
-		grenadethrown.cpp
-		h_cycler.cpp
-		monstermaker.cpp
-		npc_talker.cpp
-		weapon_cubemap.cpp
-	)
-ENDIF(BUILD_HL2)
-
-IF(BUILD_HL2MP)
-	SET( SERVER_SRCS
-		${SERVER_SRCS}
-		ai_relationship.cpp
-		basebludgeonweapon.cpp
-		basegrenade_concussion.cpp
-		basegrenade_contact.cpp
-		basegrenade_timed.cpp
-		grenadethrown.cpp
-		h_cycler.cpp
-		monstermaker.cpp
-		npc_talker.cpp
-		weapon_cubemap.cpp
-	)
-ENDIF(BUILD_HL2MP)
-
-SET( SERVER_HL2_SRCS
-	hl2_dll/te_gaussexplosion.cpp
-)
-
-IF(BUILD_HL2 OR BUILD_HL2MP)
-	SET( SERVER_HL2_SRCS
-		${SERVER_HL2_SRCS}
-		hl2_dll/ai_allymanager.cpp
-		hl2_dll/ai_behavior_actbusy.cpp
-		hl2_dll/ai_behavior_functank.cpp
-		hl2_dll/ai_behavior_holster.cpp
-		hl2_dll/ai_behavior_police.cpp
-		hl2_dll/ai_goal_police.cpp
-		hl2_dll/ai_spotlight.cpp
-		hl2_dll/antlion_dust.cpp
-		hl2_dll/antlion_maker.cpp
-		hl2_dll/ar2_explosion.cpp
-		hl2_dll/basehlcombatweapon.cpp
-		hl2_dll/cbasehelicopter.cpp
-		hl2_dll/cbasespriteprojectile.cpp
-		hl2_dll/citadel_effects.cpp
-		hl2_dll/combine_mine.cpp
-		hl2_dll/env_alyxemp.cpp
-		hl2_dll/env_headcrabcanister.cpp
-		hl2_dll/env_speaker.cpp
-		hl2_dll/env_starfield.cpp
-		hl2_dll/func_monitor.cpp
-		hl2_dll/func_recharge.cpp
-		hl2_dll/func_tank.cpp
-		hl2_dll/grenade_ar2.cpp
-		hl2_dll/grenade_beam.cpp
-		hl2_dll/grenade_bugbait.cpp
-		hl2_dll/grenade_frag.cpp
-		hl2_dll/grenade_homer.cpp
-		hl2_dll/grenade_pathfollower.cpp
-		hl2_dll/hl2_ai_network.cpp
-		hl2_dll/hl2_eventlog.cpp
-		hl2_dll/hl2_player.cpp
-		hl2_dll/hl2_playerlocaldata.cpp
-		hl2_dll/hl2_triggers.cpp
-		hl2_dll/hl_playermove.cpp
-		hl2_dll/info_teleporter_countdown.cpp
-		hl2_dll/item_ammo.cpp
-		hl2_dll/item_battery.cpp
-		hl2_dll/item_dynamic_resupply.cpp
-		hl2_dll/item_healthkit.cpp
-		hl2_dll/item_itemcrate.cpp
-		hl2_dll/item_suit.cpp
-		hl2_dll/look_door.cpp
-		hl2_dll/monster_dummy.cpp
-		hl2_dll/npc_alyx.cpp
-		hl2_dll/npc_antlion.cpp
-		hl2_dll/npc_antlionguard.cpp
-		hl2_dll/npc_apcdriver.cpp
-		hl2_dll/npc_attackchopper.cpp
-		hl2_dll/npc_barnacle.cpp
-		hl2_dll/npc_barney.cpp
-		hl2_dll/npc_basezombie.cpp
-		hl2_dll/npc_breen.cpp
-		hl2_dll/npc_bullseye.cpp
-		hl2_dll/npc_citizen17.cpp
-		hl2_dll/npc_combine.cpp
-		hl2_dll/npc_combinecamera.cpp
-		hl2_dll/npc_combinedropship.cpp
-		hl2_dll/npc_combinegunship.cpp
-		hl2_dll/npc_combines.cpp
-		hl2_dll/npc_cranedriver.cpp
-		hl2_dll/npc_crow.cpp
-		hl2_dll/npc_dog.cpp
-		hl2_dll/npc_eli.cpp
-		hl2_dll/npc_enemyfinder.cpp
-		hl2_dll/npc_fastzombie.cpp
-		hl2_dll/npc_gman.cpp
-		hl2_dll/npc_headcrab.cpp
-		hl2_dll/npc_ichthyosaur.cpp
-		hl2_dll/npc_kleiner.cpp
-		hl2_dll/npc_launcher.cpp
-		hl2_dll/npc_manhack.cpp
-		hl2_dll/npc_metropolice.cpp
-		hl2_dll/npc_missiledefense.cpp
-		hl2_dll/npc_monk.cpp
-		hl2_dll/npc_mossman.cpp
-		hl2_dll/npc_playercompanion.cpp
-		hl2_dll/npc_poisonzombie.cpp
-		hl2_dll/npc_rollermine.cpp
-		hl2_dll/npc_scanner.cpp
-		hl2_dll/npc_stalker.cpp
-		hl2_dll/npc_strider.cpp
-		hl2_dll/npc_turret_ceiling.cpp
-		hl2_dll/npc_turret_floor.cpp
-		hl2_dll/npc_turret_ground.cpp
-		hl2_dll/npc_vortigaunt.cpp
-		hl2_dll/npc_zombie.cpp
-		hl2_dll/player_control.cpp
-		hl2_dll/point_apc_controller.cpp
-		hl2_dll/prop_combine_ball.cpp
-		hl2_dll/prop_thumper.cpp
-		hl2_dll/proto_sniper.cpp
-		hl2_dll/rotorwash.cpp
-		hl2_dll/script_intro.cpp
-		hl2_dll/vehicle_airboat.cpp
-		hl2_dll/vehicle_apc.cpp
-		hl2_dll/vehicle_crane.cpp
-		hl2_dll/vehicle_jeep.cpp
-		hl2_dll/vehicle_prisoner_pod.cpp
-		hl2_dll/vehicle_viewcontroller.cpp
-		hl2_dll/WaterLODControl.cpp
-		hl2_dll/weapon_annabelle.cpp
-		hl2_dll/weapon_bugbait.cpp
-		hl2_dll/weapon_cguard.cpp
-		hl2_dll/weapon_citizenpackage.cpp
-		hl2_dll/weapon_flaregun.cpp
-	)
-ENDIF(BUILD_HL2 OR BUILD_HL2MP)
-
-IF(BUILD_HL2)
-	SET( SERVER_HL2_SRCS
-		${SERVER_HL2_SRCS}
-		hl2_dll/hl2_client.cpp
-		hl2_dll/vehicle_cannon.cpp
-		hl2_dll/weapon_357.cpp
-		hl2_dll/weapon_alyxgun.cpp
-		hl2_dll/weapon_ar2.cpp
-		hl2_dll/weapon_crossbow.cpp
-		hl2_dll/weapon_crowbar.cpp
-		hl2_dll/weapon_frag.cpp
-		hl2_dll/weapon_physcannon.cpp
-		hl2_dll/weapon_pistol.cpp
-		hl2_dll/weapon_rpg.cpp
-		hl2_dll/weapon_shotgun.cpp
-		hl2_dll/weapon_smg1.cpp
-		hl2_dll/weapon_stunstick.cpp
-	)
-ENDIF(BUILD_HL2)
-
-SET( SERVER_HL2MP_SRCS
-	hl2mp_dll/grenade_satchel.cpp
-	hl2mp_dll/grenade_tripmine.cpp
-	hl2mp_dll/hl2mp_client.cpp
-	hl2mp_dll/hl2mp_gameinterface.cpp
-	hl2mp_dll/hl2mp_player.cpp
-	hl2mp_dll/te_hl2mp_shotgun_shot.cpp
-	hl2mp_dll/te_hl2mp_shotgun_shot.cpp
 )
 
 SET( SERVER_SDK_SRCS
@@ -533,6 +354,7 @@ SET( GAME_SHARED_SRCS
 	../game_shared/physics_shared.cpp
 	../game_shared/precache_register.cpp
 	../game_shared/predictableid.cpp
+	../game_shared/predicted_viewmodel.cpp
 	../game_shared/props_shared.cpp
 	../game_shared/ragdoll_shared.cpp
 	../game_shared/rope_helpers.cpp
@@ -555,57 +377,6 @@ SET( GAME_SHARED_SRCS
 	../game_shared/weapon_proficiency.cpp
 )
 
-IF(BUILD_HL2)
-	SET(GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/weapon_parse_default.cpp
-	)
-ENDIF(BUILD_HL2)
-
-IF(BUILD_HL2MP)
-	SET(GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/predicted_viewmodel.cpp
-	)
-ENDIF(BUILD_HL2MP)
-
-IF(BUILD_SDK)
-	SET(GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/predicted_viewmodel.cpp
-	)
-ENDIF(BUILD_SDK)
-
-SET( GAME_SHARED_HL2_SRCS
-	../game_shared/hl2/basehlcombatweapon_shared.cpp
-	../game_shared/hl2/env_headcrabcanister_shared.cpp
-	../game_shared/hl2/hl2_gamerules.cpp
-	../game_shared/hl2/hl2_usermessages.cpp
-	../game_shared/hl2/hl_gamemovement.cpp
-)
-
-SET( GAME_SHARED_HL2MP_SRCS
-	../game_shared/hl2mp/hl2mp_gamerules.cpp
-	../game_shared/hl2mp/hl2mp_player_shared.cpp
-	../game_shared/hl2mp/hl2mp_weapon_parse.cpp
-	../game_shared/hl2mp/weapon_357.cpp
-	../game_shared/hl2mp/weapon_ar2.cpp
-	../game_shared/hl2mp/weapon_crossbow.cpp
-	../game_shared/hl2mp/weapon_crowbar.cpp
-	../game_shared/hl2mp/weapon_frag.cpp
-	../game_shared/hl2mp/weapon_hl2mpbase.cpp
-	../game_shared/hl2mp/weapon_hl2mpbase_machinegun.cpp
-	../game_shared/hl2mp/weapon_hl2mpbasebasebludgeon.cpp
-	../game_shared/hl2mp/weapon_hl2mpbasehlmpcombatweapon.cpp
-	../game_shared/hl2mp/weapon_physcannon.cpp
-	../game_shared/hl2mp/weapon_pistol.cpp
-	../game_shared/hl2mp/weapon_rpg.cpp
-	../game_shared/hl2mp/weapon_shotgun.cpp
-	../game_shared/hl2mp/weapon_slam.cpp
-	../game_shared/hl2mp/weapon_smg1.cpp
-	../game_shared/hl2mp/weapon_stunstick.cpp
-)
-
 SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/sdk_basegrenade_projectile.cpp
 	../game_shared/sdk/sdk_fx_shared.cpp
@@ -617,9 +388,8 @@ SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/sdk_weapon_parse.cpp
 	../game_shared/sdk/weapon_basesdkgrenade.cpp
 	../game_shared/sdk/weapon_grenade.cpp
-	../game_shared/sdk/weapon_mp5.cpp
+	../game_shared/sdk/weapon_marker.cpp
 	../game_shared/sdk/weapon_sdkbase.cpp
-	../game_shared/sdk/weapon_shotgun.cpp
 )
 
 SET( PUBLIC_SRCS
@@ -668,34 +438,13 @@ SET( TIER1_SRCS
 	../tier1/utlsymbol.cpp
 )
 
-IF(BUILD_HL2)
-	SET(SERVER_BUILD_SRCS
-		${GAME_SHARED_HL2_SRCS}
-		${SERVER_HL2_SRCS}
-	)	
-	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/hl2_dll )
-	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2 )
-ENDIF(BUILD_HL2)
+SET(SERVER_BUILD_SRCS
+	${GAME_SHARED_SDK_SRCS}
+	${SERVER_SDK_SRCS}
+)
 
-IF(BUILD_HL2MP)
-	SET(SERVER_BUILD_SRCS
-		${GAME_SHARED_HL2_SRCS}
-		${GAME_SHARED_HL2MP_SRCS}
-		${SERVER_HL2_SRCS}
-		${SERVER_HL2MP_SRCS}
-	)	
-	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/hl2mp_dll )
-	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2mp )
-ENDIF(BUILD_HL2MP)
-
-IF(BUILD_SDK)
-	SET(SERVER_BUILD_SRCS
-		${GAME_SHARED_SDK_SRCS}
-		${SERVER_SDK_SRCS}
-	)	
-	SET(SERVER_BUILD_INC_DLLS ${HL2SDK_SOURCE_DIR}/src/dlls/sdk )
-	SET(SERVER_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/sdk )
-ENDIF(BUILD_SDK)
+SET(SERVER_BUILD_INC_DLLS ${DPB_SOURCE_DIR}/src/dlls/sdk )
+SET(SERVER_BUILD_INC_GAME_SHARED ${DPB_SOURCE_DIR}/src/game_shared/sdk )
 
 SET( SERVER_ALL_SRCS
 	${SERVER_SRCS}
@@ -709,24 +458,24 @@ SET( SERVER_ALL_SRCS
 )
 
 SOURCE_GROUP(common			FILES ${COMMON_SRCS})
-SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS} ${GAME_SHARED_HL2_SRCS} ${GAME_SHARED_HL2MP_SRCS})
+SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS})
 SOURCE_GROUP(keyframe		FILES ${KEYFRAME_SRCS})
-SOURCE_GROUP(server			FILES ${SERVER_SRCS} ${SERVER_SDK_SRCS} ${SERVER_HL2_SRCS} ${SERVER_HL2MP_SRCS})
+SOURCE_GROUP(server			FILES ${SERVER_SRCS} ${SERVER_SDK_SRCS})
 SOURCE_GROUP(tier0			FILES ${TIER0_SRCS})
 SOURCE_GROUP(tier1			FILES ${TIER1_SRCS})
 SOURCE_GROUP(public			FILES ${PUBLIC_SRCS})
 
 INCLUDE_DIRECTORIES(
-	${HL2SDK_SOURCE_DIR}/src/public/tier1
+	${DPB_SOURCE_DIR}/src/public/tier1
 	${SERVER_BUILD_INC_GAME_SHARED}
-	${HL2SDK_SOURCE_DIR}/src/public
-	${HL2SDK_SOURCE_DIR}/src/game_shared
-	${HL2SDK_SOURCE_DIR}/src/utils/common
-	${HL2SDK_SOURCE_DIR}/src/dlls
+	${DPB_SOURCE_DIR}/src/public
+	${DPB_SOURCE_DIR}/src/game_shared
+	${DPB_SOURCE_DIR}/src/utils/common
+	${DPB_SOURCE_DIR}/src/dlls
 	${SERVER_BUILD_INC_DLLS}
-	${HL2SDK_SOURCE_DIR}/src/cl_dll
-	${HL2SDK_SOURCE_DIR}/src/dlls/hl2_dll
-	${HL2SDK_SOURCE_DIR}/src/game_shared/hl2
+	${DPB_SOURCE_DIR}/src/cl_dll
+	${DPB_SOURCE_DIR}/src/dlls/hl2_dll
+	${DPB_SOURCE_DIR}/src/game_shared/hl2
 )
 
 ADD_DEFINITIONS(
@@ -752,7 +501,7 @@ IF(WIN32)
 ENDIF(WIN32)
 
 LINK_DIRECTORIES(
-	${HL2SDK_SOURCE_DIR}/src/lib/public
+	${DPB_SOURCE_DIR}/src/lib/public
 )
 
 TARGET_LINK_LIBRARIES(server tier0 vstdlib)

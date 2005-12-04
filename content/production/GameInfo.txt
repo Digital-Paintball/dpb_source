@@ -1,7 +1,7 @@
 "GameInfo"
 {
 	// This is what shows up in the 'Third Party Games' area of the Steam games list.
-	game						"Source Engine Mod"
+	game						"Digital Paintball"
 
 	FileSystem
 	{
@@ -28,6 +28,7 @@
 		//
 		SearchPaths
 		{
+			GameBin				\build\dpb-vs\lib\debug
 			Game				|gameinfo_path|.
 			Game				hl2
 		}

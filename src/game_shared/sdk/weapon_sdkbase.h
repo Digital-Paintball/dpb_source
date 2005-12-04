@@ -21,9 +21,7 @@ class CSDKPlayer;
 
 // These are the names of the ammo types that the weapon script files reference.
 #define AMMO_BULLETS			"AMMO_BULLETS"
-#define AMMO_ROCKETS			"AMMO_ROCKETS"
 #define AMMO_GRENADE			"AMMO_GRENADE"
-#define AMMO_BUCKSHOT			"AMMO_BUCKSHOT"
 
 //--------------------------------------------------------------------------------------------------------
 //
@@ -33,8 +31,7 @@ typedef enum
 {
 	WEAPON_NONE = 0,
 
-	WEAPON_MP5,
-	WEAPON_SHOTGUN,
+	WEAPON_MARKER,
 	WEAPON_GRENADE,
 	
 	WEAPON_MAX,		// number of weapons weapon index

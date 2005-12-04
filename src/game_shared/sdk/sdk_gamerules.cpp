@@ -357,7 +357,6 @@ CAmmoDef* GetAmmoDef()
 		// def.AddAmmoType( BULLET_PLAYER_50AE,		DMG_BULLET, TRACER_LINE, 0, 0, "ammo_50AE_max",		2400, 0, 10, 14 );
 		def.AddAmmoType( AMMO_GRENADE, DMG_BLAST, TRACER_LINE, 0, 0,	5, 1, 0 );
 		def.AddAmmoType( AMMO_BULLETS, DMG_BULLET, TRACER_LINE, 0, 0,	90, 1, 0 );
-		def.AddAmmoType( AMMO_BUCKSHOT, DMG_BUCKSHOT | DMG_BULLET, TRACER_LINE, 0, 0, 36, 1, 0 );
 	}
 
 	return &def;

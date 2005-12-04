@@ -166,6 +166,7 @@ SET( CLIENT_SRCS
 	hud_pdump.cpp
 	hud_redraw.cpp
 	hud_vehicle.cpp
+	hud_voicestatus.cpp
 	hud_weapon.cpp
 	in_camera.cpp
 	in_joystick.cpp
@@ -241,117 +242,6 @@ SET( CLIENT_SRCS
 	worlddimsproxy.cpp
 )
 
-IF(BUILD_HL2)
-	SET( CLIENT_SRCS
-		${CLIENT_SRCS}
-		hud_chat.cpp
-		death.cpp
-		hud_squadstatus.cpp
-	)
-ENDIF(BUILD_HL2)
-
-IF(BUILD_HL2MP)
-	SET( CLIENT_SRCS
-		${CLIENT_SRCS}
-		hud_squadstatus.cpp
-		hud_voicestatus.cpp
-	)
-ENDIF(BUILD_HL2MP)
-
-IF(BUILD_SDK)
-	SET( CLIENT_SRCS
-		${CLIENT_SRCS}
-		hud_voicestatus.cpp
-	)
-ENDIF(BUILD_SDK)
-
-SET( CLIENT_HL2_HUD_SRCS
-	hl2_hud/c_waterbullet.cpp
-	hl2_hud/c_waterlodcontrol.cpp
-)
-
-IF(BUILD_HL2 OR BUILD_HL2MP)
-	SET( CLIENT_HL2_HUD_SRCS
-		${CLIENT_HL2_HUD_SRCS}
-		hl2_hud/c_antlion_dust.cpp
-		hl2_hud/c_ar2_explosion.cpp
-		hl2_hud/c_barnacle.cpp
-		hl2_hud/c_barney.cpp
-		hl2_hud/c_basehelicopter.cpp
-		hl2_hud/c_basehlcombatweapon.cpp
-		hl2_hud/c_basehlplayer.cpp
-		hl2_hud/c_citadel_effects.cpp
-		hl2_hud/c_corpse.cpp
-		hl2_hud/c_env_alyxtemp.cpp
-		hl2_hud/c_env_headcrabcanister.cpp
-		hl2_hud/c_env_starfield.cpp
-		hl2_hud/c_func_monitor.cpp
-		hl2_hud/c_func_tankmortar.cpp
-		hl2_hud/c_hl2_playerlocaldata.cpp
-		hl2_hud/c_info_teleporter_countdown.cpp
-		hl2_hud/c_npc_combinegunship.cpp
-		hl2_hud/c_npc_manhack.cpp
-		hl2_hud/c_npc_rollermine.cpp
-		hl2_hud/c_plasma_beam_node.cpp
-		hl2_hud/c_prop_combine_ball.cpp
-		hl2_hud/c_rotorwash.cpp
-		hl2_hud/c_script_intro.cpp
-		hl2_hud/c_strider.cpp
-		hl2_hud/c_te_concussiveexplosion.cpp
-		hl2_hud/c_te_flare.cpp
-		hl2_hud/c_thumper_dust.cpp
-		hl2_hud/c_vehicle_airboat.cpp
-		hl2_hud/c_vehicle_cannon.cpp
-		hl2_hud/c_vehicle_crane.cpp
-		hl2_hud/c_vehicle_prisoner_pod.cpp
-		hl2_hud/c_weapon__stubs_hl2.cpp
-		hl2_hud/c_weapon_crossbow.cpp
-		hl2_hud/fx_antlion.cpp
-		hl2_hud/fx_bugbait.cpp
-		hl2_hud/fx_hl2_impacts.cpp
-		hl2_hud/fx_hl2_tracers.cpp
-		hl2_hud/hl2_clientmode.cpp
-		hl2_hud/hl_in_main.cpp
-		hl2_hud/hl_prediction.cpp
-		hl2_hud/hud_ammo.cpp
-		hl2_hud/hud_battery.cpp
-		hl2_hud/hud_blood.cpp
-		hl2_hud/hud_credits.cpp
-		hl2_hud/hud_damageindicator.cpp
-		hl2_hud/hud_flashlight.cpp
-		hl2_hud/hud_health.cpp
-		hl2_hud/hud_poisondamageindicator.cpp
-		hl2_hud/hud_quickinfo.cpp
-		hl2_hud/hud_suitpower.cpp
-		hl2_hud/hud_weaponselection.cpp
-		hl2_hud/hud_zoom.cpp
-		hl2_hud/shieldproxy.cpp
-		hl2_hud/vgui_rootpanel_hl2.cpp
-	)
-ENDIF(BUILD_HL2 OR BUILD_HL2MP)
-
-IF(BUILD_HL2)
-	SET( CLIENT_HL2_HUD_SRCS
-		${CLIENT_HL2_HUD_SRCS}
-		hl2_hud/c_weapon_physcannon.cpp
-		hl2_hud/c_weapon_stunstick.cpp
-		hl2_hud/clientmode_hlnormal.cpp
-	)
-ENDIF(BUILD_HL2)
-
-SET( CLIENT_HL2MP_SRCS
-	hl2mp/c_hl2mp_player.cpp
-	hl2mp/c_te_hl2mp_shotgun_shot.cpp
-	hl2mp/clientmode_hl2mpnormal.cpp
-	hl2mp/hl2mp_hud_chat.cpp
-	hl2mp/hl2mp_hud_target_id.cpp
-	hl2mp/hl2mp_hud_team.cpp
-	hl2mp/hud_deathnotice.cpp
-	hl2mp/ui/backgroundpanel.cpp
-	hl2mp/ui/hl2mpclientscoreboard.cpp
-	hl2mp/ui/hl2mptextwindow.cpp
-)
-
 SET( CLIENT_SDK_SRCS
 	sdk/c_sdk_env_sparkler.cpp
 	sdk/c_sdk_player.cpp
@@ -375,6 +265,9 @@ SET( CLIENT_SDK_VGUI_SRCS
 )
 
 SET( CLIENT_GAME_CONTROLS_SRCS
+	game_controls/buymenu.cpp
+	game_controls/buysubmenu.cpp
+	game_controls/classmenu.cpp
 	game_controls/clientscoreboarddialog.cpp
 	game_controls/commandmenu.cpp
 	game_controls/mapoverview.cpp
@@ -384,15 +277,6 @@ SET( CLIENT_GAME_CONTROLS_SRCS
 	game_controls/vgui_teamfortressviewport.cpp
 	game_controls/vguitextwindow.cpp
 )
-
-IF(BUILD_SDK)
-	SET( CLIENT_GAME_CONTROLS_SRCS
-		${CLIENT_GAME_CONTROLS_SRCS}
-		game_controls/buymenu.cpp
-		game_controls/buysubmenu.cpp
-		game_controls/classmenu.cpp
-	)
-ENDIF(BUILD_SDK)
 
 SET( COMMON_SRCS
 	../common/randoverride.cpp
@@ -438,6 +322,7 @@ SET( GAME_SHARED_SRCS
 	../game_shared/precache_register.cpp
 	../game_shared/predictableid.cpp
 	../game_shared/predictioncopy.cpp
+	../game_shared/predicted_viewmodel.cpp
 	../game_shared/props_shared.cpp
 	../game_shared/ragdoll_shared.cpp
 	../game_shared/rope_helpers.cpp
@@ -459,57 +344,6 @@ SET( GAME_SHARED_SRCS
 	../game_shared/weapon_parse.cpp
 )
 
-IF(BUILD_HL2)
-	SET( GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/weapon_parse_default.cpp
-	)
-ENDIF(BUILD_HL2)
-
-IF(BUILD_HL2MP)
-	SET( GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/predicted_viewmodel.cpp
-	)
-ENDIF(BUILD_HL2MP)
-
-IF(BUILD_SDK)
-	SET( GAME_SHARED_SRCS
-		${GAME_SHARED_SRCS}
-		../game_shared/predicted_viewmodel.cpp
-	)
-ENDIF(BUILD_SDK)
-
-SET( GAME_SHARED_HL2_SRCS
-	../game_shared/hl2/basehlcombatweapon_shared.cpp
-	../game_shared/hl2/env_headcrabcanister_shared.cpp
-	../game_shared/hl2/hl2_gamerules.cpp
-	../game_shared/hl2/hl2_usermessages.cpp
-	../game_shared/hl2/hl_gamemovement.cpp
-)
-
-SET( GAME_SHARED_HL2MP_SRCS
-	../game_shared/hl2mp/hl2mp_gamerules.cpp
-	../game_shared/hl2mp/hl2mp_player_shared.cpp
-	../game_shared/hl2mp/hl2mp_weapon_parse.cpp
-	../game_shared/hl2mp/weapon_357.cpp
-	../game_shared/hl2mp/weapon_ar2.cpp
-	../game_shared/hl2mp/weapon_crossbow.cpp
-	../game_shared/hl2mp/weapon_crowbar.cpp
-	../game_shared/hl2mp/weapon_frag.cpp
-	../game_shared/hl2mp/weapon_hl2mpbase.cpp
-	../game_shared/hl2mp/weapon_hl2mpbase_machinegun.cpp
-	../game_shared/hl2mp/weapon_hl2mpbasebasebludgeon.cpp
-	../game_shared/hl2mp/weapon_hl2mpbasehlmpcombatweapon.cpp
-	../game_shared/hl2mp/weapon_physcannon.cpp
-	../game_shared/hl2mp/weapon_pistol.cpp
-	../game_shared/hl2mp/weapon_rpg.cpp
-	../game_shared/hl2mp/weapon_shotgun.cpp
-	../game_shared/hl2mp/weapon_slam.cpp
-	../game_shared/hl2mp/weapon_smg1.cpp
-	../game_shared/hl2mp/weapon_stunstick.cpp
-)
-
 SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/sdk_basegrenade_projectile.cpp
 	../game_shared/sdk/sdk_fx_shared.cpp
@@ -521,9 +355,8 @@ SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/sdk_weapon_parse.cpp
 	../game_shared/sdk/weapon_basesdkgrenade.cpp
 	../game_shared/sdk/weapon_grenade.cpp
-	../game_shared/sdk/weapon_mp5.cpp
+	../game_shared/sdk/weapon_marker.cpp
 	../game_shared/sdk/weapon_sdkbase.cpp
-	../game_shared/sdk/weapon_shotgun.cpp
 )
 
 SET( PUBLIC_SRCS
@@ -578,36 +411,14 @@ SET( TIER1_SRCS
 	../tier1/utlsymbol.cpp
 )
 
-IF(BUILD_HL2)
-	SET(CLIENT_BUILD_SRCS
-		${GAME_SHARED_HL2_SRCS}
-	)	
-	SET(CLIENT_BUILD_INC_CL_DLL ${HL2SDK_SOURCE_DIR}/src/cl_dll/hl2_hud )
-	SET(CLIENT_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2 )
-ENDIF(BUILD_HL2)
+SET(CLIENT_BUILD_SRCS
+	${CLIENT_SDK_SRCS}
+	${CLIENT_SDK_VGUI_SRCS}
+	${GAME_SHARED_SDK_SRCS}
+)	
 
-IF(BUILD_HL2MP)
-	SET(CLIENT_BUILD_SRCS
-		${GAME_SHARED_HL2_SRCS}
-		${GAME_SHARED_HL2MP_SRCS}
-		${CLIENT_HL2MP_SRCS}
-	)	
-	SET(CLIENT_BUILD_INC_CL_DLL
-		${HL2SDK_SOURCE_DIR}/src/cl_dll/hl2mp
-		${HL2SDK_SOURCE_DIR}/src/cl_dll/hl2mp/ui
-	)
-	SET(CLIENT_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/hl2mp )
-ENDIF(BUILD_HL2MP)
-
-IF(BUILD_SDK)
-	SET(CLIENT_BUILD_SRCS
-		${CLIENT_SDK_SRCS}
-		${CLIENT_SDK_VGUI_SRCS}
-		${GAME_SHARED_SDK_SRCS}
-	)	
-	SET(CLIENT_BUILD_INC_CL_DLL ${HL2SDK_SOURCE_DIR}/src/cl_dll/sdk )
-	SET(CLIENT_BUILD_INC_GAME_SHARED ${HL2SDK_SOURCE_DIR}/src/game_shared/sdk )
-ENDIF(BUILD_SDK)
+SET(CLIENT_BUILD_INC_CL_DLL ${DPB_SOURCE_DIR}/src/cl_dll/sdk )
+SET(CLIENT_BUILD_INC_GAME_SHARED ${DPB_SOURCE_DIR}/src/game_shared/sdk )
 
 SET( CLIENT_ALL_SRCS
 	${CLIENT_SRCS}
@@ -622,10 +433,10 @@ SET( CLIENT_ALL_SRCS
 	${COMMON_SRCS}
 )
 
-SOURCE_GROUP(client			FILES ${CLIENT_SRCS} ${CLIENT_SDK_SRCS} ${CLIENT_HL2_HUD_SRCS} ${CLIENT_HL2MP_SRCS})
+SOURCE_GROUP(client			FILES ${CLIENT_SRCS} ${CLIENT_SDK_SRCS})
 SOURCE_GROUP(common			FILES ${COMMON_SRCS})
 SOURCE_GROUP(game_controls	FILES ${CLIENT_GAME_CONTROLS_SRCS})
-SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS} ${GAME_SHARED_HL2_SRCS} ${GAME_SHARED_HL2MP_SRCS})
+SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS})
 SOURCE_GROUP(materials		FILES ${MATERIALS_SRCS})
 SOURCE_GROUP(public			FILES ${PUBLIC_SRCS})
 SOURCE_GROUP(tier0			FILES ${TIER0_SRCS})
@@ -633,19 +444,19 @@ SOURCE_GROUP(tier1			FILES ${TIER1_SRCS})
 SOURCE_GROUP(vgui			FILES ${CLIENT_SDK_VGUI_SRCS})
 
 INCLUDE_DIRECTORIES(
-	${HL2SDK_SOURCE_DIR}/src/public/tier1
-	${HL2SDK_SOURCE_DIR}/src/cl_dll/sdk/vgui
+	${DPB_SOURCE_DIR}/src/public/tier1
+	${DPB_SOURCE_DIR}/src/cl_dll/sdk/vgui
 	${CLIENT_BUILD_INC_CL_DLL}
 	${CLIENT_BUILD_INC_GAME_SHARED}
-	${HL2SDK_SOURCE_DIR}/src/cl_dll
-	${HL2SDK_SOURCE_DIR}/src/public
-	${HL2SDK_SOURCE_DIR}/src/vgui2/include
-	${HL2SDK_SOURCE_DIR}/src/vgui2/controls
-	${HL2SDK_SOURCE_DIR}/src/game_shared
-	${HL2SDK_SOURCE_DIR}/src/cl_dll/game_controls
-	${HL2SDK_SOURCE_DIR}/src/dlls
-	${HL2SDK_SOURCE_DIR}/src/game_shared/hl2
-	${HL2SDK_SOURCE_DIR}/src/cl_dll/hl2_hud
+	${DPB_SOURCE_DIR}/src/cl_dll
+	${DPB_SOURCE_DIR}/src/public
+	${DPB_SOURCE_DIR}/src/vgui2/include
+	${DPB_SOURCE_DIR}/src/vgui2/controls
+	${DPB_SOURCE_DIR}/src/game_shared
+	${DPB_SOURCE_DIR}/src/cl_dll/game_controls
+	${DPB_SOURCE_DIR}/src/dlls
+	${DPB_SOURCE_DIR}/src/game_shared/hl2
+	${DPB_SOURCE_DIR}/src/cl_dll/hl2_hud
 )
 
 ADD_DEFINITIONS(
@@ -669,7 +480,7 @@ IF(WIN32)
 ENDIF(WIN32)
 
 LINK_DIRECTORIES(
-	${HL2SDK_SOURCE_DIR}/src/lib/public
+	${DPB_SOURCE_DIR}/src/lib/public
 )
 
 TARGET_LINK_LIBRARIES(client tier0 vstdlib nvtc vgui_controls winmm)

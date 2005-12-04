@@ -31,8 +31,7 @@
 static const char * s_WeaponAliasInfo[] = 
 {
 	"none",		// WEAPON_NONE
-	"mp5",		// WEAPON_MP5
-	"shotgun",	// WEAPON_SHOTGUN
+	"marker",	// WEAPON_MARKER
 	"grenade",	// WEAPON_GRENADE
 	NULL,		// WEAPON_NONE
 };

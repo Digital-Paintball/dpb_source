@@ -44,38 +44,13 @@ INSTALL_FILES(/materials/models/weapons/v_models/eq_fraggrenade FILES
 	materials/models/weapons/v_models/eq_fraggrenade/fraggrenade_ref.vtf
 )
 
-INSTALL_FILES(/materials/models/weapons/v_models/hands FILES
-	materials/models/weapons/v_models/hands/HandTemp.vmt
-	materials/models/weapons/v_models/hands/HandTemp.vtf
-	materials/models/weapons/v_models/hands/smokegrenade_ref.vtf
-	materials/models/weapons/v_models/hands/v_hands.vmt
-	materials/models/weapons/v_models/hands/v_hands.vtf
-	materials/models/weapons/v_models/hands/v_hands_normal.vmt
-	materials/models/weapons/v_models/hands/v_hands_normal.vtf
-	materials/models/weapons/v_models/hands/v_hands_ref.vtf
-	materials/models/weapons/v_models/hands/view_finger.vmt
-	materials/models/weapons/v_models/hands/view_finger.vtf
-	materials/models/weapons/v_models/hands/view_glove.vmt
-	materials/models/weapons/v_models/hands/view_glove.vtf
-	materials/models/weapons/v_models/hands/view_skin.vmt
-	materials/models/weapons/v_models/hands/view_skin.vtf
-)
-
-INSTALL_FILES(/materials/models/weapons/v_models/shot_m3super90 FILES
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90.vmt
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90.vtf
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90_height.vtf
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90_normal.vmt
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90_normal.vtf
-	materials/models/weapons/v_models/shot_m3super90/shot_m3super90_ref.vtf
-)
-
-INSTALL_FILES(/materials/models/weapons/v_models/smg_mp5 FILES
-	materials/models/weapons/v_models/smg_mp5/MP5_1.vmt
-	materials/models/weapons/v_models/smg_mp5/MP5_1.vtf
-	materials/models/weapons/v_models/smg_mp5/MP5_1_normal.vmt
-	materials/models/weapons/v_models/smg_mp5/MP5_1_normal.vtf
-	materials/models/weapons/v_models/smg_mp5/MP5_1_ref.vtf
+INSTALL_FILES(/materials/models/weapons FILES
+	materials/models/weapons/v_smg.vmt
+	materials/models/weapons/v_smg.vtf
+	materials/models/weapons/v_smg_hopper.vmt
+	materials/models/weapons/v_smg_hopper.vtf
+	materials/models/weapons/v_smg_tank.vmt
+	materials/models/weapons/v_smg_tank.vtf
 )
 
 INSTALL_FILES(/materials/models/weapons/w_models/w_eq_fraggrenade FILES
@@ -131,16 +106,11 @@ INSTALL_FILES(/models/weapons FILES
 	models/weapons/v_eq_fraggrenade.mdl
 	models/weapons/v_eq_fraggrenade.sw.vtx
 	models/weapons/v_eq_fraggrenade.vvd
-	models/weapons/v_shot_m3super90.dx80.vtx
-	models/weapons/v_shot_m3super90.dx90.vtx
-	models/weapons/v_shot_m3super90.mdl
-	models/weapons/v_shot_m3super90.sw.vtx
-	models/weapons/v_shot_m3super90.vvd
-	models/weapons/v_smg_mp5.dx80.vtx
-	models/weapons/v_smg_mp5.dx90.vtx
-	models/weapons/v_smg_mp5.mdl
-	models/weapons/v_smg_mp5.sw.vtx
-	models/weapons/v_smg_mp5.vvd
+	models/weapons/v_smg1.dx80.vtx
+	models/weapons/v_smg1.dx90.vtx
+	models/weapons/v_smg1.mdl
+	models/weapons/v_smg1.sw.vtx
+	models/weapons/v_smg1.vvd
 	models/weapons/w_eq_fraggrenade.dx80.vtx
 	models/weapons/w_eq_fraggrenade.dx90.vtx
 	models/weapons/w_eq_fraggrenade.mdl
@@ -153,12 +123,6 @@ INSTALL_FILES(/models/weapons FILES
 	models/weapons/w_eq_fraggrenade_thrown.phy
 	models/weapons/w_eq_fraggrenade_thrown.sw.vtx
 	models/weapons/w_eq_fraggrenade_thrown.vvd
-	models/weapons/w_shot_m3super90.dx80.vtx
-	models/weapons/w_shot_m3super90.dx90.vtx
-	models/weapons/w_shot_m3super90.mdl
-	models/weapons/w_shot_m3super90.phy
-	models/weapons/w_shot_m3super90.sw.vtx
-	models/weapons/w_shot_m3super90.vvd
 	models/weapons/w_smg_mp5.dx80.vtx
 	models/weapons/w_smg_mp5.dx90.vtx
 	models/weapons/w_smg_mp5.mdl
@@ -195,8 +159,7 @@ INSTALL_FILES(/scripts FILES
 	scripts/kb_keys.lst
 	scripts/liblist.gam
 	scripts/weapon_grenade.txt
-	scripts/weapon_mp5.txt
-	scripts/weapon_shotgun.txt
+	scripts/weapon_marker.txt
 	scripts/HudLayout.res
 )
 

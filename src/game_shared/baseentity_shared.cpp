@@ -25,7 +25,6 @@
 	#include "soundent.h"
 	#include "iservervehicle.h"
 	#include "player_pickup.h"
-	#include "waterbullet.h"
 
 #ifdef HL2MP
 	#include "te_hl2mp_shotgun_shot.h"
@@ -1587,23 +1586,6 @@ bool CBaseEntity::HandleShotImpactingWater( const FireBulletsInfo_t &info,
 		}
 		DispatchEffect( "gunshotsplash", data );
 	}
-
-#ifdef GAME_DLL
-	if ( ShouldDrawUnderwaterBulletBubbles() )
-	{
-		CWaterBullet *pWaterBullet = ( CWaterBullet * )CreateEntityByName( "waterbullet" );
-		if ( pWaterBullet )
-		{
-			pWaterBullet->Spawn( waterTrace.endpos, info.m_vecDirShooting );
-					 
-			CEffectData tracerData;
-			tracerData.m_vStart = waterTrace.endpos;
-			tracerData.m_vOrigin = waterTrace.endpos + info.m_vecDirShooting * 400.0f;
-			tracerData.m_fFlags = TRACER_TYPE_WATERBULLET;
-			DispatchEffect( "TracerSound", tracerData );
-		}
-	}
-#endif
 
 	*pVecTracerDest = waterTrace.endpos;
 	return true;

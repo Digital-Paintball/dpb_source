@@ -26,7 +26,6 @@ void RegisterUserMessages()
 	usermessages->Register( "VGUIMenu", -1 );	// Show VGUI menu
 	usermessages->Register( "CloseCaption", 3 ); // Show a caption (by string id number)(duration in 10th of a second)
 	usermessages->Register( "CreditsMsg", 1 );
-	usermessages->Register( "Battery", 2 );
 
 	usermessages->Register( "SendAudio", -1 );	// play radion command
 

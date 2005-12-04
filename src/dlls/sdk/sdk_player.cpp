@@ -323,14 +323,12 @@ void CSDKPlayer::CheatImpulseCommands( int iImpulse )
 
 	EquipSuit();
 
-	GiveNamedItem( "weapon_mp5" );
+	GiveNamedItem( "weapon_marker" );
 	GiveNamedItem( "weapon_grenade" );
-	GiveNamedItem( "weapon_shotgun" );
 
 	// Give the player everything!
 	GiveAmmo( 90, AMMO_BULLETS );
 	GiveAmmo( 5, AMMO_GRENADE );
-	GiveAmmo( 36, AMMO_BUCKSHOT );
 	
 	if ( GetHealth() < 100 )
 	{
