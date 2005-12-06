@@ -1370,9 +1370,6 @@ void CBaseEntity::FireBullets( const FireBulletsInfo_t &info )
 
 		if ( bStartedInWater )
 		{
-#ifdef GAME_DLL
-			CreateBubbleTrailTracer( info.m_vecSrc, tr.endpos, vecDir );
-#endif
 			bHitWater = true;
 		}
 

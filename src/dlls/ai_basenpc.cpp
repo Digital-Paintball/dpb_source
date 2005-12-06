@@ -71,7 +71,6 @@
 #include "npc_bullseye.h"
 #include "hl2_player.h"
 #endif
-#include "waterbullet.h"
 #include "in_buttons.h"
 #include "eventlist.h"
 #include "globalstate.h"
@@ -1331,34 +1330,6 @@ void CBaseEntity::HandleShotImpactingGlass( const FireBulletsInfo_t &info,
 	behindGlassInfo.m_nFlags = info.m_nFlags;
 
 	FireBullets( behindGlassInfo );
-}
-
-
-//-----------------------------------------------------------------------------
-// Computes the tracer start position
-//-----------------------------------------------------------------------------
-#define SHOT_UNDERWATER_BUBBLE_DIST 400
-
-void CBaseEntity::CreateBubbleTrailTracer( const Vector &vecShotSrc, const Vector &vecShotEnd, const Vector &vecShotDir )
-{
-	int nBubbles;
-	Vector vecBubbleEnd;
-	float flLengthSqr = vecShotSrc.DistToSqr( vecShotEnd );
-	if ( flLengthSqr > SHOT_UNDERWATER_BUBBLE_DIST * SHOT_UNDERWATER_BUBBLE_DIST )
-	{
-		VectorMA( vecShotSrc, SHOT_UNDERWATER_BUBBLE_DIST, vecShotDir, vecBubbleEnd );
-		nBubbles = WATER_BULLET_BUBBLES_PER_INCH * SHOT_UNDERWATER_BUBBLE_DIST;
-	}
-	else
-	{
-		float flLength = sqrt(flLengthSqr) - 0.1f;
-		nBubbles = WATER_BULLET_BUBBLES_PER_INCH * flLength;
-		VectorMA( vecShotSrc, flLength, vecShotDir, vecBubbleEnd );
-	}
-
-	Vector vecTracerSrc;
-	ComputeTracerStartPosition( vecShotSrc, &vecTracerSrc );
-	UTIL_BubbleTrail( vecTracerSrc, vecBubbleEnd, nBubbles );
 }
 
 

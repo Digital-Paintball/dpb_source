@@ -249,7 +249,6 @@ SET( CLIENT_SDK_SRCS
 	sdk/c_te_firebullets.cpp
 	sdk/clientmode_sdk.cpp
 	sdk/sdk_fx_impacts.cpp
-	sdk/sdk_fx_weaponfx.cpp
 	sdk/sdk_hud_ammo.cpp
 	sdk/sdk_hud_chat.cpp
 	sdk/sdk_hud_health.cpp
