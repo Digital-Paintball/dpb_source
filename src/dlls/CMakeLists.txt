@@ -423,21 +423,6 @@ SET( TIER0_SRCS
 	../public/tier0/memoverride.cpp
 )
 
-SET( TIER1_SRCS
-	../tier1/bitbuf.cpp
-	../tier1/characterset.cpp
-	../tier1/checksum_crc.cpp
-	../tier1/checksum_md5.cpp
-	../tier1/convar.cpp
-	../tier1/interface.cpp
-	../tier1/KeyValues.cpp
-	../tier1/mempool.cpp
-	../tier1/resourcemanager.cpp
-	../tier1/stringpool.cpp
-	../tier1/utlbuffer.cpp
-	../tier1/utlsymbol.cpp
-)
-
 SET(SERVER_BUILD_SRCS
 	${GAME_SHARED_SDK_SRCS}
 	${SERVER_SDK_SRCS}
@@ -451,7 +436,6 @@ SET( SERVER_ALL_SRCS
 	${GAME_SHARED_SRCS}
 	${PUBLIC_SRCS}
 	${TIER0_SRCS}
-	${TIER1_SRCS}
 	${KEYFRAME_SRCS}
 	${COMMON_SRCS}
 	${SERVER_BUILD_SRCS}
@@ -462,7 +446,6 @@ SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS})
 SOURCE_GROUP(keyframe		FILES ${KEYFRAME_SRCS})
 SOURCE_GROUP(server			FILES ${SERVER_SRCS} ${SERVER_SDK_SRCS})
 SOURCE_GROUP(tier0			FILES ${TIER0_SRCS})
-SOURCE_GROUP(tier1			FILES ${TIER1_SRCS})
 SOURCE_GROUP(public			FILES ${PUBLIC_SRCS})
 
 INCLUDE_DIRECTORIES(
@@ -504,6 +487,6 @@ LINK_DIRECTORIES(
 	${DPB_SOURCE_DIR}/src/lib/public
 )
 
-TARGET_LINK_LIBRARIES(server tier0 vstdlib)
+TARGET_LINK_LIBRARIES(server tier0 tier1 vstdlib)
 
 INSTALL_TARGETS(/bin server)

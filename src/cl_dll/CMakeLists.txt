@@ -394,22 +394,6 @@ SET( TIER0_SRCS
 	../public/tier0/memoverride.cpp
 )
 
-SET( TIER1_SRCS
-	../tier1/bitbuf.cpp
-	../tier1/characterset.cpp
-	../tier1/checksum_crc.cpp
-	../tier1/checksum_md5.cpp
-	../tier1/convar.cpp
-	../tier1/interface.cpp
-	../tier1/keyvalues.cpp
-	../tier1/mempool.cpp
-	../tier1/rangecheckedvar.cpp
-	../tier1/resourcemanager.cpp
-	../tier1/stringpool.cpp
-	../tier1/utlbuffer.cpp
-	../tier1/utlsymbol.cpp
-)
-
 SET(CLIENT_BUILD_SRCS
 	${CLIENT_SDK_SRCS}
 	${CLIENT_SDK_VGUI_SRCS}
@@ -426,7 +410,6 @@ SET( CLIENT_ALL_SRCS
 	${GAME_SHARED_SRCS}
 	${PUBLIC_SRCS}
 	${TIER0_SRCS}
-	${TIER1_SRCS}
 	${MATERIALS_SRCS}
 	${CLIENT_BUILD_SRCS}
 	${COMMON_SRCS}
@@ -439,7 +422,6 @@ SOURCE_GROUP(game_shared	FILES ${GAME_SHARED_SRCS} ${GAME_SHARED_SDK_SRCS})
 SOURCE_GROUP(materials		FILES ${MATERIALS_SRCS})
 SOURCE_GROUP(public			FILES ${PUBLIC_SRCS})
 SOURCE_GROUP(tier0			FILES ${TIER0_SRCS})
-SOURCE_GROUP(tier1			FILES ${TIER1_SRCS})
 SOURCE_GROUP(vgui			FILES ${CLIENT_SDK_VGUI_SRCS})
 
 INCLUDE_DIRECTORIES(
@@ -482,6 +464,6 @@ LINK_DIRECTORIES(
 	${DPB_SOURCE_DIR}/src/lib/public
 )
 
-TARGET_LINK_LIBRARIES(client tier0 vstdlib nvtc vgui_controls winmm)
+TARGET_LINK_LIBRARIES(client tier0 tier1 vstdlib nvtc vgui_controls winmm)
 
 INSTALL_TARGETS(/bin client)

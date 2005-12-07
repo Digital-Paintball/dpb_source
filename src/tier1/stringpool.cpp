@@ -5,8 +5,6 @@
 // $NoKeywords: $
 //=============================================================================//
 
-#include "cbase.h"
-
 #include "convar.h"
 #include "tier0/dbg.h"
 #include "stringpool.h"
