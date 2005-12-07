@@ -12,7 +12,14 @@ INSTALL_FILES(/ FILES
 )
 
 INSTALL_FILES(/maps FILES
-	maps/sdk_vehicles.bsp
+	maps/dpb_begin.bsp
+)
+
+INSTALL_FILES(/materials/models/inflatables FILES
+	materials/models/inflatables/checker.vtf
+	materials/models/inflatables/pyramid.vmt
+	materials/models/inflatables/pyramid.vtf
+	materials/models/inflatables/pyramid_normal.vtf
 )
 
 INSTALL_FILES(/materials/models/player/terror FILES
@@ -23,11 +30,6 @@ INSTALL_FILES(/materials/models/player/terror FILES
 INSTALL_FILES(/materials/models/shells/9mm FILES
 	materials/models/shells/9mm/shell_9mm.vmt
 	materials/models/shells/9mm/shell_9mm.vtf
-)
-
-INSTALL_FILES(/materials/models/shells/12gauge FILES
-	materials/models/shells/12gauge/shell_12gauge.vmt
-	materials/models/shells/12gauge/shell_12gauge.vtf
 )
 
 INSTALL_FILES(/materials/models/weapons/p_models/eq_fraggrenade FILES
@@ -58,14 +60,18 @@ INSTALL_FILES(/materials/models/weapons/w_models/w_eq_fraggrenade FILES
 	materials/models/weapons/w_models/w_eq_fraggrenade/w_eq_fraggrenade.vtf
 )
 
-INSTALL_FILES(/materials/models/weapons/w_models/w_shot_m3super90 FILES
-	materials/models/weapons/w_models/w_shot_m3super90/w_shot_m3super90.vmt
-	materials/models/weapons/w_models/w_shot_m3super90/w_shot_m3super90.vtf
-)
-
 INSTALL_FILES(/materials/models/weapons/w_models/w_smg_mp5 FILES
 	materials/models/weapons/w_models/w_smg_mp5/w_smg_mp5.vmt
 	materials/models/weapons/w_models/w_smg_mp5/w_smg_mp5.vtf
+)
+
+INSTALL_FILES(/models FILES
+	models/pyramid_inflatable.dx80.vtx
+	models/pyramid_inflatable.dx90.vtx
+	models/pyramid_inflatable.mdl
+	models/pyramid_inflatable.phy
+	models/pyramid_inflatable.sw.vtx
+	models/pyramid_inflatable.vvd
 )
 
 INSTALL_FILES(/models/player FILES
@@ -93,11 +99,6 @@ INSTALL_FILES(/models/shells FILES
 	models/shells/shell_9mm.mdl
 	models/shells/shell_9mm.sw.vtx
 	models/shells/shell_9mm.vvd
-	models/shells/shell_12gauge.dx80.vtx
-	models/shells/shell_12gauge.dx90.vtx
-	models/shells/shell_12gauge.mdl
-	models/shells/shell_12gauge.sw.vtx
-	models/shells/shell_12gauge.vvd
 )
 
 INSTALL_FILES(/models/weapons FILES
@@ -176,17 +177,4 @@ INSTALL_FILES(/sound/weapons/hegrenade FILES
 	sound/weapons/hegrenade/explode4.wav
 	sound/weapons/hegrenade/explode5.wav
 	sound/weapons/hegrenade/he_bounce-1.wav
-)
-
-INSTALL_FILES(/sound/weapons/m3 FILES
-	sound/weapons/m3/m3-1.wav
-	sound/weapons/m3/m3_insertshell.wav
-	sound/weapons/m3/m3_pump.wav
-)
-
-INSTALL_FILES(/sound/weapons/mp5navy FILES
-	sound/weapons/mp5navy/mp5-1.wav
-	sound/weapons/mp5navy/mp5_clipin.wav
-	sound/weapons/mp5navy/mp5_clipout.wav
-	sound/weapons/mp5navy/mp5_slideback.wav
 )
