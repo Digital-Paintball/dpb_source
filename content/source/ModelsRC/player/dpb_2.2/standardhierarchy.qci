@@ -1,0 +1,7 @@
+$heirarchy "pelvis" ""
+$heirarchy "spine1" "Pelvis"
+$root "pelvis"
+$heirarchy "right_leg_controler" "right_shin"
+$heirarchy "left_leg_controler" "left_shin"
+//$alwayscollapse "right_leg_controler"
+//$alwayscollapse "left_leg_controler"
