@@ -1,3 +1,4 @@
+"toggleconsole"        	"Console"
 "h"			"commandmenu"
 "k"			"+voicerecord"
 "g"			"drop"
@@ -50,6 +51,7 @@
 "ESCAPE"		"escape"
 "~"			"toggleconsole"
 "`"			"toggleconsole"
+"\"			"toggleconsole"
 "+"			"sizeup"
 "="			"sizeup"
 "-"			"sizedown"
