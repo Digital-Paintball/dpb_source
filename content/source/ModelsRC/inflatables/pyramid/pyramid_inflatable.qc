@@ -1,4 +1,4 @@
-$modelname "pyramid_inflatable.mdl"
+$modelname "inflatables\pyramid.mdl"
 $cdmaterials "models\inflatables\"
 $surfaceprop "rubber"
 $staticprop
