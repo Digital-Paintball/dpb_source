@@ -663,11 +663,12 @@ Scheme
 		{
 			"1"
 			{
-				"name"  "HalfLife2"
-				"tall"  "46"
-				"weight" "0"
-				"additive" "0"
-				"antialias" "1"
+				"name"		"Verdana"
+				"tall"		"72"
+				"weight"	"400"
+				"antialias"	"1"
+				"custom"	"1"
+
 			}
 		}
 		CreditsLogo
