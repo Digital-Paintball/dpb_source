@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\player\glass"
+	"$alphatest" 1
+	"$bumpmap" "models\player\glass_spec"
+	"$normalmapalphaenvmapmask" 1
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[1 0.84 .33]"
+	"$envmapsaturation" 0.5
+	"$envmapcontrast" 0.5
+}
