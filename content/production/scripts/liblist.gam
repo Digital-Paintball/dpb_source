@@ -1,9 +1,3 @@
-// Valve Game Info file
-//  These are key/value pairs.  Certain mods will use different settings.
-//
-game "HL2 SDK Game"
-startmap "test"
-trainingmap "t0a0"
+game "Digitalpaintball mark 2"
 hlversion "1000"
 mpentity "info_player_start"
-gamedll "dlls\server.dll"
