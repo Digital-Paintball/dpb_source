@@ -1,8 +1,7 @@
 "GameInfo"
 {
-	game						"Digital Paintball - Mark 2"
+	game	"Digital Paintball"
 	title	"Digital Paintball"
-	title2	"Mark 2"
 	developer	"DPB Team"
 	developer_url	"http://digitalpaintball.net"
 	icon		"icon"
