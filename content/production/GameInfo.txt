@@ -6,7 +6,6 @@
 	developer	"DPB Team"
 	developer_url	"http://digitalpaintball.net"
 	icon		"icon"
-	type multiplayer_only
 
 	FileSystem
 	{
