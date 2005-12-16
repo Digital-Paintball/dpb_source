@@ -1,25 +1,13 @@
 versioninfo
 {
 	"editorversion" "400"
-	"editorbuild" "3057"
-	"mapversion" "30"
+	"editorbuild" "3325"
+	"mapversion" "31"
 	"formatversion" "100"
 	"prefab" "0"
 }
 visgroups
 {
-	visgroup
-	{
-		"name" "Auto"
-		"visgroupid" "1"
-		"color" "193 214 255"
-		visgroup
-		{
-			"name" "Entities"
-			"visgroupid" "2"
-			"color" "250 243 144"
-		}
-	}
 }
 viewsettings
 {
@@ -31,10 +19,12 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "30"
+	"mapversion" "31"
 	"classname" "worldspawn"
 	"skyname" "sky_wasteland02"
 	"maxpropscreenwidth" "-1"
+	"detailvbsp" "detail.vbsp"
+	"detailmaterial" "detail/detailsprites"
 	solid
 	{
 		"id" "2"
@@ -108,6 +98,7 @@ world
 		{
 			"color" "0 124 169"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -183,6 +174,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -258,6 +250,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -333,6 +326,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -408,6 +402,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -483,6 +478,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -558,6 +554,7 @@ world
 		{
 			"color" "0 208 193"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -633,6 +630,7 @@ world
 		{
 			"color" "0 208 193"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -708,6 +706,7 @@ world
 		{
 			"color" "0 208 193"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 }
@@ -719,12 +718,15 @@ entity
 	"pitch" "-60"
 	"_light" "237 238 213 200"
 	"_ambient" "111 114 236 100"
+	"_lightHDR" "-1 -1 -1 1"
+	"_ambientHDR" "-1 -1 -1 1"
 	"origin" "0 0 256"
 	editor
 	{
 		"color" "220 30 220"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -738,6 +740,7 @@ entity
 		"color" "0 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -761,14 +764,15 @@ entity
 		"color" "255 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "193"
 	"classname" "prop_static"
-	"model" "models/pyramid_inflatable.mdl"
-	"angles" "90 0 0"
+	"model" "models/inflatables/pyramid.mdl"
+	"angles" "0 0 0"
 	"skin" "0"
 	"disableshadows" "0"
 	"mindxlevel" "0"
@@ -784,6 +788,7 @@ entity
 		"color" "255 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -797,14 +802,15 @@ entity
 		"color" "0 0 255"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "278"
 	"classname" "prop_static"
-	"model" "models/pyramid_inflatable.mdl"
-	"angles" "90 77.5 0"
+	"model" "models/inflatables/pyramid.mdl"
+	"angles" "0 77.5 0"
 	"skin" "0"
 	"disableshadows" "0"
 	"mindxlevel" "0"
@@ -820,14 +826,15 @@ entity
 		"color" "255 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "280"
 	"classname" "prop_static"
-	"model" "models/pyramid_inflatable.mdl"
-	"angles" "90 288 0"
+	"model" "models/inflatables/pyramid.mdl"
+	"angles" "0 288 0"
 	"skin" "0"
 	"disableshadows" "0"
 	"mindxlevel" "0"
@@ -843,6 +850,7 @@ entity
 		"color" "255 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -856,6 +864,7 @@ entity
 		"color" "0 0 255"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -869,6 +878,7 @@ entity
 		"color" "0 0 255"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -881,12 +891,14 @@ entity
 	"_linear_attn" "0"
 	"_quadratic_attn" "1"
 	"_distance" "0"
+	"_lightHDR" "-1 -1 -1 1"
 	"origin" "-96 32 96"
 	editor
 	{
 		"color" "220 30 220"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -900,14 +912,15 @@ entity
 		"color" "0 0 255"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "371"
 	"classname" "prop_static"
-	"model" "models/pyramid_inflatable.mdl"
-	"angles" "90 292 0"
+	"model" "models/inflatables/pyramid.mdl"
+	"angles" "0 292 0"
 	"skin" "0"
 	"disableshadows" "0"
 	"mindxlevel" "0"
@@ -923,6 +936,7 @@ entity
 		"color" "255 255 0"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -935,6 +949,7 @@ entity
 		"color" "220 30 220"
 		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 cameras
@@ -942,8 +957,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[33.2149 -271.359 100.649]"
-		"look" "[33.2149 -271.359 100.649]"
+		"position" "[-43.531 84.3025 199.524]"
+		"look" "[-43.531 84.3025 199.524]"
 	}
 }
 cordon
