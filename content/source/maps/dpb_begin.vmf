@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3325"
-	"mapversion" "31"
+	"mapversion" "32"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -19,7 +19,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "31"
+	"mapversion" "32"
 	"classname" "worldspawn"
 	"skyname" "sky_wasteland02"
 	"maxpropscreenwidth" "-1"
@@ -724,7 +724,6 @@ entity
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -738,7 +737,6 @@ entity
 	editor
 	{
 		"color" "0 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -762,7 +760,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -771,7 +768,7 @@ entity
 {
 	"id" "193"
 	"classname" "prop_static"
-	"model" "models/inflatables/pyramid.mdl"
+	"model" "models/inflatables/dorito01.mdl"
 	"angles" "0 0 0"
 	"skin" "0"
 	"disableshadows" "0"
@@ -786,7 +783,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -800,7 +796,6 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -809,7 +804,7 @@ entity
 {
 	"id" "278"
 	"classname" "prop_static"
-	"model" "models/inflatables/pyramid.mdl"
+	"model" "models/inflatables/dorito01.mdl"
 	"angles" "0 77.5 0"
 	"skin" "0"
 	"disableshadows" "0"
@@ -824,7 +819,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -833,7 +827,7 @@ entity
 {
 	"id" "280"
 	"classname" "prop_static"
-	"model" "models/inflatables/pyramid.mdl"
+	"model" "models/inflatables/dorito01.mdl"
 	"angles" "0 288 0"
 	"skin" "0"
 	"disableshadows" "0"
@@ -848,7 +842,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -862,7 +855,6 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -876,7 +868,6 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -896,7 +887,6 @@ entity
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -910,7 +900,6 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -919,7 +908,7 @@ entity
 {
 	"id" "371"
 	"classname" "prop_static"
-	"model" "models/inflatables/pyramid.mdl"
+	"model" "models/inflatables/dorito01.mdl"
 	"angles" "0 292 0"
 	"skin" "0"
 	"disableshadows" "0"
@@ -934,7 +923,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -947,7 +935,6 @@ entity
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
