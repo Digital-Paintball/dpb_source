@@ -1,7 +1,7 @@
 "VertexLitGeneric"
 {
-	"$baseTexture"			"models/inflatables/pyramid"
- 	"$bumpmap" 			"models/inflatables/pyramid_normal"
+	"$baseTexture"			"models/inflatables/dorito01"
+ 	"$bumpmap" 			"models/inflatables/dorito01_normal"
 	"$envmap" 			"env_cubemap"
  	"$envmaptint" 			"[ .2 .2 .4 ]"
  	"$envmapsaturation" 		"[.2 .1 1]" 
