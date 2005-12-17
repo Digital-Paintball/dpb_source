@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3325"
-	"mapversion" "32"
+	"mapversion" "33"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -19,7 +19,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "32"
+	"mapversion" "33"
 	"classname" "worldspawn"
 	"skyname" "sky_wasteland02"
 	"maxpropscreenwidth" "-1"
@@ -939,13 +939,78 @@ entity
 		"visgroupautoshown" "1"
 	}
 }
+entity
+{
+	"id" "459"
+	"classname" "info_player_deathmatch"
+	"angles" "0 0 0"
+	"origin" "-352 0 48"
+	editor
+	{
+		"color" "0 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "463"
+	"classname" "weapon_smg1"
+	"angles" "0 0 0"
+	"origin" "-22.3633 -175.489 6.1475"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "465"
+	"classname" "weapon_smg1"
+	"angles" "0 0 0"
+	"origin" "55.015 -5.04309 6.1475"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "467"
+	"classname" "weapon_smg1"
+	"angles" "0 0 0"
+	"origin" "-443.229 -269.59 6.1475"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "469"
+	"classname" "weapon_smg1"
+	"angles" "0 0 0"
+	"origin" "271.592 -103.859 6.1475"
+	editor
+	{
+		"color" "0 0 200"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-43.531 84.3025 199.524]"
-		"look" "[-43.531 84.3025 199.524]"
+		"position" "[-244.811 -394.669 193.444]"
+		"look" "[-244.811 -394.669 193.444]"
 	}
 }
 cordon
