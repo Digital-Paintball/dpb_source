@@ -1,8 +1,8 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "models/props_proshop/airtank_red"
+	"$basetexture" "models/props_proshop/co2tank_green"
 	"$alphatest" 1
-	"$bumpmap" "models/props_proshop/airtank_normal"
+	"$bumpmap" "models/props_proshop/tank_normal"
 	"$normalmapalphaenvmapmask" 1
 	"$envmap" "env_cubemap"
 	"$envmaptint" .4 .4 .4
