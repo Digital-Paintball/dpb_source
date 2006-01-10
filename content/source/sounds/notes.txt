@@ -1,0 +1,19 @@
+Shortigo's Notes on sound production
+
+I used a one-pass hiss reduction callibrated by hand for each sample. The remaining noise in some of the samples is wind. It shouldn't be noticable if we crop the effects. They took like 15 seconds each, so it's no drain of creativity for me to work with these while doing the maps. Also, I'm not showing these to you to try to force my way; I just think these are a little nicer than the sounds [which GE and I thought sounded muffled and over-editted] you showed us last night.
+
+For the impact sounds, I sampled the echo starting .1 to .2 seconds after the shot and used it in the Noise Reduction routine on a parallel amplitude spline for the time of impact. This is in addition to an overall hand-callibrated Hiss Reduction for the entire sound segment.
+
+Sounds I've completed:
+
+HITfoliage1.wav
+HITfoliage2.wav
+HITfoliage3.wav
+HITfoliage4.wav
+HITfoliage5.wav
+HITfoliage6.wav
+HITfoliageballbreakspray1.wav
+HITfoliageballbreakspray2.wav
+HITtree1.wav
+HITtree2.wav
+HITtree3.wav
