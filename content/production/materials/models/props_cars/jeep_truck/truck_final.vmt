@@ -3,6 +3,5 @@
 	"$basetexture" "models/props_cars/jeep_truck/truck_final"
 	"$bumpmap" "models/props_cars/jeep_truck/truck_final_normal"
 	"$envmap" "env_cubemap"
-	"$envmaptint" .1 .1 .1
-	
+	"$envmaptint" .1 .1 .1	
 }
