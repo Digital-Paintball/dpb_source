@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/kuja_grass_leafygrass"
+	"$bumpmap" "textures/kuja_grass_leafygrass_normal"
+}

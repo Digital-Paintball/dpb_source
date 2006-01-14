@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/kuja_forest_floorbig"
+	"$bumpmap" "textures/kuja_forest_floorbig_normal"
+}

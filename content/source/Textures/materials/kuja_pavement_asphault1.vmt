@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/kuja_pavement_asphault1"
+	"$bumpmap" "textures/kuja_pavement_asphault1_normal"
+}
