@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"models/inflatables/ryginflatable_pyramid"
+ 	"$bumpmap" 				"models/inflatables/rygInflatable_pyramid_normal"
+	"$envmap" 				"env_cubemap"
+ 	"$envmaptint" 			"[ .2 .2 .4 ]"
+ 	"$envmapsaturation" 		"[.2 .1 1]" 
+	"$normalmapalphaenvmapmask" 	"1"
+}

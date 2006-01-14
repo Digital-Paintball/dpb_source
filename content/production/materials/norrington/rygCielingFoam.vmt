@@ -1,0 +1,9 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "norrington/rygCielingFoam"
+	"$bumpmap" "norrington/rygCielingFoam_normal"
+	"$envmap" "env_cubemap"
+ 	"$envmaptint" 			"[ .2 .2 .2 ]"
+ 	"$envmapsaturation" 		"[.1 .1 .1]" 
+	"$normalmapalphaenvmapmask" 	"1"
+}
