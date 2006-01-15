@@ -1,10 +1,10 @@
 "GameInfo"
 {
-	game	"Digital Paintball"
-	title	"Digital Paintball"
-	developer	"DPB Team"
+	game			"Digital Paintball"
+	title			"Digital Paintball"
+	developer		"DPB Team"
 	developer_url	"http://www.digitalpaintball.net"
-	icon		"icon"
+	icon			"dpb"
 
 	FileSystem
 	{
