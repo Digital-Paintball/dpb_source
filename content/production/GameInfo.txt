@@ -3,7 +3,7 @@
 	game	"Digital Paintball"
 	title	"Digital Paintball"
 	developer	"DPB Team"
-	developer_url	"http://digitalpaintball.net"
+	developer_url	"http://www.digitalpaintball.net"
 	icon		"icon"
 
 	FileSystem
