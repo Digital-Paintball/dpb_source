@@ -1,0 +1,69 @@
+DPB Materials Proposal
+Shortigo
+
+The following is a list of materials for the Source engine that I plan to create for DPB. The textures will be linked to our own sound effects.
+The sound descriptor format for this list is: Footstep_Type/Impact_Type
+
+Sound Type: Grass/Terrain
+	Green Grass
+	Muddy Green Grass
+	Dry Grass [yellow]
+	Muddy Dry Grass
+	Live Pine Needles
+	Dead Pine Needles
+	Live&Dead Pine Needles [blend texture below pine trees]
+
+Sound Type: Wet/Wet
+	Wet Mud
+
+Sound Type: Water/Water
+	Puddle Water
+	Stream Water [striations]
+	Lake Water [ripples]
+
+Sound Type: DeadLeaves/Foliage
+	Dry Leaves - Deciduous Mix 1 [yellow and orange]
+	Dry Leaves - Deciduous Mix 2 [orange and red]
+	Dry Leaves - Deciduous Mix 3 [red and brown]
+	[Various Dry Leaves blend textures]
+
+Sound Type: Gravel/Hard
+	Quartzite Gravel [Yellow/Brown]
+	Granite Gravel [Gray]
+	Feldspar Gravel [White]
+
+Sound Type: Asphalt/Hard
+	Dry Mud [light brown]
+	Cracked Dry Mud [light brown]
+	Light Gray Concrete [nearly white]
+	Gray Concrete
+	Cracked Gray Concrete
+	Gray Asphalt
+	Cracked Gray Asphalt
+	Dark Asphalt
+	Cracked Dark Asphalt
+	Granite
+	Mossy Granite
+		*note: the cracks can be made as a photoshop layer
+
+Blends:
+	Green Grass-Muddy Green Grass
+	Green Grass-Dry Grass
+	Dry Grass-Dead Pine Needles
+	Muddy Green Grass-Muddy Dry Grass
+	Muddy Dry Grass-Dead Pine Needles
+
+	Green Grass-Dry Leaves - Deciduous Mix 1
+	Dry Grass-Dry Leaves - Deciduous Mix 1
+	Dry Grass-Dry Leaves - Deciduous Mix 2
+	Dry Grass-Dry Leaves - Deciduous Mix 3
+	Muddy Dry Grass-Dry Leaves - Deciduous Mix 1
+	Muddy Dry Grass-Dry Leaves - Deciduous Mix 2
+	Muddy Dry Grass-Dry Leaves - Deciduous Mix 3
+
+	Dry mud to leaves
+	Wet Mud to leaves
+
+	Hard sufaces: plain to cracked
+
+	Granite-Mossy Granite
