@@ -12,6 +12,7 @@ wet mud
 saturated mud puddles
 icey mud		-we have this; I can't think of any level that would need it yet though
 dead leaves		-very important
+hard surface		-we have x5
 		body brushing against objects:	-at least two samples of each of these
 (running) nylon against twiggy brush
 (running) nylon against pine needles
@@ -39,7 +40,7 @@ firing ball			-we have this
 	-I don't know the other technical sounds or terms; kuja, please fill this in
 		impact sounds:
 player being hit by ball long range
-player being hit by ball medium
+player being hit by ball medium		-we have this x10
 player being hit by ball short range 	-can include gasping noise
 
 -	world sounds
