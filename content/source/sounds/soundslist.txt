@@ -5,20 +5,20 @@ sounds:
 	Player sounds:
 		footsteps:		-at least 5 samples of each of these
 live grass
-dry grass
+dry grass		-we have this x4
 gravel
 dried mud		-default sound
-wet mud
-saturated mud puddles
+wet mud			-we have this WALK x4 SPRINT x5
+water
 icey mud		-we have this; I can't think of any level that would need it yet though
-dead leaves		-very important
+dead leaves		-we have this x6 [sprinting only so far]
 hard surface		-we have x5
 		body brushing against objects:	-at least two samples of each of these
 (running) nylon against twiggy brush
 (running) nylon against pine needles
-(running) nylon against dead leaves
-(diving) player into dead leaves
-(diving) player into dry grass
+(running) nylon against leaves		-we have this x2 running x2 walking
+(diving) player into dead leaves	-we have this x1
+(diving) player into dry grass		-we have this x2 [may need cleanup on low freqs]
 (diving) player into dried mud
 (diving) player into wet mud
 (diving) player into puddley mud
@@ -29,9 +29,9 @@ hopper open
 pod close		-probbably will not be animated [happens off screen]
 pod pour into hopper		-we have this (loopable)
 hopper close
-full hopper shaking		-we have this x 4
+full hopper shaking		-we have this x6 gentle x3 rough
 half-full hopper shaking
-hopper with a few balls shaking
+hopper with a few balls shaking	-we have this x6 gentle x3 rough
 hopper with one ball shaking
 gas leak			-we have this
 trigger press			-we have this x 5
