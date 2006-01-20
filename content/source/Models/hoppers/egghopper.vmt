@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	$basetexture "models/hoppers/egghopper"
+	$bumpmap "models/hoppers/egghopper_normal"
+	$envmap env_cubemap
+	$envmaptint .3 .3 .3
+}
