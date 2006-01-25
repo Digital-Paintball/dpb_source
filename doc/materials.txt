@@ -32,6 +32,10 @@ Sound Type: Gravel/Hard
 	Granite Gravel [Gray]
 	Feldspar Gravel [White]
 
+Sound Type: Rug/Carpet
+	Light pile carpet (beige)
+	Heavy pile carpet (dark orange)
+
 Sound Type: Asphalt/Hard
 	Dry Mud [light brown]
 	Cracked Dry Mud [light brown]
