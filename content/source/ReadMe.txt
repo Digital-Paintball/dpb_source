@@ -9,3 +9,5 @@ is where all .smd and .qc files for the models should be.
 
 "Texture"
 is for all the original texture format (.psd .png .psp) for world textures and template textures should be.
+
+There are compiled folders for stuff that's been compiled.
