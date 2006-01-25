@@ -1,31 +1,13 @@
 versioninfo
 {
 	"editorversion" "400"
-	"editorbuild" "3057"
-	"mapversion" "42"
+	"editorbuild" "3368"
+	"mapversion" "44"
 	"formatversion" "100"
 	"prefab" "0"
 }
 visgroups
 {
-	visgroup
-	{
-		"name" "Auto"
-		"visgroupid" "1"
-		"color" "193 214 255"
-		visgroup
-		{
-			"name" "Entities"
-			"visgroupid" "2"
-			"color" "250 243 144"
-		}
-		visgroup
-		{
-			"name" "Brush Entities"
-			"visgroupid" "3"
-			"color" "135 244 85"
-		}
-	}
 }
 viewsettings
 {
@@ -37,10 +19,12 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "42"
+	"mapversion" "44"
 	"classname" "worldspawn"
 	"skyname" "sky_wasteland02"
 	"maxpropscreenwidth" "-1"
+	"detailvbsp" "detail.vbsp"
+	"detailmaterial" "detail/detailsprites"
 	solid
 	{
 		"id" "2"
@@ -114,6 +98,7 @@ world
 		{
 			"color" "0 124 169"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -189,6 +174,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -264,6 +250,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -339,6 +326,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -414,6 +402,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -489,6 +478,7 @@ world
 		{
 			"color" "0 122 231"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 }
@@ -500,27 +490,28 @@ entity
 	"pitch" "-60"
 	"_light" "237 238 213 200"
 	"_ambient" "111 114 236 100"
+	"_lightHDR" "-1 -1 -1 1"
+	"_ambientHDR" "-1 -1 -1 1"
 	"origin" "0 0 256"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "54"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 270 0"
 	"TeamNum" "1"
 	"origin" "-176 176 16"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
-		"visgroupid" "3"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -542,8 +533,8 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -555,8 +546,8 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -578,8 +569,8 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -601,8 +592,8 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -614,8 +605,8 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -627,8 +618,8 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -640,8 +631,8 @@ entity
 	editor
 	{
 		"color" "0 0 255"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -663,78 +654,78 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "550"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 270 0"
 	"TeamNum" "1"
 	"origin" "-96 176 16"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "552"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 270 0"
 	"TeamNum" "1"
 	"origin" "-16 176 16"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "634"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 90 0"
 	"TeamNum" "2"
 	"origin" "-176 -291 32"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "636"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 90 0"
 	"TeamNum" "2"
 	"origin" "-96 -291 32"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
 {
 	"id" "638"
-	"classname" "info_player_spawn"
+	"classname" "info_player_teamspawn"
 	"angles" "0 90 0"
 	"TeamNum" "2"
 	"origin" "-16 -291 32"
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -746,8 +737,8 @@ entity
 	editor
 	{
 		"color" "0 255 0"
-		"visgroupid" "2"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -833,6 +824,7 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -908,6 +900,7 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -983,6 +976,7 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	solid
@@ -1058,13 +1052,14 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	editor
 	{
 		"color" "220 30 220"
-		"visgroupid" "3"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -1147,18 +1142,14 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	editor
 	{
-		"color" "255 255 255"
-		"visgroupshown" "1"
-	}
-	editor
-	{
 		"color" "220 30 220"
-		"visgroupid" "3"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 entity
@@ -1245,18 +1236,14 @@ entity
 		{
 			"color" "220 30 220"
 			"visgroupshown" "1"
+			"visgroupautoshown" "1"
 		}
 	}
 	editor
 	{
-		"color" "255 255 255"
-		"visgroupshown" "1"
-	}
-	editor
-	{
 		"color" "220 30 220"
-		"visgroupid" "3"
 		"visgroupshown" "1"
+		"visgroupautoshown" "1"
 	}
 }
 cameras
@@ -1264,8 +1251,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[241.235 175.415 295.129]"
-		"look" "[241.235 175.415 295.129]"
+		"position" "[-211.445 -302.616 103.342]"
+		"look" "[-211.445 -302.616 103.342]"
 	}
 }
 cordon
