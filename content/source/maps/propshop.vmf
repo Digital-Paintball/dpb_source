@@ -1,8 +1,8 @@
 versioninfo
 {
 	"editorversion" "400"
-	"editorbuild" "3325"
-	"mapversion" "6"
+	"editorbuild" "3368"
+	"mapversion" "7"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -19,7 +19,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "6"
+	"mapversion" "7"
 	"classname" "worldspawn"
 	"skyname" "sky_day01_01"
 	"maxpropscreenwidth" "-1"
@@ -282,7 +282,7 @@ world
 		{
 			"id" "93"
 			"plane" "(-2 -98 128) (-2 -104 128) (-2 -104 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 192] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -293,7 +293,7 @@ world
 		{
 			"id" "94"
 			"plane" "(62 -98 0) (62 -104 0) (62 -104 128)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -304,7 +304,7 @@ world
 		{
 			"id" "95"
 			"plane" "(62 -98 128) (-2 -98 128) (-2 -98 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -358,7 +358,7 @@ world
 		{
 			"id" "111"
 			"plane" "(-2 -370 128) (-2 -370 0) (-2 -376 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 -1 0 -168] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -391,7 +391,7 @@ world
 		{
 			"id" "114"
 			"plane" "(-2 -370 0) (-2 -370 128) (-224 -370 128)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 -336] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -488,7 +488,7 @@ world
 		{
 			"id" "127"
 			"plane" "(54 -50 128) (62 -50 128) (62 -98 128)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -499,7 +499,7 @@ world
 		{
 			"id" "128"
 			"plane" "(54 -98 108) (62 -98 108) (62 -50 108)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 -75] 0.25"
 			"rotation" "0"
@@ -510,7 +510,7 @@ world
 		{
 			"id" "129"
 			"plane" "(54 -50 128) (54 -98 128) (54 -98 108)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -521,7 +521,7 @@ world
 		{
 			"id" "130"
 			"plane" "(62 -50 108) (62 -98 108) (62 -98 128)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -532,7 +532,7 @@ world
 		{
 			"id" "131"
 			"plane" "(62 -50 128) (54 -50 128) (54 -50 108)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -543,7 +543,7 @@ world
 		{
 			"id" "132"
 			"plane" "(62 -98 108) (54 -98 108) (54 -98 128)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -651,9 +651,9 @@ world
 		{
 			"id" "175"
 			"plane" "(-226 -104 128) (64 -104 128) (64 -88 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 0] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[1 0 0 798.014] 0.05"
+			"vaxis" "[0 -1 0 247.742] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -879,9 +879,9 @@ world
 		{
 			"id" "193"
 			"plane" "(-226 120 128) (64 120 128) (64 136 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 384] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[1 0 0 798] 0.05"
+			"vaxis" "[0 -1 0 248] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -1020,9 +1020,9 @@ world
 		{
 			"id" "205"
 			"plane" "(-226 -88 128) (64 -88 128) (64 120 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 0] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[1 0 0 798.014] 0.05"
+			"vaxis" "[0 -1 0 247.742] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -1096,9 +1096,9 @@ world
 		{
 			"id" "211"
 			"plane" "(-210 -104 128) (-226 -104 128) (-226 -376 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[0 1 0 88] 0.25"
-			"vaxis" "[1 0 0 232] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[0 1 0 776.258] 0.05"
+			"vaxis" "[1 0 0 798.014] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -1248,9 +1248,9 @@ world
 		{
 			"id" "223"
 			"plane" "(-10 -104 128) (-210 -104 128) (-210 -376 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[0 1 0 88] 0.25"
-			"vaxis" "[1 0 0 360] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[0 1 0 776.258] 0.05"
+			"vaxis" "[1 0 0 798.014] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -1465,9 +1465,9 @@ world
 		{
 			"id" "240"
 			"plane" "(6 -104 128) (-10 -104 128) (-9.99999 -376 128)"
-			"material" "CONCRETE/CONCRETEWALL015A"
-			"uaxis" "[0 1 0 88] 0.25"
-			"vaxis" "[1 0 0 360] 0.25"
+			"material" "NORRINGTON/RYGCIELINGFOAM"
+			"uaxis" "[0 1 0 776.258] 0.05"
+			"vaxis" "[1 0 0 798.014] 0.05"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -1769,7 +1769,7 @@ world
 		{
 			"id" "17"
 			"plane" "(54 128 101) (54 128 128) (54 -50 128)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1780,7 +1780,7 @@ world
 		{
 			"id" "16"
 			"plane" "(62 -50 101) (62 -50 128) (62 128 128)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1802,7 +1802,7 @@ world
 		{
 			"id" "14"
 			"plane" "(54 -50 101) (54 -50 128) (62 -50 128)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1846,7 +1846,7 @@ world
 		{
 			"id" "21"
 			"plane" "(54 -50 29) (54 -50 0) (54 128 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1857,7 +1857,7 @@ world
 		{
 			"id" "20"
 			"plane" "(62 128 29) (62 128 0) (62 -50 0)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1879,7 +1879,7 @@ world
 		{
 			"id" "22"
 			"plane" "(62 -50 29) (62 -50 0) (54 -50 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1912,7 +1912,7 @@ world
 		{
 			"id" "27"
 			"plane" "(54 83 29) (54 128 29) (54 128 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1923,7 +1923,7 @@ world
 		{
 			"id" "26"
 			"plane" "(62 128 101) (62 128 29) (62 83 29)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -1989,7 +1989,7 @@ world
 		{
 			"id" "3"
 			"plane" "(54 -50 101) (54 -50 29) (54 45 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2000,7 +2000,7 @@ world
 		{
 			"id" "4"
 			"plane" "(62 45 29) (62 -50 29) (62 -50 101)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2011,7 +2011,7 @@ world
 		{
 			"id" "6"
 			"plane" "(62 -50 101) (62 -50 29) (54 -50 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2077,7 +2077,7 @@ world
 		{
 			"id" "44"
 			"plane" "(-224 128 128) (62 128 128) (62 128 99)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 216] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2110,7 +2110,7 @@ world
 		{
 			"id" "47"
 			"plane" "(62 128 128) (62 136 128) (62 136 99)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2154,7 +2154,7 @@ world
 		{
 			"id" "50"
 			"plane" "(62 128 0) (-224 128 0) (-224 128 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 216] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2187,7 +2187,7 @@ world
 		{
 			"id" "53"
 			"plane" "(62 136 0) (62 128 0) (62 128 29)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2220,7 +2220,7 @@ world
 		{
 			"id" "55"
 			"plane" "(-224 128 29) (-224 128 99) (-29 128 99)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 216] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2297,7 +2297,7 @@ world
 		{
 			"id" "61"
 			"plane" "(62 128 29) (9 128 29) (9 128 99)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 216] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2319,7 +2319,7 @@ world
 		{
 			"id" "63"
 			"plane" "(62 136 29) (62 128 29) (62 128 99)"
-			"material" "METAL/METALWALL032A"
+			"material" "METAL/METALWALL032B"
 			"uaxis" "[0 1 0 222] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2407,7 +2407,7 @@ world
 		{
 			"id" "141"
 			"plane" "(-2 -376 128) (-2 -376 0) (-2 -104 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 152] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2484,7 +2484,7 @@ world
 		{
 			"id" "146"
 			"plane" "(-2 -376 128) (-2 -376 0) (-2 -104 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 152] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2539,7 +2539,7 @@ world
 		{
 			"id" "153"
 			"plane" "(-2 -376 128) (-2 -376 0) (-2 -104 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 152] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2616,7 +2616,7 @@ world
 		{
 			"id" "107"
 			"plane" "(-2 -376 128) (-2 -376 0) (-2 -104 0)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 152] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2693,7 +2693,7 @@ world
 		{
 			"id" "321"
 			"plane" "(-224 -370 128) (-218 -370 128) (-218 -370 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 -72] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2726,7 +2726,7 @@ world
 		{
 			"id" "318"
 			"plane" "(-218 -370 128) (-218 128 128) (-218 128 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 48] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2770,7 +2770,7 @@ world
 		{
 			"id" "326"
 			"plane" "(-218 -370 0) (-224 -370 0) (-224 -370 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 -72] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2803,7 +2803,7 @@ world
 		{
 			"id" "323"
 			"plane" "(-218 128 0) (-218 -370 0) (-218 -370 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 48] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2858,7 +2858,7 @@ world
 		{
 			"id" "330"
 			"plane" "(-218 128 29) (-218 84 29) (-218 84 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 48] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2891,7 +2891,7 @@ world
 		{
 			"id" "327"
 			"plane" "(-218 84 29) (-224 84 29) (-224 84 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2924,7 +2924,7 @@ world
 		{
 			"id" "351"
 			"plane" "(-218 -370 29) (-218 -370 101) (-218 44 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 48] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2935,7 +2935,7 @@ world
 		{
 			"id" "332"
 			"plane" "(-224 44 29) (-218 44 29) (-218 44 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2946,7 +2946,7 @@ world
 		{
 			"id" "350"
 			"plane" "(-244 -272 101) (-244 -234 101) (-210 -234 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -2957,7 +2957,7 @@ world
 		{
 			"id" "349"
 			"plane" "(-244 -234 29) (-244 -272 29) (-210 -272 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -2968,7 +2968,7 @@ world
 		{
 			"id" "353"
 			"plane" "(-210 -234 101) (-210 -234 29) (-244 -234 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2990,7 +2990,7 @@ world
 		{
 			"id" "117"
 			"plane" "(-218 -370 29) (-224 -370 29) (-224 -370 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[-1 0 0 -72] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -3012,7 +3012,7 @@ world
 		{
 			"id" "120"
 			"plane" "(-218 -370 29) (-218 -370 101) (-218 44 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[0 1 0 48] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -3023,7 +3023,7 @@ world
 		{
 			"id" "356"
 			"plane" "(-244 -272 101) (-244 -234 101) (-210 -234 101)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -3034,7 +3034,7 @@ world
 		{
 			"id" "355"
 			"plane" "(-244 -234 29) (-244 -272 29) (-210 -272 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -3045,7 +3045,7 @@ world
 		{
 			"id" "354"
 			"plane" "(-244 -272 101) (-244 -272 29) (-210 -272 29)"
-			"material" "PLASTER/PLASTERWALL046B"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -3397,8 +3397,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[288.628 -358.644 341.846]"
-		"look" "[182.728 -297.188 268.856]"
+		"position" "[158.216 115.371 123.151]"
+		"look" "[60.0813 26.1594 70.9006]"
 	}
 }
 cordon
