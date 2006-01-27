@@ -49,6 +49,12 @@ Sound Type: Asphalt/Hard
 	Granite
 	Mossy Granite
 		*note: the cracks can be made as a photoshop layer
+	*Rock/Boulder [grey]
+	*Rock/stone texture (for 3dskybox hills)
+
+*Other: 	*Wood pole (for field netting)
+		*Clouds [white] (for sky)
+		*Brick texture [grey, non painted]
 
 Blends:
 	Green Grass-Muddy Green Grass
@@ -71,3 +77,4 @@ Blends:
 	Hard sufaces: plain to cracked
 
 	Granite-Mossy Granite
+
