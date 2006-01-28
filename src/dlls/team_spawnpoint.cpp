@@ -12,6 +12,7 @@
 #include "gamerules.h"
 #include "team_spawnpoint.h"
 #include "team.h"
+#include "multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -39,9 +40,9 @@ END_DATADESC()
 void CTeamSpawnPoint::Activate( void )
 {
 	BaseClass::Activate();
-	if ( GetTeamNumber() > 0 && GetTeamNumber() <= MAX_TEAMS )
+	if ( GetTeamNumber() > 0 && GetTeamNumber() <= MAX_TEAMS && GetTeam() )
 	{
-		GetGlobalTeam( GetTeamNumber() )->AddSpawnpoint( this );
+		GetTeam()->AddSpawnpoint( this );
 	}
 	else
 	{

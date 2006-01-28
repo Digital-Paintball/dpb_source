@@ -875,6 +875,10 @@ public:
 	bool			InSameTeam( CBaseEntity *pEntity ) const;	// Returns true if the specified entity is on the same team as this one
 	bool			IsInAnyTeam( void ) const;			// Returns true if this entity is in any team
 	const char		*TeamID( void ) const;				// Returns the name of the team this entity is on.
+	int				GetStartTeamNumber( void ) const;	// Get the Team this entity started on
+
+	class CArena*	GetArena( void ) const;				// Get the arena this entity is in.
+	void			SetArena( class CArena* pArena );	// Set the arena this entity is in.
 
 	// Entity events... these are events targetted to a particular entity
 	// Each event defines its own well-defined event data structure
@@ -1505,6 +1509,9 @@ private:
 	// Team handling
 	int			m_iInitialTeamNum;		// Team number of this entity's team read from file
 	CNetworkVar( int, m_iTeamNum );				// Team number of this entity's team. 
+
+	// Arena handling
+	CHandle< class CArena >	m_hArena;
 
 	// Sets water type + level for physics objects
 	unsigned char	m_nWaterTouch;

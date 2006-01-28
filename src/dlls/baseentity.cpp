@@ -55,6 +55,7 @@
 #include "movetype_push.h"
 #include "vstdlib/ICommandLine.h"
 #include "vphysics/friction.h"
+#include "multiarena.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -972,7 +973,7 @@ void CBaseEntity::Activate( void )
 	if (m_iInitialTeamNum)
 	{
 		ChangeTeam( m_iInitialTeamNum );
-	}	
+	}
 
 	// Get a handle to my damage filter entity if there is one.
 	if ( m_iszDamageFilterName != NULL_STRING )
@@ -3571,7 +3572,11 @@ void CBaseEntity::ChangeTeam( int iTeamNum )
 //-----------------------------------------------------------------------------
 CTeam *CBaseEntity::GetTeam( void ) const
 {
-	return GetGlobalTeam( m_iTeamNum );
+	CArena* pArena = GetArena();
+	if (!pArena)
+		return NULL;
+
+	return pArena->GetTeamByNumber( m_iTeamNum );
 }
 
 
@@ -3616,9 +3621,33 @@ int CBaseEntity::GetTeamNumber( void ) const
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
+int CBaseEntity::GetStartTeamNumber( void ) const
+{
+	return m_iInitialTeamNum;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
 bool CBaseEntity::IsInAnyTeam( void ) const
 {
 	return ( GetTeam() != NULL );
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+CArena* CBaseEntity::GetArena( void ) const
+{
+	return m_hArena;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CBaseEntity::SetArena( CArena* pArena )
+{
+	m_hArena = pArena;
 }
 
 //-----------------------------------------------------------------------------

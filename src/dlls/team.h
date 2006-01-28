@@ -83,8 +83,4 @@ public:
 	CNetworkVar( int, m_iTeamNum );			// Which team is this?
 };
 
-extern CUtlVector< CTeam * > g_Teams;
-extern CTeam *GetGlobalTeam( int iIndex );
-extern int GetNumberOfTeams( void );
-
 #endif // TEAM_H

@@ -230,7 +230,6 @@ void CSDKPlayer::InitialSpawn( void )
 	data->SetString( "title", title );		// info panel title
 	data->SetString( "type", "1" );			// show userdata from stringtable entry
 	data->SetString( "msg",	"motd" );		// use this stringtable entry
-	data->SetString( "cmd", "impulse 101" );// exec this command if panel closed
 
 	ShowViewPortPanel( PANEL_INFO, true, data );
 

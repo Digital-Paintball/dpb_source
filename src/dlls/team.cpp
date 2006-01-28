@@ -12,8 +12,6 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-CUtlVector< CTeam * > g_Teams;
-
 //-----------------------------------------------------------------------------
 // Purpose: SendProxy that converts the Team's player UtlVector to entindexes
 //-----------------------------------------------------------------------------
@@ -52,26 +50,6 @@ IMPLEMENT_SERVERCLASS_ST_NOBASE(CTeam, DT_Team)
 END_SEND_TABLE()
 
 LINK_ENTITY_TO_CLASS( team_manager, CTeam );
-
-//-----------------------------------------------------------------------------
-// Purpose: Get a pointer to the specified team manager
-//-----------------------------------------------------------------------------
-CTeam *GetGlobalTeam( int iIndex )
-{
-	if ( iIndex < 0 || iIndex >= GetNumberOfTeams() )
-		return NULL;
-
-	return g_Teams[ iIndex ];
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Get the number of team managers
-//-----------------------------------------------------------------------------
-int GetNumberOfTeams( void )
-{
-	return g_Teams.Size();
-}
-
 
 //-----------------------------------------------------------------------------
 // Purpose: Needed because this is an entity, but should never be used

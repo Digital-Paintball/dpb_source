@@ -66,6 +66,7 @@
 #include "util.h"
 #include "vstdlib/ICommandLine.h"
 #include "engine/iserverplugin.h"
+#include "multiarena.h"
 
 #ifdef CSTRIKE_DLL // BOTPORT: TODO: move these ifdefs out
 #include "bot/bot.h"
@@ -695,6 +696,8 @@ bool CServerGameDLL::LevelInit( const char *pMapName, char const *pMapEntities, 
 
 	}
 
+	CArena::AssembleArenas();
+
 	// Now that all of the active entities have been loaded in, precache any entities who need point_template parameters
 	//  to be parsed (the above code has loaded all point_template entities)
 	PrecachePointTemplates();
@@ -927,6 +930,8 @@ void CServerGameDLL::PreClientUpdate( bool simulating )
 void CServerGameDLL::LevelShutdown( void )
 {
 	IGameSystem::LevelShutdownPreEntityAllSystems();
+
+	CArena::ClearArenas();
 
 	// YWB:
 	// This entity pointer is going away now and is corrupting memory on level transitions/restarts

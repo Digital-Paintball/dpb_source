@@ -17,6 +17,7 @@
 // Landmark class
 void CPointEntity::Spawn( void )
 {
+	BaseClass::Spawn();
 	SetSolid( SOLID_NONE );
 //	UTIL_SetSize(this, vec3_origin, vec3_origin);
 }
@@ -38,10 +39,10 @@ void CNullEntity::Spawn( void )
 }
 LINK_ENTITY_TO_CLASS(info_null,CNullEntity);
 
-class CBaseDMStart : public CPointEntity
+class CBaseSpawnPoint : public CPointEntity
 {
 public:
-	DECLARE_CLASS( CBaseDMStart, CPointEntity );
+	DECLARE_CLASS( CBaseSpawnPoint, CPointEntity );
 
 	bool IsTriggered( CBaseEntity *pEntity );
 
@@ -52,7 +53,7 @@ public:
 private:
 };
 
-BEGIN_DATADESC( CBaseDMStart )
+BEGIN_DATADESC( CBaseSpawnPoint )
 
 	DEFINE_KEYFIELD( m_Master, FIELD_STRING, "master" ),
 
@@ -60,11 +61,11 @@ END_DATADESC()
 
 
 // These are the new entry points to entities. 
-LINK_ENTITY_TO_CLASS(info_player_deathmatch,CBaseDMStart);
+LINK_ENTITY_TO_CLASS(info_player_spawn,CBaseSpawnPoint);
 LINK_ENTITY_TO_CLASS(info_player_start,CPointEntity);
 LINK_ENTITY_TO_CLASS(info_landmark,CPointEntity);
 
-bool CBaseDMStart::IsTriggered( CBaseEntity *pEntity )
+bool CBaseSpawnPoint::IsTriggered( CBaseEntity *pEntity )
 {
 	bool master = UTIL_IsMasterTriggered( m_Master, pEntity );
 

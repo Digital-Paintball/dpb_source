@@ -19,15 +19,6 @@ END_SEND_TABLE()
 LINK_ENTITY_TO_CLASS( sdk_team_manager, CSDKTeam );
 
 //-----------------------------------------------------------------------------
-// Purpose: Get a pointer to the specified TF team manager
-//-----------------------------------------------------------------------------
-CSDKTeam *GetGlobalSDKTeam( int iIndex )
-{
-	return (CSDKTeam*)GetGlobalTeam( iIndex );
-}
-
-
-//-----------------------------------------------------------------------------
 // Purpose: Needed because this is an entity, but should never be used
 //-----------------------------------------------------------------------------
 void CSDKTeam::Init( const char *pName, int iNumber )

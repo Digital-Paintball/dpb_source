@@ -101,20 +101,6 @@ IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
 
 
 	// --------------------------------------------------------------------------------------------------- //
-	// Globals.
-	// --------------------------------------------------------------------------------------------------- //
-
-	// NOTE: the indices here must match TEAM_TERRORIST, TEAM_CT, TEAM_SPECTATOR, etc.
-	char *sTeamNames[] =
-	{
-		"Unassigned",
-		"Spectator",
-		"Terrorist",
-		"Counter-Terrorist"
-	};
-
-
-	// --------------------------------------------------------------------------------------------------- //
 	// Global helper functions.
 	// --------------------------------------------------------------------------------------------------- //
 
@@ -153,14 +139,6 @@ IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
 
 	CSDKGameRules::CSDKGameRules()
 	{
-		// Create the team managers
-		for ( int i = 0; i < ARRAYSIZE( sTeamNames ); i++ )
-		{
-			CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "sdk_team_manager" ));
-			pTeam->Init( sTeamNames[i], i );
-
-			g_Teams.AddToTail( pTeam );
-		}
 	}
 
 	//-----------------------------------------------------------------------------
@@ -168,9 +146,6 @@ IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
 	//-----------------------------------------------------------------------------
 	CSDKGameRules::~CSDKGameRules()
 	{
-		// Note, don't delete each team since they are in the gEntList and will 
-		// automatically be deleted from there, instead.
-		g_Teams.Purge();
 	}
 
 	//-----------------------------------------------------------------------------

@@ -9,6 +9,7 @@ INSTALL_FILES(/ FILES
 	GameInfo.txt
 	maplist.txt
 	motd.txt
+	dpb.fgd
 )
 
 INSTALL_FILES(/maps FILES

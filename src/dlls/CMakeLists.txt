@@ -155,6 +155,7 @@ SET( SERVER_SRCS
 	movehelper_server.cpp
 	movement.cpp
 	movie_explosion.cpp
+	multiarena.cpp
 	nav_area.cpp
 	nav_colors.cpp
 	nav_edit.cpp

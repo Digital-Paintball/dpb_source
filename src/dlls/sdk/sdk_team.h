@@ -31,8 +31,4 @@ public:
 	virtual void Init( const char *pName, int iNumber );
 };
 
-
-extern CSDKTeam *GetGlobalSDKTeam( int iIndex );
-
-
 #endif // TF_TEAM_H

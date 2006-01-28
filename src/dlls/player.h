@@ -385,7 +385,8 @@ public:
 	virtual void			ResetObserverMode(); // resets all observer related settings
 
 	virtual void			CreateCorpse( void ) { }
-	virtual CBaseEntity		*EntSelectSpawnPoint( void );
+	virtual CBaseEntity		*EntSelectStartPoint( void );
+	virtual CBaseEntity		*EntSelectSpawnPoint( class CArena* pArena );
 
 	// Vehicles
 	bool					IsInAVehicle( void ) const;
@@ -595,6 +596,10 @@ public:
 	// Inputs
 	//---------------------------------
 	void	InputSetHealth( inputdata_t &inputdata );
+
+	void	JoinGame();
+
+	void	DeployArmaments();
 
 private:
 	

@@ -58,11 +58,9 @@
 #include "nav_mesh.h"
 #include "env_zoom.h"
 #include "player_resource.h"
+#include "multiarena.h"
 
-#ifdef HL2_DLL
-#include "combine_mine.h"
-#include "weapon_physcannon.h"
-#endif
+#include "weapon_sdkbase.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -334,6 +332,12 @@ inline bool ShouldRunCommandsInContext( const CCommandContext *ctx )
 #endif
 }
 
+void CBasePlayer::DeployArmaments()
+{
+	// TODO: Buy all the weapons the player wants to have.
+	GiveNamedItem( "weapon_marker" );
+	GiveAmmo( 90, AMMO_BULLETS );
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -4028,7 +4032,7 @@ Returns the entity to spawn at
 USES AND SETS GLOBAL g_pLastSpawn
 ============
 */
-CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
+CBaseEntity *CBasePlayer::EntSelectStartPoint()
 {
 	CBaseEntity *pSpot;
 	edict_t		*player;
@@ -4089,6 +4093,90 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
 			}
 			goto ReturnSpot;
 		}
+	}
+
+	// If startspot is set, (re)spawn there.
+	if ( !gpGlobals->startspot || !strlen(STRING(gpGlobals->startspot)))
+	{
+		pSpot = FindPlayerStart( "info_player_start" );
+		if ( pSpot )
+			goto ReturnSpot;
+	}
+	else
+	{
+		pSpot = gEntList.FindEntityByName( NULL, gpGlobals->startspot, NULL );
+		if ( pSpot )
+			goto ReturnSpot;
+	}
+
+ReturnSpot:
+	if ( !pSpot  )
+	{
+		Warning( "PutClientInServer: no info_player_start on level\n");
+		return CBaseEntity::Instance( INDEXENT( 0 ) );
+	}
+
+	g_pLastSpawn = pSpot;
+	return pSpot;
+}
+
+/*
+============
+EntSelectSpawnPoint
+
+Returns the entity to spawn at
+============
+*/
+CBaseEntity *CBasePlayer::EntSelectSpawnPoint( CArena* pArena )
+{
+	ASSERT(pArena);
+
+	CBaseEntity *pSpot;
+	edict_t		*player;
+
+	player = edict();
+
+	pSpot = g_pLastSpawn;
+	// Randomize the start spot
+	for ( int i = random->RandomInt(1,5); i > 0; i-- )
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
+	if ( !pSpot )  // skip over the null point
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
+
+	CBaseEntity *pFirstSpot = pSpot;
+
+	do 
+	{
+		if ( pSpot )
+		{
+			// check if pSpot is valid
+			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
+			{
+				if ( pSpot->GetLocalOrigin() == vec3_origin )
+				{
+					pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+					continue;
+				}
+
+				// if so, go to pSpot
+				goto ReturnSpot;
+			}
+		}
+		// increment pSpot
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+	} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
+
+	// we haven't found a place to spawn yet,  so kill any guy at the first spawn point and spawn there
+	if ( pSpot )
+	{
+		CBaseEntity *ent = NULL;
+		for ( CEntitySphereQuery sphere( pSpot->GetAbsOrigin(), 128 ); (ent = sphere.GetCurrentEntity()) != NULL; sphere.NextEntity() )
+		{
+			// if ent is a client, kill em (unless they are ourselves)
+			if ( ent->IsPlayer() && !(ent->edict() == player) )
+				ent->TakeDamage( CTakeDamageInfo( GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), 300, DMG_GENERIC ) );
+		}
+		goto ReturnSpot;
 	}
 
 	// If startspot is set, (re)spawn there.
@@ -4254,6 +4342,8 @@ void CBasePlayer::Spawn( void )
 	m_flLaggedMovementValue = 1.0f;
 	m_vecSmoothedVelocity = vec3_origin;
 	InitVCollision();
+
+	EquipSuit();
 }
 
 void CBasePlayer::Activate( void )
@@ -4346,7 +4436,7 @@ int CBasePlayer::Restore( IRestore &restore )
 		Msg( "No Landmark:%s\n", pSaveData->levelInfo.szLandmarkName );
 
 		// default to normal spawn
-		CBaseEntity *pSpawnSpot = EntSelectSpawnPoint();
+		CBaseEntity *pSpawnSpot = EntSelectStartPoint();
 		SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
 		SetLocalAngles( pSpawnSpot->GetLocalAngles() );
 	}
@@ -6016,7 +6106,12 @@ CBaseEntity *CBasePlayer::HasNamedPlayerItem( const char *pszItemName )
 
 void CBasePlayer::ChangeTeam( int iTeamNum )
 {
-	if ( !GetGlobalTeam( iTeamNum ) )
+	CArena *pArena = GetArena();
+
+	if (!pArena)
+		return;
+
+	if ( !pArena->GetTeamByNumber( iTeamNum ) )
 	{
 		Warning( "CBasePlayer::ChangeTeam( %d ) - invalid team index.\n", iTeamNum );
 		return;
@@ -6051,7 +6146,7 @@ void CBasePlayer::ChangeTeam( int iTeamNum )
 	// Are we being added to a team?
 	if ( iTeamNum )
 	{
-		GetGlobalTeam( iTeamNum )->AddPlayer( this );
+		pArena->GetTeamByNumber( iTeamNum )->AddPlayer( this );
 	}
 
 	BaseClass::ChangeTeam( iTeamNum );

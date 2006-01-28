@@ -153,7 +153,7 @@ bool CGameRules::CanHaveAmmo( CBaseCombatCharacter *pPlayer, const char *szName 
 //=========================================================
 CBaseEntity *CGameRules::GetPlayerSpawnSpot( CBasePlayer *pPlayer )
 {
-	CBaseEntity *pSpawnSpot = pPlayer->EntSelectSpawnPoint();
+	CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
 	Assert( pSpawnSpot );
 
 	pPlayer->SetLocalOrigin( pSpawnSpot->GetAbsOrigin() + Vector(0,0,1) );
