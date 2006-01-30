@@ -1,6 +1,8 @@
 List of sounds we need. List started by Shortigo. Add to it and mark off sounds as we acquire them.
 Property of SoulStrewn Studios, LLC
 
+NOTICE: The volumes in these samples have not been adjusted. I will scale them when I have the entire set.
+
 sounds:
 	Player sounds:
 		footsteps:		-at least 5 samples of each of these
