@@ -6,7 +6,6 @@
 :: the default locations on the machine when you run this script.
 
 :: Parameters:	Default:
-:: -e			false				Initialize compiler environment
 :: -c 60|70|71	71					Visual Studio version
 :: -s <path>	C:\svn\dpb\trunk	Source code directory
 :: -b <path>	C:\build\dpb		Build directory
@@ -21,7 +20,6 @@ set compiler=71
 set source=C:\svn\dpb\trunk
 set build=C:\build\dpb
 set install=c:\install\dpb
-set init=false
 
 goto loop
 :shift3loop
@@ -33,9 +31,6 @@ shift
 :loop
 
 :: here test for expected args
-
-if "%1"=="-e" set init=true
-if "%1"=="-e" goto shiftloop
 
 if "%1"=="-c" set compiler=%2
 if "%1"=="-c" goto shift2loop
@@ -64,19 +59,16 @@ goto done
 :: Check the compiler version to make sure it is OK to use.
 
 if not "%compiler%"=="71" goto vs70test
-if "%init%"=="false" goto beginbuild
 call "\Program Files\Microsoft Visual Studio .NET 2003\Common7\Tools\vsvars32.bat"
 goto beginbuild
 
 :vs70test
 if not "%compiler%"=="70" goto vs60test
-if "%init%"=="false" goto beginbuild
 call "\Program Files\Microsoft Visual Studio .NET\Common7\Tools\vsvars32.bat"
 goto beginbuild
 
 :vs60test
 if not "%compiler%"=="60" goto badcompiler
-if "%init%"=="false" goto beginbuild
 call "\Program Files\Microsoft Visual Studio\VC98\Bin\vcvars32.bat"
 goto beginbuild
 
