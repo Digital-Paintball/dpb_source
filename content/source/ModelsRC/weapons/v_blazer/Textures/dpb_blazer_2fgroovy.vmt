@@ -2,5 +2,5 @@ VertexLitGeneric
 {
 	$basetexture "models/weapons/reg_stabilizer_black"
 	$envmap env_cubemap
-	$envmapcontrast .2
+	$envmapcontrast .1
 }
