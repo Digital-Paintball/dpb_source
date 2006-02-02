@@ -1,6 +1,6 @@
 "VertexLitGeneric"
 {
-	$basetexture "models/weapons/shared_textures/pod_glass"
+	$basetexture "models/weapons/pod_glass"
 	
 	$envmap  env_cubemap
 	$envmapcontrast . 5
