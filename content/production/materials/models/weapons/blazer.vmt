@@ -3,6 +3,7 @@
 	"$basetexture" "models/weapons/blazer"
 	"$bumpmap" "models/weapons/blazer_normal"
 	"$normalalphaenvmapmask" 1
+	$envmapcontrast .2
 	"$envmap" "env_cubemap"
-	"$envmapmask" .2 .2 .2
+	
 }
