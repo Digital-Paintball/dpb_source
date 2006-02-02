@@ -2,5 +2,5 @@ VertexLitGeneric
 {
 	$basetexture "models/weapons/dpb_ppsbar_brs"
 	$envmap env_cubemap
-	$envmapcontrast .2
+	$envmaptint .25 .25 .25
 }
