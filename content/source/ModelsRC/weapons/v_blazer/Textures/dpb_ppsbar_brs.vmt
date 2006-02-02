@@ -1,0 +1,6 @@
+VertexLitGeneric
+{
+	$basetexture "models/weapons/dpb_ppsbar_brs"
+	$envmap env_cubemap
+	$envmapcontrast .2
+}

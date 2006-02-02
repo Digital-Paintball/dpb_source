@@ -1,0 +1,7 @@
+VertexLitGeneric
+{
+	$basetexture "models/weapons/dpb_brl_lpc"
+	$bumpmap "models/weapons/dpb_brl_lpc_normal"
+	$envmap env_cubemap
+	$envmapcontrast .2
+}
