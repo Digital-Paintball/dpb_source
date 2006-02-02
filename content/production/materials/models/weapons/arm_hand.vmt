@@ -3,6 +3,6 @@ VertexLitGeneric
 	$basetexture "models/weapons/arm_hand"
 	$bumpmap "models/weapons/arm_hand_normal"
 	$envmap env_cubemap
-	$envmapcontrast .02
+	$envmaptint .25 .25 .25
 
 }
