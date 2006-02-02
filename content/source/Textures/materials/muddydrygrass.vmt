@@ -3,4 +3,5 @@
 	"$basetexture" "textures/muddydrygrass"
 	"$bumpmap" "textures/muddydrygrass_normal"
 	"%keywords" "dpb shortigo mud dry"
+        "$surfaceprop" "dirt" 
 }

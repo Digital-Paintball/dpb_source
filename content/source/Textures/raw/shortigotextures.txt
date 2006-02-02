@@ -1,0 +1,6 @@
+SOUND TYPES
+
+BLENDS:
+shortigo_drymud.png--> shortigo_rockyroad.png
+shortigo_drymud.png--> shortigo_drymuddygrass2.png
+shortigo_drymuddygrass2.png --> shortigo_drygrass2.png

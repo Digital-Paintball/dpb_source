@@ -1,0 +1,10 @@
+"WorldVertexTransition" 
+{ 
+   "$basetexture" "textures/drygrass"
+   "$basetexture2" "textures/muddydrygrass" 
+   "%tooltexture" "textures/drygrass" 
+   "$basetexturetransform" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+   "$basetexturetransform2" "center .5 .5 scale 4 4 rotate 0 translate 0 0" 
+   "$surfaceprop" "dirt" 
+   "%keywords" "dpb blend dry grass mud shortigo" 
+}

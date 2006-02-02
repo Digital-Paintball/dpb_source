@@ -36,7 +36,7 @@ Sound Type: Rug/Carpet
 	Light pile carpet (beige)
 	Heavy pile carpet (dark orange)
 
-Sound Type: Asphalt/Hard
+Sound Type: Dirt/Hard
 	Dry Mud [light brown]
 	Cracked Dry Mud [light brown]
 	Light Gray Concrete [nearly white]
@@ -77,4 +77,3 @@ Blends:
 	Hard sufaces: plain to cracked
 
 	Granite-Mossy Granite
-
