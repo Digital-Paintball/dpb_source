@@ -94,7 +94,7 @@ nmake
 :: nmake returns 2 on fail.
 @if errorlevel 2 goto builderror
 
-nmake /a install
+nmake install
 @if errorlevel 2 goto builderror
 
 @echo off
