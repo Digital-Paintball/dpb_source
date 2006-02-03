@@ -1,0 +1,12 @@
+"WorldVertexTransition"
+{
+	"$basetexture" "nature/gravelfloor004a"
+	"$basetexture2" "nature/dirtfloor006a"
+	"$detail" "overlays/macro01a"
+	"$detailscale" .1
+	"%detailtype" "norrington_pine"
+	"%tooltexture" "nature/blendgrassgravel001a_tooltexture"
+	"%keywords" "norrington"
+	"$surfaceprop" "dirt"
+	"$surfaceprop2" "dirt"
+}
