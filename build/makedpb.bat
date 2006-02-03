@@ -17,9 +17,9 @@ setlocal
 
 :: init variables
 set compiler=71
-set source="C:\svn\dpb\trunk"
-set build="C:\build\dpb"
-set install="C:\install\dpb"
+set source=C:\svn\dpb\trunk
+set build=C:\build\dpb
+set install=/install/dpb
 
 goto loop
 :shift3loop
