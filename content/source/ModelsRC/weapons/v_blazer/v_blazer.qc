@@ -23,4 +23,4 @@ $origin 0 0 0
 
 
 $sequence draw "Draw" fps 30 snap activity ACT_VM_DRAW 1 node Ready
-
+$sequence idle "Idle" fps 30 snap activity ACT_VM_IDLE 1 node Ready
