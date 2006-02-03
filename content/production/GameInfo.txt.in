@@ -1,7 +1,6 @@
 "GameInfo"
 {
-	game			"Digital Paintball"
-	title			"Digital Paintball"
+	game			"Digital Paintball ${DPB_VERSION} Build ${DPB_REVISION}"
 	developer		"DPB Team"
 	developer_url	"http://www.digitalpaintball.net"
 	icon			"dpb"
