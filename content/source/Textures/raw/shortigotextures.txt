@@ -5,6 +5,8 @@ shortigo_drymud.png--> shortigo_rockyroad.png
 shortigo_drymud.png--> shortigo_drymuddygrass2.png
 shortigo_drymuddygrass2.png --> shortigo_drygrass2.png
 
+forestmoss -> grassdying
+
 MISC NOTES:
 the deadleaves texture must not be used on vast expanses of terrain - it's only for small areas on a displacement.
 
