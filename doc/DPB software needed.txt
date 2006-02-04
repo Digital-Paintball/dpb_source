@@ -1,6 +1,6 @@
 SOFTWARE WE NEED:
-Photoshop CS2: Jeff, Adren, Bryan, GE, Intim, Ry_gody, SHortigo
-$630 * 7 = 4410
+Photoshop CS2: Jeff, Adren, Bryan, GE, Intim, Ry_gody, SHortigo, l3fty
+$630 * 8 = 5040
 
 Illustrator: Jeff
 $500 * 1 = 500
@@ -8,17 +8,17 @@ $500 * 1 = 500
 Audition: Jeff, Shortigo
 $289 * 2 = 578
 
-3d Studio Max: John, Bryan, (maybe GE, maybe intim)
-$3495 * 4 = 13980
+3d Studio Max: John, Bryan, l3fty, (maybe GE, maybe intim)
+$3495 * 5 = 17475
 
-ZBrush 2: Bryan, Ry_goody
-$520 * 2 =  1040
+ZBrush 2: Bryan, Ry_goody, l3fty
+$520 * 3 =  1560
 
 Milkshape 3d: John, GE, Intim
 $25 * 3 = 75
 
-Win XP pro: undertaker, shortigo
-$136 * 2 = 272
+Win XP pro: undertaker, shortigo, l3fty
+$136 * 3 = 408
 (also, 3 pack at newegg for 430)
 
 Maya 7 Unlimited: Ry_goody
@@ -36,7 +36,7 @@ $430 * 1 = $430
 Securecrt: Kuja
 $100 * 1 = $100
 
-Mirc: everyone:
+Mirc: everyone
 $20 * 11 = 220
 
-total: $23,675
+total: $28,456
