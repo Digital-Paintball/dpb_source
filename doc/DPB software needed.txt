@@ -36,7 +36,7 @@ $430 * 1 = $430
 Securecrt: Kuja
 $100 * 1 = $100
 
-Mirc: everyone
-$20 * 11 = 220
+Mirc: everyone (minus shortigo, lefty, vino)
+$20 * 10 = 200
 
-total: $28,456
+total: $28,436
