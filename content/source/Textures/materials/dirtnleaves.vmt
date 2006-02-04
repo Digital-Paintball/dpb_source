@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/dirtnleaves"
+	"$bumpmap" "textures/dirtnleaves_normal"
+	"%keywords" "dpb,shortigo,dirt,foliage,leaves"
+        "$surfaceprop" "dirt" 
+}

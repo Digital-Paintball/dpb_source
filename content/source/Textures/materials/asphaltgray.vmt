@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/asphaltgray"
+	"$bumpmap" "textures/asphaltgray_normal"
+	"%keywords" "dpb,shortigo,asphalt"
+        "$surfaceprop" "concrete" 
+}

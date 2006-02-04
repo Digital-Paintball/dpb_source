@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/grassclovers"
+	"$bumpmap" "textures/grassclovers_normal"
+	"%keywords" "dpb,shortigo,grass,clovers"
+        "$surfaceprop" "grass" 
+}

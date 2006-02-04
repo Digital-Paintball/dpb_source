@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/deadleavesnvines"
+	"$bumpmap" "textures/deadleavesnvines_normal"
+	"%keywords" "dpb,shortigo,dead,leaves,forest,vines,foliage"
+        "$surfaceprop" "deadleaves" 
+}

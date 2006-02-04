@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/rockyroad"
+	"$bumpmap" "textures/rockyroad_normal"
+	"%keywords" "dpb,shortigo,road,rocky"
+        "$surfaceprop" "dirt" 
+}

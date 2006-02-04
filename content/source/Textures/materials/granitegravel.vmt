@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/granitegravel"
+	"$bumpmap" "textures/granitegravel_normal"
+	"%keywords" "dpb,shortigo,gravel"
+        "$surfaceprop" "gravel" 
+}
