@@ -28,8 +28,14 @@ public:
 	void EndTouch(CBaseEntity *pOther);
 	void Spawn();
 
+	void AddToArena(CBasePlayer *pPlayer);
+	void RemoveFromArena(CBasePlayer *pPlayer);
 	void JoinPlayer(CBasePlayer *pPlayer);
+	void QuitPlayer(CBasePlayer *pPlayer);
+
 	void StartRound();
+	void CheckForRoundEnd();
+	void RoundEnd( int iWinningTeam );
 
 	CTeam* GetTeam(int i);
 	CTeam* GetTeamByNumber(int i);
@@ -48,9 +54,9 @@ public:
 		GS_COUNTDOWN,	//Counting down for the round to begin
 		GS_INPROGRESS,	//People are killing each other right now
 		GS_VICTORY,		//One team has achieved victory
-	} gamestate_e;
+	} gamestate_t;
 
-	gamestate_e m_State;
+	gamestate_t m_State;
 
 private:
 	static CUtlVector<CHandle<CArena> >	s_hArenas;
@@ -58,8 +64,11 @@ private:
 	CUtlVector<EHANDLE>					m_hObjects;
 	CUtlVector<EHANDLE>					m_hObjectives;
 	CUtlVector<CHandle<CBasePlayer> >	m_hPlayers;
+	CUtlVector<CHandle<CBasePlayer> >	m_hSpectators;
 	CUtlVector<CHandle<CTeam> >			m_hTeams;
 
+	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
+	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
 };
 
 #endif // MULTIARENA_H

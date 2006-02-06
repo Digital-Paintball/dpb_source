@@ -32,6 +32,7 @@
 #include "globals.h"
 #include "nav_mesh.h"
 #include "team.h"
+#include "multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -873,7 +874,7 @@ void CC_Notarget_f (void)
 ConCommand notarget("notarget", CC_Notarget_f, "Toggle. Player becomes hidden to NPCs.", FCVAR_CHEAT);
 
 //------------------------------------------------------------------------------
-// Sets client to notarget mode.
+// Join the current arena
 //------------------------------------------------------------------------------
 void CC_JoinGame (void)
 {
@@ -885,6 +886,48 @@ void CC_JoinGame (void)
 }
 
 ConCommand joingame("joingame", CC_JoinGame, "Join a game in progress.", FCVAR_GAMEDLL);
+
+//------------------------------------------------------------------------------
+// Join a specific arena
+//------------------------------------------------------------------------------
+void CC_JoinArena (void)
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+
+	if ( engine->Cmd_Argc() < 1 )
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Usage:  joinarena <arena#>\n");
+		return;
+	}
+
+	CArena *pArena = CArena::GetArena( atoi( engine->Cmd_Argv(1) ) );
+
+	if (!pArena)
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Specified arena does not exist.\n");
+		return;
+	}
+
+	pArena->JoinPlayer( pPlayer );
+}
+
+ConCommand joinarena("joinarena", CC_JoinArena, "Join a game in progress.", FCVAR_GAMEDLL);
+
+//------------------------------------------------------------------------------
+// Quit the current game
+//------------------------------------------------------------------------------
+void CC_QuitGame (void)
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+
+	pPlayer->QuitGame();
+}
+
+ConCommand quitgame("quitgame", CC_QuitGame, "Quit a game in progress.", FCVAR_GAMEDLL);
 
 //-----------------------------------------------------------------------------
 // Purpose: called each time a player uses a "cmd" command

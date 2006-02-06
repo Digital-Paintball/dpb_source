@@ -79,7 +79,8 @@ bool CArena::HasTeam(int iTeam)
 
 void CArena::WaitingThink( )
 {
-	if (m_hPlayers.Count() > 0)
+	m_State = GS_WAITING;
+	if (m_hPlayers.Count() + m_hJoiners.Count() > 0)
 	{
 		StartRound();
 	}
@@ -92,39 +93,96 @@ void CArena::WaitingThink( )
 
 void CArena::SetupThink( )
 {
-	for (int i = 0; i < m_hPlayers.Count(); i++)
+	int i;
+
+	//First remove people who have quit the game
+	for (i = 0; i < m_hQuitters.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hQuitters[i]);
+		m_hPlayers.FindAndRemove(pPlayer);
+		if (pPlayer->GetTeam())
+			pPlayer->GetTeam()->RemovePlayer(pPlayer);
+
+		pPlayer->RemoveAllItems(false);
+
+		m_hSpectators.AddToHead( pPlayer );
+
+		// default to normal spawn
+		CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
+		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
+		pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
+		pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
+	}
+
+	//Then add people who have joined the game
+	for (i = 0; i < m_hJoiners.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
+
+		m_hPlayers.AddToHead( pPlayer );
+	}
+
+	//Empty the queues.
+	m_hJoiners.RemoveAll();
+	m_hQuitters.RemoveAll();
+
+	if (m_hPlayers.Count() <= 0)
+	{
+		SetThink( WaitingThink );
+		SetNextThink( gpGlobals->curtime + 3.0 );
+		return;
+	}
+
+	for (i = 0; i < m_hPlayers.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 
+		//Just in case.
+		m_hSpectators.FindAndRemove( pPlayer );
+
 		pPlayer->DeployArmaments();
 
-		// Pick a team!
-		CTeam *pTeam = NULL;
-		for (int j = 0; j < m_hTeams.Count(); j++)
+		pPlayer->SetArena(this);
+
+		if (!pPlayer->GetTeam())
 		{
+			// Pick a team!
+			CTeam *pTeam = NULL;
+			for (int j = 0; j < m_hTeams.Count(); j++)
+			{
+				if (!pTeam)
+				{
+					pTeam = m_hTeams[j];
+					continue;
+				}
+
+				if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
+					pTeam = m_hTeams[j];
+			}
+
 			if (!pTeam)
 			{
-				pTeam = m_hTeams[j];
+				DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
 				continue;
 			}
 
-			if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
-				pTeam = m_hTeams[j];
+			pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 		}
-
-		if (!pTeam)
-		{
-			DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
-			continue;
-		}
-
-		pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 
 		CBaseEntity *pSpawnSpot = pPlayer->GetTeam()->SpawnPlayer(pPlayer);
 		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
 		pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
 		pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
 	}
+
+	for (i = 0; i < m_hTeams.Count(); i++)
+	{
+		m_hTeams[i]->ResetPlayersAlive();
+	}
+
+	m_State = GS_INPROGRESS;
+
+	CheckForRoundEnd();
 }
 
 void CArena::StartRound( )
@@ -135,9 +193,31 @@ void CArena::StartRound( )
 	SetNextThink( gpGlobals->curtime + 5.0 );
 }
 
-void CArena::JoinPlayer( CBasePlayer *pPlayer )
+// Check for the necessary conditions to end the round.
+void CArena::CheckForRoundEnd( )
 {
-	m_hPlayers.AddToTail( pPlayer );
+	int iTeamsBitmask = 0;	//Bitmask of teams with players alive
+	int	iTeamsAlive = 0;	//Number of teams with players alive
+ 	for (int i = 0; i < m_hTeams.Count(); i++)
+	{
+		if (m_hTeams[i]->GetPlayersAlive() > 0)
+		{
+			iTeamsBitmask |= (1<<i);
+			iTeamsAlive += 1;
+		}
+	}
+
+	if (iTeamsAlive == 1)
+		//The following log arithmetic is equal to log2(x) which gives us the team number from the bitmask.
+		RoundEnd(log10((float)iTeamsBitmask)/log10((float)2));
+}
+
+void CArena::RoundEnd( int iWinningTeam )
+{
+	m_State = GS_VICTORY;
+
+	SetThink( WaitingThink );
+	SetNextThink( gpGlobals->curtime + 3.0 );
 }
 
 void CArena::StartTouch( CBaseEntity *pOther )
@@ -149,18 +229,48 @@ void CArena::StartTouch( CBaseEntity *pOther )
 
 	CBasePlayer* pPlayer = ToBasePlayer( pOther );
 
+	if (!pOther->IsPlayer())
+		return;
+
+	AddToArena(pPlayer);
+}
+
+void CArena::AddToArena( CBasePlayer *pPlayer )
+{
+	if (m_hPlayers.HasElement(pPlayer) || m_hSpectators.HasElement(pPlayer) || m_hJoiners.HasElement(pPlayer))
+		return;
+
+	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
+		pPlayer->GetArena()->RemoveFromArena(pPlayer);
+
 	pPlayer->SetArena( this );
+
+	m_hSpectators.AddToHead(pPlayer);
 }
 
 void CArena::EndTouch( CBaseEntity *pOther )
 {
 	BaseClass::EndTouch(pOther);
 
+	if (!pOther->IsPlayer())
+		return;
+
 	CBasePlayer* pPlayer = ToBasePlayer( pOther );
+
+	RemoveFromArena(pPlayer);
+}
+
+void CArena::RemoveFromArena( CBasePlayer *pPlayer )
+{
+	for (int i = 0; i < m_hTeams.Count(); i++)
+		m_hTeams[i]->RemovePlayer(pPlayer);
 
 	pPlayer->SetArena( NULL );
 
+	m_hSpectators.FindAndRemove(pPlayer);
 	m_hPlayers.FindAndRemove(pPlayer);
+	m_hQuitters.FindAndRemove(pPlayer);
+	//Don't remove from joiners
 }
 
 void CBasePlayer::JoinGame()
@@ -169,6 +279,31 @@ void CBasePlayer::JoinGame()
 		return;
 
 	GetArena()->JoinPlayer( this );
+}
+
+void CArena::JoinPlayer( CBasePlayer *pPlayer )
+{
+	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
+		pPlayer->GetArena()->RemoveFromArena(pPlayer);
+
+	m_hJoiners.AddToTail( pPlayer );
+}
+
+void CBasePlayer::QuitGame()
+{
+	if (GetArena() == NULL)
+		return;
+
+	GetArena()->QuitPlayer( this );
+}
+
+void CArena::QuitPlayer( CBasePlayer *pPlayer )
+{
+	if (m_hPlayers.HasElement( pPlayer ))
+		m_hQuitters.AddToTail( pPlayer );
+
+	if (m_hJoiners.HasElement( pPlayer ))
+		m_hJoiners.FindAndRemove( pPlayer );
 }
 
 void CArena::ClearArenas( )
@@ -183,6 +318,9 @@ int CArena::GetArenaNumber( )
 
 CArena* CArena::GetArena(int i)
 {
+	if (i < 0 || i >= s_hArenas.Count())
+		return NULL;
+
 	return s_hArenas[i];
 }
 

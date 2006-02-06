@@ -3568,6 +3568,14 @@ void CBaseEntity::ChangeTeam( int iTeamNum )
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: Put the entity in the specified team
+//-----------------------------------------------------------------------------
+void CBaseEntity::ResetTeam( void )
+{
+	m_iTeamNum = 0;
+}
+
+//-----------------------------------------------------------------------------
 // Get the Team this entity is on
 //-----------------------------------------------------------------------------
 CTeam *CBaseEntity::GetTeam( void ) const

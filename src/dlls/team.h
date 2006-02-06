@@ -43,6 +43,10 @@ public:
 	virtual const char *GetName( void );
 	virtual void		UpdateClientData( CBasePlayer *pPlayer );
 	virtual bool		ShouldTransmitToPlayer( CBasePlayer* pRecipient, CBaseEntity* pEntity );
+	virtual void		PlayerKilled( CBasePlayer *pPlayer );
+	virtual void		PlayerSpawn( CBasePlayer *pPlayer );
+	virtual void		ResetPlayersAlive( );
+	virtual inline int	GetPlayersAlive( ) { return m_iPlayersAlive; };
 
 	//-----------------------------------------------------------------------------
 	// Spawnpoints
@@ -71,6 +75,8 @@ public:
 public:
 	CUtlVector< CTeamSpawnPoint * > m_aSpawnPoints;
 	CUtlVector< CBasePlayer * >		m_aPlayers;
+	
+	int		m_iPlayersAlive;
 
 	// Data
 	CNetworkString( m_szTeamname, MAX_TEAM_NAME_LENGTH );

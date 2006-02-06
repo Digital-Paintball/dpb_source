@@ -26,6 +26,7 @@
 	#include <ctype.h>
 	#include "voice_gamemgr.h"
 	#include "iscorer.h"
+	#include "team.h"
 	
 #endif
 
@@ -398,6 +399,9 @@ bool CMultiplayRules::IsMultiplayer( void )
 			pWeaponEntity->Touch( pPlayer );
 			addDefault = false;
 		}
+
+		if (pPlayer->GetTeam())
+			pPlayer->GetTeam()->PlayerSpawn( pPlayer );
 	}
 
 	//=========================================================
@@ -503,6 +507,9 @@ bool CMultiplayRules::IsMultiplayer( void )
 			// Players lose a frag for letting the world kill them
 			pVictim->IncrementFragCount( -1 );
 		}
+
+		if (pVictim->GetTeam())
+			pVictim->GetTeam()->PlayerKilled( pVictim );
 	}
 
 	//=========================================================

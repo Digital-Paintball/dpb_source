@@ -598,6 +598,7 @@ public:
 	void	InputSetHealth( inputdata_t &inputdata );
 
 	void	JoinGame();
+	void	QuitGame();
 
 	void	DeployArmaments();
 

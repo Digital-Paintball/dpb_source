@@ -8,6 +8,7 @@
 #include "team.h"
 #include "player.h"
 #include "team_spawnpoint.h"
+#include "multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -225,7 +226,10 @@ void CTeam::AddPlayer( CBasePlayer *pPlayer )
 //-----------------------------------------------------------------------------
 void CTeam::RemovePlayer( CBasePlayer *pPlayer )
 {
+	if (pPlayer->IsAlive())
+		m_iPlayersAlive--;
 	m_aPlayers.FindAndRemove( pPlayer );
+	pPlayer->ResetTeam();
 	NetworkStateChanged();
 }
 
@@ -244,6 +248,34 @@ CBasePlayer *CTeam::GetPlayer( int iIndex )
 {
 	Assert( iIndex >= 0 && iIndex < m_aPlayers.Size() );
 	return m_aPlayers[ iIndex ];
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Player on this team was killed
+//-----------------------------------------------------------------------------
+void CTeam::ResetPlayersAlive( )
+{
+	m_iPlayersAlive = m_aPlayers.Count();
+}
+
+//-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+void CTeam::PlayerKilled( CBasePlayer *pPlayer )
+{
+	if (m_aPlayers.HasElement(pPlayer))
+		m_iPlayersAlive--;
+
+	GetArena()->CheckForRoundEnd();
+}
+
+//-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+void CTeam::PlayerSpawn( CBasePlayer *pPlayer )
+{
+	if (m_aPlayers.HasElement(pPlayer))
+		m_iPlayersAlive++;
 }
 
 //------------------------------------------------------------------------------------------------------------------
