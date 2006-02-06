@@ -1,0 +1,202 @@
+
+
+
+materialPath: c:\program files\steam\SteamApps\SourceMods\dpb\materials
+Loading C:\Projects\DPB\content\source\maps\dpb_begin.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing C:\Projects\DPB\content\source\maps\dpb_begin.prt...done (0)
+Creating default cubemaps for env_cubemap using skybox materials:
+skybox/sky_wasteland02*.vmt
+Run buildcubemaps in the engine to get the correct cube maps.
+
+No such variable "$hdrbasetexture" for material "skybox/sky_wasteland02rt"
+Can't load skybox file skybox/sky_wasteland02 to build the default cubemap!
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (8716 bytes)
+Emitting linux collision data (use -nolinuxdata to disable).
+Building Physics collision data...
+done (0) (8716 bytes)
+Error! To use model "models/supair/block.mdl"
+      with prop_static, it must be compiled with $staticprop!
+Error loading studio model "models/supair/block.mdl"!
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 58 texinfos to 40
+Reduced 16 texdatas to 15 (826 bytes to 721)
+Writing C:\Projects\DPB\content\source\maps\dpb_begin.bsp
+1 second elapsed
+
+
+
+2 threads
+reading c:\projects\dpb\content\source\maps\dpb_begin.bsp
+reading c:\projects\dpb\content\source\maps\dpb_begin.prt
+  55 portalclusters
+ 119 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 0 visible clusters (0.00%)
+Total clusters visible: 1943
+Average clusters visible: 35
+Building PAS...
+Average clusters audible: 55
+visdatasize:1219  compressed from 880
+writing c:\projects\dpb\content\source\maps\dpb_begin.bsp
+1 second elapsed
+
+
+
+Could not find lights.rad in lights.rad.
+Trying VRAD BIN directory instead...
+Warning: Couldn't open texlight file c:\program files\steam\steamapps\ry_goody@yahoo.com\sourcesdk\bin\lights.rad.
+Loading c:\projects\dpb\content\source\maps\dpb_begin.bsp
+483 faces
+87009 square feet [12529407.00 square inches]
+0 displacements
+0 square feet [0.00 square inches]
+483 patches before subdivision
+36047 patches after subdivision
+10 direct lights
+0...
+
+
+materialPath: c:\program files\steam\SteamApps\SourceMods\dpb\materials
+Loading C:\Projects\DPB\content\source\maps\dpb_begin.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing C:\Projects\DPB\content\source\maps\dpb_begin.prt...done (0)
+Creating default cubemaps for env_cubemap using skybox materials:
+skybox/sky_wasteland02*.vmt
+Run buildcubemaps in the engine to get the correct cube maps.
+
+No such variable "$hdrbasetexture" for material "skybox/sky_wasteland02rt"
+Can't load skybox file skybox/sky_wasteland02 to build the default cubemap!
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (8716 bytes)
+Emitting linux collision data (use -nolinuxdata to disable).
+Building Physics collision data...
+done (0) (8716 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 58 texinfos to 40
+Reduced 16 texdatas to 15 (826 bytes to 721)
+Writing C:\Projects\DPB\content\source\maps\dpb_begin.bsp
+1 second elapsed
+
+
+
+2 threads
+reading c:\projects\dpb\content\source\maps\dpb_begin.bsp
+reading c:\projects\dpb\content\source\maps\dpb_begin.prt
+  55 portalclusters
+ 119 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 0 visible clusters (0.00%)
+Total clusters visible: 1943
+Average clusters visible: 35
+Building PAS...
+Average clusters audible: 55
+visdatasize:1219  compressed from 880
+writing c:\projects\dpb\content\source\maps\dpb_begin.bsp
+0 seconds elapsed
+
+
+
+Could not find lights.rad in lights.rad.
+Trying VRAD BIN directory instead...
+Warning: Couldn't open texlight file c:\program files\steam\steamapps\ry_goody@yahoo.com\sourcesdk\bin\lights.rad.
+Loading c:\projects\dpb\content\source\maps\dpb_begin.bsp
+483 faces
+87009 square feet [12529407.00 square inches]
+0 displacements
+0 square feet [0.00 square inches]
+483 patches before subdivision
+36047 patches after subdivision
+10 direct lights
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10transfers 581806, max 343
+transfer lists:   4.4 megs
+0...1...2...3...4...5...6...7...8...9...10	Bounce #1 added RGB(112108, 114954, 121817)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #2 added RGB(20111, 20852, 20535)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #3 added RGB(4263, 4512, 4331)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #4 added RGB(853, 912, 851)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #5 added RGB(182, 198, 182)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #6 added RGB(39, 43, 38)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #7 added RGB(8, 9, 8)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #8 added RGB(2, 2, 2)
+0...1...2...3...4...5...6...7...8...9...10	Bounce #9 added RGB(0, 0, 0)
+Build Patch/Sample Hash Table(s).....Done<0.0379 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+Ready to Finish
+Computing detail prop lighting : 0...1...2...3...4...5...6...7...8...9...10
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+ComputePerLeafAmbientLighting: 0...1...2...3...4...5...6...7...8...9...10
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   1/1024           48/49152    ( 0.1%) 
+brushes                 24/8192          288/98304    ( 0.3%) 
+brushsides             144/65536        1152/524288   ( 0.2%) 
+planes                  90/65536        1800/1310720  ( 0.1%) 
+vertexes               658/65536        7896/786432   ( 1.0%) 
+nodes                  124/65536        3968/2097152  ( 0.2%) 
+texinfos                40/12288        2880/884736   ( 0.3%) 
+texdata                 15/2048          480/65536    ( 0.7%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  483/65536       27048/3670016  ( 0.7%) 
+origfaces               64/65536        3584/3670016  ( 0.1%) 
+leaves                 126/65536        4032/2097152  ( 0.2%) 
+leaffaces              522/65536        1044/131072   ( 0.8%) 
+leafbrushes             96/65536         192/131072   ( 0.1%) 
+areas                    2/256            16/2048     ( 0.8%) 
+surfedges             2398/512000       9592/2048000  ( 0.5%) 
+edges                 1259/256000       5036/1024000  ( 0.5%) 
+LDR worldlights         10/8192          880/720896   ( 0.1%) 
+HDR worldlights          0/8192            0/720896   ( 0.0%) 
+waterstrips             18/32768         180/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           357/65536         714/131072   ( 0.5%) 
+cubemapsamples          16/1024          256/16384    ( 1.6%) 
+overlays                 0/512             0/180224   ( 0.0%) 
+LDR lightdata         [variable]     4327940/0        ( 0.0%) 
+HDR lightdata         [variable]           0/0        ( 0.0%) 
+visdata               [variable]        1219/16777216 ( 0.0%) 
+entdata               [variable]        2797/393216   ( 0.7%) 
+LDR leaf ambient       126/65536        3024/1572864  ( 0.2%) 
+HDR leaf ambient         0/65536           0/1572864  ( 0.0%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/816      ( 0.1%) 
+dtl prp lght          [variable]           1/4        (25.0%) 
+HDR dtl prp lght      [variable]           1/4        (25.0%) 
+static props          [variable]           1/1914     ( 0.1%) 
+pakfile               [variable]      127456/0        ( 0.0%) 
+
+Win32 Specific Data:
+physics               [variable]        8716/4194304  ( 0.2%) 
+==== Total Win32 BSP file data space used: 4542242 bytes ====
+
+Linux Specific Data:
+physicssurface        [variable]        8716/6291456  ( 0.1%) 
+==== Total Linux BSP file data space used: 4542242 bytes ====
+
+Total triangle count: 1176
+Writing c:\projects\dpb\content\source\maps\dpb_begin.bsp
+1 minute, 13 seconds elapsed
