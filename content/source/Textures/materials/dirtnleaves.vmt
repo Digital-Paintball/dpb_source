@@ -3,5 +3,6 @@
 	"$basetexture" "textures/dirtnleaves"
 	"$bumpmap" "textures/dirtnleaves_normal"
 	"%keywords" "dpb,shortigo,dirt,foliage,leaves"
+	"$basetexturetransform" "center .5 .5 scale 1.5 1.5 rotate 0 translate 0 0 "
         "$surfaceprop" "dirt" 
 }
