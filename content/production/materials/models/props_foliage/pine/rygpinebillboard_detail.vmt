@@ -1,0 +1,9 @@
+"unlitgeneric"
+{
+	"$baseTexture"			"models/props_foliage/pine/rygpinebillboard"
+	"$translucent"			1
+	"$alphatest"			 1
+"$model" 1
+
+}
+
