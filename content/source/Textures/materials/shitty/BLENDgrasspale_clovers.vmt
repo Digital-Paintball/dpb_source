@@ -1,0 +1,10 @@
+"WorldVertexTransition" 
+{ 
+   "$basetexture" "textures/grasspale"
+   "$basetexture2" "textures/grassclovers" 
+   "%tooltexture" "textures/grassclovers" 
+   "$basetexturetransform" "center .5 .5 scale 1.5 1.5 rotate 0 translate 0 0" 
+   "$basetexturetransform2" "center .5 .5 scale 1.5 1.5 rotate 0 translate 0 0" 
+   "%keywords" "dpb,blend,dry,grass,pale,dying,shortigo" 
+   "$surfaceprop" "grass" 
+}

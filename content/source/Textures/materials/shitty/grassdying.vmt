@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/grassdying"
+	"$bumpmap" "textures/grassdying_normal"
+	"%keywords" "dpb,shortigo,grass"
+        "$surfaceprop" "grass" 
+	"$basetexturetransform" "center .5 .5 scale 1.5 1.5 rotate 0 translate 0 0 "
+}
