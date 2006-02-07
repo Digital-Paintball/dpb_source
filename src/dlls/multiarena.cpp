@@ -45,6 +45,7 @@ void CArena::AssembleArenas( )
 	for (int i = 0; i < s_hArenas.Count(); i++)
 	{
 		pArena = s_hArenas[i];
+		pArena->m_iID = i;
 		int iResults = UTIL_EntitiesInBox( pList, 1024,
 			pArena->CollisionProp()->OBBMins() + pArena->GetAbsOrigin(),
 			pArena->CollisionProp()->OBBMaxs() + pArena->GetAbsOrigin(), 0 );
@@ -61,7 +62,7 @@ void CArena::AssembleArenas( )
 			if (!pArena->HasTeam(pList[j]->GetStartTeamNumber()))
 			{
 				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "sdk_team_manager" ));
-				pTeam->Init( "Team", pList[j]->GetStartTeamNumber() );
+				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber() );
 				pArena->m_hTeams.AddToTail(pTeam);
 			}
 		}
@@ -241,7 +242,10 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 		return;
 
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
-		pPlayer->GetArena()->RemoveFromArena(pPlayer);
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Leave your current arena first.\n");
+		return;
+	}
 
 	pPlayer->SetArena( this );
 
@@ -284,7 +288,10 @@ void CBasePlayer::JoinGame()
 void CArena::JoinPlayer( CBasePlayer *pPlayer )
 {
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
-		pPlayer->GetArena()->RemoveFromArena(pPlayer);
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Leave your current arena first.\n");
+		return;
+	}
 
 	m_hJoiners.AddToTail( pPlayer );
 }
@@ -299,7 +306,7 @@ void CBasePlayer::QuitGame()
 
 void CArena::QuitPlayer( CBasePlayer *pPlayer )
 {
-	if (m_hPlayers.HasElement( pPlayer ))
+	if (m_hPlayers.HasElement( pPlayer ) && !m_hQuitters.HasElement( pPlayer ))
 		m_hQuitters.AddToTail( pPlayer );
 
 	if (m_hJoiners.HasElement( pPlayer ))

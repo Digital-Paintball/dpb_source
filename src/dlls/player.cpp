@@ -336,7 +336,7 @@ void CBasePlayer::DeployArmaments()
 {
 	// TODO: Buy all the weapons the player wants to have.
 	GiveNamedItem( "weapon_marker" );
-	GiveAmmo( 90, AMMO_BULLETS );
+	GiveAmmo( 300, AMMO_PAINT );
 }
 
 //-----------------------------------------------------------------------------

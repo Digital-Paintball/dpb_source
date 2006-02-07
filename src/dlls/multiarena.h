@@ -59,6 +59,7 @@ public:
 	gamestate_t m_State;
 
 private:
+	int									m_iID;
 	static CUtlVector<CHandle<CArena> >	s_hArenas;
 
 	CUtlVector<EHANDLE>					m_hObjects;

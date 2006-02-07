@@ -1,14 +1,13 @@
 WeaponData
 {
 	// Weapon characteristics:
-	"Damage"			"26"		// damage per bullet
 	"Bullets"			"1"		// bullets per shoot
-	"CycleTime"			"0.075"		// time between shoots
+	"CycleTime"			"0.111"		// time between shoots
 	
 	
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_MP5"
-	"viewmodel"			"models/weapons/v_smg1.mdl"
+	"viewmodel"			"models/weapons/v_blazer.mdl"
 	"playermodel"		"models/weapons/w_smg_mp5.mdl"
 	"PlayerAnimationExtension"	"mp5"
 	
@@ -16,9 +15,9 @@ WeaponData
 	"bucket"			"0"
 	"bucket_position"		"0"
 
-	"clip_size"			"30"
+	"clip_size"			"150"
 	
-	"primary_ammo"			"AMMO_BULLETS"
+	"primary_ammo"			"AMMO_PAINT"
 	"secondary_ammo"		"None"
 
 	"weight"			"25"
@@ -49,22 +48,6 @@ WeaponData
 		{
 				"font"		"WeaponIcons"
 				"character"	"r"
-		}
-		"crosshair"
-		{
-				"file"		"sprites/crosshairs"
-				"x"		"0"
-				"y"		"48"
-				"width"		"24"
-				"height"	"24"
-		}
-		"autoaim"
-		{
-				"file"		"sprites/crosshairs"
-				"x"			"0"
-				"y"			"48"
-				"width"		"24"
-				"height"	"24"
 		}
 	}
 	ModelBounds

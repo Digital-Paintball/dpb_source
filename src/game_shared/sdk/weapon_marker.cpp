@@ -7,7 +7,7 @@
 #include "cbase.h"
 #include "weapon_sdkbase.h"
 #include "sdk_fx_shared.h"
-
+#include "in_buttons.h"
 
 #if defined( CLIENT_DLL )
 
@@ -32,8 +32,10 @@ public:
 
 	virtual void PrimaryAttack();
 	virtual bool Deploy();
-	virtual bool Reload();
 	virtual void WeaponIdle();
+
+	virtual bool Reload();
+	virtual	void CheckReload( void );
 
 	virtual SDKWeaponID GetWeaponID( void ) const		{ return WEAPON_MARKER; }
 
@@ -43,6 +45,8 @@ private:
 	CWeaponMarker( const CWeaponMarker & );
 
 	void Fire( float flSpread );
+
+	int	m_iReloadStage;
 };
 
 IMPLEMENT_NETWORKCLASS_ALIASED( WeaponMarker, DT_WeaponMarker )
@@ -77,9 +81,11 @@ bool CWeaponMarker::Reload( )
 	if (pPlayer->GetAmmoCount( GetPrimaryAmmoType() ) <= 0)
 		return false;
 
-	int iResult = DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD );
+	int iResult = DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD1A );
 	if ( !iResult )
 		return false;
+
+	m_iReloadStage = ACT_VM_RELOAD1A;
 
 	pPlayer->SetAnimation( PLAYER_RELOAD );
 
@@ -97,6 +103,53 @@ bool CWeaponMarker::Reload( )
 	pPlayer->m_iShotsFired = 0;
 
 	return true;
+}
+
+void CWeaponMarker::CheckReload( void )
+{
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+	AssertMsg(pOwner, "Weapon has no owner.\n");
+	if (!pOwner)
+		return;
+
+	if ( (m_bInReload) && (m_flNextPrimaryAttack <= gpGlobals->curtime))
+	{
+		switch (m_iReloadStage)
+		{
+		case ACT_VM_RELOAD1A:
+			{
+				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD1B );
+				m_iReloadStage = ACT_VM_RELOAD1B;
+				break;
+			}
+		case ACT_VM_RELOAD1B:
+			{
+				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
+				m_iReloadStage = ACT_VM_RELOAD2;
+				break;
+			}
+		case ACT_VM_RELOAD2:
+			{
+				if (pOwner->m_nButtons & IN_RELOAD)
+				{
+					DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
+				}
+				else
+				{
+					DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD3 );
+					m_iReloadStage = ACT_VM_RELOAD3;
+				}
+				break;
+			}
+		case ACT_VM_RELOAD3:
+			{
+				FinishReload();
+				m_flNextPrimaryAttack	= gpGlobals->curtime;
+				m_flNextSecondaryAttack = gpGlobals->curtime;
+				m_bInReload = false;
+			}
+		}
+	}
 }
 
 void CWeaponMarker::PrimaryAttack( void )

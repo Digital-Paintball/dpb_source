@@ -1155,7 +1155,7 @@ void CPropJeep::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 	{
 		// Player's using the crate.
 		// Fill up his SMG ammo.
-		pPlayer->GiveAmmo( 300, AMMO_BULLETS );
+		pPlayer->GiveAmmo( 300, AMMO_PAINT );
 		
 		if ( ( GetSequence() != LookupSequence( "ammo_open" ) ) && ( GetSequence() != LookupSequence( "ammo_close" ) ) )
 		{

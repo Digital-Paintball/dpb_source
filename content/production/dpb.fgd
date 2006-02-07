@@ -11,8 +11,6 @@
 	[
 		1 : "Blue"
 		2 : "Red"
-		3 : "Yellow"
-		3 : "Green"
 	]
 	input SetTeam(integer) : "Changes the entity's team"
 ]

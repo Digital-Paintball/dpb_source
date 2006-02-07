@@ -209,7 +209,11 @@ typedef enum
 	ACT_VM_PULLPIN,
 	ACT_VM_PRIMARYATTACK,		// fire
 	ACT_VM_SECONDARYATTACK,		// alt. fire
-	ACT_VM_RELOAD,			
+	ACT_VM_RELOAD,
+	ACT_VM_RELOAD1A,
+	ACT_VM_RELOAD1B,
+	ACT_VM_RELOAD2,
+	ACT_VM_RELOAD3,
 	ACT_VM_DRYFIRE,				// fire with no ammo loaded.
 	ACT_VM_HITLEFT,				// bludgeon, swing to left - hit (primary attk)
 	ACT_VM_HITLEFT2,			// bludgeon, swing to left - hit (secondary attk)

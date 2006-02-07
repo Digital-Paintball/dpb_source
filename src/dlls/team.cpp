@@ -226,8 +226,12 @@ void CTeam::AddPlayer( CBasePlayer *pPlayer )
 //-----------------------------------------------------------------------------
 void CTeam::RemovePlayer( CBasePlayer *pPlayer )
 {
+	if (!m_aPlayers.HasElement(pPlayer))
+		return;
+
 	if (pPlayer->IsAlive())
 		m_iPlayersAlive--;
+
 	m_aPlayers.FindAndRemove( pPlayer );
 	pPlayer->ResetTeam();
 	NetworkStateChanged();

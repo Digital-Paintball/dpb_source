@@ -20,8 +20,8 @@
 class CSDKPlayer;
 
 // These are the names of the ammo types that the weapon script files reference.
-#define AMMO_BULLETS			"AMMO_BULLETS"
-#define AMMO_GRENADE			"AMMO_GRENADE"
+#define AMMO_PAINT			"AMMO_PAINT"
+#define AMMO_GRENADE		"AMMO_GRENADE"
 
 //--------------------------------------------------------------------------------------------------------
 //
