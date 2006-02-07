@@ -87,7 +87,7 @@ cd %build%
 
 @echo on
 
-cmake -G"NMake Makefiles" -DCMAKE_INSTALL_PREFIX:STRING=%install% -DCMAKE_BUILD_TYPE:STRING=Release "%source%"
+cmake -G"NMake Makefiles" -DCMAKE_INSTALL_PREFIX:STRING=%install% -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo "%source%"
 ::@if not errorlevel 0 goto builderror
 
 nmake
