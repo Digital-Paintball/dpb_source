@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3368"
-	"mapversion" "67"
+	"mapversion" "72"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -19,7 +19,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "67"
+	"mapversion" "72"
 	"classname" "worldspawn"
 	"skyname" "sky_wasteland02"
 	"maxpropscreenwidth" "-1"
@@ -2602,7 +2602,7 @@ entity
 	"fademindist" "-1"
 	"fademaxdist" "0"
 	"fadescale" "1"
-	"origin" "-285.912 385.901 0"
+	"origin" "-253.912 529.901 0"
 	editor
 	{
 		"color" "255 255 0"
@@ -2616,7 +2616,7 @@ entity
 	"classname" "env_cubemap"
 	"cubemapsize" "7"
 	"sides" ""
-	"origin" "-285.912 385.901 88"
+	"origin" "-253.912 529.901 88"
 	editor
 	{
 		"color" "0 0 255"
@@ -2918,7 +2918,7 @@ entity
 	"id" "3240"
 	"classname" "env_cubemap"
 	"cubemapsize" "7"
-	"origin" "-297.695 501.316 88"
+	"origin" "-265.695 421.316 88"
 	editor
 	{
 		"color" "0 0 255"
@@ -2941,7 +2941,76 @@ entity
 	"fademindist" "-1"
 	"fademaxdist" "0"
 	"fadescale" "1"
-	"origin" "-297.695 501.316 16"
+	"origin" "-265.695 421.316 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "3405"
+	"classname" "prop_static"
+	"angles" "0 170 0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"model" "models/netting/netting1.mdl"
+	"skin" "0"
+	"solid" "6"
+	"disableshadows" "0"
+	"screenspacefade" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"origin" "-256 640 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "3432"
+	"classname" "prop_static"
+	"angles" "0 144 0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"model" "models/netting/netting1.mdl"
+	"skin" "0"
+	"solid" "6"
+	"disableshadows" "0"
+	"screenspacefade" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"origin" "-512 880 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "3577"
+	"classname" "prop_static"
+	"angles" "0 125 0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"model" "models/netting/netting1.mdl"
+	"skin" "0"
+	"solid" "6"
+	"disableshadows" "0"
+	"screenspacefade" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"origin" "144 560 0"
 	editor
 	{
 		"color" "255 255 0"
@@ -2954,8 +3023,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-210.492 652.807 1.47937]"
-		"look" "[-210.492 652.807 1.47937]"
+		"position" "[-433.287 366.835 168.698]"
+		"look" "[-433.287 366.835 168.698]"
 	}
 }
 cordon
