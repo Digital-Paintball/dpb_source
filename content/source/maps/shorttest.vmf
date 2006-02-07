@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3368"
-	"mapversion" "27"
+	"mapversion" "36"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -13,13 +13,13 @@ viewsettings
 {
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
-	"nGridSpacing" "16"
+	"nGridSpacing" "2"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "27"
+	"mapversion" "36"
 	"classname" "worldspawn"
 	"skyname" "sky_day02_01"
 	"maxpropscreenwidth" "-1"
@@ -415,7 +415,7 @@ world
 		{
 			"id" "49"
 			"plane" "(-832 -512 64) (-832 64 64) (-512 64 64)"
-			"material" "TEXTURES/BLENDFORESTMOSS_GRASSDYING"
+			"material" "TEXTURES/BLENDMULCHGRASS_FORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -461,11 +461,11 @@ world
 				}
 				alphas
 				{
-					"row0" "205 255 180 255 0"
-					"row1" "180 0 255 0 0"
-					"row2" "5 0 255 255 0"
-					"row3" "105 0 0 0 0"
-					"row4" "55 180 255 255 230"
+					"row0" "205 180 0 255 255"
+					"row1" "55 255 0 0 255"
+					"row2" "0 0 155 255 255"
+					"row3" "105 0 0 0 255"
+					"row4" "30 180 255 255 255"
 				}
 				triangle_tags
 				{
@@ -549,7 +549,7 @@ world
 		{
 			"id" "61"
 			"plane" "(-128 -512 64) (-128 640 64) (128 640 64)"
-			"material" "TEXTURES/BLENDGRASSPALE_DYING"
+			"material" "TEXTURES/BLENDPLAINGRASS_FORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -566,15 +566,15 @@ world
 					"row0" "0 0 0 0 0 0 0 0 0 0 0 1 0 0 1"
 					"row1" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 0"
 					"row2" "0 0 0.333333 0 0 1 0 0 1 0 0 1 0 0 1"
-					"row3" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 0"
+					"row3" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 1"
 					"row4" "0 0 0 0 0 0 0 0 1 0 0 1 0 0 0"
 				}
 				distances
 				{
 					"row0" "0 0 0 25 62.3251"
-					"row1" "0 14.93 60.7648 56 0"
-					"row2" "5.86293 42.5359 69.2584 49.607 5"
-					"row3" "0 5 20 35 0"
+					"row1" "0 14.93 32.7648 37 0"
+					"row2" "5.86293 15.5359 24.2584 26.607 26"
+					"row3" "0 5 20 35 19"
 					"row4" "0 0 20 15 0"
 				}
 				offsets
@@ -595,16 +595,16 @@ world
 				}
 				alphas
 				{
-					"row0" "255 127 255 0 0"
-					"row1" "255 255 255 0 0"
-					"row2" "255 0 0 0 0"
-					"row3" "255 255 0 0 0"
-					"row4" "255 255 0 0 0"
+					"row0" "0 128 0 255 255"
+					"row1" "0 0 0 255 255"
+					"row2" "0 255 255 255 0"
+					"row3" "0 0 255 255 255"
+					"row4" "0 0 255 255 255"
 				}
 				triangle_tags
 				{
-					"row0" "9 9 9 9 9 9 9 1"
-					"row1" "9 9 9 9 9 9 9 1"
+					"row0" "9 9 9 9 9 9 9 9"
+					"row1" "9 9 9 9 9 9 9 9"
 					"row2" "9 9 9 9 9 9 9 9"
 					"row3" "9 9 9 9 9 9 9 9"
 				}
@@ -683,7 +683,7 @@ world
 		{
 			"id" "91"
 			"plane" "(-512 64 64) (-128 64 64) (-128 -512 64)"
-			"material" "TEXTURES/BLENDGRASSPALE_DYING"
+			"material" "TEXTURES/BLENDPLAINGRASS_FORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -729,11 +729,11 @@ world
 				}
 				alphas
 				{
-					"row0" "0 255 255 75 100"
-					"row1" "0 176 255 88 255"
-					"row2" "0 255 0 0 255"
-					"row3" "0 255 255 225 255"
-					"row4" "175 255 255 255 255"
+					"row0" "255 0 0 0 25"
+					"row1" "255 255 50 250 0"
+					"row2" "255 255 255 0 0"
+					"row3" "255 175 50 200 0"
+					"row4" "175 0 0 0 0"
 				}
 				triangle_tags
 				{
@@ -817,7 +817,7 @@ world
 		{
 			"id" "97"
 			"plane" "(-512 640 64) (-128 640 64) (-128 64 64)"
-			"material" "TEXTURES/BLENDGRASSHEALTHY_PALE"
+			"material" "TEXTURES/BLENDPLAINGRASS_HEALTHYGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -832,18 +832,18 @@ world
 				normals
 				{
 					"row0" "0 0 0.78395 0 0 0 0 0 1 0 0 0 0 0 0.333333"
-					"row1" "0 0 1 0 0 1 0 0 0 0 0 -1 0 0 1"
-					"row2" "0 0 0 0 0 0 0 0 1 0 0 -1 0 0 0"
-					"row3" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 0"
-					"row4" "0 0 0.5 0 0 0 0 0 1 0 0 1 0 0 0"
+					"row1" "0 0 -1 0 0 1 0 0 1 0 0 -1 0 0 1"
+					"row2" "0 0 -1 0 0 0 0 0 -1 0 0 -1 0 0 0"
+					"row3" "0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0"
+					"row4" "0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 0"
 				}
 				distances
 				{
 					"row0" "12.4467 0 2.5 0 5.86293"
-					"row1" "8.64357 10 0 24 0.977154"
-					"row2" "0 0 10 10 0"
-					"row3" "0 25 25 15 0"
-					"row4" "0 0 25 20 0"
+					"row1" "3.35643 26 1 40 0.977154"
+					"row2" "11 0 32 10 0"
+					"row3" "11 24 30 1 0"
+					"row4" "24 24 11 5 0"
 				}
 				offsets
 				{
@@ -864,7 +864,7 @@ world
 				alphas
 				{
 					"row0" "0 0 0 0 25"
-					"row1" "255 0 150 50 0"
+					"row1" "255 0 150 255 0"
 					"row2" "255 0 176 50 0"
 					"row3" "255 255 255 255 0"
 					"row4" "255 255 255 255 0"
@@ -961,7 +961,7 @@ world
 		side
 		{
 			"id" "104"
-			"plane" "(-832 640 -56.8309) (-832 64 -56.8309) (-512 64 -56.8309)"
+			"plane" "(-832 640 16) (-832 64 16) (-512 64 16)"
 			"material" "TEXTURES/CEMENTYELLOW"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
@@ -972,7 +972,7 @@ world
 		side
 		{
 			"id" "105"
-			"plane" "(-832 64 -56.8309) (-832 640 -56.8309) (-832 640 80)"
+			"plane" "(-832 64 16) (-832 640 16) (-832 640 80)"
 			"material" "TEXTURES/CEMENTYELLOW"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -983,7 +983,7 @@ world
 		side
 		{
 			"id" "106"
-			"plane" "(-512 640 -56.8309) (-512 64 -56.8309) (-512 64 80)"
+			"plane" "(-512 640 16) (-512 64 16) (-512 64 80)"
 			"material" "TEXTURES/CEMENTYELLOW"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -994,7 +994,7 @@ world
 		side
 		{
 			"id" "107"
-			"plane" "(-832 640 -56.8309) (-512 640 -56.8309) (-512 640 80)"
+			"plane" "(-832 640 16) (-512 640 16) (-512 640 80)"
 			"material" "TEXTURES/CEMENTYELLOW"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -1005,7 +1005,7 @@ world
 		side
 		{
 			"id" "108"
-			"plane" "(-512 64 -56.8309) (-832 64 -56.8309) (-832 64 80)"
+			"plane" "(-512 64 16) (-832 64 16) (-832 64 80)"
 			"material" "TEXTURES/CEMENTYELLOW"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -1331,7 +1331,7 @@ world
 		{
 			"id" "133"
 			"plane" "(128 640 64) (448 640 64) (448 -512 64)"
-			"material" "TEXTURES/BLENDGRASSDYING_MUDDYDRYGRASS"
+			"material" "TEXTURES/BLENDPLAINGRASS_FORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -1348,15 +1348,15 @@ world
 					"row0" "0 0 1 0 0 1 0 0 1 0 0 1 0 0 1"
 					"row1" "0 0 0 0 0 0 0 0 1 0 0 1 0 0 1"
 					"row2" "0 0 1 0 0 1 0 0 1 0 0 0 0 0 1"
-					"row3" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 1"
+					"row3" "0 0 1 0 0 1 0 0 1 0 0 1 0 0 1"
 					"row4" "0 0 0 0 0 1 0 0 1 0 0 1 0 0 0.5"
 				}
 				distances
 				{
-					"row0" "62.3251 80 95 135 117.5"
+					"row0" "62.3251 80 95 135 145.257"
 					"row1" "0 0 15 5 2.5"
-					"row2" "5 35 40 0 15"
-					"row3" "0 5 15 10 2.5"
+					"row2" "26 35 40 0 15"
+					"row3" "19 5 15 10 2.5"
 					"row4" "0 15 15 25 7.5"
 				}
 				offsets
@@ -1379,8 +1379,8 @@ world
 				{
 					"row0" "255 50 0 0 0"
 					"row1" "255 255 255 0 0"
-					"row2" "255 255 255 0 0"
-					"row3" "255 200 75 255 0"
+					"row2" "0 255 255 0 0"
+					"row3" "255 0 75 255 0"
 					"row4" "255 0 0 0 0"
 				}
 				triangle_tags
@@ -1465,7 +1465,7 @@ world
 		{
 			"id" "139"
 			"plane" "(448 640 64) (768 640 64) (768 -512 64)"
-			"material" "TEXTURES/BLENDDRYGRASSMUDDYDRYGRASS"
+			"material" "TEXTURES/BLENDPLAINGRASS_ROCKYROAD"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -1487,10 +1487,10 @@ world
 				}
 				distances
 				{
-					"row0" "117.5 160 145 180 120"
+					"row0" "145.257 160 170 162 120"
 					"row1" "2.5 60 55 15 25"
 					"row2" "15 50 40 35 25"
-					"row3" "2.5 15 50 100 5"
+					"row3" "2.5 15 50 42 5"
 					"row4" "7.5 0 0 0 0"
 				}
 				offsets
@@ -1511,18 +1511,18 @@ world
 				}
 				alphas
 				{
-					"row0" "255 255 255 0 0"
-					"row1" "255 255 255 75 0"
-					"row2" "255 150 0 50 0"
-					"row3" "255 255 0 0 0"
-					"row4" "255 255 0 0 0"
+					"row0" "0 0 0 255 255"
+					"row1" "0 0 0 180 255"
+					"row2" "0 105 255 205 255"
+					"row3" "0 0 255 255 255"
+					"row4" "0 0 255 255 255"
 				}
 				triangle_tags
 				{
-					"row0" "1 9 9 9 9 9 1 9"
+					"row0" "1 9 9 9 9 9 9 9"
 					"row1" "9 9 9 9 9 9 9 9"
-					"row2" "9 9 9 9 9 9 9 0"
-					"row3" "9 9 9 9 9 9 9 0"
+					"row2" "9 9 9 9 9 9 9 9"
+					"row3" "9 9 9 9 9 9 9 9"
 				}
 				allowed_verts
 				{
@@ -1599,7 +1599,7 @@ world
 		{
 			"id" "145"
 			"plane" "(768 640 192) (1536 640 192) (1536 -512 192)"
-			"material" "TEXTURES/ASPHALTGRAY"
+			"material" "TEXTURES/GRANITEGRAVEL"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -1668,6 +1668,82 @@ world
 			"visgroupautoshown" "1"
 		}
 	}
+	solid
+	{
+		"id" "584"
+		side
+		{
+			"id" "151"
+			"plane" "(-896 640 0) (1600 640 0) (1600 -512 0)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 -1 0 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "152"
+			"plane" "(-896 -512 -96) (1600 -512 -96) (1600 640 -96)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 -1 0 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "153"
+			"plane" "(-896 640 0) (-896 -512 0) (-896 -512 -96)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "154"
+			"plane" "(1600 640 -96) (1600 -512 -96) (1600 -512 0)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "155"
+			"plane" "(1600 640 0) (-896 640 0) (-896 640 -96)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "156"
+			"plane" "(1600 -512 -96) (-896 -512 -96) (-896 -512 0)"
+			"material" "TEXTURES/BLENDDIRT_ROCKYROAD"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "0 200 149"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
 }
 entity
 {
@@ -1724,51 +1800,9 @@ entity
 }
 entity
 {
-	"id" "243"
-	"classname" "prop_detail"
-	"model" "models/props_foliage/rygpine.mdl"
-	"angles" "90 0 0"
-	"origin" "-320 -320 96"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-	}
-}
-entity
-{
-	"id" "253"
-	"classname" "prop_detail"
-	"model" "models/props_foliage/rygpine.mdl"
-	"angles" "90 296.5 0"
-	"origin" "-384 192 64"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-	}
-}
-entity
-{
-	"id" "261"
-	"classname" "prop_detail"
-	"model" "models/props_foliage/rygpine.mdl"
-	"angles" "90 0 0"
-	"origin" "-192 544 64"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-	}
-}
-entity
-{
 	"id" "441"
 	"classname" "prop_static"
-	"angles" "88 180 -180"
+	"angles" "88 180 180"
 	"skin" "0"
 	"disableshadows" "0"
 	"mindxlevel" "0"
@@ -1779,7 +1813,7 @@ entity
 	"model" "models/rygpyramid.mdl"
 	"solid" "6"
 	"screenspacefade" "0"
-	"origin" "-640 512 84"
+	"origin" "-640 512 83"
 	editor
 	{
 		"color" "255 255 0"
@@ -1787,9 +1821,35 @@ entity
 		"visgroupautoshown" "1"
 	}
 }
+entity
+{
+	"id" "456"
+	"classname" "light"
+	"_light" "168 204 203 200"
+	"style" "0"
+	"_lightHDR" "-1 -1 -1 1"
+	"_constant_attn" "0"
+	"_linear_attn" "0"
+	"_quadratic_attn" "1"
+	"_fifty_percent_distance" "215"
+	"_zero_percent_distance" "303"
+	"_distance" "0"
+	"origin" "-704 384 247"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
 cameras
 {
-	"activecamera" "-1"
+	"activecamera" "0"
+	camera
+	{
+		"position" "[-467.339 363.289 197.459]"
+		"look" "[-484.885 385.639 180.548]"
+	}
 }
 cordon
 {

@@ -1,0 +1,10 @@
+"WorldVertexTransition" 
+{ 
+   "$basetexture" "textures/granitegravel"
+   "$basetexture2" "textures/plaingrass" 
+   "%tooltexture" "textures/granitegravel" 
+   "$basetexturetransform" "center .5 .5 scale 1.5 1.5 rotate 0 translate 0 0" 
+   "$basetexturetransform2" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+   "%keywords" "dpb,blend,grass,plain,gravel,granite" 
+   "$surfaceprop" "dirt"
+}

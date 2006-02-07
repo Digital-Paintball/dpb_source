@@ -1,0 +1,10 @@
+"WorldVertexTransition" 
+{ 
+   "$basetexture" "textures/mulchgrass"
+   "$basetexture2" "textures/deadleaves1" 
+   "%tooltexture" "textures/deadleaves1" 
+   "$basetexturetransform" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+   "$basetexturetransform2" "center .5 .5 scale 2 2 rotate 0 translate 0 0" 
+   "%keywords" "dpb,blend,grass,mulch,leaves" 
+   "$surfaceprop" "dirt" 
+}
