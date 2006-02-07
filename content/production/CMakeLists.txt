@@ -53,6 +53,14 @@ INSTALL_FILES(/materials/models/inflatables FILES
 	materials/models/inflatables/rygInflatable_pyramid_normal.vtf
 )
 
+INSTALL_FILES(/materials/models/netting/ FILES
+	materials/models/netting/netting1_normal.vtf
+	materials/models/netting/nettingpole.vtf
+	materials/models/netting/netting1.vtf
+	materials/models/netting/nettingpole.vmt
+	materials/models/netting/netting1.vmt
+)
+
 INSTALL_FILES(/materials/models/player/ FILES
 	materials/models/player/proto_blue.vmt
 	materials/models/player/glass_spec.vtf
@@ -123,6 +131,9 @@ INSTALL_FILES(/materials/models/props_foliage/pine FILES
 	materials/models/props_foliage/pine/bry_pinebark.vmt
 	materials/models/props_foliage/pine/bry_pinebark_normal.vtf
 	materials/models/props_foliage/pine/pinebranch.vmt
+	materials/models/props_foliage/pine/rygpinebillboard_detail.vmt
+	materials/models/props_foliage/pine/rygpinebranch_detail.vmt
+	materials/models/props_foliage/pine/pinebark_light_detail.vmt
 )
 
 INSTALL_FILES(/materials/models/props_proshop FILES
@@ -186,6 +197,33 @@ INSTALL_FILES(/materials/models/supair FILES
 	materials/models/supair/rygpyramid1.vmt
 	materials/models/supair/rygPyramid1_normal.vtf
 	materials/models/supair/rygpyramid2.vmt
+	materials/models/supair/block1_normal.vtf
+	materials/models/supair/rygCylinder1.vmt
+	materials/models/supair/rygCylinder1_normal.vtf
+	materials/models/supair/rygCylinder2.vmt
+	materials/models/supair/block3_normal.vtf
+	materials/models/supair/rygCylinder3.vmt
+	materials/models/supair/rygCylinder4.vmt
+	materials/models/supair/rygCylinder3_normal.vtf
+	materials/models/supair/ryghalfcyl1.vmt
+	materials/models/supair/ryghalfcyl2.vmt
+	materials/models/supair/rygHalfCyl2_normal.vtf
+	materials/models/supair/rygCylinder1.vtf
+	materials/models/supair/rygCylinder2.vtf
+	materials/models/supair/rygCylinder3.vtf
+	materials/models/supair/rygCylinder4.vtf
+	materials/models/supair/block1.vmt
+	materials/models/supair/block2.vmt
+	materials/models/supair/block2_normal.vtf
+	materials/models/supair/block3.vmt
+	materials/models/supair/rygHalfCyl1.vtf
+	materials/models/supair/rygCylinder2_normal.vtf
+	materials/models/supair/rygHalfCyl2.vtf
+	materials/models/supair/rygCylinder4_normal.vtf
+	materials/models/supair/rygHalfCyl1_normal.vtf
+	materials/models/supair/block1.vtf
+	materials/models/supair/block2.vtf
+	materials/models/supair/block3.vtf
 )
 
 INSTALL_FILES(/materials/models/weapons FILES
@@ -272,6 +310,15 @@ INSTALL_FILES(/models/inflatables FILES
 	models/inflatables/dorito01.mdl
 )
 
+INSTALL_FILES(/models/netting FILES
+	models/netting/netting1.sw.vtx
+	models/netting/netting1.mdl
+	models/netting/netting1.vvd
+	models/netting/netting1.phy
+	models/netting/netting1.dx80.vtx
+	models/netting/netting1.dx90.vtx
+)
+
 INSTALL_FILES(/models/player FILES
 	models/player/ak_anims_t.mdl
 	models/player/cs_player_shared.mdl
@@ -304,6 +351,12 @@ INSTALL_FILES(/models/props_cars FILES
 	models/props_cars/jeep_truck.phy
 	models/props_cars/jeep_truck.dx80.vtx
 	models/props_cars/jeep_truck.dx90.vtx
+	models/props_cars/hatchback.sw.vtx
+	models/props_cars/hatchback.mdl
+	models/props_cars/hatchback.vvd
+	models/props_cars/hatchback.phy
+	models/props_cars/hatchback.dx80.vtx
+	models/props_cars/hatchback.dx90.vtx
 )
 
 INSTALL_FILES(/models/props_foliage FILES
@@ -348,6 +401,12 @@ INSTALL_FILES(/models/props_foliage FILES
 	models/props_foliage/shrub1.dx90.vtx
 	models/props_foliage/pine_tree.dx80.vtx
 	models/props_foliage/rygPine.phy
+	models/props_foliage/rygpine_detail.vvd
+	models/props_foliage/rygPine_detail.dx90.vtx
+	models/props_foliage/rygPine_detail.phy
+	models/props_foliage/rygPine_detail.dx80.vtx
+	models/props_foliage/rygPine_detail.sw.vtx
+	models/props_foliage/rygpine_detail.mdl
 )
 
 INSTALL_FILES(/models/props_proshop FILES
@@ -380,6 +439,33 @@ INSTALL_FILES(/models/shells FILES
 	models/shells/shell_9mm.mdl
 	models/shells/shell_9mm.sw.vtx
 	models/shells/shell_9mm.vvd
+)
+
+INSTALL_FILES(/models/supair FILES
+	models/supair/ryghalfcyl.mdl
+	models/supair/rygpyramid.vvd
+	models/supair/rygPyramid.phy
+	models/supair/block.vvd
+	models/supair/rygPyramid.dx80.vtx
+	models/supair/block.phy
+	models/supair/rygcylinder.vvd
+	models/supair/rygPyramid.dx90.vtx
+	models/supair/rygCylinder.phy
+	models/supair/block.dx80.vtx
+	models/supair/rygCylinder.dx80.vtx
+	models/supair/block.dx90.vtx
+	models/supair/rygCylinder.dx90.vtx
+	models/supair/rygPyramid.sw.vtx
+	models/supair/block.sw.vtx
+	models/supair/ryghalfcyl.vvd
+	models/supair/rygpyramid.mdl
+	models/supair/rygHalfCyl.phy
+	models/supair/rygCylinder.sw.vtx
+	models/supair/block.mdl
+	models/supair/rygHalfCyl.dx80.vtx
+	models/supair/rygcylinder.mdl
+	models/supair/rygHalfCyl.dx90.vtx
+	models/supair/rygHalfCyl.sw.vtx
 )
 
 INSTALL_FILES(/models/weapons FILES
