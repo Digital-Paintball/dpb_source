@@ -2,6 +2,6 @@
 {
 	"$basetexture" "textures/drymud"
 	"$bumpmap" "textures/drymud_normal"
-	"%keywords" "dpb shortigo mud dry"
-        "$surfaceprop" "dirt" 
+	"%keywords" "dpb,shortigo,dry,mud"
+        "$surfaceprop" "dir" 
 }
