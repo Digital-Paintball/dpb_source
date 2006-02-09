@@ -1,0 +1,32 @@
+SOUND WORK WE NEED TO DO
+
+Sounds to be relativized in volume:
+[all sounds in /sounds/ directory]
+[Kuja, can you do this? I think I may be pretty busy tweaking textures and maps for the demo release.]
+
+Materials to be linked to sounds:
+[if we want our prop objects to be linked to sounds, someone will have to add the line:
+        "$surfaceprop" "inflatable"
+or
+        "$surfaceprop" "foliage" [we have several foliage impact sounds]
+or whatever the object should be made of.]
+
+Our world textures use the properties:
+dirt
+grass [we have our own sounds for this]
+deadleaves [there are no sounds for this in HL2 - we will need to create this ourselves. It would also help if we can have a brush entity that, when walked through, makes the footsteps sound like deadleaves (for displacements [which can have only one surfaceproperty] with deadleaves patches)]
+gravel
+concrete [we have a few sounds called HARD]
+
+Player sounds:
+It would be sweet if we get the hopper shake sounds into the demo. There are four sets:
+WALKING:
+ hopper shake full [HOPPERSHAKEgentle]
+ hopper shake low-balls [HOPPERSHAKE_LOWBALLSgentle]
+SPRINTING:
+ hopper shake full [HOPPERSHAKErough]
+ hopper shake low-balls [HOPPERSHAKE_LOWBALLSrough]
+If it's possible in this short amount of time, the sounds should correspond to the animation of the player's marker shaking during movement.
+They must not play over one another.
+
+We still need environment sounds. All the maps sound DEAD.
