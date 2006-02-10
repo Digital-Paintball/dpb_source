@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"models/props_foliage/pine/tallPineBillboard"
+	"$translucent"			1
+	"$alphatest"			 1
+
+}
