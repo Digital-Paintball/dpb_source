@@ -3,5 +3,5 @@ VertexLitGeneric
 	$basetexture "models/weapons/dpb_gravhopper_main"
 	$bumpmap "models/weapons/dpb_gravhopper_main_normal"
 	$envmap env_cubemap
-	$envmaptint .25 .25 .25
+	$envmaptint .1 .1 .1
 }
