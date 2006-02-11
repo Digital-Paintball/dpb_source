@@ -302,7 +302,6 @@ SET( SERVER_SDK_SRCS
 	sdk/sdk_modelentity.cpp
 	sdk/sdk_player.cpp
 	sdk/sdk_playermove.cpp
-	sdk/sdk_team.cpp
 	sdk/sdk_vehicle_jeep.cpp
 	sdk/te_firebullets.cpp
 )

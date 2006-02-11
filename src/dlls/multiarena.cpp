@@ -15,7 +15,7 @@ BEGIN_DATADESC( CArena )
 
 	// Function Pointers
 	DEFINE_FUNCTION( WaitingThink ),
-	DEFINE_FUNCTION( SetupThink ),
+	DEFINE_FUNCTION( BeginThink ),
 
 END_DATADESC()
 
@@ -49,7 +49,8 @@ void CArena::AssembleArenas( )
 		int iResults = UTIL_EntitiesInBox( pList, 1024,
 			pArena->CollisionProp()->OBBMins() + pArena->GetAbsOrigin(),
 			pArena->CollisionProp()->OBBMaxs() + pArena->GetAbsOrigin(), 0 );
-		for (int j = 0; j < iResults; j++)
+		int j;
+		for (j = 0; j < iResults; j++)
 		{
 			if (pList[j] == pArena)
 				continue;
@@ -61,12 +62,28 @@ void CArena::AssembleArenas( )
 
 			if (!pArena->HasTeam(pList[j]->GetStartTeamNumber()))
 			{
-				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "sdk_team_manager" ));
-				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber() );
+				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
+				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber(), pArena );
 				pArena->m_hTeams.AddToTail(pTeam);
 			}
 		}
 	}
+}
+
+void CArena::CalculateSpawnAvg()
+{
+	m_vecSpawnAvg = Vector(0, 0, 0);
+
+	if (!GetTeamNumber())
+		return;
+
+	for (int i = 0; i < GetTeamNumber(); i++)
+	{
+		m_hTeams[i]->AverageSpawns();
+		m_vecSpawnAvg += m_hTeams[i]->m_vecSpawnAvg;
+	}
+
+	m_vecSpawnAvg /= GetTeamNumber();
 }
 
 bool CArena::HasTeam(int iTeam)
@@ -83,7 +100,7 @@ void CArena::WaitingThink( )
 	m_State = GS_WAITING;
 	if (m_hPlayers.Count() + m_hJoiners.Count() > 0)
 	{
-		StartRound();
+		SetupRound();
 	}
 	else
 	{
@@ -92,9 +109,11 @@ void CArena::WaitingThink( )
 	}
 }
 
-void CArena::SetupThink( )
+void CArena::SetupRound( )
 {
 	int i;
+
+	m_State = GS_COUNTDOWN;
 
 	//First remove people who have quit the game
 	for (i = 0; i < m_hQuitters.Count(); i++)
@@ -170,10 +189,16 @@ void CArena::SetupThink( )
 			pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 		}
 
+		// Look away from the center of the map
+		QAngle angLookAt = QAngle(0, 0, 0);
 		CBaseEntity *pSpawnSpot = pPlayer->GetTeam()->SpawnPlayer(pPlayer);
+		VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
+		angLookAt.x = 15;	//Look somewhat at the ground.
+
 		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-		pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
-		pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
+		pPlayer->SetLocalAngles( angLookAt );
+		pPlayer->SnapEyeAngles( angLookAt );
+		pPlayer->LockPlayerInPlace();
 	}
 
 	for (i = 0; i < m_hTeams.Count(); i++)
@@ -181,17 +206,21 @@ void CArena::SetupThink( )
 		m_hTeams[i]->ResetPlayersAlive();
 	}
 
-	m_State = GS_INPROGRESS;
-
-	CheckForRoundEnd();
+	SetThink( BeginThink );
+	SetNextThink( gpGlobals->curtime + 5.0 );
 }
 
-void CArena::StartRound( )
+void CArena::BeginThink( )
 {
-	m_State = GS_COUNTDOWN;
+	m_State = GS_INPROGRESS;
 
-	SetThink( SetupThink );
-	SetNextThink( gpGlobals->curtime + 5.0 );
+	for (int i = 0; i < m_hPlayers.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+		pPlayer->UnlockPlayer();
+	}
+
+	CheckForRoundEnd();
 }
 
 // Check for the necessary conditions to end the round.

@@ -95,7 +95,7 @@ bool CTeam::ShouldTransmitToPlayer( CBasePlayer* pRecipient, CBaseEntity* pEntit
 //-----------------------------------------------------------------------------
 // Initialization
 //-----------------------------------------------------------------------------
-void CTeam::Init( const char *pName, int iNumber )
+void CTeam::Init( const char *pName, int iNumber, CArena *pArena )
 {
 	InitializeSpawnpoints();
 	InitializePlayers();
@@ -104,6 +104,7 @@ void CTeam::Init( const char *pName, int iNumber )
 
 	Q_strncpy( m_szTeamname.GetForModify(), pName, MAX_TEAM_NAME_LENGTH );
 	m_iTeamNum = iNumber;
+	m_hArena = pArena;
 }
 
 //-----------------------------------------------------------------------------
@@ -146,6 +147,7 @@ void CTeam::InitializeSpawnpoints( void )
 void CTeam::AddSpawnpoint( CTeamSpawnPoint *pSpawnpoint )
 {
 	m_aSpawnPoints.AddToTail( pSpawnpoint );
+	m_hArena->CalculateSpawnAvg();
 }
 
 //-----------------------------------------------------------------------------
@@ -201,6 +203,20 @@ CBaseEntity *CTeam::SpawnPlayer( CBasePlayer *pPlayer )
 	} while ( iSpawn != iStartingSpawn ); // loop if we're not back to the start
 
 	return NULL;
+}
+
+void CTeam::AverageSpawns( void )
+{
+	m_vecSpawnAvg = Vector(0, 0, 0);
+
+	if (!m_aSpawnPoints.Count())
+		return;
+
+	for (int i = 0; i < m_aSpawnPoints.Count(); i++)
+	{
+		m_vecSpawnAvg += m_aSpawnPoints[i]->GetAbsOrigin();
+	}
+	m_vecSpawnAvg /= m_aSpawnPoints.Count();
 }
 
 //------------------------------------------------------------------------------------------------------------------

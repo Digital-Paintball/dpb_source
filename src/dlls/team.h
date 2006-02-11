@@ -34,7 +34,7 @@ public:
 	//-----------------------------------------------------------------------------
 	// Initialization
 	//-----------------------------------------------------------------------------
-	virtual void		Init( const char *pName, int iNumber );
+	virtual void		Init( const char *pName, int iNumber, CArena* );
 
 	//-----------------------------------------------------------------------------
 	// Data Handling
@@ -55,6 +55,7 @@ public:
 	virtual void AddSpawnpoint( CTeamSpawnPoint *pSpawnpoint );
 	virtual void RemoveSpawnpoint( CTeamSpawnPoint *pSpawnpoint );
 	virtual CBaseEntity *SpawnPlayer( CBasePlayer *pPlayer );
+	virtual void AverageSpawns( void );
 
 	//-----------------------------------------------------------------------------
 	// Players
@@ -75,7 +76,8 @@ public:
 public:
 	CUtlVector< CTeamSpawnPoint * > m_aSpawnPoints;
 	CUtlVector< CBasePlayer * >		m_aPlayers;
-	
+	CHandle<CArena>	m_hArena;
+
 	int		m_iPlayersAlive;
 
 	// Data
@@ -85,6 +87,7 @@ public:
 
 	// Spawnpoints
 	int		m_iLastSpawn;		// Index of the last spawnpoint used
+	Vector	m_vecSpawnAvg;		// Average of spawn origins
 
 	CNetworkVar( int, m_iTeamNum );			// Which team is this?
 };

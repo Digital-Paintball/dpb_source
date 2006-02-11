@@ -22,7 +22,7 @@ public:
 	DECLARE_CLASS( CArena, CBaseTrigger );
 
 	void WaitingThink();
-	void SetupThink();
+	void BeginThink();
 
 	void StartTouch(CBaseEntity *pOther);
 	void EndTouch(CBaseEntity *pOther);
@@ -33,9 +33,10 @@ public:
 	void JoinPlayer(CBasePlayer *pPlayer);
 	void QuitPlayer(CBasePlayer *pPlayer);
 
-	void StartRound();
+	void SetupRound();
 	void CheckForRoundEnd();
 	void RoundEnd( int iWinningTeam );
+	void CalculateSpawnAvg();
 
 	CTeam* GetTeam(int i);
 	CTeam* GetTeamByNumber(int i);
@@ -70,6 +71,8 @@ private:
 
 	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
+
+	Vector m_vecSpawnAvg;
 };
 
 #endif // MULTIARENA_H

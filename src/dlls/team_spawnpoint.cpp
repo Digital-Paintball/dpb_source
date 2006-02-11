@@ -42,6 +42,7 @@ void CTeamSpawnPoint::Activate( void )
 	BaseClass::Activate();
 	if ( GetTeamNumber() > 0 && GetTeamNumber() <= MAX_TEAMS && GetTeam() )
 	{
+		UTIL_DropToFloor(this, MASK_PLAYERSOLID_BRUSHONLY);
 		GetTeam()->AddSpawnpoint( this );
 	}
 	else

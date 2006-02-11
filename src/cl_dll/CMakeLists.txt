@@ -245,7 +245,6 @@ SET( CLIENT_SRCS
 SET( CLIENT_SDK_SRCS
 	sdk/c_sdk_env_sparkler.cpp
 	sdk/c_sdk_player.cpp
-	sdk/c_sdk_team.cpp
 	sdk/c_te_firebullets.cpp
 	sdk/clientmode_sdk.cpp
 	sdk/sdk_fx_impacts.cpp
