@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3368"
-	"mapversion" "770"
+	"mapversion" "777"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -37,7 +37,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "770"
+	"mapversion" "777"
 	"classname" "worldspawn"
 	"skyname" "sky_day02_05"
 	"maxpropscreenwidth" "-1"
@@ -19177,6 +19177,16 @@ world
 			"visgroupautoshown" "1"
 		}
 	}
+	group
+	{
+		"id" "357972"
+		editor
+		{
+			"color" "102 143 0"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
 }
 entity
 {
@@ -34968,6 +34978,486 @@ entity
 }
 entity
 {
+	"id" "357973"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "0"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2981 3091.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357977"
+	"classname" "prop_static"
+	"angles" "0 6 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "7"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-3261 3095.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357981"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "2"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-3396 3089.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357985"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "2"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1111.87 4764.46 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357989"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "1"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1259.86 4755.46 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357993"
+	"classname" "prop_static"
+	"angles" "0 178 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "5"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-3043.52 4768.28 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "357997"
+	"classname" "prop_static"
+	"angles" "0 186 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "7"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2777.52 4772.28 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358001"
+	"classname" "prop_static"
+	"angles" "0 183.5 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "4"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2218.87 4771.46 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358005"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "8"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1546.86 4769.46 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358009"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "0"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2983 3831.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358013"
+	"classname" "prop_static"
+	"angles" "0 3.5 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "4"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2825.13 4066.1 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358017"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "9"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2538.48 4063.29 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358021"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "2"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2427 4062.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358025"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "1"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2306 3852.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358029"
+	"classname" "prop_static"
+	"angles" "0 6 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "7"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2266.48 4065.29 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358033"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "3"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1863.48 4070.29 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358037"
+	"classname" "prop_static"
+	"angles" "0 358 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "5"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2000.48 4069.29 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358041"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "4"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1982 3107.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358045"
+	"classname" "prop_static"
+	"angles" "0 178 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "6"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1846.52 3107.9 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358049"
+	"classname" "prop_static"
+	"angles" "0 358 0"
+	"model" "models/props_cars/hatchback_windows.mdl"
+	"skin" "5"
+	"disableshadows" "1"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1707 3102.93 143"
+	editor
+	{
+		"color" "102 143 0"
+		"groupid" "357972"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
 	"id" "10"
 	"classname" "info_target"
 	"angles" "0 0 0"
@@ -42659,6 +43149,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "4"
 	"origin" "-3175 2310 185"
 	editor
 	{
@@ -42676,6 +43167,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "6"
 	"origin" "761 2879.8 159"
 	editor
 	{
@@ -42693,6 +43185,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "0"
 	"origin" "819 2844 159"
 	editor
 	{
@@ -42710,6 +43203,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "2"
 	"origin" "438 3452 216"
 	editor
 	{
@@ -42849,7 +43343,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -42928,7 +43422,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43007,7 +43501,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43086,7 +43580,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43165,7 +43659,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43244,7 +43738,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43323,7 +43817,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43402,7 +43896,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43481,7 +43975,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43560,7 +44054,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43654,7 +44148,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43733,7 +44227,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43812,7 +44306,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43891,7 +44385,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -43970,7 +44464,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44049,7 +44543,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44128,7 +44622,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44207,7 +44701,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44286,7 +44780,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44365,7 +44859,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44459,7 +44953,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44538,7 +45032,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44617,7 +45111,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44696,7 +45190,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44775,7 +45269,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44854,7 +45348,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -44933,7 +45427,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -45012,7 +45506,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -45091,7 +45585,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -45170,7 +45664,7 @@ hidden
 				editor
 				{
 					"color" "0 180 0"
-					"visgroupshown" "0"
+					"visgroupshown" "1"
 					"visgroupautoshown" "1"
 				}
 			}
@@ -46623,32 +47117,6 @@ entity
 	editor
 	{
 		"color" "255 255 0"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-	}
-}
-entity
-{
-	"id" "254436"
-	"classname" "weapon_smg1"
-	"angles" "0 90 0"
-	"origin" "5156.79 -3224.13 437.322"
-	editor
-	{
-		"color" "0 0 200"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-	}
-}
-entity
-{
-	"id" "254434"
-	"classname" "weapon_smg1"
-	"angles" "0 90 0"
-	"origin" "5162.79 -3224.11 438"
-	editor
-	{
-		"color" "0 0 200"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -110507,7 +110975,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_field/rock2.mdl"
-	"origin" "154.792 -2581.13 353"
+	"origin" "154.792 -2577 307"
 	editor
 	{
 		"color" "255 255 0"
@@ -110821,6 +111289,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "1"
 	"origin" "330 3560 304"
 	editor
 	{
@@ -110838,6 +111307,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "4"
 	"origin" "634 3823.85 358.301"
 	editor
 	{
@@ -110855,6 +111325,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "4"
 	"origin" "634 3823.85 335.053"
 	editor
 	{
@@ -110872,6 +111343,7 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
+	"skin" "5"
 	"origin" "681 3825.85 348.301"
 	editor
 	{
@@ -110889,7 +111361,8 @@ entity
 	"fademindist" "-1"
 	"fadescale" "1"
 	"model" "models/props_spool/spool.mdl"
-	"origin" "671 3791 331"
+	"skin" "6"
+	"origin" "652 3782 331"
 	editor
 	{
 		"color" "255 255 0"
@@ -148990,7 +149463,7 @@ entity
 			"plane" "(613 4103 352) (283 4103 352) (283 4161 352)"
 			"material" "TEXTURES/PAINTEDBUNKERCRAP"
 			"uaxis" "[0 -1 0 0] 0.25"
-			"vaxis" "[-1 0 0 0] 0.25"
+			"vaxis" "[-1 0 0 -81] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -149023,7 +149496,7 @@ entity
 			"plane" "(613 4103 320) (283 4103 320) (283 4103 352)"
 			"material" "TEXTURES/PAINTEDBUNKER2CRAP"
 			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 0 -1 -103] 0.25"
+			"vaxis" "[0 0 -1 -112] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -149034,7 +149507,7 @@ entity
 			"plane" "(283 4103 320) (283 4161 320) (283 4161 352)"
 			"material" "TEXTURES/PAINTEDBUNKER2CRAP"
 			"uaxis" "[0 -1 0 0] 0.25"
-			"vaxis" "[0 0 -1 -103] 0.25"
+			"vaxis" "[0 0 -1 -112] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -149142,7 +149615,7 @@ entity
 			"plane" "(555 3831 352) (555 4103 352) (613 4103 352)"
 			"material" "TEXTURES/PAINTEDBUNKERCRAP"
 			"uaxis" "[0 -1 0 0] 0.25"
-			"vaxis" "[-1 0 0 0] 0.25"
+			"vaxis" "[-1 0 0 -81] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -149175,7 +149648,7 @@ entity
 			"plane" "(555 3831 320) (555 4103 320) (555 4103 352)"
 			"material" "TEXTURES/PAINTEDBUNKER2CRAP"
 			"uaxis" "[0 -1 0 0] 0.25"
-			"vaxis" "[0 0 -1 -103] 0.25"
+			"vaxis" "[0 0 -1 -112] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -149197,7 +149670,7 @@ entity
 			"plane" "(613 3831 320) (555 3831 320) (555 3831 352)"
 			"material" "TEXTURES/PAINTEDBUNKER2CRAP"
 			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 0 -1 -103] 0.25"
+			"vaxis" "[0 0 -1 -112] 0.25"
 			"rotation" "0"
 			"lightmapscale" "16"
 			"smoothing_groups" "0"
@@ -152401,22 +152874,12 @@ entity
 entity
 {
 	"id" "341043"
-	"classname" "prop_static"
-	"angles" "0 330.5 -90"
-	"model" "models/weapons/w_smg1.mdl"
-	"skin" "0"
-	"disableshadows" "0"
-	"mindxlevel" "0"
-	"maxdxlevel" "0"
-	"fademindist" "-1"
-	"fademaxdist" "0"
-	"fadescale" "1"
-	"solid" "6"
-	"screenspacefade" "0"
-	"origin" "395 4156 389"
+	"classname" "weapon_smg1"
+	"angles" "0 0 0"
+	"origin" "395 4156 391"
 	editor
 	{
-		"color" "255 255 0"
+		"color" "0 0 200"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 	}
@@ -160864,13 +161327,381 @@ entity
 		"visgroupautoshown" "1"
 	}
 }
+entity
+{
+	"id" "358274"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2297 54 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358302"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1556 54 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358311"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2112 309 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358324"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1792 800 137.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358337"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1986 800 137.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358350"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hyperlo.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2113 800 136.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358390"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hyperlo.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1664 800 136.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358439"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"model" "models/hyperball/hyperlo.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1887 572.75 136.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358443"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1887 699.75 137.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358447"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"model" "models/hyperball/hyperlo.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1887 1021.75 136.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358451"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1887 893.75 137.25"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358500"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1714 309 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358525"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2274.25 1564 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358529"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-2089.25 1309 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358533"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1691.25 1309 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
+entity
+{
+	"id" "358537"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"model" "models/hyperball/hypertwostack.mdl"
+	"skin" "0"
+	"disableshadows" "0"
+	"mindxlevel" "0"
+	"maxdxlevel" "0"
+	"fademindist" "-1"
+	"fademaxdist" "0"
+	"fadescale" "1"
+	"solid" "6"
+	"screenspacefade" "0"
+	"origin" "-1533.25 1564 134"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-3201.15 3399.44 423.153]"
-		"look" "[-3201.59 3399.38 423.102]"
+		"position" "[60.1003 -2658.53 377.126]"
+		"look" "[60.4672 -2658.27 377.118]"
 	}
 }
 cordon
