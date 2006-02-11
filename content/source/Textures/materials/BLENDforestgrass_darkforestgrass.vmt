@@ -7,4 +7,5 @@
    "$basetexturetransform2" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
    "%keywords" "dpb,blend,grass,plain,forest,dark" 
    "$surfaceprop" "dirt"
+   "%detailtype" "norr_grass_1" 
 }
