@@ -79,6 +79,7 @@ protected:
 	DECLARE_SERVERCLASS();
 };
 LINK_ENTITY_TO_CLASS( weapon_paintball, CPaintball );
+PRECACHE_REGISTER( weapon_paintball );
 
 BEGIN_DATADESC( CPaintball )
 	// Function Pointers
@@ -171,7 +172,7 @@ void CPaintball::Spawn( void )
 	SetMoveType( MOVETYPE_FLYGRAVITY, MOVECOLLIDE_FLY_CUSTOM );
 	UTIL_SetSize( this, -Vector(1,1,1), Vector(1,1,1) );
 	SetSolid( SOLID_BBOX );
-	SetGravity( 0.05f );
+	SetGravity( 1.0f );
 	
 	// Make sure we're updated if we're underwater
 	UpdateWaterState();
@@ -333,12 +334,6 @@ void CPaintball::PaintballTouch( CBaseEntity *pOther )
 					m_pGlowSprite->TurnOn();
 					m_pGlowSprite->FadeAndDie( 3.0f );
 				}
-			}
-			
-			// Shoot some sparks
-			if ( UTIL_PointContents( GetAbsOrigin() ) != CONTENTS_WATER)
-			{
-				g_pEffects->Sparks( GetAbsOrigin() );
 			}
 		}
 		else

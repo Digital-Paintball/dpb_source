@@ -246,6 +246,7 @@ SET( CLIENT_SDK_SRCS
 	sdk/c_sdk_env_sparkler.cpp
 	sdk/c_sdk_player.cpp
 	sdk/c_te_firebullets.cpp
+	sdk/c_weapon_paintball.cpp
 	sdk/clientmode_sdk.cpp
 	sdk/sdk_fx_impacts.cpp
 	sdk/sdk_hud_ammo.cpp
