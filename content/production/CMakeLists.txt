@@ -14,6 +14,11 @@ INSTALL_FILES(/ FILES
 	dpb.fgd
 	dpb.tga
 	serverconfig.vdf
+	detail.vbsp
+)
+
+INSTALL_FILES(/cfg FILES
+	cfg/listenserver.cfg
 )
 
 INSTALL_FILES(/DownloadLists FILES
@@ -21,8 +26,7 @@ INSTALL_FILES(/DownloadLists FILES
 )
 
 INSTALL_FILES(/maps FILES
-	maps/dpb_begin.bsp
-	maps/dpb_rec.bsp
+	maps/dpb_norrington.bsp
 )
 
 INSTALL_FILES(/materials/console FILES
@@ -30,8 +34,29 @@ INSTALL_FILES(/materials/console FILES
 	materials/console/background01.vtf
 )
 
+INSTALL_FILES(/materials/detail FILES
+	materials/detail/detailsprites.vmt
+	materials/detail/detailsprites.vtf
+)
+
 INSTALL_FILES(/materials/models FILES
 	materials/models/testblock.vmt
+	materials/models/paintball.vtf
+	materials/models/paintball.vmt
+)
+
+INSTALL_FILES(/materials/models/hyperball FILES
+	materials/models/hyperball/innertube.vmt
+	materials/models/hyperball/hrztube.vtf
+	materials/models/hyperball/innertube_normal.vtf
+	materials/models/hyperball/hrztubeb.vtf
+	materials/models/hyperball/tube.vmt
+	materials/models/hyperball/hrztube.vmt
+	materials/models/hyperball/hrztube_normal.vtf
+	materials/models/hyperball/innertube.vtf
+	materials/models/hyperball/hrztubeb.vmt
+	materials/models/hyperball/hrztubeb_normal.vtf
+	materials/models/hyperball/tube.vtf
 )
 
 INSTALL_FILES(/materials/models/inflatables FILES
@@ -101,6 +126,30 @@ INSTALL_FILES(/materials/models/player/ FILES
 	materials/models/player/invision_blue.vmt
 )
 
+INSTALL_FILES(/materials/models/props_cars FILES
+	materials/models/props_cars/htch_silver.vmt
+	materials/models/props_cars/htch_orange.vtf
+	materials/models/props_cars/htch_yellow.vtf
+	materials/models/props_cars/htch_black.vtf
+	materials/models/props_cars/htch_white_stripe.vmt
+	materials/models/props_cars/htch_white.vtf
+	materials/models/props_cars/htch_red.vmt
+	materials/models/props_cars/htch_orange.vmt
+	materials/models/props_cars/htch_yellow.vmt
+	materials/models/props_cars/htch_black.vmt
+	materials/models/props_cars/htch_blue.vtf
+	materials/models/props_cars/htch_white.vmt
+	materials/models/props_cars/htch_normal.vtf
+	materials/models/props_cars/hatch_windows.vtf
+	materials/models/props_cars/htch_blue.vmt
+	materials/models/props_cars/htch_green.vtf
+	materials/models/props_cars/hatch_windows.vmt
+	materials/models/props_cars/htch_silver.vtf
+	materials/models/props_cars/htch_white_stripe.vtf
+	materials/models/props_cars/htch_green.vmt
+	materials/models/props_cars/htch_red.vtf
+)
+
 INSTALL_FILES(/materials/models/props_cars/jeep_truck FILES
 	materials/models/props_cars/jeep_truck/truck_final.vtf
 	materials/models/props_cars/jeep_truck/truck_glass.vtf
@@ -109,12 +158,40 @@ INSTALL_FILES(/materials/models/props_cars/jeep_truck FILES
 	materials/models/props_cars/jeep_truck/truck_final_normal.vtf
 )
 
+INSTALL_FILES(/materials/models/props_field FILES
+	materials/models/props_field/pallet_01.vtf
+	materials/models/props_field/pallet_02.vtf
+	materials/models/props_field/pallet_03.vtf
+	materials/models/props_field/red_canopy.vtf
+	materials/models/props_field/picnictable.vmt
+	materials/models/props_field/picnictable_normal.vtf
+	materials/models/props_field/lightpole.vtf
+	materials/models/props_field/pallet_01.vmt
+	materials/models/props_field/pallet_normal.vtf
+	materials/models/props_field/pallet_02.vmt
+	materials/models/props_field/red_canopy.vmt
+	materials/models/props_field/pallet_03.vmt
+	materials/models/props_field/foldingtable.vtf
+	materials/models/props_field/lightpole.vmt
+	materials/models/props_field/foldingtable.vmt
+	materials/models/props_field/canopy_normal.vtf
+	materials/models/props_field/rock_texture_5.vtf
+	materials/models/props_field/rock_texture_5.vmt
+	materials/models/props_field/rock_texture_5_normal.vtf
+	materials/models/props_field/tent.vtf
+	materials/models/props_field/picnictable.vtf
+)
+
 INSTALL_FILES(/materials/models/props_foliage/shrub FILES
+	materials/models/props_foliage/shrub/fern.vmt
+	materials/models/props_foliage/shrub/fern.vtf
 	materials/models/props_foliage/shrub/shrub1.vtf
 	materials/models/props_foliage/shrub/shrub1.vmt
 )
 
 INSTALL_FILES(/materials/models/props_foliage/pine FILES
+	materials/models/props_foliage/pine/tallPineBillboard.vtf
+	materials/models/props_foliage/pine/tallpinebillboard.vmt
 	materials/models/props_foliage/pine/pinebark_light.vtf
 	materials/models/props_foliage/pine/rygPineBillboard.vtf
 	materials/models/props_foliage/pine/pinebark_light.vmt
@@ -276,6 +353,8 @@ INSTALL_FILES(/materials/models/weapons FILES
 )
 
 INSTALL_FILES(/materials/norrington FILES
+	materials/norrington/pineWall.vmt
+	materials/norrington/pineWall.vtf
 	materials/norrington/rygProshopCarpet.vmt
 	materials/norrington/rygProshopCarpet_normal.vtf
 	materials/norrington/rygProshopWall.vmt
@@ -285,6 +364,227 @@ INSTALL_FILES(/materials/norrington FILES
 	materials/norrington/rygProshopCarpet.vtf
 	materials/norrington/rygProshopWall.vtf
 	materials/norrington/rygCielingFoam.vtf
+	materials/norrington/norr_map.vmt
+	materials/norrington/pineline2.vtf
+	materials/norrington/parkwhite1.vmt
+	materials/norrington/parkwhite2.vmt
+	materials/norrington/norr_goggles.vtf
+	materials/norrington/parkyellow.vtf
+	materials/norrington/blendgrasspine2.vmt
+	materials/norrington/norrback1.vmt
+	materials/norrington/norrback2.vmt
+	materials/norrington/norr_welcome.vtf
+	materials/norrington/norrback3.vmt
+	materials/norrington/norrback4.vmt
+	materials/norrington/pineline.vtf
+	materials/norrington/merc_net.vmt
+	materials/norrington/norr_map.vtf
+	materials/norrington/parkwhite1.vtf
+	materials/norrington/parkwhite2.vtf
+	materials/norrington/norrback1.vtf
+	materials/norrington/norrback2.vtf
+	materials/norrington/norrback3.vtf
+	materials/norrington/norrback4.vtf
+	materials/norrington/pineline2.vmt
+	materials/norrington/merc_net.vtf
+	materials/norrington/norr_goggles.vmt
+	materials/norrington/parkyellow.vmt
+	materials/norrington/norr_welcome.vmt
+	materials/norrington/blendgrasspine.vmt
+	materials/norrington/pineline.vmt
+)
+
+INSTALL_FILES(/materials/textures FILES
+	materials/textures/kuja_pavement_asphault1.vmt
+	materials/textures/kuja_pavement_asphault3.vmt
+	materials/textures/kuja_forest_moss_normal.vtf
+	materials/textures/kuja_pavement_asphault4_normal.vtf
+	materials/textures/kuja_pavement_asphault5.vmt
+	materials/textures/asphaltgray_normal.vtf
+	materials/textures/BLENDmuddydrygrass_rockyroad.vmt
+	materials/textures/granitegravel.vtf
+	materials/textures/paintedbunker2CRAP.vmt
+	materials/textures/BLENDrockyroad_darkforestgrass.vmt
+	materials/textures/kuja_forest_oakleaves2.vmt
+	materials/textures/grasscloversnleaves.vmt
+	materials/textures/woodymoss.vtf
+	materials/textures/rockyroad.vmt
+	materials/textures/kuja_forest_floorneedles2_normal.vtf
+	materials/textures/dirt.vmt
+	materials/textures/dirt_normal.vtf
+	materials/textures/woodymoss_normal.vtf
+	materials/textures/deadleaves1.vtf
+	materials/textures/cementyellow_normal.vtf
+	materials/textures/grasspale.vtf
+	materials/textures/kuja_pavement_oldconcrete.vmt
+	materials/textures/kuja_pavement_oldconcrete_normal.vtf
+	materials/textures/kuja_grass_blotchygrass.vmt
+	materials/textures/forestdirt.vtf
+	materials/textures/kuja_grass_fakegrass_normal.vtf
+	materials/textures/BLENDplaingrass_rockyroad.vmt
+	materials/textures/BLENDdrygrassmuddydrygrass.vmt
+	materials/textures/BLENDgrasspale_deadleaves2.vmt
+	materials/textures/kuja_forest_lichen.vtf
+	materials/textures/drygrass.vtf
+	materials/textures/kuja_forest_smalloak.vtf
+	materials/textures/granitegravel.vmt
+	materials/textures/paintedbunkerCRAP.vtf
+	materials/textures/granitegravel_normal.vtf
+	materials/textures/plaingrass.vtf
+	materials/textures/kuja_grass_generic2.vtf
+	materials/textures/kuja_grass_highreeds.vtf
+	materials/textures/kuja_forest_moss.vtf
+	materials/textures/kuja_grass_highreeds_normal.vtf
+	materials/textures/kuja_pavement_asphault2_normal.vtf
+	materials/textures/kuja_forest_darkneedles_normal.vtf
+	materials/textures/deadleaves1.vmt
+	materials/textures/kuja_grass_dehydrated.vtf
+	materials/textures/kuja_grass_sandygrass.vtf
+	materials/textures/grasspale.vmt
+	materials/textures/BLENDgrasspale_clovers.vmt
+	materials/textures/forestdirt.vmt
+	materials/textures/grasshealthy.vtf
+	materials/textures/kuja_forest_floorbig.vtf
+	materials/textures/kuja_grass_bluegrass.vtf
+	materials/textures/kuja_forest_oakleaves2_normal.vtf
+	materials/textures/forestgrass.vtf
+	materials/textures/kuja_forest_lichen.vmt
+	materials/textures/drygrass.vmt
+	materials/textures/kuja_forest_smalloak.vmt
+	materials/textures/dirtnfoliage.vtf
+	materials/textures/paintedbunkerCRAP.vmt
+	materials/textures/BLENDgravel_rockyroad.vmt
+	materials/textures/plaingrass.vmt
+	materials/textures/kuja_pavement_asphault2.vtf
+	materials/textures/kuja_grass_generic1_normal.vtf
+	materials/textures/kuja_grass_generic2.vmt
+	materials/textures/kuja_pavement_asphault4.vtf
+	materials/textures/BLENDmulchgrass_deadleaves1.vmt
+	materials/textures/kuja_grass_highreeds.vmt
+	materials/textures/kuja_forest_moss.vmt
+	materials/textures/kuja_forest_floorneedles_normal.vtf
+	materials/textures/kuja_forest_oakleaves1.vtf
+	materials/textures/kuja_pavement_asphault5_normal.vtf
+	materials/textures/kuja_forest_whitepinebark.vtf
+	materials/textures/kuja_forest_oakleaves3.vtf
+	materials/textures/kuja_grass_dehydrated.vmt
+	materials/textures/kuja_grass_sandygrass.vmt
+	materials/textures/grasshealthy.vmt
+	materials/textures/kuja_forest_floorbig.vmt
+	materials/textures/kuja_grass_bluegrass.vmt
+	materials/textures/forestgrass.vmt
+	materials/textures/kuja_grass_leafygrass.vtf
+	materials/textures/asphalt-dark.vtf
+	materials/textures/drymud_normal.vtf
+	materials/textures/kuja_forest_darkneedles.vtf
+	materials/textures/grasshealthylong.vtf
+	materials/textures/BLENDdarkforestgrass_deadleaves1.vmt
+	materials/textures/dirtnfoliage.vmt
+	materials/textures/asphaltgray.vtf
+	materials/textures/deadleavesnvines.vtf
+	materials/textures/dirtnleaves.vtf
+	materials/textures/asphalt-dark_normal.vtf
+	materials/textures/kuja_pavement_asphault2.vmt
+	materials/textures/grassclovers_normal.vtf
+	materials/textures/kuja_pavement_asphault4.vmt
+	materials/textures/kuja_forest_oakleaves1.vmt
+	materials/textures/kuja_forest_whitepinebark.vmt
+	materials/textures/kuja_forest_floorneedles2.vtf
+	materials/textures/kuja_forest_oakleaves3.vmt
+	materials/textures/BLENDplaingrass_forestgrass.vmt
+	materials/textures/drymud.vtf
+	materials/textures/BLENDmulchgrass_forestgrass.vmt
+	materials/textures/cementyellow.vtf
+	materials/textures/BLENDgrasshealthy_pale.vmt
+	materials/textures/forestmoss_normal.vtf
+	materials/textures/kuja_forest_floorneedles.vtf
+	materials/textures/deadleaves2.vtf
+	materials/textures/kuja_grass_fakegrass.vtf
+	materials/textures/kuja_grass_leafygrass.vmt
+	materials/textures/kuja_forest_darkneedles.vmt
+	materials/textures/grasshealthylong.vmt
+	materials/textures/kuja_pavement_asphault3_normal.vtf
+	materials/textures/asphaltgray.vmt
+	materials/textures/deadleavesnvines.vmt
+	materials/textures/dirtnleaves.vmt
+	materials/textures/forestmulch.vtf
+	materials/textures/healthygrass.vtf
+	materials/textures/kuja_forest_oakleaves3_normal.vtf
+	materials/textures/muddydrygrass.vtf
+	materials/textures/kuja_forest_soil.vtf
+	materials/textures/BLENDforestgrass_darkforestgrass.vmt
+	materials/textures/forestmulch_normal.vtf
+	materials/textures/darkforestgrass.vtf
+	materials/textures/forestmoss.vtf
+	materials/textures/rockyroad_normal.vtf
+	materials/textures/kuja_forest_floorneedles2.vmt
+	materials/textures/kuja_grass_generic1.vtf
+	materials/textures/kuja_forest_smalloak_normal.vtf
+	materials/textures/BLENDgrassdying_muddydrygrass.vmt
+	materials/textures/kuja_grass_bluegrass_normal.vtf
+	materials/textures/mulchgrass.vtf
+	materials/textures/grassdying.vtf
+	materials/textures/drymud.vmt
+	materials/textures/kuja_grass_prairiegrass_normal.vtf
+	materials/textures/grassclovers.vtf
+	materials/textures/cementyellow.vmt
+	materials/textures/kuja_grass_generic2_normal.vtf
+	materials/textures/kuja_grass_leafygrass_normal.vtf
+	materials/textures/kuja_forest_mossywhitepinebark.vtf
+	materials/textures/kuja_forest_floorneedles.vmt
+	materials/textures/kuja_grass_blotchygrass_normal.vtf
+	materials/textures/deadleaves2.vmt
+	materials/textures/kuja_grass_fakegrass.vmt
+	materials/textures/BLENDgrasspale_dying.vmt
+	materials/textures/BLENDgranitegravel_plaingrass.vmt
+	materials/textures/kuja_forest_mossywhitepinebark_normal.vtf
+	materials/textures/kuja_grass_muddygrass.vtf
+	materials/textures/kuja_grass_sandygrass_normal.vtf
+	materials/textures/kuja_forest_whitepinebark_normal.vtf
+	materials/textures/forestmulch.vmt
+	materials/textures/kuja_forest_lightneedles.vtf
+	materials/textures/kuja_grass_muddygrass_normal.vtf
+	materials/textures/kuja_grass_prairiegrass.vtf
+	materials/textures/healthygrass.vmt
+	materials/textures/kuja_forest_lichen_normal.vtf
+	materials/textures/drygrass_normal.vtf
+	materials/textures/kuja_forest_floorbig_normal.vtf
+	materials/textures/muddydrygrass.vmt
+	materials/textures/kuja_forest_soil.vmt
+	materials/textures/kuja_forest_soil_normal.vtf
+	materials/textures/BLENDforestmoss_grassdying.vmt
+	materials/textures/kuja_forest_lightneedles_normal.vtf
+	materials/textures/darkforestgrass.vmt
+	materials/textures/forestmoss.vmt
+	materials/textures/kuja_pavement_asphault1.vtf
+	materials/textures/kuja_grass_generic1.vmt
+	materials/textures/kuja_pavement_asphault3.vtf
+	materials/textures/kuja_pavement_asphault5.vtf
+	materials/textures/mulchgrass.vmt
+	materials/textures/grassdying.vmt
+	materials/textures/grassdying_normal.vtf
+	materials/textures/kuja_pavement_asphault1_normal.vtf
+	materials/textures/paintedbunker2CRAP.vtf
+	materials/textures/grassclovers.vmt
+	materials/textures/kuja_forest_oakleaves2.vtf
+	materials/textures/kuja_forest_mossywhitepinebark.vmt
+	materials/textures/grasscloversnleaves.vtf
+	materials/textures/BLENDdirt_rockyroad.vmt
+	materials/textures/BLENDplaingrass_healthygrass.vmt
+	materials/textures/forestdirt_normal.vtf
+	materials/textures/rockyroad.vtf
+	materials/textures/kuja_grass_dehydrated_normal.vtf
+	materials/textures/kuja_forest_oakleaves1_normal.vtf
+	materials/textures/BLENDdirt_darkforestgrass.vmt
+	materials/textures/dirt.vtf
+	materials/textures/kuja_grass_muddygrass.vmt
+	materials/textures/grasscloversnleaves_normal.vtf
+	materials/textures/BLENDplaingrass_darkforestgrass.vmt
+	materials/textures/muddydrygrass_normal.vtf
+	materials/textures/kuja_forest_lightneedles.vmt
+	materials/textures/kuja_pavement_oldconcrete.vtf
+	materials/textures/kuja_grass_prairiegrass.vmt
+	materials/textures/kuja_grass_blotchygrass.vtf
 )
 
 INSTALL_FILES(/materials/VGUI/logos/UI FILES
@@ -298,6 +598,27 @@ INSTALL_FILES(/models FILES
 	models/rygPyramid.phy
 	models/rygPyramid.dx80.vtx
 	models/rygPyramid.dx90.vtx
+)
+
+INSTALL_FILES(/models/hyperball FILES
+	models/hyperball/hypertube.sw.vtx
+	models/hyperball/hyperTwoStack.sw.vtx
+	models/hyperball/hyperlo.vvd
+	models/hyperball/hyperLo.phy
+	models/hyperball/hypertube.mdl
+	models/hyperball/hypertwostack.mdl
+	models/hyperball/hyperLo.dx80.vtx
+	models/hyperball/hyperLo.dx90.vtx
+	models/hyperball/hyperLo.sw.vtx
+	models/hyperball/hyperlo.mdl
+	models/hyperball/hypertube.vvd
+	models/hyperball/hypertwostack.vvd
+	models/hyperball/hypertube.phy
+	models/hyperball/hyperTwoStack.phy
+	models/hyperball/hypertube.dx80.vtx
+	models/hyperball/hyperTwoStack.dx80.vtx
+	models/hyperball/hypertube.dx90.vtx
+	models/hyperball/hyperTwoStack.dx90.vtx
 )
 
 INSTALL_FILES(/models/inflatables FILES
@@ -317,6 +638,15 @@ INSTALL_FILES(/models/netting FILES
 	models/netting/netting1.phy
 	models/netting/netting1.dx80.vtx
 	models/netting/netting1.dx90.vtx
+)
+
+INSTALL_FILES(/models/paintball FILES
+	models/paintball/paintball.mdl
+	models/paintball/paintball.vvd
+	models/paintball/paintball.phy
+	models/paintball/paintball.dx80.vtx
+	models/paintball/paintball.dx90.vtx
+	models/paintball/paintball.sw.vtx
 )
 
 INSTALL_FILES(/models/player FILES
@@ -345,6 +675,11 @@ INSTALL_FILES(/models/player FILES
 )
 
 INSTALL_FILES(/models/props_cars FILES
+	models/props_cars/hatchback_windows.vvd
+	models/props_cars/hatchback_windows.dx80.vtx
+	models/props_cars/hatchback_windows.dx90.vtx
+	models/props_cars/hatchback_windows.sw.vtx
+	models/props_cars/hatchback_windows.mdl
 	models/props_cars/jeep_truck.sw.vtx
 	models/props_cars/jeep_truck.mdl
 	models/props_cars/jeep_truck.vvd
@@ -360,6 +695,79 @@ INSTALL_FILES(/models/props_cars FILES
 )
 
 INSTALL_FILES(/models/props_foliage FILES
+	models/props_field/picnictable.dx90.vtx
+	models/props_field/rock1.dx90.vtx
+	models/props_field/rock2.dx80.vtx
+	models/props_field/pallet.dx90.vtx
+	models/props_field/longcanopy.mdl
+	models/props_field/rock3.dx90.vtx
+	models/props_field/picnictable.mdl
+	models/props_field/foldingtable.vvd
+	models/props_field/rock2.sw.vtx
+	models/props_field/foldingtable.phy
+	models/props_field/lightpole.dx90.vtx
+	models/props_field/rock1.mdl
+	models/props_field/rock2.mdl
+	models/props_field/pallet.mdl
+	models/props_field/rock3.mdl
+	models/props_field/foldingtable.dx90.vtx
+	models/props_field/lightpole.mdl
+	models/props_field/longcanopy.vvd
+	models/props_field/longcanopy.phy
+	models/props_field/picnictable.vvd
+	models/props_field/longcanopy.dx80.vtx
+	models/props_field/picnictable.phy
+	models/props_field/rock1.vvd
+	models/props_field/rock1.phy
+	models/props_field/rock2.vvd
+	models/props_field/picnictable.dx80.vtx
+	models/props_field/pallet.vvd
+	models/props_field/rock2.phy
+	models/props_field/rock3.vvd
+	models/props_field/pallet.phy
+	models/props_field/rock3.phy
+	models/props_field/rock1.dx80.vtx
+	models/props_field/longcanopy.sw.vtx
+	models/props_field/pallet.dx80.vtx
+	models/props_field/rock2.dx90.vtx
+	models/props_field/rock3.dx80.vtx
+	models/props_field/picnictable.sw.vtx
+	models/props_field/lightpole.vvd
+	models/props_field/lightpole.phy
+	models/props_field/rock1.sw.vtx
+	models/props_field/pallet.sw.vtx
+	models/props_field/lightpole.dx80.vtx
+	models/props_field/rock3.sw.vtx
+	models/props_field/foldingtable.dx80.vtx
+	models/props_field/lightpole.sw.vtx
+	models/props_field/foldingtable.sw.vtx
+	models/props_field/foldingtable.mdl
+	models/props_field/longcanopy.dx90.vtx
+)
+
+INSTALL_FILES(/models/props_foliage FILES
+	models/props_foliage/tallpine.mdl
+	models/props_foliage/minipine_detail.vvd
+	models/props_foliage/fern.dx80.vtx
+	models/props_foliage/miniPine_detail.dx80.vtx
+	models/props_foliage/tallpine.vvd
+	models/props_foliage/pineBillboard.sw.vtx
+	models/props_foliage/tallPine.sw.vtx
+	models/props_foliage/miniPine_detail.phy
+	models/props_foliage/fern.dx90.vtx
+	models/props_foliage/miniPine_detail.dx90.vtx
+	models/props_foliage/tallPine.phy
+	models/props_foliage/pinebillboard.mdl
+	models/props_foliage/miniPine_detail.sw.vtx
+	models/props_foliage/fern.sw.vtx
+	models/props_foliage/pinebillboard.vvd
+	models/props_foliage/fern.mdl
+	models/props_foliage/pineBillboard.dx80.vtx
+	models/props_foliage/tallPine.dx80.vtx
+	models/props_foliage/fern.vvd
+	models/props_foliage/minipine_detail.mdl
+	models/props_foliage/pineBillboard.dx90.vtx
+	models/props_foliage/tallPine.dx90.vtx
 	models/props_foliage/rygPine.dx80.vtx
 	models/props_foliage/pine_tree.sw.vtx
 	models/props_foliage/pine_tree.mdl
