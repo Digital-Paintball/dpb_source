@@ -694,7 +694,7 @@ INSTALL_FILES(/models/props_cars FILES
 	models/props_cars/hatchback.dx90.vtx
 )
 
-INSTALL_FILES(/models/props_foliage FILES
+INSTALL_FILES(/models/props_field FILES
 	models/props_field/picnictable.dx90.vtx
 	models/props_field/rock1.dx90.vtx
 	models/props_field/rock2.dx80.vtx
