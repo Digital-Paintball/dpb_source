@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"models/hyperball/tube"
+	"$bumpmap"			"models/hyperball/hrztube_normal"
+	"$envmap" 			"env_cubemap"
+ 	"$envmaptint" 			"[ .5 .5 .5 ]"
+ 	"$envmapsaturation" 		"[.2 .2 .2]" 
+	"$envmapcontrast"			"1"
+}
