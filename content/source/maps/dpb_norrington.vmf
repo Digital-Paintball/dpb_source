@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3368"
-	"mapversion" "806"
+	"mapversion" "807"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -31,13 +31,13 @@ viewsettings
 {
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
-	"nGridSpacing" "1"
+	"nGridSpacing" "32"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "806"
+	"mapversion" "807"
 	"classname" "worldspawn"
 	"skyname" "sky_day02_05"
 	"maxpropscreenwidth" "-1"
@@ -161639,14 +161639,14 @@ entity
 	"classname" "game_arena"
 	"StartDisabled" "0"
 	"spawnflags" "1"
-	"origin" "256 2048 208"
+	"origin" "288 1984 208"
 	solid
 	{
 		"id" "366355"
 		side
 		{
 			"id" "93545"
-			"plane" "(-1024 2944 288) (1536 2944 288) (1536 1152 288)"
+			"plane" "(-992 1216 288) (-992 2752 288) (1568 2752 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 -1 0 12] 0.25"
@@ -161657,7 +161657,7 @@ entity
 		side
 		{
 			"id" "93544"
-			"plane" "(-1024 1152 128) (1536 1152 128) (1536 2944 128)"
+			"plane" "(-992 2752 128) (-992 1216 128) (1568 1216 128)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 -1 0 12] 0.25"
@@ -161668,7 +161668,7 @@ entity
 		side
 		{
 			"id" "93543"
-			"plane" "(-1024 2944 288) (-1024 1152 288) (-1024 1152 128)"
+			"plane" "(-992 1216 128) (-992 2752 128) (-992 2752 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 -12] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161679,7 +161679,7 @@ entity
 		side
 		{
 			"id" "93542"
-			"plane" "(1536 2944 128) (1536 1152 128) (1536 1152 288)"
+			"plane" "(1568 2752 128) (1568 1216 128) (1568 1216 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 -12] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161690,7 +161690,7 @@ entity
 		side
 		{
 			"id" "93541"
-			"plane" "(1536 2944 288) (-1024 2944 288) (-1024 2944 128)"
+			"plane" "(-992 2752 128) (1568 2752 128) (1568 2752 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161701,7 +161701,7 @@ entity
 		side
 		{
 			"id" "93540"
-			"plane" "(1536 1152 128) (-1024 1152 128) (-1024 1152 288)"
+			"plane" "(1568 1216 128) (-992 1216 128) (-992 1216 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161729,14 +161729,14 @@ entity
 	"classname" "game_arena"
 	"StartDisabled" "0"
 	"spawnflags" "1"
-	"origin" "272 464 208"
+	"origin" "288 416 208"
 	solid
 	{
 		"id" "366399"
 		side
 		{
 			"id" "93557"
-			"plane" "(-1024 1152 288) (1568 1152 288) (1568 -224 288)"
+			"plane" "(-992 -256 288) (-992 1088 288) (1568 1088 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 -1 0 12] 0.25"
@@ -161747,7 +161747,7 @@ entity
 		side
 		{
 			"id" "93556"
-			"plane" "(-1024 -224 128) (1568 -224 128) (1568 1152 128)"
+			"plane" "(-992 1088 128) (-992 -256 128) (1568 -256 128)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 -1 0 12] 0.25"
@@ -161758,7 +161758,7 @@ entity
 		side
 		{
 			"id" "93555"
-			"plane" "(-1024 1152 288) (-1024 -224 288) (-1024 -224 128)"
+			"plane" "(-992 -256 128) (-992 1088 128) (-992 1088 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 -12] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161769,7 +161769,7 @@ entity
 		side
 		{
 			"id" "93554"
-			"plane" "(1568 1152 128) (1568 -224 128) (1568 -224 288)"
+			"plane" "(1568 1088 128) (1568 -256 128) (1568 -256 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 -12] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161780,7 +161780,7 @@ entity
 		side
 		{
 			"id" "93553"
-			"plane" "(1568 1152 288) (-1024 1152 288) (-1024 1152 128)"
+			"plane" "(-992 1088 128) (1568 1088 128) (1568 1088 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161791,7 +161791,7 @@ entity
 		side
 		{
 			"id" "93552"
-			"plane" "(1568 -224 128) (-1024 -224 128) (-1024 -224 288)"
+			"plane" "(1568 -256 128) (-992 -256 128) (-992 -256 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[1 0 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161819,14 +161819,14 @@ entity
 	"classname" "game_arena"
 	"StartDisabled" "0"
 	"spawnflags" "1"
-	"origin" "-1776 920 208"
+	"origin" "-1856 864 208"
 	solid
 	{
 		"id" "366409"
 		side
 		{
 			"id" "93569"
-			"plane" "(-2528 -448 288) (-2528 2288 288) (-1024 2288 288)"
+			"plane" "(-1184 -448 288) (-2528 -448 288) (-2528 2176 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 56] 0.25"
 			"vaxis" "[1 0 0 -52] 0.25"
@@ -161837,7 +161837,7 @@ entity
 		side
 		{
 			"id" "93568"
-			"plane" "(-1024 -448 128) (-1024 2288 128) (-2528 2288 128)"
+			"plane" "(-1184 2176 128) (-2528 2176 128) (-2528 -448 128)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 56] 0.25"
 			"vaxis" "[1 0 0 -52] 0.25"
@@ -161848,7 +161848,7 @@ entity
 		side
 		{
 			"id" "93567"
-			"plane" "(-2528 -448 288) (-1024 -448 288) (-1024 -448 128)"
+			"plane" "(-1184 -448 128) (-2528 -448 128) (-2528 -448 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[-1 0 0 52] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161859,7 +161859,7 @@ entity
 		side
 		{
 			"id" "93566"
-			"plane" "(-2528 2288 128) (-1024 2288 128) (-1024 2288 288)"
+			"plane" "(-2528 2176 128) (-1184 2176 128) (-1184 2176 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[-1 0 0 52] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161870,7 +161870,7 @@ entity
 		side
 		{
 			"id" "93565"
-			"plane" "(-2528 2288 288) (-2528 -448 288) (-2528 -448 128)"
+			"plane" "(-2528 -448 128) (-2528 2176 128) (-2528 2176 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -161881,7 +161881,7 @@ entity
 		side
 		{
 			"id" "93564"
-			"plane" "(-1024 2288 128) (-1024 -448 128) (-1024 -448 288)"
+			"plane" "(-1184 2176 128) (-1184 -448 128) (-1184 -448 288)"
 			"material" "TOOLS/TOOLSTRIGGER"
 			"uaxis" "[0 1 0 56] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
@@ -162693,8 +162693,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-2047.93 1656.28 264.722]"
-		"look" "[-2047.85 1656.71 264.574]"
+		"position" "[-1107.92 2634.15 488.552]"
+		"look" "[-1107.56 2633.96 488.333]"
 	}
 }
 cordon
