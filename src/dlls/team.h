@@ -76,7 +76,6 @@ public:
 public:
 	CUtlVector< CTeamSpawnPoint * > m_aSpawnPoints;
 	CUtlVector< CBasePlayer * >		m_aPlayers;
-	CHandle<CArena>	m_hArena;
 
 	int		m_iPlayersAlive;
 

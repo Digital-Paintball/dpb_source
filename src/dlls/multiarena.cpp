@@ -115,15 +115,24 @@ void CArena::SetupRound( )
 
 	m_State = GS_COUNTDOWN;
 
-	//First remove people who have quit the game
+	// Fix things from last round.
+	for (i = 0; i < m_hPlayers.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+		if (!pPlayer->IsAlive())
+			pPlayer->Spawn();
+
+		if (pPlayer->GetActiveWeapon())
+			pPlayer->GetActiveWeapon()->Holster();
+	}
+
+	// Remove people who have quit the game
 	for (i = 0; i < m_hQuitters.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hQuitters[i]);
 		m_hPlayers.FindAndRemove(pPlayer);
 		if (pPlayer->GetTeam())
 			pPlayer->GetTeam()->RemovePlayer(pPlayer);
-
-		pPlayer->RemoveAllItems(false);
 
 		m_hSpectators.AddToHead( pPlayer );
 
@@ -160,8 +169,6 @@ void CArena::SetupRound( )
 		//Just in case.
 		m_hSpectators.FindAndRemove( pPlayer );
 
-		pPlayer->DeployArmaments();
-
 		pPlayer->SetArena(this);
 
 		if (!pPlayer->GetTeam())
@@ -196,6 +203,7 @@ void CArena::SetupRound( )
 		angLookAt.x = 15;	//Look somewhat at the ground.
 
 		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
+		pPlayer->SetAbsVelocity( Vector(0,0,0) );
 		pPlayer->SetLocalAngles( angLookAt );
 		pPlayer->SnapEyeAngles( angLookAt );
 		pPlayer->LockPlayerInPlace();
@@ -218,6 +226,7 @@ void CArena::BeginThink( )
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 		pPlayer->UnlockPlayer();
+		pPlayer->DeployArmaments();
 	}
 
 	CheckForRoundEnd();
@@ -240,6 +249,8 @@ void CArena::CheckForRoundEnd( )
 	if (iTeamsAlive == 1)
 		//The following log arithmetic is equal to log2(x) which gives us the team number from the bitmask.
 		RoundEnd(log10((float)iTeamsBitmask)/log10((float)2));
+	else if (iTeamsAlive == 0)
+		RoundEnd(0);	//Everybody is dead for some reason! Round draw.
 }
 
 void CArena::RoundEnd( int iWinningTeam )
@@ -289,6 +300,10 @@ void CArena::EndTouch( CBaseEntity *pOther )
 		return;
 
 	CBasePlayer* pPlayer = ToBasePlayer( pOther );
+
+	//Players who have died stop touching the arena, but will soon respawn.
+	if (!pPlayer->IsAlive())
+		return;
 
 	RemoveFromArena(pPlayer);
 }

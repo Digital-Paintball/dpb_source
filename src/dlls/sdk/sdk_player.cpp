@@ -242,33 +242,6 @@ void CSDKPlayer::Event_Killed( const CTakeDamageInfo &info )
 	// because we still want to transmit to the clients in our PVS.
 
 	BaseClass::Event_Killed( info );
-
-	CreateRagdollEntity();
-}
-
-void CSDKPlayer::CreateRagdollEntity()
-{
-	// If we already have a ragdoll, don't make another one.
-	CSDKRagdoll *pRagdoll = dynamic_cast< CSDKRagdoll* >( m_hRagdoll.Get() );
-
-	if ( !pRagdoll )
-	{
-		// create a new one
-		pRagdoll = dynamic_cast< CSDKRagdoll* >( CreateEntityByName( "sdk_ragdoll" ) );
-	}
-
-	if ( pRagdoll )
-	{
-		pRagdoll->m_hPlayer = this;
-		pRagdoll->m_vecRagdollOrigin = GetAbsOrigin();
-		pRagdoll->m_vecRagdollVelocity = GetAbsVelocity();
-		pRagdoll->m_nModelIndex = m_nModelIndex;
-		pRagdoll->m_nForceBone = m_nForceBone;
-		pRagdoll->m_vecForce = Vector(0,0,0);
-	}
-
-	// ragdolls will be removed on round restart automatically
-	m_hRagdoll = pRagdoll;
 }
 
 void CSDKPlayer::DoAnimationEvent( PlayerAnimEvent_t event )

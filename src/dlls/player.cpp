@@ -334,9 +334,16 @@ inline bool ShouldRunCommandsInContext( const CCommandContext *ctx )
 
 void CBasePlayer::DeployArmaments()
 {
-	// TODO: Buy all the weapons the player wants to have.
-	GiveNamedItem( "weapon_marker" );
 	GiveAmmo( 300, AMMO_PAINT );
+	if (GetActiveWeapon())
+	{
+		GetActiveWeapon()->Deploy();
+	}
+	else
+	{
+		// TODO: Buy all the weapons the player wants to have.
+		GiveNamedItem( "weapon_marker" );
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -1388,13 +1395,10 @@ void CBasePlayer::Event_Killed( const CTakeDamageInfo &info )
 
 	SetAnimation( PLAYER_DIE );
 
-	SetViewOffset( VEC_DEAD_VIEWHEIGHT );
 	m_lifeState		= LIFE_DYING;
 
 	pl.deadflag = true;
 	AddSolidFlags( FSOLID_NOT_SOLID );
-	SetMoveType( MOVETYPE_FLYGRAVITY );
-	SetGroundEntity( NULL );
 
 	// clear out the suit message cache so we don't keep chattering
 	SetSuitUpdate(NULL, false, 0);
@@ -1844,15 +1848,6 @@ void CBasePlayer::PlayerDeathThink(void)
 			vecNewVelocity *= flForward;
 			SetAbsVelocity( vecNewVelocity );
 		}
-	}
-
-	if ( HasWeapons() )
-	{
-		// we drop the guns here because weapons that have an area effect and can kill their user
-		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
-		// player class sometimes is freed. It's safer to manipulate the weapons once we know
-		// we aren't calling into any of their code anymore through the player pointer.
-		PackDeadPlayerItems();
 	}
 
 	if (GetModelIndex() && (!IsSequenceFinished()) && (m_lifeState == LIFE_DYING))
@@ -5036,18 +5031,6 @@ void CBasePlayer::ImpulseCommands( )
 	int iImpulse = (int)m_nImpulse;
 	switch (iImpulse)
 	{
-	case 100:
-        // temporary flashlight for level designers
-        if ( FlashlightIsOn() )
-		{
-			FlashlightTurnOff();
-		}
-        else 
-		{
-			FlashlightTurnOn();
-		}
-		break;
-
 	case 200:
 		if ( sv_cheats->GetBool() )
 		{

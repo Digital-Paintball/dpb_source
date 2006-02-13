@@ -150,6 +150,7 @@ enum eteams_list
     TEAM_UNASSIGNED = 0,    // not assigned to a team
     TEAM_BLUE = 1,			// These values are important, don't change.
     TEAM_RED = 2,
+    TEAM_SPECTATOR,
     TEAM_COUNT
 };
 

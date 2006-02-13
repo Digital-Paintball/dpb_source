@@ -46,7 +46,7 @@ public:
 // GR_Think
 	virtual void Think( void );
 	virtual bool IsAllowedToSpawn( CBaseEntity *pEntity );
-	virtual bool FAllowFlashlight( void ) { return TRUE; };
+	virtual bool FAllowFlashlight( void ) { return false; };
 
 	virtual bool FShouldSwitchWeapon( CBasePlayer *pPlayer, CBaseCombatWeapon *pWeapon );
 	virtual CBaseCombatWeapon *GetNextBestWeapon( CBaseCombatCharacter *pPlayer, CBaseCombatWeapon *pCurrentWeapon );

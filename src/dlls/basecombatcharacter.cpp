@@ -1075,78 +1075,8 @@ void CBaseCombatCharacter::Event_Killed( const CTakeDamageInfo &info )
 	// Advance life state to dying
 	m_lifeState = LIFE_DYING;
 
-	// Calculate death force
-	Vector forceVector = CalcDamageForceVector( info );
-
-	// See if there's a ragdoll magnet that should influence our force.
-	CRagdollMagnet *pMagnet = CRagdollMagnet::FindBestMagnet( this );
-	if( pMagnet )
-	{
-		forceVector += pMagnet->GetForceVector( this );
-	}
-
-	CBaseCombatWeapon *pDroppedWeapon = m_hActiveWeapon.Get();
-
-	// Drop any weapon that I own
-	if ( VPhysicsGetObject() )
-	{
-		Vector weaponForce = forceVector * VPhysicsGetObject()->GetInvMass();
-		Weapon_Drop( m_hActiveWeapon, NULL, &weaponForce );
-	}
-	else
-	{
-		Weapon_Drop( m_hActiveWeapon );
-	}
-	
-	// if flagged to drop a health kit
-	if (HasSpawnFlags(SF_NPC_DROP_HEALTHKIT))
-	{
-		CBaseEntity::Create( "item_healthvial", GetAbsOrigin(), GetAbsAngles() );
-	}
 	// clear the deceased's sound channels.(may have been firing or reloading when killed)
 	EmitSound( "BaseCombatCharacter.StopWeaponSounds" );
-
-	// Ragdoll unless we've gibbed
-	if ( ShouldGib( info ) == false )
-	{
-		bool bRagdollCreated = false;
-		if ( (info.GetDamageType() & DMG_DISSOLVE) && CanBecomeRagdoll() )
-		{
-			int nDissolveType = ENTITY_DISSOLVE_NORMAL;
-			if ( info.GetDamageType() & DMG_SHOCK )
-			{
-				nDissolveType = ENTITY_DISSOLVE_ELECTRICAL;
-			}
-
-			bRagdollCreated = Dissolve( NULL, gpGlobals->curtime, false, nDissolveType );
-
-			// Also dissolve any weapons we dropped
-			if ( pDroppedWeapon )
-			{
-				pDroppedWeapon->Dissolve( NULL, gpGlobals->curtime, false, nDissolveType );
-			}
-		}
-#ifdef HL2_DLL
-		else if ( PlayerHasMegaPhysCannon() )
-		{
-			if ( pDroppedWeapon )
-			{
-				pDroppedWeapon->Dissolve( NULL, gpGlobals->curtime, false, ENTITY_DISSOLVE_NORMAL );
-			}
-		}
-#endif
-
-		// Tell my killer that he got me!
-		if( info.GetAttacker() )
-		{
-			g_EventQueue.AddEvent( info.GetAttacker(), "KilledNPC", 0.3, this, this );
-		}
-
-		if ( !bRagdollCreated && ( info.GetDamageType() & DMG_REMOVENORAGDOLL ) == 0 )
-		{
-			BecomeRagdoll( info, forceVector );
-		}
-	}
 }
 
 void CBaseCombatCharacter::Event_Dying( void )

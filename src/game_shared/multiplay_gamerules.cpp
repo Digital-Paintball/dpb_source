@@ -807,7 +807,7 @@ bool CMultiplayRules::IsMultiplayer( void )
 
 	bool CMultiplayRules::FAllowFlashlight( void ) 
 	{ 
-		return flashlight.GetInt() != 0; 
+		return false; 
 	}
 
 	//=========================================================

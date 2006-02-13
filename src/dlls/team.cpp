@@ -104,7 +104,9 @@ void CTeam::Init( const char *pName, int iNumber, CArena *pArena )
 
 	Q_strncpy( m_szTeamname.GetForModify(), pName, MAX_TEAM_NAME_LENGTH );
 	m_iTeamNum = iNumber;
-	m_hArena = pArena;
+
+	AssertMsg(pArena, "Team initialized with NULL arena.");
+	SetArena(pArena);
 }
 
 //-----------------------------------------------------------------------------
@@ -147,7 +149,7 @@ void CTeam::InitializeSpawnpoints( void )
 void CTeam::AddSpawnpoint( CTeamSpawnPoint *pSpawnpoint )
 {
 	m_aSpawnPoints.AddToTail( pSpawnpoint );
-	m_hArena->CalculateSpawnAvg();
+	GetArena()->CalculateSpawnAvg();
 }
 
 //-----------------------------------------------------------------------------

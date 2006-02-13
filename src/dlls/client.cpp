@@ -43,6 +43,8 @@ extern int giPrecacheGrunt;
 extern CBaseEntity*	FindPickerEntity( CBasePlayer* pPlayer );
 
 ConVar  *sv_cheats = NULL;
+
+#ifdef _DEBUG
 /*
 ============
 ClientKill
@@ -56,6 +58,7 @@ void ClientKill( edict_t *pEdict )
 	CBasePlayer *pl = (CBasePlayer*) GetContainingEntity( pEdict );
 	pl->CommitSuicide();
 }
+#endif
 
 char * CheckChatText( char *text )
 {
@@ -545,6 +548,38 @@ BEGIN_DATADESC( CPointServerCommand )
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( point_servercommand, CPointServerCommand );
+
+#ifdef _DEBUG
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+void CC_Player_Kill( void )
+{
+	CBasePlayer *pPlayer = UTIL_GetCommandClient();
+	if (pPlayer)
+	{
+		if ( engine->Cmd_Argc() > 1	)
+		{
+			// Find the matching netname
+			for ( int i = 1; i <= gpGlobals->maxClients; i++ )
+			{
+				CBasePlayer *pPlayer = ToBasePlayer( UTIL_PlayerByIndex(i) );
+				if ( pPlayer )
+				{
+					if ( Q_strstr( pPlayer->GetPlayerName(), engine->Cmd_Argv(1)) )
+					{
+						ClientKill( pPlayer->edict() );
+					}
+				}
+			}
+		}
+		else
+		{
+			ClientKill( pPlayer->edict() );
+		}
+	}
+}
+static ConCommand kill("kill", CC_Player_Kill, "kills the player");
+#endif
 
 #define TALK_INTERVAL 0.66 // min time between say commands from a client
 //------------------------------------------------------------------------------
