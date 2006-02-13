@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "norrington/restroomsign"
+	"$bumpmap" "norrington/restroomsign_normal"
+}
