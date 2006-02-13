@@ -650,12 +650,6 @@ void CBasePlayer::DeathSound( void )
 	{
 		EmitSound( "Player.Death" );
 	}
-
-	// play one of the suit death alarms
-	if ( IsSuitEquipped() )
-	{
-		UTIL_EmitGroupnameSuit(edict(), "HEV_DEAD");
-	}
 }
 
 // override takehealth
@@ -1891,19 +1885,6 @@ void CBasePlayer::PlayerDeathThink(void)
 		// go to dead camera. 
 		StartObserverMode( m_iObserverLastMode );
 	}
-	
-// wait for any button down,  or mp_forcerespawn is set and the respawn time is up
-	if (!fAnyButtonDown 
-		&& !( g_pGameRules->IsMultiplayer() && forcerespawn.GetInt() > 0 && (gpGlobals->curtime > (m_flDeathTime + 5))) )
-		return;
-
-	m_nButtons = 0;
-	m_iRespawnFrames = 0;
-
-	//Msg( "Respawn\n");
-
-	respawn( this, !IsObserver() );// don't copy a corpse if we're in deathcam.
-	SetNextThink( TICK_NEVER_THINK );
 }
 
 /*
@@ -4532,7 +4513,6 @@ void CBasePlayer::CommitSuicide()
 	m_fNextSuicideTime = gpGlobals->curtime + 5;  
 
 	// have the player kill themself
-	m_iHealth = 0;
 	Event_Killed( CTakeDamageInfo( this, this, 0, DMG_NEVERGIB ) );
 	Event_Dying();
 }
