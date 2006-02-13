@@ -134,7 +134,10 @@ int C_PlayerResource::GetTeamScore(int index)
 
 int C_PlayerResource::GetFrags(int index )
 {
-	return 666;
+	if ( !IsConnected( index ) )
+		return 0;
+
+	return m_iScore[index];
 }
 
 bool C_PlayerResource::IsLocalPlayer(int index)

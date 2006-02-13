@@ -17,8 +17,7 @@
 
 #define TYPE_NOTEAM			0	// NOTEAM must be zero :)
 #define TYPE_TEAM			1	// a section for a single team	
-#define TYPE_SPECTATORS		2	// a section for a spectator group
-#define TYPE_BLANK			3
+#define TYPE_UNASSIGNED		2	// a section for a spectator group
 
 
 //-----------------------------------------------------------------------------
@@ -63,7 +62,7 @@ protected:
 	virtual void UpdatePlayerInfo();
 	
 	virtual void AddHeader(); // add the start header of the scoreboard
-	virtual void AddSection(int teamType, int teamNumber); // add a new section header for a team
+	virtual int AddSection(int teamType, int teamNumber); // add a new section header for a team
 
 	// sorts players within a section
 	static bool StaticPlayerSortFunc(vgui::SectionedListPanel *list, int itemID1, int itemID2);
@@ -90,7 +89,10 @@ private:
 	IViewPort	*m_pViewPort;
 	float		m_fNextUpdateTime;
 
-
+private:
+	int m_iTeamSections[TEAM_COUNT];	//store off the section id's of each team
+	int m_iPlayersOnTeam[TEAM_COUNT];	//store the player counts
+	int m_iLatency[TEAM_COUNT];			//i suppose we could just make a single struct for all this info ;)
 
 	// methods
 	void FillScoreBoard();

@@ -91,6 +91,15 @@ public:
 	// entindex is -2 to represent the local client's voice being acked by the server.
 	void	UpdateSpeakerStatus(int entindex, bool bTalking);
 
+	enum speakerIcons
+	{
+		VOICE_NEVERSPOKEN,
+		VOICE_NOTTALKING,
+		VOICE_TALKING,
+		VOICE_BANNED
+	};
+	int GetSpeakerStatus(int entindex);
+
 	// Call from the HUD_CreateEntities function so it can add sprites above player heads.
 	void	DrawHeadLabels();
 	void	SetHeadLabelOffset( float offset );

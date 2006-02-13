@@ -14,6 +14,8 @@
 #include <igameresources.h>
 
 #include "clientscoreboarddialog.h"
+#include "sdk_gamerules.h"
+#include "voice_status.h"
 
 #include <vgui/IScheme.h>
 #include <vgui/ILocalize.h>
@@ -47,7 +49,7 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 {
 	m_iPlayerIndexSymbol = KeyValuesSystem()->GetSymbolForString("playerIndex");
 
-	//memset(s_VoiceImage, 0x0, sizeof( s_VoiceImage ));
+	memset(s_VoiceImage, 0x0, sizeof( s_VoiceImage ));
 	TrackerImage = 0;
 	m_pViewPort = pViewPort;
 
@@ -105,6 +107,7 @@ void CClientScoreBoardDialog::Reset()
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::InitScoreboardSections()
 {
+	AddHeader();
 }
 
 //-----------------------------------------------------------------------------
@@ -114,13 +117,12 @@ void CClientScoreBoardDialog::ApplySchemeSettings( IScheme *pScheme )
 {
 	BaseClass::ApplySchemeSettings( pScheme );
 	ImageList *imageList = new ImageList(false);
-//	s_VoiceImage[0] = 0;	// index 0 is always blank
-//	s_VoiceImage[CVoiceStatus::VOICE_NEVERSPOKEN] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_speaker1", true));
-//	s_VoiceImage[CVoiceStatus::VOICE_NOTTALKING] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_speaker2", true));
-//	s_VoiceImage[CVoiceStatus::VOICE_TALKING] = imageList->AddImage(scheme()->GetImage( "gfx/vgui/640_speaker3", true));
-//	s_VoiceImage[CVoiceStatus::VOICE_BANNED] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_voiceblocked", true));
-	
-//	TrackerImage = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_scoreboardtracker", true));
+
+	s_VoiceImage[0] = 0;	// index 0 is always blank
+	s_VoiceImage[CVoiceStatus::VOICE_NEVERSPOKEN] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_speaker1", true));
+	s_VoiceImage[CVoiceStatus::VOICE_NOTTALKING] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_speaker2", true));
+	s_VoiceImage[CVoiceStatus::VOICE_TALKING] = imageList->AddImage(scheme()->GetImage( "gfx/vgui/640_speaker3", true));
+	s_VoiceImage[CVoiceStatus::VOICE_BANNED] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_voiceblocked", true));
 
 	// resize the images to our resolution
 	for (int i = 0; i < imageList->GetImageCount(); i++ )
@@ -151,6 +153,7 @@ void CClientScoreBoardDialog::ShowPanel(bool bShow)
 		Reset();
 		Update();
 
+		SetMouseInputEnabled( true );
 		Activate();
 	}
 	else
@@ -230,7 +233,49 @@ void CClientScoreBoardDialog::Update( void )
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::UpdateTeamInfo()
 {
-// TODO: work out a sorting algorthim for team display for TF2
+	int sectionId;
+	int i;
+	char cstring[256];
+	char plural[2];
+	wchar_t tn[256];
+	IGameResources *gr = GameResources();
+	if ( !gr )
+		return;
+
+	for (i = TEAM_UNASSIGNED; i < TEAM_COUNT; i++)
+	{
+		sectionId = m_iTeamSections[i];
+
+		if (m_iPlayersOnTeam[i] == 1)
+			sprintf(plural,"");
+		else
+			sprintf(plural,"s");
+
+		sprintf(cstring, "%s - (%i player%s)", gr->GetTeamName(i),  m_iPlayersOnTeam[i], plural);
+		localize()->ConvertANSIToUnicode(cstring, tn, sizeof(tn));
+		m_pPlayerList->ModifyColumn(sectionId, "name", tn);
+
+		if ( m_iPlayersOnTeam[i] > 0 )
+			m_iLatency[i] /= m_iPlayersOnTeam[i];
+		else
+			m_iLatency[i] = 0;
+
+		wchar_t sz[6];
+		swprintf(sz, L"%d", gr->GetTeamScore(i));
+		m_pPlayerList->ModifyColumn(sectionId, "score", sz);
+		if (m_iLatency[i] < 1)
+		{
+			m_pPlayerList->ModifyColumn(sectionId, "ping", L"");
+		}
+		else
+		{
+			swprintf(sz, L"%i", m_iLatency[i]);
+			m_pPlayerList->ModifyColumn(sectionId, "ping", sz);
+		}
+		m_iLatency[i] = 0;
+
+		m_pPlayerList->SetSectionFgColor(sectionId, gr->GetTeamColor(i));
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -262,8 +307,12 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 			playerData->SetString("name", newName);
 
 			int itemID = FindItemIDForPlayerIndex( i );
-  			int sectionID = gr->GetTeam( i );
-			
+			int playerTeam = gr->GetTeam(i);
+			int sectionID = m_iTeamSections[playerTeam];
+
+			m_iPlayersOnTeam[playerTeam]++;
+			m_iLatency[playerTeam]+=playerData->GetInt("ping");
+
 			if ( gr->IsLocalPlayer( i ) )
 			{
 				selectedRow = itemID;
@@ -280,7 +329,7 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 			}
 
 			// set the row color based on the players team
-			m_pPlayerList->SetItemFgColor( itemID, gr->GetTeamColor( sectionID ) );
+			m_pPlayerList->SetItemFgColor( itemID, gr->GetTeamColor( playerTeam ) );
 
 			playerData->deleteThis();
 		}
@@ -306,55 +355,65 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::AddHeader()
 {
-	// add the top header
+	m_iSectionId = 0; //make a blank one
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "#PlayerName", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "frags", "#PlayerScore", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "deaths", "#PlayerDeath", 0, scheme()->GetProportionalScaledValue(DEATH_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
+
+	m_iSectionId = 1;
+	m_pPlayerList->AddSection(m_iSectionId, "");
+	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "#PlayerScore", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
-//	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
-//	m_pPlayerList->AddColumnToSection(m_iSectionId, "tracker", "#PlayerTracker", SectionedListPanel::COLUMN_IMAGE, scheme()->GetProportionalScaledValue(FRIENDS_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
+
+	m_iSectionId = 2; //first team;
+	m_iTeamSections[TEAM_BLUE]			= AddSection(TYPE_TEAM, TEAM_BLUE);
+	m_iTeamSections[TEAM_RED]			= AddSection(TYPE_TEAM, TEAM_RED);
+	m_iTeamSections[TEAM_UNASSIGNED]	= AddSection(TYPE_NOTEAM, TEAM_UNASSIGNED);
 }
 
 //-----------------------------------------------------------------------------
 // Purpose: Adds a new section to the scoreboard (i.e the team header)
 //-----------------------------------------------------------------------------
-void CClientScoreBoardDialog::AddSection(int teamType, int teamNumber)
+int CClientScoreBoardDialog::AddSection(int teamType, int teamNumber)
 {
 	if ( teamType == TYPE_TEAM )
 	{
 		IGameResources *gr = GameResources();
 
 		if ( !gr )
-			return;
+			return -1;
 
 		// setup the team name
 		wchar_t *teamName = localize()->Find( gr->GetTeamName(teamNumber) );
 		wchar_t name[64];
-		wchar_t string1[1024];
-		
+       
 		if (!teamName)
 		{
 			localize()->ConvertANSIToUnicode(gr->GetTeamName(teamNumber), name, sizeof(name));
 			teamName = name;
 		}
 
-		localize()->ConstructString( string1, sizeof( string1 ), localize()->Find("#Player"), 2, teamName );
-		
 		m_pPlayerList->AddSection(m_iSectionId, "", StaticPlayerSortFunc);
+		m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
+		m_pPlayerList->SetFgColor(gr->GetTeamColor(teamNumber));
 
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", string1, 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "frags", "", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "deaths", "", 0, scheme()->GetProportionalScaledValue(DEATH_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", teamName, 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "0", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
 		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
 	}
-	else if ( teamType == TYPE_SPECTATORS )
+	else if ( teamType == TYPE_UNASSIGNED )
 	{
 		m_pPlayerList->AddSection(m_iSectionId, "");
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "#Spectators", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH));
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "frags", "", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "#Unassigned", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH));
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
 	}
+	m_iSectionId++; //increment for next
+	return m_iSectionId - 1;
 }
 
 //-----------------------------------------------------------------------------
@@ -366,21 +425,12 @@ bool CClientScoreBoardDialog::StaticPlayerSortFunc(vgui::SectionedListPanel *lis
 	KeyValues *it2 = list->GetItemData(itemID2);
 	Assert(it1 && it2);
 
-	// first compare frags
-	int v1 = it1->GetInt("frags");
-	int v2 = it2->GetInt("frags");
+	int v1 = it1->GetInt("score");
+	int v2 = it2->GetInt("score");
 	if (v1 > v2)
 		return true;
 	else if (v1 < v2)
 		return false;
-
-	// next compare deaths
-	v1 = it1->GetInt("deaths");
-	v2 = it2->GetInt("deaths");
-	if (v1 > v2)
-		return false;
-	else if (v1 < v2)
-		return true;
 
 	// the same, so compare itemID's (as a sentinel value to get deterministic sorts)
 	return itemID1 < itemID2;
@@ -396,8 +446,7 @@ bool CClientScoreBoardDialog::GetPlayerScoreInfo(int playerIndex, KeyValues *kv)
 	if (!gr )
 		return false;
 
-	kv->SetInt("deaths", gr->GetDeaths( playerIndex ) );
-	kv->SetInt("frags", gr->GetFrags( playerIndex ) );
+	kv->SetInt("score", gr->GetFrags( playerIndex ) );
 	kv->SetInt("ping", gr->GetPing( playerIndex ) ) ;
 	kv->SetString("name", gr->GetPlayerName( playerIndex ) );
 	kv->SetInt("playerIndex", playerIndex);
@@ -423,6 +472,11 @@ bool CClientScoreBoardDialog::GetPlayerScoreInfo(int playerIndex, KeyValues *kv)
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::FillScoreBoard()
 {
+	for (int i = TEAM_UNASSIGNED; i < TEAM_COUNT; i++)
+	{
+		m_iPlayersOnTeam[i] = 0;
+	}
+	
 	// update totals information
 	UpdateTeamInfo();
 

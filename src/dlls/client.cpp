@@ -164,7 +164,7 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 	if ( g_pGameRules )
 	{
 		pszFormat = g_pGameRules->GetChatFormat( teamonly, pPlayer );
-		pszPrefix = g_pGameRules->GetChatPrefix( teamonly, pPlayer );	
+		pszPrefix = g_pGameRules->GetChatPrefix( teamonly, pPlayer );
 		pszLocation = g_pGameRules->GetChatLocation( teamonly, pPlayer );
 	}
 

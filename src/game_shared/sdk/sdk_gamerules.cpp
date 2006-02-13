@@ -341,7 +341,7 @@ CAmmoDef* GetAmmoDef()
 
 const char *CSDKGameRules::GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer )
 {
-	return "(chat prefix)";
+	return NULL;
 }
 
 #endif

@@ -251,7 +251,6 @@ SET( CLIENT_SDK_SRCS
 	sdk/sdk_fx_impacts.cpp
 	sdk/sdk_hud_ammo.cpp
 	sdk/sdk_hud_chat.cpp
-	sdk/sdk_hud_health.cpp
 	sdk/sdk_hud_message.cpp
 	sdk/sdk_hud_weaponselection.cpp
 	sdk/sdk_in_main.cpp
