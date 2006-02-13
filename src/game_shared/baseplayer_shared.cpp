@@ -1483,7 +1483,7 @@ void CBasePlayer::SharedSpawn()
 	// dont let uninitialized value here hurt the player
 	m_Local.m_flFallVelocity = 0;
 
-	SetBloodColor( BLOOD_COLOR_RED );
+	SetBloodColor( DONT_BLEED );
 }
 
 
