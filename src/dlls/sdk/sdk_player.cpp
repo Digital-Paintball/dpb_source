@@ -14,7 +14,7 @@
 #include "viewport_panel_names.h"
 
 extern int gEvilImpulse101;
-#define SDK_PLAYER_MODEL "models/player/terror.mdl"
+#define SDK_PLAYER_MODEL "models/player/player.mdl"
 
 
 // -------------------------------------------------------------------------------- //

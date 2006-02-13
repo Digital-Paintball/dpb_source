@@ -25,8 +25,6 @@ public:
 	
 	virtual void Parse( ::KeyValues *pKeyValuesData, const char *szWeaponName );
 
-	char m_szAnimExtension[16];		// string used to generate player animations with this weapon
-
 	// Parameters for FX_FireBullets:
 	int		m_iDamage;
 	int		m_iBullets;
