@@ -134,6 +134,8 @@ void CArena::SetupRound( )
 		if (pPlayer->GetTeam())
 			pPlayer->GetTeam()->RemovePlayer(pPlayer);
 
+		pPlayer->RemoveAllItems(false);
+
 		m_hSpectators.AddToHead( pPlayer );
 
 		// default to normal spawn
