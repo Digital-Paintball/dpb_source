@@ -1,6 +1,6 @@
 "LightmappedGeneric"
 {
-	"$basetexture" "materials/VGUI/gui/vneutral"
+	"$basetexture" "VGUI/gui/vneutral"
 	"$translucent" 1
 	"$vertexcolor" 1
 	"$vertexalpha" 1
