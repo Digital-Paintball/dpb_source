@@ -25,7 +25,6 @@ C_Arena::C_Arena( )
 
 C_Arena::~C_Arena( )
 {
-	BaseClass::~C_BaseEntity();
 	s_hArenas.FindAndRemove( this );
 }
 
