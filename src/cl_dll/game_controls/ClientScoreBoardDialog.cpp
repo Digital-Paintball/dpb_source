@@ -119,10 +119,10 @@ void CClientScoreBoardDialog::ApplySchemeSettings( IScheme *pScheme )
 	ImageList *imageList = new ImageList(false);
 
 	s_VoiceImage[0] = 0;	// index 0 is always blank
-	s_VoiceImage[CVoiceStatus::VOICE_NEVERSPOKEN] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_neverspoken", true));
-	s_VoiceImage[CVoiceStatus::VOICE_NOTTALKING] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_nottalking", true));
-	s_VoiceImage[CVoiceStatus::VOICE_TALKING] = imageList->AddImage(scheme()->GetImage( "gfx/vgui/640_talking", true));
-	s_VoiceImage[CVoiceStatus::VOICE_BANNED] = imageList->AddImage(scheme()->GetImage("gfx/vgui/640_banned", true));
+	s_VoiceImage[CVoiceStatus::VOICE_NEVERSPOKEN] = imageList->AddImage(scheme()->GetImage("gui/vdisabled", true));
+	s_VoiceImage[CVoiceStatus::VOICE_NOTTALKING] = imageList->AddImage(scheme()->GetImage("gui/vneutral", true));
+	s_VoiceImage[CVoiceStatus::VOICE_TALKING] = imageList->AddImage(scheme()->GetImage( "gui/vactive", true));
+	s_VoiceImage[CVoiceStatus::VOICE_BANNED] = imageList->AddImage(scheme()->GetImage("gui/vbanned", true));
 
 	// resize the images to our resolution
 	for (int i = 0; i < imageList->GetImageCount(); i++ )
