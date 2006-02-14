@@ -180,6 +180,8 @@ INSTALL_FILES(/materials/models/props_field FILES
 	materials/models/props_field/rock_texture_5_normal.vtf
 	materials/models/props_field/tent.vtf
 	materials/models/props_field/picnictable.vtf
+	materials/models/props_field/chronograph.vmt
+	materials/models/props_field/chronograph.vtf
 )
 
 INSTALL_FILES(/materials/models/props_foliage/shrub FILES
@@ -350,9 +352,14 @@ INSTALL_FILES(/materials/models/weapons FILES
 	materials/models/weapons/v_smg_hopper.vtf
 	materials/models/weapons/v_smg_tank.vmt
 	materials/models/weapons/v_smg_tank.vtf
+	materials/models/weapons/w_blazer.vmt
+	materials/models/weapons/w_blazer.vtf
 )
 
 INSTALL_FILES(/materials/norrington FILES
+	materials/norrington/restroomsign.vmt
+	materials/norrington/restroomsign.vtf
+	materials/norrington/restroomsign_normal.vtf
 	materials/norrington/pineWall.vmt
 	materials/norrington/pineWall.vtf
 	materials/norrington/rygProshopCarpet.vmt
@@ -585,6 +592,18 @@ INSTALL_FILES(/materials/textures FILES
 	materials/textures/kuja_pavement_oldconcrete.vtf
 	materials/textures/kuja_grass_prairiegrass.vmt
 	materials/textures/kuja_grass_blotchygrass.vtf
+	materials/textures/asphalt-dark.vmt
+)
+
+INSTALL_FILES(/materials/VGUI/gui FILES
+	materials/VGUI/gui/vactive.vtf
+	materials/VGUI/gui/vbanned.vmt
+	materials/VGUI/gui/vdisabled.vmt
+	materials/VGUI/gui/vneutral.vmt
+	materials/VGUI/gui/vactive.vmt
+	materials/VGUI/gui/vbanned.vtf
+	materials/VGUI/gui/vdisabled.vtf
+	materials/VGUI/gui/vneutral.vtf
 )
 
 INSTALL_FILES(/materials/VGUI/logos/UI FILES
@@ -654,18 +673,6 @@ INSTALL_FILES(/models/player FILES
 	models/player/cs_player_shared.mdl
 	models/player/player_animations.ani
 	models/player/player_animations.mdl
-	models/player/Police_SDK.dx80.vtx
-	models/player/Police_SDK.dx90.vtx
-	models/player/Police_SDK.mdl
-	models/player/Police_SDK.phy
-	models/player/Police_SDK.sw.vtx
-	models/player/Police_SDK.vvd
-	models/player/terror.dx80.vtx
-	models/player/terror.dx90.vtx
-	models/player/terror.mdl
-	models/player/terror.phy
-	models/player/terror.sw.vtx
-	models/player/terror.vvd
 	models/player/player.vvd
 	models/player/player.dx80.vtx
 	models/player/player.dx90.vtx
@@ -743,6 +750,18 @@ INSTALL_FILES(/models/props_field FILES
 	models/props_field/foldingtable.sw.vtx
 	models/props_field/foldingtable.mdl
 	models/props_field/longcanopy.dx90.vtx
+	models/props_field/chronograph.sw.vtx
+	models/props_field/chronograph.mdl
+	models/props_field/lightpole_16thscale.vvd
+	models/props_field/lightpole_16thscale.phy
+	models/props_field/lightpole_16thscale.dx80.vtx
+	models/props_field/chronograph.vvd
+	models/props_field/lightpole_16thscale.sw.vtx
+	models/props_field/chronograph.phy
+	models/props_field/chronograph.dx90.vtx
+	models/props_field/lightpole_16thscale.dx90.vtx
+	models/props_field/lightpole_16thscale.mdl
+	models/props_field/chronograph.dx80.vtx
 )
 
 INSTALL_FILES(/models/props_foliage FILES
@@ -918,6 +937,12 @@ INSTALL_FILES(/models/weapons FILES
 	models/weapons/v_blazer.dx80.vtx
 	models/weapons/v_smg1.jpg
 	models/weapons/v_blazer.sw.vtx
+	models/weapons/w_blazer.dx90.vtx
+	models/weapons/w_blazer.mdl
+	models/weapons/w_blazer.vvd
+	models/weapons/w_blazer.phy
+	models/weapons/w_blazer.dx80.vtx
+	models/weapons/w_blazer.sw.vtx
 )
 
 INSTALL_FILES(/resource FILES
