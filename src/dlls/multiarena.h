@@ -15,10 +15,13 @@
 #include "triggers.h"
 #include "player.h"
 #include "team_spawnpoint.h"
+#include "multiarena_shared.h"
 
 class CArena : public CBaseTrigger
 {
 public:
+	DECLARE_SERVERCLASS();
+	DECLARE_DATADESC();
 	DECLARE_CLASS( CArena, CBaseTrigger );
 
 	void WaitingThink();
@@ -48,19 +51,12 @@ public:
 	static int GetArenaNumber();
 	static CArena* GetArena(int i);
 
-	DECLARE_DATADESC();
-	
-	typedef enum {
-		GS_WAITING,		//Waiting for players
-		GS_COUNTDOWN,	//Counting down for the round to begin
-		GS_INPROGRESS,	//People are killing each other right now
-		GS_VICTORY,		//One team has achieved victory
-	} gamestate_t;
+	int UpdateTransmitState() { return SetTransmitState( FL_EDICT_ALWAYS ); }
 
-	gamestate_t m_State;
+	CNetworkVar( CArenaShared::gamestate_t, m_State );
 
 private:
-	int									m_iID;
+	CNetworkVar( int, m_iID );
 	static CUtlVector<CHandle<CArena> >	s_hArenas;
 
 	CUtlVector<EHANDLE>					m_hObjects;

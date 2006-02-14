@@ -40,6 +40,7 @@ SET( CLIENT_SRCS
 	c_lightglow.cpp
 	c_materialmodifycontrol.cpp
 	c_movie_explosion.cpp
+	c_multiarena.cpp
 	c_particle_fire.cpp
 	c_particle_smokegrenade.cpp
 	c_physbox.cpp

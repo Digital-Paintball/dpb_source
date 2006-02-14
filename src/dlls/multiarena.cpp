@@ -19,6 +19,11 @@ BEGIN_DATADESC( CArena )
 
 END_DATADESC()
 
+IMPLEMENT_SERVERCLASS_ST( CArena, DT_Arena )
+	SendPropInt( SENDINFO( m_State ), 2, SPROP_UNSIGNED ),
+	SendPropInt( SENDINFO( m_iID ), 4, SPROP_UNSIGNED ),
+END_SEND_TABLE() 
+
 LINK_ENTITY_TO_CLASS(game_arena, CArena);
 
 CUtlVector<CHandle<CArena> > CArena::s_hArenas;
@@ -29,8 +34,9 @@ void CArena::Spawn( )
 	InitTrigger();
 
 	AddSpawnFlags(SF_TRIGGER_ALLOW_ALL);
+	AddEFlags( EFL_FORCE_CHECK_TRANSMIT );
 
-	m_State = GS_WAITING;
+	m_State = CArenaShared::GS_WAITING;
 
 	SetNextThink( gpGlobals->curtime + 5.0 );
 	SetThink( WaitingThink );
@@ -97,7 +103,7 @@ bool CArena::HasTeam(int iTeam)
 
 void CArena::WaitingThink( )
 {
-	m_State = GS_WAITING;
+	m_State = CArenaShared::GS_WAITING;
 	if (m_hPlayers.Count() + m_hJoiners.Count() > 0)
 	{
 		SetupRound();
@@ -113,7 +119,7 @@ void CArena::SetupRound( )
 {
 	int i;
 
-	m_State = GS_COUNTDOWN;
+	m_State = CArenaShared::GS_COUNTDOWN;
 
 	// Fix things from last round.
 	for (i = 0; i < m_hPlayers.Count(); i++)
@@ -222,7 +228,7 @@ void CArena::SetupRound( )
 
 void CArena::BeginThink( )
 {
-	m_State = GS_INPROGRESS;
+	m_State = CArenaShared::GS_INPROGRESS;
 
 	for (int i = 0; i < m_hPlayers.Count(); i++)
 	{
@@ -257,7 +263,7 @@ void CArena::CheckForRoundEnd( )
 
 void CArena::RoundEnd( int iWinningTeam )
 {
-	m_State = GS_VICTORY;
+	m_State = CArenaShared::GS_VICTORY;
 
 	SetThink( WaitingThink );
 	SetNextThink( gpGlobals->curtime + 3.0 );
