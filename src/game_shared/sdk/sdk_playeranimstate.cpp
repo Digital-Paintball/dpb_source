@@ -448,9 +448,7 @@ const char* CSDKPlayerAnimState::GetWeaponSuffix()
 	if ( !pWeapon )
 		return "Pistol";
 
-	const char *pSuffix = pWeapon->GetSDKWpnData().m_szAnimExtension;
-
-	return pSuffix;
+	return "Pistol";
 }
 
 

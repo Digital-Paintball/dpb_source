@@ -44,7 +44,6 @@ extern CBaseEntity*	FindPickerEntity( CBasePlayer* pPlayer );
 
 ConVar  *sv_cheats = NULL;
 
-#ifdef _DEBUG
 /*
 ============
 ClientKill
@@ -58,7 +57,6 @@ void ClientKill( edict_t *pEdict )
 	CBasePlayer *pl = (CBasePlayer*) GetContainingEntity( pEdict );
 	pl->CommitSuicide();
 }
-#endif
 
 char * CheckChatText( char *text )
 {

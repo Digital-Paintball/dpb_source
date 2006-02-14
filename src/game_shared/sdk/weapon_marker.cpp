@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+ //========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose: 
 //
@@ -515,8 +515,6 @@ void CWeaponMarker::PrimaryAttack( void )
 	CSDKPlayer *pPlayer = GetPlayerOwner();
 
 	float flCycleTime = pWeaponInfo.m_flCycleTime;
-
-	bool bPrimaryMode = true;
 
 	float flSpread = 0.01f;
 
