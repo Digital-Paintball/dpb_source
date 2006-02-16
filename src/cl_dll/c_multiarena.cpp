@@ -6,6 +6,7 @@
 //=============================================================================//
 
 #include "c_multiarena.h"
+#include "clientscoreboarddialog.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -19,13 +20,14 @@ CUtlVector<CHandle<C_Arena> > C_Arena::s_hArenas;
 
 C_Arena::C_Arena( )
 {
-	BaseClass();
 	s_hArenas.AddToTail( this );
+	gViewPortInterface->UpdatePanel( PANEL_SCOREBOARD );
 }
 
 C_Arena::~C_Arena( )
 {
 	s_hArenas.FindAndRemove( this );
+	gViewPortInterface->UpdatePanel( PANEL_SCOREBOARD );
 }
 
 void C_Arena::OnDataChanged( DataUpdateType_t updateType )

@@ -374,9 +374,6 @@ void C_SDKPlayer::DoAnimationEvent( PlayerAnimEvent_t event )
 bool C_SDKPlayer::ShouldDraw( void )
 {
 	// If we're dead, our ragdoll will be drawn for us instead.
-	if ( !IsAlive() )
-		return false;
-
 	if( GetTeamNumber() == TEAM_SPECTATOR )
 		return false;
 

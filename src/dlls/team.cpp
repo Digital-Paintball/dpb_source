@@ -253,6 +253,8 @@ void CTeam::RemovePlayer( CBasePlayer *pPlayer )
 	m_aPlayers.FindAndRemove( pPlayer );
 	pPlayer->ResetTeam();
 	NetworkStateChanged();
+
+	GetArena()->CheckForRoundEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -277,7 +279,12 @@ CBasePlayer *CTeam::GetPlayer( int iIndex )
 //-----------------------------------------------------------------------------
 void CTeam::ResetPlayersAlive( )
 {
-	m_iPlayersAlive = m_aPlayers.Count();
+	m_iPlayersAlive = 0;
+	for (int i = 0; i < m_aPlayers.Count(); i++)
+		if (m_aPlayers[i]->IsAlive())
+            m_iPlayersAlive++;
+
+	GetArena()->CheckForRoundEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -298,6 +305,8 @@ void CTeam::PlayerSpawn( CBasePlayer *pPlayer )
 {
 	if (m_aPlayers.HasElement(pPlayer))
 		m_iPlayersAlive++;
+
+	GetArena()->CheckForRoundEnd();
 }
 
 //------------------------------------------------------------------------------------------------------------------

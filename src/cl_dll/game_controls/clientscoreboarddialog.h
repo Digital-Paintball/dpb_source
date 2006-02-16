@@ -60,6 +60,7 @@ protected:
 	virtual void InitScoreboardSections();
 	virtual void UpdateTeamInfo();
 	virtual void UpdatePlayerInfo();
+	virtual void UpdateArenaInfo();
 	
 	virtual void AddHeader(); // add the start header of the scoreboard
 	virtual int AddSection(int teamType, int teamNumber); // add a new section header for a team
@@ -76,6 +77,8 @@ protected:
 
 	vgui::SectionedListPanel *m_pPlayerList;
 	int				m_iSectionId; // the current section we are entering into
+
+	CUtlVector<vgui::Button*>	m_hButtons;
 
 	int s_VoiceImage[5];
 	int TrackerImage;

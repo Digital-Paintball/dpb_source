@@ -47,6 +47,7 @@ class IViewPort
 {
 public:
 	virtual void UpdateAllPanels( void ) = 0;
+	virtual void UpdatePanel( const char *pName ) = 0;
 	virtual void ShowPanel( const char *pName, bool state ) = 0;	
 	virtual void ShowPanel( IViewPortPanel* pPanel, bool state ) = 0;	
 	virtual void ShowBackGround(bool bShow) = 0;

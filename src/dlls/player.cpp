@@ -1387,7 +1387,9 @@ void CBasePlayer::Event_Killed( const CTakeDamageInfo &info )
 		GetActiveWeapon()->Holster();
 	}
 
-	SetAnimation( PLAYER_DIE );
+	// HACK TODO The player animations should have an ACT_DIE activity.
+	ResetSequence( LookupSequence("Death1") );
+	SetCycle( 0 );
 
 	m_lifeState		= LIFE_DYING;
 

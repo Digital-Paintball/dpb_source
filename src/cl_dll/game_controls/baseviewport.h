@@ -43,6 +43,7 @@ public:
 	virtual bool AddNewPanel( IViewPortPanel* pPanel );
 	virtual void CreateDefaultPanels( void );
 	virtual void UpdateAllPanels( void );
+	virtual void UpdatePanel( const char *pName );
 
 	virtual void Start( IGameUIFuncs *pGameUIFuncs, IGameEventManager2 *pGameEventManager );
 	virtual void SetParent(vgui::VPANEL parent);

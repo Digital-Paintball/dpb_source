@@ -16,6 +16,7 @@
 #include "clientscoreboarddialog.h"
 #include "sdk_gamerules.h"
 #include "voice_status.h"
+#include "c_multiarena.h"
 
 #include <vgui/IScheme.h>
 #include <vgui/ILocalize.h>
@@ -77,6 +78,12 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	// update scoreboard instantly if on of these events occure
 	gameeventmanager->AddListener(this, "hltv_status", false );
 	gameeventmanager->AddListener(this, "server_spawn", false );
+
+	// Four default buttons to work with.
+	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
+	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
+	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
+	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
 }
 
 //-----------------------------------------------------------------------------
@@ -85,6 +92,9 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 CClientScoreBoardDialog::~CClientScoreBoardDialog()
 {
 	gameeventmanager->RemoveListener(this);
+
+	for (int i = 0; i < m_hButtons.Count(); i++)
+		delete m_hButtons[i];
 }
 
 //-----------------------------------------------------------------------------
@@ -351,16 +361,38 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CClientScoreBoardDialog::UpdateArenaInfo()
+{
+	for (int i = 0; i < m_hButtons.Count(); i++)
+	{
+		if (i < C_Arena::GetArenaNumber())
+		{
+			m_hButtons[i]->SetVisible(true);
+			m_hButtons[i]->SetPos(i*70+10, 26);
+		}
+		else
+			m_hButtons[i]->SetVisible(false);
+	}
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: adds the top header of the scoreboars
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::AddHeader()
 {
-	m_iSectionId = 0; //make a blank one
+	m_iSectionId = 0; //make a blank one for the server name
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
 
-	m_iSectionId = 1;
+	m_iSectionId = 1; //make a blank one for arenas
+	m_pPlayerList->AddSection(m_iSectionId, "");
+	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
+
+	m_iSectionId = 2;
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
@@ -368,7 +400,7 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
 
-	m_iSectionId = 2; //first team;
+	m_iSectionId = 3; //first team;
 	m_iTeamSections[TEAM_BLUE]			= AddSection(TYPE_TEAM, TEAM_BLUE);
 	m_iTeamSections[TEAM_RED]			= AddSection(TYPE_TEAM, TEAM_RED);
 	m_iTeamSections[TEAM_UNASSIGNED]	= AddSection(TYPE_NOTEAM, TEAM_UNASSIGNED);
@@ -476,6 +508,8 @@ void CClientScoreBoardDialog::FillScoreBoard()
 	{
 		m_iPlayersOnTeam[i] = 0;
 	}
+
+	UpdateArenaInfo();
 	
 	// update totals information
 	UpdateTeamInfo();

@@ -174,6 +174,35 @@ void CBaseViewport::UpdateAllPanels( void )
 	}
 }
 
+void CBaseViewport::UpdatePanel( const char *pName )
+{
+	if ( Q_strcmp( pName, PANEL_ALL ) == 0 )
+	{
+		for (int i=0; i< m_Panels.Count(); i++ )
+		{
+			m_Panels[i]->Update( );
+		}
+
+		return;
+	}
+
+	IViewPortPanel * pPanel = NULL;
+
+	if ( Q_strcmp( pName, PANEL_ACTIVE ) == 0 )
+	{
+		pPanel = m_pActivePanel;
+	}
+	else
+	{
+		pPanel = FindPanelByName( pName );
+	}
+
+	if ( !pPanel )
+		return;
+
+	pPanel->Update( );
+}
+
 IViewPortPanel* CBaseViewport::CreatePanelByName(const char *szPanelName)
 {
 	IViewPortPanel* newpanel = NULL;
