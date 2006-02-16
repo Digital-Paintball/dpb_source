@@ -10,7 +10,8 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			")weapons/mp5navy/mp5-1.wav"
+//	"wave"			")weapons/mp5navy/mp5-1.wav"
+	"wave"			"weapons/dpbbrand/fire1.wav"
 	
 }
 
@@ -129,4 +130,19 @@
 	"pitch"		"PITCH_NORM"
 
 	"wave"			"weapons/m3/m3_pump.wav"
+}
+
+// -------------------------
+// DPB Demo Paintball Marker
+//--------------------------
+"weapon_marker.Single"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"weapons/dpbbrand/fire1.wav"
+	
 }
