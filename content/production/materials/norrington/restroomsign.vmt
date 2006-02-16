@@ -1,5 +1,5 @@
 "LightmappedGeneric"
 {
 	"$basetexture" "norrington/restroomsign"
-	"$bumpmap" "norrington/restroomsign_normal"
+//	"$bumpmap" "norrington/restroomsign_normal"
 }
