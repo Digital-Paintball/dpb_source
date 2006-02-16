@@ -11,7 +11,7 @@
 	"pitch"		"PITCH_NORM"
 
 //	"wave"			")weapons/mp5navy/mp5-1.wav"
-	"wave"			"weapons/dpbbrand/fire1.wav"
+	"wave"			"weapons/marker/fire1.wav"
 	
 }
 
@@ -143,6 +143,6 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"weapons/dpbbrand/fire1.wav"
+	"wave"			"weapons/marker/fire1.wav"
 	
 }
