@@ -402,6 +402,10 @@ INSTALL_FILES(/materials/norrington FILES
 )
 
 INSTALL_FILES(/materials/textures FILES
+	materials/textures/norr_dirtroad.vtf  
+	materials/textures/norr_dirtend.vtf  
+	materials/textures/norr_dirtroad.vmt  
+	materials/textures/norr_dirtend.vmt  
 	materials/textures/kuja_pavement_asphault1.vmt
 	materials/textures/kuja_pavement_asphault3.vmt
 	materials/textures/kuja_forest_moss_normal.vtf
