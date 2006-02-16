@@ -6,7 +6,7 @@ Empire exo player model
 ==============================================================================
 */
 
-$modelname player/terror.mdl
+$modelname player/player.mdl
 $cdmaterials models/player
 $surfaceprop "metal"
 
@@ -27,5 +27,8 @@ $include "bones1.qci"
 $includemodel player/cs_player_shared.mdl
 $includemodel player/ak_anims_ct.mdl
 
+$sequence dead "surrender" fps 30 activity ACT_DIE 1
+
 $include "ragdoll.qci"
 $include "hitbox.qci"
+
