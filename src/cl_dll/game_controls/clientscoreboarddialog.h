@@ -78,7 +78,7 @@ protected:
 	vgui::SectionedListPanel *m_pPlayerList;
 	int				m_iSectionId; // the current section we are entering into
 
-	CUtlVector<vgui::Button*>	m_hButtons;
+	CUtlVector<vgui::ToggleButton*>	m_hButtons;
 
 	int s_VoiceImage[5];
 	int TrackerImage;

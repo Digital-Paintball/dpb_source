@@ -299,7 +299,7 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 
 	m_hSpectators.AddToHead(pPlayer);
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("You are now in arena #%d.\n", m_iID) );
+	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("You are now in arena #%d.\n", m_iID+1) );
 }
 
 void CArena::EndTouch( CBaseEntity *pOther )
@@ -330,7 +330,7 @@ void CArena::RemoveFromArena( CBasePlayer *pPlayer )
 	m_hQuitters.FindAndRemove(pPlayer);
 	//Don't remove from joiners
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Now leaving arena #%d.\n", m_iID) );
+	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Now leaving arena #%d.\n", m_iID+1) );
 }
 
 void CBasePlayer::JoinGame()
@@ -351,7 +351,7 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 
 	m_hJoiners.AddToTail( pPlayer );
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID) );
+	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
 }
 
 void CBasePlayer::QuitGame()
@@ -370,7 +370,7 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 	if (m_hJoiners.HasElement( pPlayer ))
 		m_hJoiners.FindAndRemove( pPlayer );
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Quitting game in arena #%d.\n", m_iID) );
+	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Quitting game in arena #%d.\n", m_iID+1) );
 }
 
 void CArena::ClearArenas( )

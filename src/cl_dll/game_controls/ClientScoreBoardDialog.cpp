@@ -28,6 +28,7 @@
 #include <vgui_controls/ImageList.h>
 #include <vgui_controls/Label.h>
 #include <vgui_controls/SectionedListPanel.h>
+#include <vgui_controls/ToggleButton.h>
 
 #include <cl_dll/iviewport.h>
 #include <igameresources.h>
@@ -80,10 +81,10 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	gameeventmanager->AddListener(this, "server_spawn", false );
 
 	// Four default buttons to work with.
-	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
-	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
-	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
-	m_hButtons.AddToTail(new vgui::Button(this, "Arena Button", "Arena", this));
+	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
+	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
+	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
+	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
 }
 
 //-----------------------------------------------------------------------------
@@ -365,15 +366,25 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::UpdateArenaInfo()
 {
-	for (int i = 0; i < m_hButtons.Count(); i++)
+	int i;
+	for (i = 0; i < m_hButtons.Count(); i++)
 	{
 		if (i < C_Arena::GetArenaNumber())
 		{
 			m_hButtons[i]->SetVisible(true);
+			//If this manual spacing becomes a problem, add a GetColumnBounds function to SectionedListPanel
 			m_hButtons[i]->SetPos(i*70+10, 26);
+			m_hButtons[i]->SetText(VarArgs("Arena %d", i+1));
 		}
 		else
 			m_hButtons[i]->SetVisible(false);
+	}
+
+	for (i = m_hButtons.Count(); i < C_Arena::GetArenaNumber(); i++)
+	{
+		m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", VarArgs("Arena %d", i+1)));
+		m_hButtons[i]->SetVisible(true);
+		m_hButtons[i]->SetPos(i*70+10, 26);
 	}
 }
 
