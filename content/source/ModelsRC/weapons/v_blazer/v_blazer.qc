@@ -18,8 +18,8 @@ $body body "reference"
 
 
 $mostlyopaque
-$origin 0 0 0
-
+//$origin 7 0 4 11 0 0
+$origin 0 0 2.5 0
 
 $sequence draw "Draw" fps 30 snap activity ACT_VM_DRAW 1 node Ready
 $sequence idle "Idle" fps 30 snap activity ACT_VM_IDLE 1 node Ready
