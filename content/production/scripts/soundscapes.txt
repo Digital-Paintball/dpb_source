@@ -1,0 +1,24 @@
+   "NorringtonAmbient"
+    
+    { 
+        "dsp"   "1" 
+        
+        "playrandom" 
+        { 
+            // Play every 20 to 45 seconds 
+            "time" "20, 45" 
+            // Play one of these .wav files randomly each time 
+            "rndwave" 
+            { 
+                "wave" "ambient/ambient1.wav"
+                "wave" "ambient/ambient2.wav" 
+                "wave" "ambient/ambient3.wav" 
+         	"wave" "ambient/ambient4.wav"
+                "wave" "ambient/ambient5.wav" 
+                "wave" "ambient/ambient6.wav" 
+     	 "wave" "ambient/ambient7.wav"
+                "wave" "ambient/ambient8.wav" 
+                "wave" "ambient/ambient9.wav" 
+            } 
+        } 
+    }
