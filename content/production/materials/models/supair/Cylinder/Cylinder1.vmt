@@ -1,7 +1,7 @@
 "VertexLitGeneric"
 {
-	"$baseTexture"			"models/supair/block2"
- 	"$bumpmap" 			"models/supair/block2_normal"
+	"$baseTexture"			"models/supair/Cylinder/Cylinder1"
+ 	"$bumpmap" 			"models/supair/Cylinder/Cylinder1_normal"
 	"$envmap" 			"env_cubemap"
  	"$envmaptint" 			"[ .5 .5 .5 ]"
  	"$envmapsaturation" 		"[.2 .2 .2]" 
