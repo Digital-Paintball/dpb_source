@@ -277,11 +277,9 @@ INSTALL_FILES(/materials/models/supair FILES
 	materials/models/supair/rygpyramid1.vmt
 	materials/models/supair/rygPyramid1_normal.vtf
 	materials/models/supair/rygpyramid2.vmt
-	materials/models/supair/block1_normal.vtf
 	materials/models/supair/rygCylinder1.vmt
 	materials/models/supair/rygCylinder1_normal.vtf
 	materials/models/supair/rygCylinder2.vmt
-	materials/models/supair/block3_normal.vtf
 	materials/models/supair/rygCylinder3.vmt
 	materials/models/supair/rygCylinder4.vmt
 	materials/models/supair/rygCylinder3_normal.vtf
@@ -292,18 +290,107 @@ INSTALL_FILES(/materials/models/supair FILES
 	materials/models/supair/rygCylinder2.vtf
 	materials/models/supair/rygCylinder3.vtf
 	materials/models/supair/rygCylinder4.vtf
-	materials/models/supair/block1.vmt
-	materials/models/supair/block2.vmt
-	materials/models/supair/block2_normal.vtf
-	materials/models/supair/block3.vmt
 	materials/models/supair/rygHalfCyl1.vtf
 	materials/models/supair/rygCylinder2_normal.vtf
 	materials/models/supair/rygHalfCyl2.vtf
 	materials/models/supair/rygCylinder4_normal.vtf
 	materials/models/supair/rygHalfCyl1_normal.vtf
-	materials/models/supair/block1.vtf
-	materials/models/supair/block2.vtf
-	materials/models/supair/block3.vtf
+)
+
+INSTALL_FILES(/materials/models/supair/block FILES
+	materials/models/supair/block/block1_blue.vtf
+	materials/models/supair/block/block1.vmt
+	materials/models/supair/block/block2_blue.vtf
+	materials/models/supair/block/block2.vmt
+	materials/models/supair/block/block1_normal.vtf
+	materials/models/supair/block/block3.vmt
+	materials/models/supair/block/block2_normal.vtf
+	materials/models/supair/block/block3_normal.vtf
+	materials/models/supair/block/block1_blue.vmt
+	materials/models/supair/block/block2_blue.vmt
+	materials/models/supair/block/block3_grey.vtf
+	materials/models/supair/block/block1_red.vtf
+	materials/models/supair/block/block2_orange.vtf
+	materials/models/supair/block/block3_yellow.vtf
+	materials/models/supair/block/block3_grey.vmt
+	materials/models/supair/block/block1.vtf
+	materials/models/supair/block/block2.vtf
+	materials/models/supair/block/block1_red.vmt
+	materials/models/supair/block/block3.vtf
+	materials/models/supair/block/block2_orange.vmt
+	materials/models/supair/block/block3_yellow.vmt
+)
+
+INSTALL_FILES(/materials/models/supair/Cylinder FILES
+	materials/models/supair/Cylinder/Cylinder4_grey.vtf
+	materials/models/supair/Cylinder/Cylinder2_red.vtf
+	materials/models/supair/Cylinder/Cylinder1_yellow.vtf
+	materials/models/supair/Cylinder/Cylinder1_grey.vmt
+	materials/models/supair/Cylinder/Cylinder3_orange.vtf
+	materials/models/supair/Cylinder/Cylinder4_yellow.vtf
+	materials/models/supair/Cylinder/Cylinder1.vtf
+	materials/models/supair/Cylinder/Cylinder4_grey.vmt
+	materials/models/supair/Cylinder/Cylinder2.vtf
+	materials/models/supair/Cylinder/Cylinder3.vtf
+	materials/models/supair/Cylinder/Cylinder2_red.vmt
+	materials/models/supair/Cylinder/Cylinder1_yellow.vmt
+	materials/models/supair/Cylinder/Cylinder4.vtf
+	materials/models/supair/Cylinder/Cylinder3_orange.vmt
+	materials/models/supair/Cylinder/Cylinder4_yellow.vmt
+	materials/models/supair/Cylinder/Cylinder1.vmt
+	materials/models/supair/Cylinder/Cylinder2_blue.vtf
+	materials/models/supair/Cylinder/Cylinder2.vmt
+	materials/models/supair/Cylinder/Cylinder1_normal.vtf
+	materials/models/supair/Cylinder/Cylinder3.vmt
+	materials/models/supair/Cylinder/Cylinder2_normal.vtf
+	materials/models/supair/Cylinder/Cylinder3_blue.vtf
+	materials/models/supair/Cylinder/Cylinder3_normal.vtf
+	materials/models/supair/Cylinder/Cylinder4.vmt
+	materials/models/supair/Cylinder/Cylinder4_normal.vtf
+	materials/models/supair/Cylinder/Cylinder2_blue.vmt
+	materials/models/supair/Cylinder/Cylinder3_blue.vmt
+	materials/models/supair/Cylinder/Cylinder1_grey.vtf
+)
+
+INSTALL_FILES(/materials/models/supair/halfCyl FILES
+	materials/models/supair/halfCyl/halfcyl1_blue.vmt
+	materials/models/supair/halfCyl/halfcyl2_blue.vmt
+	materials/models/supair/halfCyl/HalfCyl1.vtf
+	materials/models/supair/halfCyl/HalfCyl2.vtf
+	materials/models/supair/halfCyl/halfcyl1_orange.vmt
+	materials/models/supair/halfCyl/halfcyl2_orange.vmt
+	materials/models/supair/halfCyl/HalfCyl1_blue.vtf
+	materials/models/supair/halfCyl/halfcyl1.vmt
+	materials/models/supair/halfCyl/HalfCyl1_normal.vtf
+	materials/models/supair/halfCyl/HalfCyl2_blue.vtf
+	materials/models/supair/halfCyl/halfcyl2.vmt
+	materials/models/supair/halfCyl/HalfCyl2_normal.vtf
+	materials/models/supair/halfCyl/HalfCyl1_orange.vtf
+	materials/models/supair/halfCyl/HalfCyl2_orange.vtf
+)
+
+INSTALL_FILES(/materials/models/supair/pyramid FILES
+	materials/models/supair/pyramid/Pyramid1_orange.vtf
+	materials/models/supair/pyramid/Pyramid2_orange.vtf
+	materials/models/supair/pyramid/pyramid3_yellow.vtf
+	materials/models/supair/pyramid/pyramid3_grey.vmt
+	materials/models/supair/pyramid/pyramid1.vtf
+	materials/models/supair/pyramid/pyramid2.vtf
+	materials/models/supair/pyramid/pyramid1_orange.vmt
+	materials/models/supair/pyramid/pyramid3.vtf
+	materials/models/supair/pyramid/pyramid2_orange.vmt
+	materials/models/supair/pyramid/pyramid3_yellow.vmt
+	materials/models/supair/pyramid/pyramid1.vmt
+	materials/models/supair/pyramid/Pyramid1_blue.vtf
+	materials/models/supair/pyramid/pyramid2.vmt
+	materials/models/supair/pyramid/Pyramid2_blue.vtf
+	materials/models/supair/pyramid/Pyramid1_normal.vtf
+	materials/models/supair/pyramid/Pyramid2_normal.vtf
+	materials/models/supair/pyramid/pyramid3.vmt
+	materials/models/supair/pyramid/Pyramid3_normal.vtf
+	materials/models/supair/pyramid/pyramid1_blue.vmt
+	materials/models/supair/pyramid/pyramid2_blue.vmt
+	materials/models/supair/pyramid/Pyramid3_grey.vtf
 )
 
 INSTALL_FILES(/materials/models/weapons FILES
@@ -358,6 +445,8 @@ INSTALL_FILES(/materials/models/weapons FILES
 )
 
 INSTALL_FILES(/materials/norrington FILES
+	materials/norrington/norr_mapmerc.vmt
+	materials/norrington/norr_mapmerc.vtf
 	materials/norrington/restroomsign.vmt
 	materials/norrington/restroomsign.vtf
 	materials/norrington/restroomsign_normal.vtf
@@ -403,10 +492,11 @@ INSTALL_FILES(/materials/norrington FILES
 )
 
 INSTALL_FILES(/materials/textures FILES
-	materials/textures/norr_dirtroad.vtf  
-	materials/textures/norr_dirtend.vtf  
-	materials/textures/norr_dirtroad.vmt  
-	materials/textures/norr_dirtend.vmt  
+	materials/textures/BLENDasphalt.vmt
+	materials/textures/norr_dirtroad.vtf
+	materials/textures/norr_dirtend.vtf
+	materials/textures/norr_dirtroad.vmt
+	materials/textures/norr_dirtend.vmt
 	materials/textures/kuja_pavement_asphault1.vmt
 	materials/textures/kuja_pavement_asphault3.vmt
 	materials/textures/kuja_forest_moss_normal.vtf
@@ -898,6 +988,24 @@ INSTALL_FILES(/models/supair FILES
 	models/supair/rygcylinder.mdl
 	models/supair/rygHalfCyl.dx90.vtx
 	models/supair/rygHalfCyl.sw.vtx
+	models/supair/pyramid.mdl
+	models/supair/Cylinder.sw.vtx
+	models/supair/cylinder.mdl
+	models/supair/HalfCyl.dx80.vtx
+	models/supair/HalfCyl.sw.vtx
+	models/supair/halfcyl.mdl
+	models/supair/pyramid.vvd
+	models/supair/cylinder.vvd
+	models/supair/Pyramid.dx90.vtx
+	models/supair/Cylinder.dx90.vtx
+	models/supair/halfcyl.vvd
+	models/supair/HalfCyl.phy
+	models/supair/HalfCyl.dx90.vtx
+	models/supair/Pyramid.phy
+	models/supair/Pyramid.dx80.vtx
+	models/supair/Cylinder.phy
+	models/supair/Cylinder.dx80.vtx
+	models/supair/Pyramid.sw.vtx
 )
 
 INSTALL_FILES(/models/weapons FILES
@@ -981,10 +1089,84 @@ INSTALL_FILES(/scripts FILES
 	scripts/weapon_marker.txt
 	scripts/HudLayout.res
 	scripts/ChapterBackgrounds.txt
+	scripts/soundscapes.txt
+	scripts/game_sounds_player.txt
 )
 
 INSTALL_FILES(/scripts/vehicles FILES
 	scripts/vehicles/jeep_test.txt
+)
+
+INSTALL_FILES(/sound/ambient FILES
+	sound/ambient/ambient4.wav
+	sound/ambient/ambientbirds.wav
+	sound/ambient/ambient5.wav
+	sound/ambient/ambient6.wav
+	sound/ambient/ambient7.wav
+	sound/ambient/ambient8.wav
+	sound/ambient/ambient9.wav
+	sound/ambient/ambient1.wav
+	sound/ambient/ambient2.wav
+	sound/ambient/ambient3.wav
+)
+
+INSTALL_FILES(/sound/hopper FILES
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle1.wav
+	sound/hopper/HOPPERSHAKEgentle1.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle2.wav
+	sound/hopper/HOPPERSHAKEgentle2.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle3.wav
+	sound/hopper/HOPPERSHAKEgentle3.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle4.wav
+	sound/hopper/HOPPERSHAKEgentle4.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle5.wav
+	sound/hopper/HOPPERSHAKEgentle5.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSgentle6.wav
+	sound/hopper/HOPPERSHAKEgentle6.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSrough1.wav
+	sound/hopper/HOPPERSHAKErough1.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSrough2.wav
+	sound/hopper/HOPPERSHAKE_LOWBALLSrough3.wav
+	sound/hopper/HOPPERSHAKErough2.wav
+	sound/hopper/HOPPERSHAKErough3.wav
+)
+
+INSTALL_FILES(/sound/impacts FILES
+	sound/impacts/HITmeat8.wav
+	sound/impacts/HITmeat9.wav
+	sound/impacts/HITtree1.wav
+	sound/impacts/HITtree2.wav
+	sound/impacts/HITtree3.wav
+	sound/impacts/HITmeat10.wav
+	sound/impacts/HITfoliage1.wav
+	sound/impacts/HITfoliage2.wav
+	sound/impacts/HITfoliage3.wav
+	sound/impacts/HITfoliage4.wav
+	sound/impacts/HITfoliage5.wav
+	sound/impacts/HITfoliage6.wav
+	sound/impacts/HITmeat1.wav
+	sound/impacts/HITmeat2.wav
+	sound/impacts/HITmeat3.wav
+	sound/impacts/HITmeat4.wav
+	sound/impacts/HITmeat5.wav
+	sound/impacts/HITmeat6.wav
+	sound/impacts/HITmeat7.wav
+)
+
+INSTALL_FILES(/sound/marker FILES
+	sound/marker/fire1.wav
+)
+
+INSTALL_FILES(/sound/walkies FILES
+	sound/walkies/WALKhard1.wav
+	sound/walkies/WALKgrass1.wav
+	sound/walkies/WALKhard2.wav
+	sound/walkies/WALKgrass2.wav
+	sound/walkies/WALKhard3.wav
+	sound/walkies/WALKgrass3.wav
+	sound/walkies/WALKhard4.wav
+	sound/walkies/WALKgrass4.wav
+	sound/walkies/WALKhard5.wav
 )
 
 INSTALL_FILES(/sound/weapons FILES
