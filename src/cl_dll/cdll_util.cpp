@@ -45,7 +45,7 @@ ConVar r_FadeProps( "r_FadeProps", "1" );
 //			... - 
 // Output : char
 //-----------------------------------------------------------------------------
-char *VarArgs( char *format, ... )
+const char *VarArgs( const char *format, ... )
 {
 	va_list		argptr;
 	static char		string[1024];

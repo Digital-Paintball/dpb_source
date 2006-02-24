@@ -142,7 +142,16 @@ void CTextWindow::ShowIndex( const char *entry)
 	// is this a web URL ?
 	if ( !Q_strncmp( data, "http://", 7 ) )
 	{
-		ShowURL( data );
+		if (strstr(data, "%s"))
+		{
+			player_info_t info;
+			engine->GetPlayerInfo( engine->GetLocalPlayer(), &info );
+			ShowURL( VarArgs(data, info.guid) );
+		}
+		else
+		{
+			ShowURL( data );
+		}
 		return;
 	}
 

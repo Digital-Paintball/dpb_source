@@ -6,6 +6,7 @@
 # and choose "Build". With anything else, you're on your own.
 
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/GameInfo.txt.in ${CMAKE_CURRENT_BINARY_DIR}/GameInfo.txt)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/motd.txt.in ${CMAKE_CURRENT_BINARY_DIR}/motd.txt)
 
 INSTALL_FILES(/ FILES
 	GameInfo.txt

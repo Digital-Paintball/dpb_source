@@ -81,10 +81,10 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	gameeventmanager->AddListener(this, "server_spawn", false );
 
 	// Four default buttons to work with.
-	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
-	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
-	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
-	m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", "Arena"));
+	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 1", "Arena"));
+	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 2", "Arena"));
+	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 3", "Arena"));
+	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 4", "Arena"));
 }
 
 //-----------------------------------------------------------------------------
@@ -366,7 +366,7 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::UpdateArenaInfo()
 {
-	int i;
+/*	int i;
 	for (i = 0; i < m_hButtons.Count(); i++)
 	{
 		if (i < C_Arena::GetArenaNumber())
@@ -382,10 +382,10 @@ void CClientScoreBoardDialog::UpdateArenaInfo()
 
 	for (i = m_hButtons.Count(); i < C_Arena::GetArenaNumber(); i++)
 	{
-		m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button", VarArgs("Arena %d", i+1)));
+		m_hButtons.AddToTail(new vgui::ToggleButton(this, VarArgs("Arena Button %d", i+1), VarArgs("Arena %d", i+1)));
 		m_hButtons[i]->SetVisible(true);
 		m_hButtons[i]->SetPos(i*70+10, 26);
-	}
+	}*/
 }
 
 //-----------------------------------------------------------------------------
@@ -398,12 +398,12 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
 
-	m_iSectionId = 1; //make a blank one for arenas
+	/*m_iSectionId = 1; //make a blank one for arenas
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );*/
 
-	m_iSectionId = 2;
+	m_iSectionId = 1;
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
@@ -411,7 +411,7 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
 
-	m_iSectionId = 3; //first team;
+	m_iSectionId = 2; //first team;
 	m_iTeamSections[TEAM_BLUE]			= AddSection(TYPE_TEAM, TEAM_BLUE);
 	m_iTeamSections[TEAM_RED]			= AddSection(TYPE_TEAM, TEAM_RED);
 	m_iTeamSections[TEAM_UNASSIGNED]	= AddSection(TYPE_NOTEAM, TEAM_UNASSIGNED);

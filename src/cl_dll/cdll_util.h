@@ -71,7 +71,7 @@ unsigned char UTIL_ComputeEntityFade( C_BaseEntity *pEntity, float flMinDist, fl
 
 client_textmessage_t	*TextMessageGet( const char *pName );
 
-char	*VarArgs( char *format, ... );
+const char	*VarArgs( const char *format, ... );
 	
 
 // Get the entity the local player is spectating (can be a player or a ragdoll entity).
