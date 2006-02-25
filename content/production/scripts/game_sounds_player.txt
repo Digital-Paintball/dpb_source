@@ -1,11 +1,98 @@
+"dirt.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/grass1.wav"
+		"wave" "walkies/grass3.wav"
+	}
+}
+
+"dirt.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/grass2.wav"
+		"wave" "walkies/grass4.wav"
+	}
+}
+
+"default.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+		"wave" "walkies/hard5.wav"
+	}
+}
+
+"default.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
+}
+
+"gravel.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+		"wave" "walkies/hard5.wav"
+	}
+}
+
+"gravel.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
+}
+
 "concrete.stepright"
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
 	"soundlevel"    "SNDLVL_75dB"
 	"pitch"	"PITCH_NORM"
-
-	"wave" "walkies/WALKhard1.wav"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+		"wave" "walkies/hard5.wav"
+	}
 }
 
 "concrete.stepleft"
@@ -15,7 +102,11 @@
 	"soundlevel"  "SNDLVL_75dB"
 	"pitch"	"PITCH_NORM"
 
-	"wave" "walkies/WALKhard2.wav"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
 }
 
 "grass.stepright"
@@ -24,8 +115,7 @@
 	"volume"	"1.0"
 	"soundlevel"    "SNDLVL_75dB"
 	"pitch"	"PITCH_NORM"
-
-	"wave" "walkies/WALKhard1.wav"
+	"wave" "walkies/grass3.wav"
 }
 
 "grass.stepleft"
@@ -34,8 +124,11 @@
 	"volume"	"1.0"
 	"soundlevel"  "SNDLVL_75dB"
 	"pitch"	"PITCH_NORM"
-
-	"wave" "/walkies/WALKhard2.wav"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/grass2.wav"
+		"wave" "walkies/grass4.wav"
+	}
 }
 
 "HL2Player.PickupWeapon"

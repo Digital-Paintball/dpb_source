@@ -143,6 +143,132 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"weapons/marker/fire1.wav"
+//	"wave"			"marker/fire1.wav"
+	"wave"			"walkies/grass1.wav"
 	
+}
+
+"weapon_marker.Reload"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"1.0"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"hopper/reload_demo.wav"
+	
+}
+
+"weapon_marker.Dryfire"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/dryfire1.wav"
+	
+}
+
+//"bulletimpacts" for DPB
+"dirt.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.4"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"	"impact/foliage1.wav"
+		"wave"	"impact/foliage2.wav"
+		"wave"	"impact/foliage3.wav"
+		"wave"	"impact/foliage4.wav"
+		"wave"	"impact/foliage5.wav"
+		"wave"	"impact/foliage6.wav"
+		"wave"	"impact/foliage7.wav"
+		"wave"	"impact/foliage8.wav"
+		"wave"	"impact/foliage9.wav"
+		"wave"	"impact/foliage10.wav"
+	}
+}
+
+"concrete.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"	
+}
+
+"dirt.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"	
+}
+
+"solidmetal.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"	
+}
+
+"supair.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"	
+}
+
+"wood.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"	
+}
+
+"default.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.4"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"	"impact/foliage1.wav"
+		"wave"	"impact/foliage2.wav"
+		"wave"	"impact/foliage3.wav"
+		"wave"	"impact/foliage4.wav"
+		"wave"	"impact/foliage5.wav"
+		"wave"	"impact/foliage6.wav"
+		"wave"	"impact/foliage7.wav"
+		"wave"	"impact/foliage8.wav"
+		"wave"	"impact/foliage9.wav"
+		"wave"	"impact/foliage10.wav"
+	}
 }
