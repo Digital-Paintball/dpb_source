@@ -20,6 +20,7 @@ INSTALL_FILES(/ FILES
 
 INSTALL_FILES(/cfg FILES
 	cfg/listenserver.cfg
+	cfg/valve.rc  
 )
 
 INSTALL_FILES(/DownloadLists FILES
@@ -1108,6 +1109,8 @@ INSTALL_FILES(/sound/ambient FILES
 	sound/ambient/ambient1.wav
 	sound/ambient/ambient2.wav
 	sound/ambient/ambient3.wav
+	sound/ambient/ambientlake.wav  
+	sound/ambient/ambientradio.wav  
 )
 
 INSTALL_FILES(/sound/hopper FILES
