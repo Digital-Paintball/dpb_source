@@ -1,4 +1,6 @@
 "toggleconsole"        	"Console"
+"j"			"joingame"
+"p"			"quitgame"
 "h"			"commandmenu"
 "k"			"+voicerecord"
 "g"			"drop"

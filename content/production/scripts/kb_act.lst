@@ -1,6 +1,8 @@
 "blank"		"=========================="
 "blank"		"#Valve_Movement_Title"
 "blank"		"=========================="
+"joingame" "Join field"
+"quitgame" "Leave field"
 "+forward"	"#Valve_Move_Forward"
 "+back"		"#Valve_Move_Back"
 "+moveleft"	"#Valve_Move_Left"
