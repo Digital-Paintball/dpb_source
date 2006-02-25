@@ -1,0 +1,5 @@
+"Decal"
+{
+	"$basetexture" "textures/splat"
+	"$additive" 1
+}

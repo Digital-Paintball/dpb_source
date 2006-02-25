@@ -1,6 +1,8 @@
 "toggleconsole"        	"Console"
 "j"			"joingame"
 "p"			"quitgame"
+"'"			"+showbudget"
+"tab"		"+showscores"
 "h"			"commandmenu"
 "k"			"+voicerecord"
 "g"			"drop"
