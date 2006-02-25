@@ -689,6 +689,8 @@ INSTALL_FILES(/materials/textures FILES
 	materials/textures/kuja_grass_prairiegrass.vmt
 	materials/textures/kuja_grass_blotchygrass.vtf
 	materials/textures/asphalt-dark.vmt
+	materials/textures/splat.vtf  
+	materials/textures/splat.vmt  
 )
 
 INSTALL_FILES(/materials/VGUI/gui FILES
@@ -1132,6 +1134,7 @@ INSTALL_FILES(/sound/hopper FILES
 	sound/hopper/HOPPERSHAKE_LOWBALLSrough3.wav
 	sound/hopper/HOPPERSHAKErough2.wav
 	sound/hopper/HOPPERSHAKErough3.wav
+	sound/hopper/hopperrefill1.wav  
 )
 
 INSTALL_FILES(/sound/impacts FILES
