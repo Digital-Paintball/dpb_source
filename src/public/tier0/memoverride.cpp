@@ -28,13 +28,13 @@
 // ARG: crtdbg is necessary for certain definitions below,
 // but it also redefines malloc as a macro in release.
 // To disable this, we gotta define _DEBUG before including it.. BLEAH!
-#if !defined(_DEBUG) && !defined(NDEBUG)
-#define NDEBUG
-#endif
-
 #define _DEBUG 1
 #include "crtdbg.h"
+#ifdef NDEBUG
+#undef _DEBUG
+#endif
 
+// Turn this back off in release mode.
 #ifdef NDEBUG
 #undef _DEBUG
 #endif
@@ -403,29 +403,30 @@ size_t __cdecl _msize_dbg( void *pMem, int nBlockUse )
 #ifdef _WIN32
 
 #if defined(_DEBUG) && _MSC_VER >= 1300
-void    __cdecl _aligned_free(
+void    __cdecl _aligned_free_base(
         void *
         );
 
-void *  __cdecl _aligned_malloc(
+void *  __cdecl _aligned_malloc_base(
         size_t,
         size_t
         );
 
-void *  __cdecl _aligned_malloc_base(
+void * __cdecl _aligned_malloc(
         size_t size,
         size_t align
         )
 {
-    return _aligned_malloc(size, align);
+    return _aligned_malloc_base(size, align);
 }
 
-void __cdecl _aligned_free_base(
+void __cdecl _aligned_free(
         void *memblock
         )
 {
-    _aligned_free(memblock);
+    _aligned_free_base(memblock);
 }
+
 #endif
 #endif
 
