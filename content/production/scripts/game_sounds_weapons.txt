@@ -143,8 +143,19 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-//	"wave"			"marker/fire1.wav"
-	"wave"			"walkies/grass1.wav"
+	"wave"			"marker/fire1.wav"
+	
+}
+
+"weapon_marker.Double"
+{
+	"channel"		"CHAN_WEAPON"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"marker/fire1.wav"
 	
 }
 
@@ -215,7 +226,12 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"marker/fire1.wav"	
+	"rndwave"
+	{
+	"wave"			"impact/hard1.wav"
+	"wave"			"impact/hard2.wav"
+	"wave"			"impact/hard3.wav"
+	}
 }
 
 "solidmetal.bulletimpact"
@@ -241,10 +257,26 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"marker/supair1.wav"
+	"wave"			"^impact/supair1.wav"
 }
 
 "wood.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"rndwave"
+	{
+	"wave"			"impact/hard1.wav"
+	"wave"			"impact/hard2.wav"
+	"wave"			"impact/hard3.wav"
+	}
+}
+
+"Wood_Panel.bulletimpact"
 {
 	"channel"		"CHAN_AUTO"
 	"volume"		"1.0"
@@ -277,4 +309,15 @@
 		"wave"	"impact/foliage5.wav"
 		"wave"	"impact/foliage6.wav"
 	}
+}
+
+"rubber.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"^impact/supair1.wav"
 }
