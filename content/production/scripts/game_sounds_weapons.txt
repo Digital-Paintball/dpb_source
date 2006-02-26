@@ -201,9 +201,9 @@
 
 	"rndwave"
 	{
-	"wave"			"marker/hard1.wav"
-	"wave"			"marker/hard2.wav"
-	"wave"			"marker/hard3.wav"
+	"wave"			"impact/hard1.wav"
+	"wave"			"impact/hard2.wav"
+	"wave"			"impact/hard3.wav"
 	}
 }
 
@@ -228,8 +228,8 @@
 
 	"rndwave"
 	{
-	"wave"			"marker/metal1.wav"
-	"wave"			"marker/metal2.wav"
+	"wave"			"impact/metal1.wav"
+	"wave"			"impact/metal2.wav"
 	}
 }
 
@@ -254,9 +254,9 @@
 
 	"rndwave"
 	{
-	"wave"			"marker/wood1.wav"
-	"wave"			"marker/wood2.wav"
-	"wave"			"marker/wood3.wav"
+	"wave"			"impact/wood1.wav"
+	"wave"			"impact/wood2.wav"
+	"wave"			"impact/wood3.wav"
 	}
 }
 
