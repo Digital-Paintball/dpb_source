@@ -28,7 +28,7 @@ WeaponData
 		//"reload"			"Default.Reload"
 		//"empty"			"Default.ClipEmpty_Rifle"
 		"single_shot"			"weapon_marker.Single"
-		"double_shot"			"weapon_marker.Single"
+		"double_shot"			"weapon_marker.Double"
 		"reload"			"weapon_marker.Reload"
 		"empty"				"weapon_marker.Dryfire"
 	}

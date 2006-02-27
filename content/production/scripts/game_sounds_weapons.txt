@@ -122,8 +122,12 @@
 	
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
-
-	"wave"			"marker/fire1.wav"
+	"rndwave"
+	{
+		"wave"			"marker/fire1.wav"
+		"wave"			"marker/fire2.wav"
+		"wave"			"marker/fire3.wav"
+	}
 	
 }
 
@@ -135,8 +139,11 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"marker/fire1.wav"
-	
+	{
+		"wave"			"marker/fire1.wav"
+		"wave"			"marker/fire2.wav"
+		"wave"			"marker/fire3.wav"
+	}
 }
 
 "weapon_marker.Reload"
@@ -158,6 +165,12 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"marker/dryfire1.wav"
+	{
+		"wave"			"marker/clickynoshoot1.wav"
+		"wave"			"marker/clickynoshoot2.wav"
+		"wave"			"marker/clickynoshoot3.wav"
+		"wave"			"marker/clickynoshoot4.wav"
+		"wave"			"marker/clickynoshoot5.wav"
+	}
 	
 }
