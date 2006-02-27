@@ -19,6 +19,7 @@ INSTALL_FILES(/ FILES
 )
 
 INSTALL_FILES(/cfg FILES
+	cfg/config_default.cfg
 	cfg/listenserver.cfg
 	cfg/valve.rc  
 )
@@ -1094,6 +1095,8 @@ INSTALL_FILES(/scripts FILES
 	scripts/ChapterBackgrounds.txt
 	scripts/soundscapes.txt
 	scripts/game_sounds_player.txt
+	scripts/decals_dpb.txt
+	scripts/game_sounds_impacts.txt
 )
 
 INSTALL_FILES(/scripts/vehicles FILES
@@ -1116,63 +1119,99 @@ INSTALL_FILES(/sound/ambient FILES
 )
 
 INSTALL_FILES(/sound/hopper FILES
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle1.wav
-	sound/hopper/HOPPERSHAKEgentle1.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle2.wav
-	sound/hopper/HOPPERSHAKEgentle2.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle3.wav
-	sound/hopper/HOPPERSHAKEgentle3.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle4.wav
-	sound/hopper/HOPPERSHAKEgentle4.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle5.wav
-	sound/hopper/HOPPERSHAKEgentle5.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSgentle6.wav
-	sound/hopper/HOPPERSHAKEgentle6.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSrough1.wav
-	sound/hopper/HOPPERSHAKErough1.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSrough2.wav
-	sound/hopper/HOPPERSHAKE_LOWBALLSrough3.wav
-	sound/hopper/HOPPERSHAKErough2.wav
-	sound/hopper/HOPPERSHAKErough3.wav
 	sound/hopper/hopperrefill1.wav  
+	sound/hopper/shake_low_gentle1.wav
+	sound/hopper/shake_low_gentle2.wav
+	sound/hopper/shake_full_gentle1.wav
+	sound/hopper/shake_low_gentle3.wav
+	sound/hopper/shake_full_gentle2.wav
+	sound/hopper/shake_low_gentle4.wav
+	sound/hopper/shake_full_gentle3.wav
+	sound/hopper/shake_low_gentle5.wav
+	sound/hopper/shake_full_gentle4.wav
+	sound/hopper/shake_full_gentle5.wav
+	sound/hopper/shake_low_gentle6.wav
+	sound/hopper/shake_full_gentle6.wav
+	sound/hopper/shake_low_rough1.wav
+	sound/hopper/shake_full_rough1.wav
+	sound/hopper/shake_low_rough2.wav
+	sound/hopper/shake_full_rough2.wav
+	sound/hopper/shake_low_rough3.wav
+	sound/hopper/shake_full_rough3.wav
+	sound/hopper/shake_lowballs_gentle1.wav
+	sound/hopper/reload_demo.wav
+	sound/hopper/shake_lowballs_gentle2.wav
+	sound/hopper/shake_lowballs_gentle3.wav
+	sound/hopper/shake_lowballs_gentle4.wav
 )
 
-INSTALL_FILES(/sound/impacts FILES
-	sound/impacts/HITmeat8.wav
-	sound/impacts/HITmeat9.wav
-	sound/impacts/HITtree1.wav
-	sound/impacts/HITtree2.wav
-	sound/impacts/HITtree3.wav
-	sound/impacts/HITmeat10.wav
-	sound/impacts/HITfoliage1.wav
-	sound/impacts/HITfoliage2.wav
-	sound/impacts/HITfoliage3.wav
-	sound/impacts/HITfoliage4.wav
-	sound/impacts/HITfoliage5.wav
-	sound/impacts/HITfoliage6.wav
-	sound/impacts/HITmeat1.wav
-	sound/impacts/HITmeat2.wav
-	sound/impacts/HITmeat3.wav
-	sound/impacts/HITmeat4.wav
-	sound/impacts/HITmeat5.wav
-	sound/impacts/HITmeat6.wav
-	sound/impacts/HITmeat7.wav
+INSTALL_FILES(/sound/impact FILES
+	sound/impact/metal1.wav
+	sound/impact/plastic4.wav
+	sound/impact/metal2.wav
+	sound/impact/plastic5.wav
+	sound/impact/supair1.wav
+	sound/impact/metal3.wav
+	sound/impact/meat10.wav
+	sound/impact/foliage1.wav
+	sound/impact/foliage2.wav
+	sound/impact/foliage3.wav
+	sound/impact/wood1.wav
+	sound/impact/foliage4.wav
+	sound/impact/wood2.wav
+	sound/impact/foliage5.wav
+	sound/impact/wood3.wav
+	sound/impact/foliage6.wav
+	sound/impact/hard1.wav
+	sound/impact/hard2.wav
+	sound/impact/hard3.wav
+	sound/impact/meat1.wav
+	sound/impact/meat2.wav
+	sound/impact/meat3.wav
+	sound/impact/meat4.wav
+	sound/impact/meat5.wav
+	sound/impact/meat6.wav
+	sound/impact/meat7.wav
+	sound/impact/meat8.wav
+	sound/impact/meat9.wav
+	sound/impact/plastic1.wav
+	sound/impact/plastic2.wav
+	sound/impact/plastic3.wav
 )
 
 INSTALL_FILES(/sound/marker FILES
 	sound/marker/fire1.wav
+	sound/marker/fire2.wav
+	sound/marker/fire3.wav
+	sound/marker/clickynoshoot1.wav
+	sound/marker/clickynoshoot2.wav
+	sound/marker/clickynoshoot3.wav
+	sound/marker/clickynoshoot4.wav
+	sound/marker/clickynoshoot5.wav
+)
+
+INSTALL_FILES(/sound/player FILES
+	sound/player/playerout1.wav
+	sound/player/playerout10.wav
+	sound/player/playerout2.wav
+	sound/player/playerout3.wav
+	sound/player/playerout4.wav
+	sound/player/playerout5.wav
+	sound/player/playerout6.wav
+	sound/player/playerout7.wav
+	sound/player/playerout8.wav
 )
 
 INSTALL_FILES(/sound/walkies FILES
-	sound/walkies/WALKhard1.wav
-	sound/walkies/WALKgrass1.wav
-	sound/walkies/WALKhard2.wav
-	sound/walkies/WALKgrass2.wav
-	sound/walkies/WALKhard3.wav
-	sound/walkies/WALKgrass3.wav
-	sound/walkies/WALKhard4.wav
-	sound/walkies/WALKgrass4.wav
-	sound/walkies/WALKhard5.wav
+	sound/walkies/grass4.wav
+	sound/walkies/hard5.wav
+	sound/walkies/hard1.wav
+	sound/walkies/grass1.wav
+	sound/walkies/hard2.wav
+	sound/walkies/grass2.wav
+	sound/walkies/hard3.wav
+	sound/walkies/grass3.wav
+	sound/walkies/hard4.wav
 )
 
 INSTALL_FILES(/sound/weapons FILES
