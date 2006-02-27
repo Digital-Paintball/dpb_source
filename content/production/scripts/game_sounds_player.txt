@@ -140,56 +140,6 @@
 	"wave"	"items/ammo_pickup.wav"
 }
 
-"HL2Player.TrainUse"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.8"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"plats/train_use1.wav"
-}
-
-"HL2Player.Use"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_select.wav"
-}
-
-"HL2Player.UseNPC"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_select.wav"
-}
-
-"HL2Player.UseDeny"
-{
-	"channel"	"CHAN_ITEM"
-	"volume"	"0.4"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"common/wpn_denyselect.wav"
-}
-
-"HL2Player.BurnPain"
-{
-	"channel"	"CHAN_VOICE"
-	"volume"	"0.5"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"rndwave"
-	{
-			"wave"	"player/pl_burnpain1.wav"
-			"wave"	"player/pl_burnpain2.wav"
-			"wave"	"player/pl_burnpain3.wav"
-	}
-}
-
 
 // SHARED player sounds
 
@@ -201,33 +151,15 @@
 
 	"rndwave"
 	{
-		//"wave"	"player/pl_pain5.wav"
-		//"wave"	"player/pl_pain6.wav"
-		//"wave"	"player/pl_pain7.wav"
-		"wave"		"common/playerdeath.wav"
-	}
-}
-
-"Player.PlasmaDamage"
-{
-	"channel"	"CHAN_BODY"
-	"volume"	"0.5"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"wave"	"player/general/flesh_burn.wav"
-}
-
-"Player.SonicDamage"
-{
-	"channel"	"CHAN_BODY"
-	"volume"	"0.7"
-	"soundlevel"  "SNDLVL_75dB"
-
-	"rndwave"
-	{
-		"wave"	"player/pl_pain5.wav"
-		"wave"	"player/pl_pain6.wav"
-		"wave"	"player/pl_pain7.wav"
+		"wave"		"player/playerout1.wav"
+		"wave"		"player/playerout2.wav"
+		"wave"		"player/playerout3.wav"
+		"wave"		"player/playerout4.wav"
+		"wave"		"player/playerout5.wav"
+		"wave"		"player/playerout6.wav"
+		"wave"		"player/playerout7.wav"
+		"wave"		"player/playerout8.wav"
+		"wave"		"player/playerout10.wav"
 	}
 }
 
@@ -348,31 +280,4 @@
 	"soundlevel"  "SNDLVL_75dB"
 	"pitch"	"95,105"
 	"wave"	"items/ammo_pickup.wav"
-}
-
-
-"Geiger.BeepLow"
-{
-	"channel"	"CHAN_STATIC"
-	"soundlevel"	"SNDLVL_NONE"
-	"pitch"			"PITCH_NORM"
-
-	"rndwave"
-	{
-		"wave"	"player/geiger1.wav"
-		"wave"	"player/geiger2.wav"
-	}
-}
-
-"Geiger.BeepHigh"
-{
-	"channel"	"CHAN_STATIC"
-	"soundlevel"	"SNDLVL_NONE"
-	"pitch"			"PITCH_NORM"
-
-	"rndwave"
-	{
-		"wave"	"player/geiger2.wav"
-		"wave"	"player/geiger3.wav"
-	}
 }

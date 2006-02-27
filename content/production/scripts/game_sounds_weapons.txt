@@ -10,7 +10,6 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-//	"wave"			")weapons/mp5navy/mp5-1.wav"
 	"wave"			"weapons/marker/fire1.wav"
 	
 }
@@ -109,28 +108,9 @@
 	"CompatibilityAttenuation"	"0.48"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			")weapons/m3/m3-1.wav"
+	"wave"			"marker/fire1.wav"
 }
 
-"Weapon_M3.Insertshell"
-{
-	"channel"		"CHAN_ITEM"
-	"volume"		"1.0"
-	"CompatibilityAttenuation"	"1.0"
-	"pitch"		"PITCH_NORM"
-
-	"wave"			"weapons/m3/m3_insertshell.wav"
-}
-
-"Weapon_M3.Pump"
-{
-	"channel"		"CHAN_ITEM"
-	"volume"		"1.0"
-	"CompatibilityAttenuation"	"1.0"
-	"pitch"		"PITCH_NORM"
-
-	"wave"			"weapons/m3/m3_pump.wav"
-}
 
 // -------------------------
 // DPB Demo Paintball Marker
@@ -180,144 +160,4 @@
 
 	"wave"			"marker/dryfire1.wav"
 	
-}
-
-//"bulletimpacts" for DPB
-"dirt.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-		"wave"	"impact/foliage1.wav"
-		"wave"	"impact/foliage2.wav"
-		"wave"	"impact/foliage3.wav"
-		"wave"	"impact/foliage4.wav"
-		"wave"	"impact/foliage5.wav"
-		"wave"	"impact/foliage6.wav"
-	}
-}
-
-"concrete.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/hard1.wav"
-	"wave"			"impact/hard2.wav"
-	"wave"			"impact/hard3.wav"
-	}
-}
-
-"dirt.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/hard1.wav"
-	"wave"			"impact/hard2.wav"
-	"wave"			"impact/hard3.wav"
-	}
-}
-
-"solidmetal.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/metal1.wav"
-	"wave"			"impact/metal2.wav"
-	}
-}
-
-"supair.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"wave"			"^impact/supair1.wav"
-}
-
-"wood.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/hard1.wav"
-	"wave"			"impact/hard2.wav"
-	"wave"			"impact/hard3.wav"
-	}
-}
-
-"Wood_Panel.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/wood1.wav"
-	"wave"			"impact/wood2.wav"
-	"wave"			"impact/wood3.wav"
-	}
-}
-
-"default.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-		"wave"	"impact/foliage1.wav"
-		"wave"	"impact/foliage2.wav"
-		"wave"	"impact/foliage3.wav"
-		"wave"	"impact/foliage4.wav"
-		"wave"	"impact/foliage5.wav"
-		"wave"	"impact/foliage6.wav"
-	}
-}
-
-"rubber.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"wave"			"^impact/supair1.wav"
 }
