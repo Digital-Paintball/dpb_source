@@ -3,4 +3,5 @@
 	"$basetexture" "Decals/splat3"
 	"$decalscale" 0.10
 	"$decal" 1
+	"$translucent" 1
 }

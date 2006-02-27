@@ -25,6 +25,7 @@
 #include "igamesystem.h"
 #include "collisionutils.h"
 #include "iservervehicle.h"
+#include "paintball_shared.h"
 
 #ifdef HL2MP
 	#include "hl2mp_gamerules.h"
@@ -69,7 +70,7 @@ void W_Precache(void)
 	g_sModelIndexLaserDot = CBaseEntity::PrecacheModel("sprites/laserdot.vmt");
 	
 	CBaseEntity::PrecacheModel("sprites/fire1.vmt"); // Precache C_EntityFlame
-	CBaseEntity::PrecacheModel("models/weapons/w_bullet.mdl");
+	CBaseEntity::PrecacheModel( PAINTBALL_MODEL );
 
 	CBaseEntity::PrecacheScriptSound( "BaseCombatWeapon.WeaponDrop" );
 	CBaseEntity::PrecacheScriptSound( "BaseCombatWeapon.WeaponMaterialize" );

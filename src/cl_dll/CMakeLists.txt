@@ -247,7 +247,7 @@ SET( CLIENT_SDK_SRCS
 	sdk/c_sdk_env_sparkler.cpp
 	sdk/c_sdk_player.cpp
 	sdk/c_te_firebullets.cpp
-	sdk/c_weapon_paintball.cpp
+	sdk/c_paintball.cpp
 	sdk/clientmode_sdk.cpp
 	sdk/sdk_fx_impacts.cpp
 	sdk/sdk_hud_ammo.cpp
@@ -344,6 +344,7 @@ SET( GAME_SHARED_SRCS
 )
 
 SET( GAME_SHARED_SDK_SRCS
+	../game_shared/sdk/paintballmgr.cpp
 	../game_shared/sdk/sdk_basegrenade_projectile.cpp
 	../game_shared/sdk/sdk_fx_shared.cpp
 	../game_shared/sdk/sdk_gamemovement.cpp

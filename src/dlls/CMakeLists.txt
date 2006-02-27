@@ -291,6 +291,7 @@ SET( SERVER_SRCS
 )
 
 SET( SERVER_SDK_SRCS
+	sdk/paintball.cpp
 	sdk/sdk_bot_temp.cpp
 	sdk/sdk_brushentity.cpp
 	sdk/sdk_client.cpp
@@ -378,6 +379,7 @@ SET( GAME_SHARED_SRCS
 )
 
 SET( GAME_SHARED_SDK_SRCS
+	../game_shared/sdk/paintballmgr.cpp
 	../game_shared/sdk/sdk_basegrenade_projectile.cpp
 	../game_shared/sdk/sdk_fx_shared.cpp
 	../game_shared/sdk/sdk_gamemovement.cpp

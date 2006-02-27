@@ -30,18 +30,6 @@ C_Arena::~C_Arena( )
 	gViewPortInterface->UpdatePanel( PANEL_SCOREBOARD );
 }
 
-void C_Arena::OnDataChanged( DataUpdateType_t updateType )
-{
-	BaseClass::OnDataChanged( updateType );
-	switch ( updateType )
-	{
-	case DATA_UPDATE_CREATED:
-		break;
-	case DATA_UPDATE_DATATABLE_CHANGED:
-		break;
-	}
-}
-
 int C_Arena::GetArenaNumber( )
 {
 	return s_hArenas.Count();

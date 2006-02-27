@@ -148,6 +148,7 @@ int CDecalEmitterSystem::GetDecalIndexForName( char const *decalname )
 bool CDecalEmitterSystem::Init()
 {
 	LoadDecalsFromScript( DECAL_LIST_FILE );
+	LoadDecalsFromScript( "scripts/decals_dpb.txt" );
 	return true;
 }
 

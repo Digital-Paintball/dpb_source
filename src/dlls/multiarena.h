@@ -35,6 +35,7 @@ public:
 	void RemoveFromArena(CBasePlayer *pPlayer);
 	void JoinPlayer(CBasePlayer *pPlayer);
 	void QuitPlayer(CBasePlayer *pPlayer);
+	bool HasPlayer(CBasePlayer *pPlayer);
 
 	void SetupRound();
 	void CheckForRoundEnd();

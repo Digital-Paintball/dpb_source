@@ -23,11 +23,10 @@ public:
 	C_Arena();
 	~C_Arena();
 
-	virtual void OnDataChanged( DataUpdateType_t updateType );
-
-	static void AssembleArenas();
 	static int GetArenaNumber();
 	static C_Arena* GetArena(int i);
+
+	bool HasPlayer(C_BasePlayer *pPlayer) { return true; };
 
 	CArenaShared::gamestate_t m_State;
 

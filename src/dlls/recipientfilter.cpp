@@ -229,7 +229,22 @@ void CRecipientFilter::RemoveRecipientsByPVS( const Vector& origin )
 	}
 }
 
+void CRecipientFilter::RemoveRecipientsByInvPVS( const Vector& origin )
+{
+	CBitVec< ABSOLUTE_PLAYER_LIMIT > playerbits;
+	engine->Message_DetermineMulticastRecipients( false, origin, playerbits );
 
+	//Invert the bitmask.
+	for ( int i = 0; i < ABSOLUTE_PLAYER_LIMIT; i++ )
+	{
+		if (playerbits.Get(i))
+			playerbits.Clear(i);
+		else
+			playerbits.Set(i);
+	}
+
+	RemovePlayersFromBitMask( playerbits );
+}
 
 void CRecipientFilter::AddRecipientsByPAS( const Vector& origin )
 {
@@ -290,12 +305,18 @@ void CRecipientFilter::SetIgnorePredictionCull( bool ignore )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Simple class to create a filter for all players on a given team 
+// Purpose: Simple class to create a filter for all players in a given arena
 //-----------------------------------------------------------------------------
-CTeamRecipientFilter::CTeamRecipientFilter( int team, bool isReliable )
+CArenaRecipientFilter::CArenaRecipientFilter( CArena* pArena, bool isReliable )
 {
 	if (isReliable)
 		MakeReliable();
+
+	if (!pArena)
+	{
+		AddAllPlayers();
+		return;
+	}
 
 	RemoveAllRecipients();
 
@@ -308,7 +329,7 @@ CTeamRecipientFilter::CTeamRecipientFilter( int team, bool isReliable )
 			continue;
 		}
 
-		if ( pPlayer->GetTeamNumber() != team )
+		if ( pPlayer->GetArena() != pArena )
 		{
 			continue;
 		}

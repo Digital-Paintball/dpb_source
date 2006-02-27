@@ -31,6 +31,7 @@
 #include "collisionproperty.h"
 
 class C_Team;
+class C_Arena;
 class IPhysicsObject;
 class IClientVehicle;
 class CPredictionCopy;
@@ -555,6 +556,8 @@ public:
 	virtual int						GetRenderTeamNumber( void );
 	virtual bool					InSameTeam( C_BaseEntity *pEntity );	// Returns true if the specified entity is on the same team as this one
 	virtual bool					InLocalTeam( void );
+
+	class C_Arena*					GetArena( void ) const;				// Get the arena this entity is in.
 
 	// ID Target handling
 	virtual bool					IsValidIDTarget( void ) { return false; }
@@ -1221,6 +1224,8 @@ public:
 	float							m_flSpeed;
 	// Team Handling
 	int								m_iTeamNum;
+
+	CHandle<class C_Arena>			m_hArena;
 
 	// Certain entities (projectiles) can be created on the client
 	CPredictableId					m_PredictableID;

@@ -1,0 +1,18 @@
+// Decal definitions, format is 
+//   decalname weight
+//   where weight is used to randomly selected a decal to apply from within the group
+
+// This is just an entry to map material types to "impact.xxx"
+"TranslationData"
+{
+	"-"			""
+	//Data is already in Valve's decals_subrect.txt
+}
+
+
+"Splat"
+{
+	"decals/splat1" "1"
+	"decals/splat2" "1"
+	"decals/splat3" "1"
+}

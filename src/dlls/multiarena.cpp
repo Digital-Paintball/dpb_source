@@ -373,6 +373,11 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Quitting game in arena #%d.\n", m_iID+1) );
 }
 
+bool CArena::HasPlayer( CBasePlayer *pPlayer )
+{
+	return m_hPlayers.HasElement(pPlayer);
+}
+
 void CArena::ClearArenas( )
 {
 	s_hArenas.RemoveAll();

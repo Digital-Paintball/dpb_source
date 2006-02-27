@@ -45,6 +45,7 @@ public:
 	void			AddAllPlayers( void );
 	void			AddRecipientsByPVS( const Vector& origin );
 	void			RemoveRecipientsByPVS( const Vector& origin );
+	void			RemoveRecipientsByInvPVS( const Vector& origin );
 	void			AddRecipientsByPAS( const Vector& origin );
 	void			AddRecipient( CBasePlayer *player );
 	void			RemoveAllRecipients( void );
@@ -87,13 +88,14 @@ public:
 };
 
 //-----------------------------------------------------------------------------
-// Purpose: Simple class to create a filter for all players on a given team 
+// Purpose: Add players in PAS to recipient list (unreliable)
 //-----------------------------------------------------------------------------
-class CTeamRecipientFilter : public CRecipientFilter
+class CArenaRecipientFilter : public CRecipientFilter
 {
 public:
-	CTeamRecipientFilter( int team, bool isReliable = false );
+	CArenaRecipientFilter( CArena* pArena, bool isReliable = false );
 };
+
 
 //-----------------------------------------------------------------------------
 // Purpose: Simple class to create a filter for all players ( unreliable )

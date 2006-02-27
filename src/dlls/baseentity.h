@@ -1512,7 +1512,7 @@ private:
 	CNetworkVar( int, m_iTeamNum );				// Team number of this entity's team. 
 
 	// Arena handling
-	CHandle< class CArena >	m_hArena;
+	CNetworkHandle( class CArena, m_hArena );
 
 	// Sets water type + level for physics objects
 	unsigned char	m_nWaterTouch;
