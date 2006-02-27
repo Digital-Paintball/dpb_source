@@ -139,6 +139,7 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
+	"rndwave"
 	{
 		"wave"			"marker/fire1.wav"
 		"wave"			"marker/fire2.wav"
@@ -164,7 +165,7 @@
 	
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
-
+	"rndwave"
 	{
 		"wave"			"marker/clickynoshoot1.wav"
 		"wave"			"marker/clickynoshoot2.wav"
