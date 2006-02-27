@@ -187,6 +187,64 @@
 	}
 }
 
+"ladder.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder1.wav"
+		"wave" "walkies/ladder3.wav"
+	}
+}
+
+"ladder.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder2.wav"
+		"wave" "walkies/ladder4.wav"
+	}
+}
+
+"solidmetal.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+//		"wave" "walkies/solidmetal1.wav"	//it's pretty obvious I made these sounds with my mouth
+//		"wave" "walkies/solidmetal3.wav"	//funny, but probably not too professional
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+	}
+}
+
+"solidmetal.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+//		"wave" "walkies/solidmetal2.wav"
+//		"wave" "walkies/solidmetal4.wav"
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
+}
+
 "HL2Player.PickupWeapon"
 {
 	"channel"	"CHAN_ITEM"
