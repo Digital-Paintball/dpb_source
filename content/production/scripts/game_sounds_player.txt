@@ -95,6 +95,62 @@
 	}
 }
 
+"wood.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
+}
+
+"wood.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+		"wave" "walkies/hard5.wav"
+	}
+}
+
+"Wood_Panel.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard1.wav"
+		"wave" "walkies/hard3.wav"
+		"wave" "walkies/hard5.wav"
+	}
+}
+
+"Wood_Panel.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/hard2.wav"
+		"wave" "walkies/hard4.wav"
+	}
+}
+
 "concrete.stepleft"
 {
 	"channel"	"CHAN_BODY"
