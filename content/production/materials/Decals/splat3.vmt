@@ -1,7 +1,7 @@
-"LightMappedGeneric"
+"UnlitGeneric"
 {
-	"$basetexture" "Decals/splat3"
-	"$decalscale" 0.10
-	"$decal" 1
-	"$translucent" 1
+    "$basetexture" "decals/splat3"
+    "$decal" 1
+    "$decalscale" 0.10
+    "$translucent" 1
 }
