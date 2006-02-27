@@ -104,6 +104,7 @@ bool CArena::HasTeam(int iTeam)
 void CArena::WaitingThink( )
 {
 	m_State = CArenaShared::GS_WAITING;
+
 	if (m_hPlayers.Count() + m_hJoiners.Count() > 0)
 	{
 		SetupRound();
@@ -118,6 +119,7 @@ void CArena::WaitingThink( )
 void CArena::SetupRound( )
 {
 	int i;
+	bool bRoundStarting = true;
 
 	m_State = CArenaShared::GS_COUNTDOWN;
 
@@ -157,26 +159,11 @@ void CArena::SetupRound( )
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
 
 		m_hPlayers.AddToHead( pPlayer );
-	}
-
-	//Empty the queues.
-	m_hJoiners.RemoveAll();
-	m_hQuitters.RemoveAll();
-
-	if (m_hPlayers.Count() <= 0)
-	{
-		SetThink( WaitingThink );
-		SetNextThink( gpGlobals->curtime + 3.0 );
-		return;
-	}
-
-	for (i = 0; i < m_hPlayers.Count(); i++)
-	{
-		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 
 		//Just in case.
 		m_hSpectators.FindAndRemove( pPlayer );
 
+		pPlayer->ResetRounds();
 		pPlayer->SetArena(this);
 
 		if (!pPlayer->GetTeam())
@@ -203,23 +190,72 @@ void CArena::SetupRound( )
 
 			pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 		}
+	}
 
-		// Look away from the center of the map
-		QAngle angLookAt = QAngle(0, 0, 0);
-		CBaseEntity *pSpawnSpot = pPlayer->GetTeam()->SpawnPlayer(pPlayer);
-		VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
-		angLookAt.x = 15;	//Look somewhat at the ground.
+	//Empty the queues.
+	m_hJoiners.RemoveAll();
+	m_hQuitters.RemoveAll();
 
-		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-		pPlayer->SetAbsVelocity( Vector(0,0,0) );
-		pPlayer->SetLocalAngles( angLookAt );
-		pPlayer->SnapEyeAngles( angLookAt );
-		pPlayer->LockPlayerInPlace();
+	if (m_hPlayers.Count() <= 0)
+	{
+		SetThink( WaitingThink );
+		SetNextThink( gpGlobals->curtime + 3.0 );
+		return;
+	}
+
+	int iTeamsWithPlayers = 0;
+	//Check to see which teams have players at all.
+ 	for (i = 0; i < m_hTeams.Count(); i++)
+	{
+		if (m_hTeams[i]->GetNumPlayers() > 0)
+		{
+			iTeamsWithPlayers += 1;
+		}
+	}
+
+	if (iTeamsWithPlayers <= 1)
+		bRoundStarting = false;
+
+	for (i = 0; i < m_hPlayers.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+
+		if (!pPlayer->IsAlive())
+			pPlayer->Spawn();
+
+		if (bRoundStarting || pPlayer->Rounds() == -1)
+		{
+			// Look away from the center of the map
+			QAngle angLookAt = QAngle(0, 0, 0);
+			CBaseEntity *pSpawnSpot = pPlayer->GetTeam()->SpawnPlayer(pPlayer);
+			VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
+			angLookAt.x = 15;	//Look somewhat at the ground.
+
+			pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
+			pPlayer->SetAbsVelocity( Vector(0,0,0) );
+			pPlayer->SetLocalAngles( angLookAt );
+			pPlayer->SnapEyeAngles( angLookAt );
+		}
+
+		if (bRoundStarting)
+			pPlayer->LockPlayerInPlace();
+
+		//-1 rounds denotes that the player has not been put in the arena yet.
+		//The player should be in by now, so set it to zero.
+		if (pPlayer->Rounds() == -1)
+			pPlayer->AddRound();
 	}
 
 	for (i = 0; i < m_hTeams.Count(); i++)
 	{
 		m_hTeams[i]->ResetPlayersAlive();
+	}
+
+	if (!bRoundStarting)
+	{
+		SetThink( WaitingThink );
+		SetNextThink( gpGlobals->curtime + 3.0 );
+		return;
 	}
 
 	SetThink( BeginThink );
@@ -235,6 +271,7 @@ void CArena::BeginThink( )
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 		pPlayer->UnlockPlayer();
 		pPlayer->DeployArmaments();
+		pPlayer->AddRound();
 	}
 
 	CheckForRoundEnd();
@@ -245,6 +282,7 @@ void CArena::CheckForRoundEnd( )
 {
 	int iTeamsBitmask = 0;	//Bitmask of teams with players alive
 	int	iTeamsAlive = 0;	//Number of teams with players alive
+
  	for (int i = 0; i < m_hTeams.Count(); i++)
 	{
 		if (m_hTeams[i]->GetPlayersAlive() > 0)
@@ -320,15 +358,12 @@ void CArena::EndTouch( CBaseEntity *pOther )
 
 void CArena::RemoveFromArena( CBasePlayer *pPlayer )
 {
-	for (int i = 0; i < m_hTeams.Count(); i++)
-		m_hTeams[i]->RemovePlayer(pPlayer);
+	if (m_hPlayers.HasElement(pPlayer))
+		return;
 
 	pPlayer->SetArena( NULL );
 
 	m_hSpectators.FindAndRemove(pPlayer);
-	m_hPlayers.FindAndRemove(pPlayer);
-	m_hQuitters.FindAndRemove(pPlayer);
-	//Don't remove from joiners
 
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Now leaving arena #%d.\n", m_iID+1) );
 }

@@ -515,6 +515,9 @@ public:
 	// Accessor methods
 	int		FragCount() const		{ return m_iFrags; }
 	int		DeathCount() const		{ return m_iDeaths;}
+	int		Rounds() const			{ return m_iRounds; }
+	void	AddRound()				{ m_iRounds++; }
+	void	ResetRounds()			{ m_iRounds = -1; }
 	bool	IsConnected() const		{ return m_iConnected != PlayerDisconnected; }
 	bool	IsDisconnecting() const	{ return m_iConnected == PlayerDisconnecting; }
 	bool	IsSuitEquipped() const	{ return m_Local.m_bWearingSuit; }
@@ -775,6 +778,8 @@ private:
 
 	int						m_iFrags;
 	int						m_iDeaths;
+
+	int						m_iRounds;		//Rounds in the current arena
 
 	float					m_flNextDecalTime;// next time this player can spray a decal
 
