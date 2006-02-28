@@ -125,7 +125,9 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"^impact/supair1.wav"
+//	"wave"			"^impact/supair1.wav"
+	"wave"			"impact/supair1.wav"
+	"wave"			"impact/supair2.wav"
 }
 
 //"plastic.bulletimpact"
@@ -146,4 +148,24 @@
 		"wave"	"impact/plastic4.wav"
 		"wave"	"impact/plastic5.wav"
 	}
+}
+
+"flesh.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	"soundlevel"  "SNDLVL_65dB"
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"impact/meat1.wav"
+	"wave"			"impact/meat2.wav"
+	"wave"			"impact/meat3.wav"
+	"wave"			"impact/meat4.wav"
+	"wave"			"impact/meat5.wav"
+	"wave"			"impact/meat6.wav"
+	"wave"			"impact/meat7.wav"
+	"wave"			"impact/meat8.wav"
+	"wave"			"impact/meat9.wav"
+	"wave"			"impact/meat10.wav"
 }
