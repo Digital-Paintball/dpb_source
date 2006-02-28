@@ -2,7 +2,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"    "SNDLVL_35dB"
+	"soundlevel"    "SNDLVL_40dB"
 	"pitch"	"PITCH_NORM"
 	"rndwave" // plays more than one wave file in a random order
 	{
@@ -15,7 +15,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"  "SNDLVL_35dB"
+	"soundlevel"  "SNDLVL_40dB"
 	"pitch"	"PITCH_NORM"
 
 	"rndwave" // plays more than one wave file in a random order
@@ -366,8 +366,9 @@
 
 	"rndwave"
 	{
-		"wave"		"player/pl_fallpain1.wav"
-		"wave"		"player/pl_fallpain3.wav"
+		"wave"		"player/injure1.wav"
+		"wave"		"player/injure2.wav"
+		"wave"		"player/injure3.wav"
 	}
 }
 
@@ -380,7 +381,7 @@
 
 	"rndwave"
 	{
-		"wave"		"physics/body/body_medium_break2.wav"
+		"wave"		"player/injurehorribly.wav"
 	}
 }
 
@@ -393,9 +394,12 @@
 
 	"rndwave"
 	{
-		"wave"	"player/pl_drown1.wav"
-		"wave"	"player/pl_drown2.wav"
-		"wave"	"player/pl_drown3.wav"
+//		"wave"	"player/pl_drown1.wav"
+//		"wave"	"player/pl_drown2.wav"
+//		"wave"	"player/pl_drown3.wav"
+		"wave"		"player/injure1.wav"
+		"wave"		"player/injure2.wav"
+		"wave"		"player/injure3.wav"
 	}
 }
 
