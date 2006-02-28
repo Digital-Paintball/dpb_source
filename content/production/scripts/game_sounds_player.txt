@@ -2,7 +2,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"    "SNDLVL_75dB"
+	"soundlevel"    "SNDLVL_35dB"
 	"pitch"	"PITCH_NORM"
 	"rndwave" // plays more than one wave file in a random order
 	{
@@ -15,7 +15,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"  "SNDLVL_75dB"
+	"soundlevel"  "SNDLVL_35dB"
 	"pitch"	"PITCH_NORM"
 
 	"rndwave" // plays more than one wave file in a random order
@@ -169,7 +169,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"    "SNDLVL_75dB"
+	"soundlevel"    "SNDLVL_35dB"
 	"pitch"	"PITCH_NORM"
 	"wave" "walkies/grass3.wav"
 }
@@ -178,7 +178,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"  "SNDLVL_75dB"
+	"soundlevel"  "SNDLVL_35dB"
 	"pitch"	"PITCH_NORM"
 	"rndwave" // plays more than one wave file in a random order
 	{
@@ -218,7 +218,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"    "SNDLVL_75dB"
+	"soundlevel"    "SNDLVL_45dB"
 	"pitch"	"PITCH_NORM"
 	"rndwave" // plays more than one wave file in a random order
 	{
@@ -231,7 +231,7 @@
 {
 	"channel"	"CHAN_BODY"
 	"volume"	"1.0"
-	"soundlevel"  "SNDLVL_75dB"
+	"soundlevel"  "SNDLVL_45dB"
 	"pitch"	"PITCH_NORM"
 
 	"rndwave" // plays more than one wave file in a random order

@@ -3,6 +3,7 @@
 {
 	"channel"		"CHAN_AUTO"
 	"volume"		"1.0"
+	"soundlevel"  "SNDLVL_80dB"
 	
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
@@ -24,22 +25,7 @@
 	"volume"		"1.0"
 	
 	"CompatibilityAttenuation"	"0.64"
-	"pitch"		"PITCH_NORM"
-
-	"rndwave"
-	{
-	"wave"			"impact/hard1.wav"
-	"wave"			"impact/hard2.wav"
-	"wave"			"impact/hard3.wav"
-	}
-}
-
-"dirt.bulletimpact"
-{
-	"channel"		"CHAN_AUTO"
-	"volume"		"1.0"
-	
-	"CompatibilityAttenuation"	"0.64"
+	"soundlevel"  "SNDLVL_80dB"
 	"pitch"		"PITCH_NORM"
 
 	"rndwave"
@@ -147,7 +133,8 @@
 {
 	"channel"		"CHAN_AUTO"
 	"volume"		"1.0"
-	
+	"soundlevel"  "SNDLVL_65dB"
+
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
