@@ -8,6 +8,8 @@ Empire exo player model
 
 $modelname player/player.mdl
 $cdmaterials models/player
+
+
 $surfaceprop "metal"
 
 //start eye/face data
@@ -41,3 +43,14 @@ $sequence lean_right "leanright_layer" delta activity ACT_LEAN_RIGHT 1
 $include "ragdoll.qci"
 $include "hitbox.qci"
 
+$texturegroup skinfamilies
+{
+	{ "body.vtf", "face.vtf", "vforce_red.vtf", "invision_red.vtf", "chrome_reflect-b.vtf" }
+	{ "body2_red.vtf", "face.vtf", "vforce_red.vtf", "invision_red.vtf", "chrome_reflect.vtf" }
+	{ "body3_red.vtf", "face.vtf", "vforce_red.vtf", "invision_red.vtf", "chrome_reflect-b.vtf" }
+	{ "body4_red.vtf", "face.vtf", "vforce_red.vtf", "invision_red.vtf", "chrome_reflect-b.vtf" }
+	{ "body1_blue.vtf", "face_blue.vtf", "vforce_blue.vtf", "invision_blue.vtf", "chrome_reflect-b.vtf" }
+	{ "body2_blue.vtf", "face_blue.vtf", "vforce_blue.vtf", "invision_blue.vtf", "chrome_reflect-b.vtf" }
+	{ "body3_blue.vtf", "face_blue.vtf", "vforce_blue.vtf", "invision_blue.vtf", "chrome_reflect-b.vtf" }
+	{ "body4_blue.vtf", "face_blue.vtf", "vforce_blue.vtf", "invision_blue.vtf", "chrome_reflect-y.vtf" }
+}
