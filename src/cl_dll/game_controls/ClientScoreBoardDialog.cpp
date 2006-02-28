@@ -164,7 +164,7 @@ void CClientScoreBoardDialog::ShowPanel(bool bShow)
 		Reset();
 		Update();
 
-		SetMouseInputEnabled( true );
+		//SetMouseInputEnabled( true );
 		Activate();
 	}
 	else

@@ -408,6 +408,9 @@ int CSDKPlayerAnimState::CalcAimLayerSequence( float *flCycle, float *flAimSeque
 	{
 		switch ( GetCurrentMainSequenceActivity() )
 		{
+			case ACT_DIE:
+				return CalcSequenceIndex( "dead" );
+
 			case ACT_CROUCHIDLE:
 				return CalcSequenceIndex( "%s%s", DEFAULT_CROUCH_IDLE_NAME, pSuffix );
 
@@ -554,7 +557,11 @@ Activity CSDKPlayerAnimState::CalcMainActivity()
 	{
 		Activity idealActivity = ACT_IDLE;
 
-		if ( m_pOuter->GetFlags() & FL_DUCKING )
+		if ( m_pOuter->m_lifeState == LIFE_DYING)
+		{
+			idealActivity = ACT_DIE;
+		}
+		else if ( m_pOuter->GetFlags() & FL_DUCKING )
 		{
 			if ( flOuterSpeed > MOVING_MINIMUM_SPEED )
 				idealActivity = ACT_RUN_CROUCH;

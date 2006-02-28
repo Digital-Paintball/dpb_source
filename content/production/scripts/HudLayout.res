@@ -179,6 +179,14 @@
 		"enabled" "1"
 		"wide"	 "640"
 		"tall"	 "480"
+		"xpos"	 "r640"
+		"ypos"	 "12"
+
+		"MaxDeathNotices" "4"
+		"LineHeight"	  "22"
+		"RightJustify"	  "1"	// If 1, draw notices from the right
+		
+		"TextFont"	"Default"
 	}
 
 	HudVehicle

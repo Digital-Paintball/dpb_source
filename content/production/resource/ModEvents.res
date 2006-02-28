@@ -25,74 +25,12 @@
 //   time	: firing server time
 //   eventid	: holds the event ID
 
-"cstrikeevents"
+"dpbevents"
 {
-	"player_death"				// a game event, name may be 32 charaters long
+	"player_death"
 	{
-		// this extents the original player_death by a new 
-		// field "headshot", all other fields remains the same
-		"weapon"	"string" 	// weapon name killed used 
-		"headshot"	"bool"		// singals a headshot
-	}
-	
-	"bomb_planted"
-	{
-		"userid"	"short"		// player who planted the bomb
-		"site"		"short"		// bombsite index
-		"posx"		"short"		// position x
-		"posy"		"short"		// position y
-	}
-	
-	"bomb_defused"
-	{
-		"userid"	"short"		// player who defused the bomb
-		"site"		"short"		// bombsite index
-	}
-	
-	"bomb_exploded"
-	{
-		"userid"	"short"		// player who planted the bomb
-		"site"		"short"		// bombsite index
-	}
-	
-	"bomb_dropped"
-	{
-		"userid"	"short"		// player who dropped the bomb
-	}
-	
-	"bomb_pickup"
-	{
-		"userid"	"short"		// player who picked up the bomb
-	}
-
-	"bomb_begindefuse"
-	{
-		"userid"	"short"		// player who picked up the bomb
-		"haskit"	"bool"
-	}
-	
-	"hostage_follows"
-	{
-		"userid"	"short"		// player who touched the hostage
-		"hostage"	"short"		// hostage index
-	}
-	
-	"hostage_hurt"
-	{
-		"userid"	"short"		// player who hurt the hostage
-		"hostage"	"short"		// hostage index
-	}
-	
-	"hostage_killed"
-	{
-		"userid"	"short"		// player who killed the hostage
-		"hostage"	"short"		// hostage index
-	}
-	
-	"hostage_rescued"
-	{
-		"userid"	"short"		// player who rescued the hostage
-		"hostage"	"short"		// hostage index
-		"site"		"short"		// rescue site index
+		"attacker"	"short"
+		"userid"	"short"
+		"weapon"	"string"
 	}
 }

@@ -502,6 +502,8 @@ void CAI_BaseNPC::InitDefaultActivitySR(void)
 	ADD_ACTIVITY_TO_SR( ACT_DIE_BACKSIDE );
 	ADD_ACTIVITY_TO_SR( ACT_DIE_LEFTSIDE );
 
+	ADD_ACTIVITY_TO_SR( ACT_DIE );
+
 	ADD_ACTIVITY_TO_SR( ACT_OPEN_DOOR );
 
 //===========================

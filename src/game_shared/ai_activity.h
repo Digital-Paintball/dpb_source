@@ -453,6 +453,8 @@ typedef enum
 	ACT_DIE_BACKSIDE,
 	ACT_DIE_LEFTSIDE,
 
+	ACT_DIE,
+
 	ACT_OPEN_DOOR,
 
 //===========================

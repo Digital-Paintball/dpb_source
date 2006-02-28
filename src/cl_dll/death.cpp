@@ -35,7 +35,7 @@ public:
 
 	virtual void CHudDeathNotice::ApplySchemeSettings( vgui::IScheme *scheme );
 
-	void FireGameEvent( KeyValues * event);
+	void FireGameEvent( IGameEvent *event );
 
 private:
 	CHudTexture			*m_iconD_skull;  // sprite index of skull icon
@@ -58,6 +58,7 @@ DECLARE_HUDELEMENT( CHudDeathNotice );
 CHudDeathNotice::CHudDeathNotice( const char *pElementName ) :
 	CHudElement( pElementName ), BaseClass( NULL, "HudDeathNotice" )
 {
+	gameeventmanager->AddListener( this, "player_death", false );
 	vgui::Panel *pParent = g_pClientMode->GetViewport();
 	SetParent( pParent );
 
@@ -68,7 +69,7 @@ void CHudDeathNotice::ApplySchemeSettings( IScheme *scheme )
 {
 	BaseClass::ApplySchemeSettings( scheme );
 
-	m_hTextFont = scheme->GetFont( "HudNumbersSmall" );
+	m_hTextFont = scheme->GetFont( "Default" );
 	m_clrText = scheme->GetColor( "FgColor", GetFgColor() );
 
 	SetPaintBackgroundEnabled( false );
@@ -208,17 +209,22 @@ void CHudDeathNotice::Paint()
 //-----------------------------------------------------------------------------
 // Purpose: This message handler may be better off elsewhere
 //-----------------------------------------------------------------------------
-void CHudDeathNotice::FireGameEvent( KeyValues * event)
+void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 {
 	// Got message during connection
 	if ( !g_PR )
 		return;
 
-	int killer = engine->GetPlayerForUserID( event->GetInt("killer") ); 
-	int victim = engine->GetPlayerForUserID( event->GetInt("victim") );
+	int iKillerID = event->GetInt("attacker");
+	int iVictimID = event->GetInt("userid");
+	int killer = engine->GetPlayerForUserID( iKillerID );
+	int victim = engine->GetPlayerForUserID( iVictimID );
 
 	char killedwith[32];
 	Q_snprintf( killedwith, sizeof( killedwith ), "d_%s", event->GetString("weapon") );
+
+	if (FStrEq(killedwith, "d_world"))
+		killedwith[0] = '\0';
 
 	int i;
 	for ( i = 0; i < MAX_DEATHNOTICES; i++ )

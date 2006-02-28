@@ -33,9 +33,12 @@ public:
 
 	void AddToArena(CBasePlayer *pPlayer);
 	void RemoveFromArena(CBasePlayer *pPlayer);
+	void RemoveQuitter(CBasePlayer *pPlayer);
 	void JoinPlayer(CBasePlayer *pPlayer);
 	void QuitPlayer(CBasePlayer *pPlayer);
 	bool HasPlayer(CBasePlayer *pPlayer);
+
+	static void SpawnPlayer(CBasePlayer *pPlayer);
 
 	void SetupRound();
 	void CheckForRoundEnd();

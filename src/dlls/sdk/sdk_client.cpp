@@ -29,6 +29,7 @@
 #include "sdk_gamerules.h"
 #include "tier0/vprof.h"
 #include "sdk_bot_temp.h"
+#include "multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -43,6 +44,8 @@ void FinishClientPutInServer( CSDKPlayer *pPlayer )
 {
 	pPlayer->InitialSpawn();
 	pPlayer->Spawn();
+
+	CArena::SpawnPlayer(pPlayer);
 
 	if (!pPlayer->IsBot())
 	{

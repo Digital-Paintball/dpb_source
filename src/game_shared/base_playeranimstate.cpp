@@ -161,9 +161,7 @@ void CBasePlayerAnimState::Update( float eyeYaw, float eyePitch )
 
 bool CBasePlayerAnimState::ShouldUpdateAnimState()
 {
-	// By default, don't update their animation state when they're dead because they're
-	// either a ragdoll or they're not drawn.
-	return GetOuter()->IsAlive();
+	return true;
 }
 
 

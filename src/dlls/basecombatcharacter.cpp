@@ -486,18 +486,7 @@ Activity CBaseCombatCharacter::GetDeathActivity ( void )
 
 	if (IsPlayer())
 	{
-		// die in an interesting way
-		switch( random->RandomInt(0,7) )
-		{
-		case 0:	return ACT_DIESIMPLE;
-		case 1: return ACT_DIEBACKWARD;
-		case 2: return ACT_DIEFORWARD;
-		case 3: return ACT_DIEVIOLENT;
-		case 4: return ACT_DIE_HEADSHOT;
-		case 5: return ACT_DIE_CHESTSHOT;
-		case 6: return ACT_DIE_GUTSHOT;
-		case 7: return ACT_DIE_BACKSHOT;
-		}
+		return ACT_DIE;
 	}
 
 	vecSrc = WorldSpaceCenter();

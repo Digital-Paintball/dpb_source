@@ -127,6 +127,7 @@ SET( CLIENT_SRCS
 	clientshadowmgr.cpp
 	clientsideeffects.cpp
 	clientsideeffects_test.cpp
+	death.cpp
 	detailobjectsystem.cpp
 	dummyproxy.cpp
 	effectsclient.cpp

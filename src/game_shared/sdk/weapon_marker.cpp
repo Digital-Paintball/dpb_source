@@ -191,6 +191,8 @@ void CWeaponMarker::PrimaryAttack( void )
 
 	m_iClip1--;
 
+	WeaponSound(SINGLE);
+
 	// player "shoot" animation
 	pPlayer->SetAnimation( PLAYER_ATTACK1 );
 

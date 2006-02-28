@@ -42,6 +42,15 @@ INSTALL_FILES(/materials/detail FILES
 	materials/detail/detailsprites.vtf
 )
 
+INSTALL_FILES(/materials/decals FILES
+	materials/decals/splat1.vmt
+	materials/decals/splat1.vtf
+	materials/decals/splat2.vmt
+	materials/decals/splat2.vtf
+	materials/decals/splat3.vmt
+	materials/decals/splat3.vtf
+)
+
 INSTALL_FILES(/materials/models FILES
 	materials/models/testblock.vmt
 	materials/models/paintball.vtf

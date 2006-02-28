@@ -386,7 +386,6 @@ public:
 
 	virtual void			CreateCorpse( void ) { }
 	virtual CBaseEntity		*EntSelectStartPoint( void );
-	virtual CBaseEntity		*EntSelectSpawnPoint( class CArena* pArena );
 
 	// Vehicles
 	bool					IsInAVehicle( void ) const;
@@ -518,6 +517,8 @@ public:
 	int		Rounds() const			{ return m_iRounds; }
 	void	AddRound()				{ m_iRounds++; }
 	void	ResetRounds()			{ m_iRounds = -1; }
+	void	FishOutOfWater(bool b)	{ m_bFishOutOfWater = b; }
+	bool	FishOutOfWater()		{ return m_bFishOutOfWater; }
 	bool	IsConnected() const		{ return m_iConnected != PlayerDisconnected; }
 	bool	IsDisconnecting() const	{ return m_iConnected == PlayerDisconnecting; }
 	bool	IsSuitEquipped() const	{ return m_Local.m_bWearingSuit; }
@@ -780,6 +781,7 @@ private:
 	int						m_iDeaths;
 
 	int						m_iRounds;		//Rounds in the current arena
+	bool					m_bFishOutOfWater;		//True if the player is on an arena's player list, but not in that arena for some reason.
 
 	float					m_flNextDecalTime;// next time this player can spray a decal
 

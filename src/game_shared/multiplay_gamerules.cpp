@@ -583,7 +583,8 @@ bool CMultiplayRules::IsMultiplayer( void )
 		{
 			event->SetInt("userid", pVictim->GetUserID() );
 			event->SetInt("attacker", killer_ID );
-			event->SetInt("priority", 7 );	// HLTV event priority, not transmitted
+			event->SetString("weapon", killer_weapon_name);
+			event->SetInt("priority", 10 );
 			
 			gameeventmanager->FireEvent( event );
 		}

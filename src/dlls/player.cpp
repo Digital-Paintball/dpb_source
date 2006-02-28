@@ -1387,10 +1387,6 @@ void CBasePlayer::Event_Killed( const CTakeDamageInfo &info )
 		GetActiveWeapon()->Holster();
 	}
 
-	// HACK TODO The player animations should have an ACT_DIE activity.
-	ResetSequence( LookupSequence("Death1") );
-	SetCycle( 0 );
-
 	m_lifeState		= LIFE_DYING;
 
 	pl.deadflag = true;
@@ -4003,7 +3999,7 @@ CBaseEntity *FindPlayerStart(const char *pszClassName)
 
 /*
 ============
-EntSelectSpawnPoint
+EntSelectStartPoint
 
 Returns the entity to spawn at
 
@@ -4018,112 +4014,16 @@ CBaseEntity *CBasePlayer::EntSelectStartPoint()
 	player = edict();
 
 // choose a info_player_deathmatch point
-	if (g_pGameRules->IsCoOp())
-	{
-		pSpot = gEntList.FindEntityByClassname( g_pLastSpawn, "info_player_coop");
-		if ( pSpot )
-			goto ReturnSpot;
-		pSpot = gEntList.FindEntityByClassname( g_pLastSpawn, "info_player_start");
-		if ( pSpot ) 
-			goto ReturnSpot;
-	}
-	else if ( g_pGameRules->IsDeathmatch() )
-	{
-		pSpot = g_pLastSpawn;
-		// Randomize the start spot
-		for ( int i = random->RandomInt(1,5); i > 0; i-- )
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
-		if ( !pSpot )  // skip over the null point
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
-
-		CBaseEntity *pFirstSpot = pSpot;
-
-		do 
-		{
-			if ( pSpot )
-			{
-				// check if pSpot is valid
-				if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
-				{
-					if ( pSpot->GetLocalOrigin() == vec3_origin )
-					{
-						pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
-						continue;
-					}
-
-					// if so, go to pSpot
-					goto ReturnSpot;
-				}
-			}
-			// increment pSpot
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
-		} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
-
-		// we haven't found a place to spawn yet,  so kill any guy at the first spawn point and spawn there
-		if ( pSpot )
-		{
-			CBaseEntity *ent = NULL;
-			for ( CEntitySphereQuery sphere( pSpot->GetAbsOrigin(), 128 ); (ent = sphere.GetCurrentEntity()) != NULL; sphere.NextEntity() )
-			{
-				// if ent is a client, kill em (unless they are ourselves)
-				if ( ent->IsPlayer() && !(ent->edict() == player) )
-					ent->TakeDamage( CTakeDamageInfo( GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), 300, DMG_GENERIC ) );
-			}
-			goto ReturnSpot;
-		}
-	}
-
-	// If startspot is set, (re)spawn there.
-	if ( !gpGlobals->startspot || !strlen(STRING(gpGlobals->startspot)))
-	{
-		pSpot = FindPlayerStart( "info_player_start" );
-		if ( pSpot )
-			goto ReturnSpot;
-	}
-	else
-	{
-		pSpot = gEntList.FindEntityByName( NULL, gpGlobals->startspot, NULL );
-		if ( pSpot )
-			goto ReturnSpot;
-	}
-
-ReturnSpot:
-	if ( !pSpot  )
-	{
-		Warning( "PutClientInServer: no info_player_start on level\n");
-		return CBaseEntity::Instance( INDEXENT( 0 ) );
-	}
-
-	g_pLastSpawn = pSpot;
-	return pSpot;
-}
-
-/*
-============
-EntSelectSpawnPoint
-
-Returns the entity to spawn at
-============
-*/
-CBaseEntity *CBasePlayer::EntSelectSpawnPoint( CArena* pArena )
-{
-	ASSERT(pArena);
-
-	CBaseEntity *pSpot;
-	edict_t		*player;
-
-	player = edict();
-
 	pSpot = g_pLastSpawn;
 	// Randomize the start spot
 	for ( int i = random->RandomInt(1,5); i > 0; i-- )
-		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
 	if ( !pSpot )  // skip over the null point
-		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
 
 	CBaseEntity *pFirstSpot = pSpot;
 
-	do 
+	do
 	{
 		if ( pSpot )
 		{
@@ -4132,46 +4032,18 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint( CArena* pArena )
 			{
 				if ( pSpot->GetLocalOrigin() == vec3_origin )
 				{
-					pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+					pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
 					continue;
 				}
 
 				// if so, go to pSpot
-				goto ReturnSpot;
+				break;
 			}
 		}
 		// increment pSpot
-		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
 	} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
 
-	// we haven't found a place to spawn yet,  so kill any guy at the first spawn point and spawn there
-	if ( pSpot )
-	{
-		CBaseEntity *ent = NULL;
-		for ( CEntitySphereQuery sphere( pSpot->GetAbsOrigin(), 128 ); (ent = sphere.GetCurrentEntity()) != NULL; sphere.NextEntity() )
-		{
-			// if ent is a client, kill em (unless they are ourselves)
-			if ( ent->IsPlayer() && !(ent->edict() == player) )
-				ent->TakeDamage( CTakeDamageInfo( GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), 300, DMG_GENERIC ) );
-		}
-		goto ReturnSpot;
-	}
-
-	// If startspot is set, (re)spawn there.
-	if ( !gpGlobals->startspot || !strlen(STRING(gpGlobals->startspot)))
-	{
-		pSpot = FindPlayerStart( "info_player_start" );
-		if ( pSpot )
-			goto ReturnSpot;
-	}
-	else
-	{
-		pSpot = gEntList.FindEntityByName( NULL, gpGlobals->startspot, NULL );
-		if ( pSpot )
-			goto ReturnSpot;
-	}
-
-ReturnSpot:
 	if ( !pSpot  )
 	{
 		Warning( "PutClientInServer: no info_player_start on level\n");
@@ -4249,8 +4121,6 @@ void CBasePlayer::Spawn( void )
 
 	if ( !m_fGameHUDInitialized )
 		g_pGameRules->SetDefaultPlayerTeam( this );
-
-	g_pGameRules->GetPlayerSpawnSpot( this );
 
     SetViewOffset( VEC_VIEW );
 	Precache();

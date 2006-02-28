@@ -146,12 +146,12 @@ void CWeaponSDKBase::SendReloadEvents()
 		return;
 
 	// Send a message to any clients that have this entity to play the reload.
-	CPASFilter filter( pPlayer->GetAbsOrigin() );
+/*	CPASFilter filter( pPlayer->GetAbsOrigin() );
 	filter.RemoveRecipient( pPlayer );
 
 	UserMessageBegin( filter, "ReloadEffect" );
 	WRITE_SHORT( pPlayer->entindex() );
-	MessageEnd();
+	MessageEnd();*/
 
 	// Make the player play his reload animation.
 	pPlayer->DoAnimationEvent( PLAYERANIMEVENT_RELOAD );

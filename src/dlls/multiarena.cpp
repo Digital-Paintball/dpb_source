@@ -131,26 +131,17 @@ void CArena::SetupRound( )
 			pPlayer->Spawn();
 
 		if (pPlayer->GetActiveWeapon())
+		{
 			pPlayer->GetActiveWeapon()->Holster();
+			pPlayer->GetActiveWeapon()->FinishReload();
+		}
 	}
 
 	// Remove people who have quit the game
 	for (i = 0; i < m_hQuitters.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hQuitters[i]);
-		m_hPlayers.FindAndRemove(pPlayer);
-		if (pPlayer->GetTeam())
-			pPlayer->GetTeam()->RemovePlayer(pPlayer);
-
-		pPlayer->RemoveAllItems(false);
-
-		m_hSpectators.AddToHead( pPlayer );
-
-		// default to normal spawn
-		CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
-		pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-		pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
-		pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
+		RemoveQuitter(pPlayer);
 	}
 
 	//Then add people who have joined the game
@@ -159,9 +150,6 @@ void CArena::SetupRound( )
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
 
 		m_hPlayers.AddToHead( pPlayer );
-
-		//Just in case.
-		m_hSpectators.FindAndRemove( pPlayer );
 
 		pPlayer->ResetRounds();
 		pPlayer->SetArena(this);
@@ -316,16 +304,16 @@ void CArena::StartTouch( CBaseEntity *pOther )
 
 	CBasePlayer* pPlayer = ToBasePlayer( pOther );
 
-	if (!pOther->IsPlayer())
-		return;
-
 	AddToArena(pPlayer);
 }
 
 void CArena::AddToArena( CBasePlayer *pPlayer )
 {
-	if (m_hPlayers.HasElement(pPlayer) || m_hSpectators.HasElement(pPlayer) || m_hJoiners.HasElement(pPlayer))
+	if (m_hPlayers.HasElement(pPlayer) || m_hJoiners.HasElement(pPlayer))
+	{
+		pPlayer->FishOutOfWater(false);
 		return;
+	}
 
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
 	{
@@ -359,7 +347,10 @@ void CArena::EndTouch( CBaseEntity *pOther )
 void CArena::RemoveFromArena( CBasePlayer *pPlayer )
 {
 	if (m_hPlayers.HasElement(pPlayer))
+	{
+		pPlayer->FishOutOfWater(true);
 		return;
+	}
 
 	pPlayer->SetArena( NULL );
 
@@ -405,7 +396,41 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 	if (m_hJoiners.HasElement( pPlayer ))
 		m_hJoiners.FindAndRemove( pPlayer );
 
+	// If the player has made his way outside the arena for some reason, remove him immediately.
+	if (pPlayer->FishOutOfWater())
+	{
+		RemoveQuitter(pPlayer);
+		CheckForRoundEnd();
+	}
+
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Quitting game in arena #%d.\n", m_iID+1) );
+}
+
+void CArena::RemoveQuitter( CBasePlayer *pPlayer )
+{
+	if (!m_hPlayers.HasElement(pPlayer) || !m_hQuitters.HasElement(pPlayer))
+		return;
+
+	m_hPlayers.FindAndRemove(pPlayer);
+	if (pPlayer->GetTeam())
+		pPlayer->GetTeam()->RemovePlayer(pPlayer);
+
+	pPlayer->RemoveAllItems(false);
+
+	SpawnPlayer(pPlayer);
+
+	pPlayer->FishOutOfWater(false);
+}
+
+void CArena::SpawnPlayer( CBasePlayer *pPlayer )
+{
+	//TODO: Try to find a spawn point in the current arena first.
+
+	// default to normal spawn
+	CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
+	pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
+	pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
+	pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
 }
 
 bool CArena::HasPlayer( CBasePlayer *pPlayer )
