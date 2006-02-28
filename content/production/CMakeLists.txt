@@ -1084,7 +1084,7 @@ INSTALL_FILES(/resource/ui FILES
 INSTALL_FILES(/scripts FILES
 	scripts/game.txt
 	scripts/game_sounds_manifest.txt
-	scripts/game_sounds_manifest.txt
+	scripts/game_sounds_weapons.txt
 	scripts/kb_act.lst
 	scripts/kb_def.lst
 	scripts/kb_keys.lst
