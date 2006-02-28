@@ -6,7 +6,7 @@ WeaponData
 	
 	
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"			"#SDK_MP5"
+	"printname"			"DPB-o-matic"
 	"viewmodel"			"models/weapons/v_blazer.mdl"
 	"playermodel"		"models/weapons/w_blazer.mdl"
 	
