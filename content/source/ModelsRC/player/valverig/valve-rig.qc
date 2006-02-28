@@ -10,7 +10,7 @@ $modelname player/player.mdl
 $cdmaterials models/player
 
 
-$surfaceprop "metal"
+$surfaceprop "flesh"
 
 //start eye/face data
 $eyeposition 0 0 73
