@@ -237,6 +237,11 @@ void CTeam::AddPlayer( CBasePlayer *pPlayer )
 {
 	m_aPlayers.AddToTail( pPlayer );
 	NetworkStateChanged();
+
+	if (m_iTeamNum == TEAM_RED)
+		pPlayer->m_nSkin = random->RandomInt( 0, 3 );
+	else if (m_iTeamNum == TEAM_BLUE)
+		pPlayer->m_nSkin = random->RandomInt( 4, 7 );
 }
 
 //-----------------------------------------------------------------------------

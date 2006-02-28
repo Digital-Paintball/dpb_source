@@ -155,29 +155,7 @@ void CArena::SetupRound( )
 		pPlayer->SetArena(this);
 
 		if (!pPlayer->GetTeam())
-		{
-			// Pick a team!
-			CTeam *pTeam = NULL;
-			for (int j = 0; j < m_hTeams.Count(); j++)
-			{
-				if (!pTeam)
-				{
-					pTeam = m_hTeams[j];
-					continue;
-				}
-
-				if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
-					pTeam = m_hTeams[j];
-			}
-
-			if (!pTeam)
-			{
-				DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
-				continue;
-			}
-
-			pPlayer->ChangeTeam(pTeam->GetTeamNumber());
-		}
+			AssignTeam(pPlayer);
 	}
 
 	//Empty the queues.
@@ -207,6 +185,9 @@ void CArena::SetupRound( )
 	for (i = 0; i < m_hPlayers.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+
+		if (!pPlayer->GetTeam())
+			AssignTeam(pPlayer);
 
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
@@ -378,6 +359,32 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 	m_hJoiners.AddToTail( pPlayer );
 
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
+}
+
+void CArena::AssignTeam( CBasePlayer *pPlayer )
+{
+	// Pick a team!
+	CTeam *pTeam = NULL;
+	for (int j = 0; j < m_hTeams.Count(); j++)
+	{
+		if (!pTeam)
+		{
+			pTeam = m_hTeams[j];
+			continue;
+		}
+
+		if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
+			pTeam = m_hTeams[j];
+	}
+
+	if (!pTeam)
+	{
+		DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
+		Assert(0);
+		return;
+	}
+
+	pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 }
 
 void CBasePlayer::QuitGame()

@@ -37,6 +37,7 @@ public:
 	void JoinPlayer(CBasePlayer *pPlayer);
 	void QuitPlayer(CBasePlayer *pPlayer);
 	bool HasPlayer(CBasePlayer *pPlayer);
+	void AssignTeam(CBasePlayer *pPlayer);
 
 	static void SpawnPlayer(CBasePlayer *pPlayer);
 
