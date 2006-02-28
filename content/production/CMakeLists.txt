@@ -503,6 +503,7 @@ INSTALL_FILES(/materials/norrington FILES
 )
 
 INSTALL_FILES(/materials/textures FILES
+	materials/textures/BLENDrockyroad_darkforestgrasspine.vmt
 	materials/textures/BLENDasphalt.vmt
 	materials/textures/norr_dirtroad.vtf
 	materials/textures/norr_dirtend.vtf
@@ -1160,6 +1161,7 @@ INSTALL_FILES(/sound/impact FILES
 	sound/impact/metal2.wav
 	sound/impact/plastic5.wav
 	sound/impact/supair1.wav
+	sound/impact/supair2.wav
 	sound/impact/metal3.wav
 	sound/impact/meat10.wav
 	sound/impact/foliage1.wav
@@ -1221,6 +1223,10 @@ INSTALL_FILES(/sound/walkies FILES
 	sound/walkies/hard3.wav
 	sound/walkies/grass3.wav
 	sound/walkies/hard4.wav
+	sound/walkies/ladder1.wav
+	sound/walkies/ladder2.wav
+	sound/walkies/ladder3.wav
+	sound/walkies/ladder4.wav
 )
 
 INSTALL_FILES(/sound/weapons FILES
