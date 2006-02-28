@@ -214,6 +214,33 @@
 	}
 }
 
+"rubber.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder1.wav"
+		"wave" "walkies/ladder3.wav"
+	}
+}
+
+"rubber.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_75dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder2.wav"
+		"wave" "walkies/ladder4.wav"
+	}
+}
+
 "solidmetal.stepright"
 {
 	"channel"	"CHAN_BODY"
