@@ -73,7 +73,11 @@
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"^impact/supair1.wav"
+	"rndwave"
+	{
+	"wave"			"impact/supair1.wav"
+	"wave"			"impact/supair2.wav"
+	}
 }
 
 "wood.bulletimpact"
