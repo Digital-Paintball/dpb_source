@@ -19,6 +19,25 @@
 	}
 }
 
+"grass.bulletimpact"
+{
+	"channel"		"CHAN_AUTO"
+	"volume"		"1.0"
+	
+	"CompatibilityAttenuation"	"0.64"
+	"pitch"		"PITCH_NORM"
+
+	"rndwave"
+	{
+		"wave"	"impact/foliage1.wav"
+		"wave"	"impact/foliage2.wav"
+		"wave"	"impact/foliage3.wav"
+		"wave"	"impact/foliage4.wav"
+		"wave"	"impact/foliage5.wav"
+		"wave"	"impact/foliage6.wav"
+	}
+}
+
 "concrete.bulletimpact"
 {
 	"channel"		"CHAN_AUTO"

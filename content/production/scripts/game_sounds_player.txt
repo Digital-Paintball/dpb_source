@@ -272,6 +272,33 @@
 	}
 }
 
+"plastic_box.stepright"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder1.wav"
+		"wave" "walkies/ladder3.wav"
+	}
+}
+
+"plastic_box.stepleft"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+
+	"rndwave" // plays more than one wave file in a random order
+	{
+		"wave" "walkies/ladder2.wav"
+		"wave" "walkies/ladder4.wav"
+	}
+}
+
 "HL2Player.PickupWeapon"
 {
 	"channel"	"CHAN_ITEM"
@@ -421,4 +448,31 @@
 	"soundlevel"  "SNDLVL_75dB"
 	"pitch"	"95,105"
 	"wave"	"items/ammo_pickup.wav"
+}
+
+"Player.WeaponSelectionMoveSlot"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"    "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+	"wave" "marker/aerclick.wav"
+}
+
+"Player.WeaponSelected"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+	"wave" "marker/aerclick2.wav"
+}
+
+"Player.WeaponSelectionClose"
+{
+	"channel"	"CHAN_BODY"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+	"wave" "marker/aercock.wav"
 }
