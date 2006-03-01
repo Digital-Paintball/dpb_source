@@ -122,12 +122,9 @@
 	
 	"CompatibilityAttenuation"	"0.64"
 	"pitch"		"PITCH_NORM"
-	"rndwave"
-	{
-		"wave"			"marker/fire1.wav"
-		"wave"			"marker/fire2.wav"
-		"wave"			"marker/fire3.wav"
-	}
+	"wave"			"marker/fire1.wav"
+	
+	
 	
 }
 
