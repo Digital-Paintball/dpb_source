@@ -503,6 +503,12 @@ INSTALL_FILES(/materials/norrington FILES
 )
 
 INSTALL_FILES(/materials/textures FILES
+	materials/textures/norrshadow.vtf
+	materials/textures/overlay_norrleaves.vtf
+	materials/textures/overlay_rocky.vtf
+	materials/textures/norrshadow.vmt
+	materials/textures/overlay_norrleaves.vmt
+	materials/textures/overlay_rocky.vmt
 	materials/textures/BLENDrockyroad_darkforestgrasspine.vmt
 	materials/textures/BLENDasphalt.vmt
 	materials/textures/norr_dirtroad.vtf
