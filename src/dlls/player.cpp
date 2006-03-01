@@ -638,18 +638,7 @@ int TrainSpeed(int iSpeed, int iMax)
 
 void CBasePlayer::DeathSound( void )
 {
-	// temporarily using pain sounds for death sounds
-
-	// Did we die from falling?
-	if ( m_bitsDamageType & DMG_FALL )
-	{
-		// They died in the fall. Play a splat sound.
-		EmitSound( "Player.FallGib" );
-	}
-	else
-	{
-		EmitSound( "Player.Death" );
-	}
+	EmitSound( "Player.Death" );
 }
 
 // override takehealth
@@ -1313,17 +1302,6 @@ int CBasePlayer::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	{
 		vecDir = info.GetInflictor()->WorldSpaceCenter() - Vector ( 0, 0, 10 ) - WorldSpaceCenter();
 		VectorNormalize( vecDir );
-	}
-
-	if ( info.GetInflictor() && (GetMoveType() == MOVETYPE_WALK) && 
-		( !attacker->IsSolidFlagSet(FSOLID_TRIGGER)) )
-	{
-		Vector force = vecDir * -DamageForce( WorldAlignSize(), info.GetBaseDamage() );
-		if ( force.z > 250.0f )
-		{
-			force.z = 250.0f;
-		}
-		ApplyAbsVelocityImpulse( force );
 	}
 
 	// fire global game event

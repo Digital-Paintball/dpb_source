@@ -124,9 +124,19 @@ void CArena::SetupRound( )
 	m_State = CArenaShared::GS_COUNTDOWN;
 
 	// Fix things from last round.
-	for (i = 0; i < m_hPlayers.Count(); i++)
+	int iPlayersCount = m_hPlayers.Count();
+	for (i = 0; i < iPlayersCount; i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+
+		//Maybe the client has disconnected or something?
+		//Get him out of here!
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
 
@@ -197,13 +207,18 @@ void CArena::SetupRound( )
 			// Look away from the center of the map
 			QAngle angLookAt = QAngle(0, 0, 0);
 			CBaseEntity *pSpawnSpot = pPlayer->GetTeam()->SpawnPlayer(pPlayer);
-			VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
-			angLookAt.x = 15;	//Look somewhat at the ground.
+			if (pSpawnSpot)
+			{
+				VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
+				angLookAt.x = 15;	//Look somewhat at the ground.
 
-			pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-			pPlayer->SetAbsVelocity( Vector(0,0,0) );
-			pPlayer->SetLocalAngles( angLookAt );
-			pPlayer->SnapEyeAngles( angLookAt );
+				pPlayer->SetAbsOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,10) );
+				pPlayer->SetAbsVelocity( Vector(0,0,0) );
+				pPlayer->SetAbsAngles( angLookAt );
+				pPlayer->SnapEyeAngles( angLookAt );
+			}
+			else
+				AssertMsg(0, UTIL_VarArgs("No spawn spot found for player %s on team %d in arena %d.\n", pPlayer->GetPlayerName(), pPlayer->GetTeamNumber(), m_iID));
 		}
 
 		if (bRoundStarting)
@@ -235,9 +250,19 @@ void CArena::BeginThink( )
 {
 	m_State = CArenaShared::GS_INPROGRESS;
 
-	for (int i = 0; i < m_hPlayers.Count(); i++)
+	int iPlayersCount = m_hPlayers.Count();
+	for (int i = 0; i < iPlayersCount; i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+
+		//Maybe the client has disconnected or something?
+		//Get him out of here!
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+
 		pPlayer->UnlockPlayer();
 		pPlayer->DeployArmaments();
 		pPlayer->AddRound();
@@ -356,6 +381,13 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 		return;
 	}
 
+	//Cordon off the hyperball arena for the demo. It's broken for some reason.
+	if (m_iID == 1)
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "This arena is not currently available.\n");
+		return;
+	}
+
 	m_hJoiners.AddToTail( pPlayer );
 
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
@@ -423,6 +455,7 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 		pPlayer->GetTeam()->RemovePlayer(pPlayer);
 
 	pPlayer->RemoveAllItems(false);
+	pPlayer->UnlockPlayer();
 
 	SpawnPlayer(pPlayer);
 
@@ -435,8 +468,8 @@ void CArena::SpawnPlayer( CBasePlayer *pPlayer )
 
 	// default to normal spawn
 	CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
-	pPlayer->SetLocalOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-	pPlayer->SetLocalAngles( pSpawnSpot->GetLocalAngles() );
+	pPlayer->SetAbsOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
+	pPlayer->SetAbsAngles( pSpawnSpot->GetLocalAngles() );
 	pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
 }
 

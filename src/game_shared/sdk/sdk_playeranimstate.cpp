@@ -557,7 +557,7 @@ Activity CSDKPlayerAnimState::CalcMainActivity()
 	{
 		Activity idealActivity = ACT_IDLE;
 
-		if ( m_pOuter->m_lifeState == LIFE_DYING)
+		if ( m_pOuter->m_lifeState > LIFE_ALIVE)
 		{
 			idealActivity = ACT_DIE;
 		}

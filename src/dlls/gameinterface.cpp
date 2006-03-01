@@ -1661,6 +1661,8 @@ void CServerGameClients::ClientDisconnect( edict_t *pEdict )
 			{
 				g_pGameRules->ClientDisconnected( pEdict );
 			}
+
+			player->QuitGame();
 		}
 
 		// Make sure all Untouch()'s are called for this client leaving

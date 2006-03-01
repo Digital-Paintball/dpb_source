@@ -38,12 +38,12 @@ void CPaintball::PaintballTouch( CBaseEntity *pOther, CGameTrace* pTrace )
 
 		if( m_pOwner && m_pOwner->IsPlayer() && pOther->IsNPC() )
 		{
-			CTakeDamageInfo	dmgInfo( m_pOwner, m_pOwner, 1000, DMG_NEVERGIB | DMG_NO_PHYSICS_FORCE );
+			CTakeDamageInfo	dmgInfo( m_pOwner, m_pOwner, 105, DMG_NEVERGIB | DMG_NO_PHYSICS_FORCE );
 			pOther->DispatchTraceAttack( dmgInfo, vecNormalizedVel, pTrace );
 		}
 		else
 		{
-			CTakeDamageInfo	dmgInfo( m_pOwner, m_pOwner, 1000, DMG_BULLET | DMG_NEVERGIB | DMG_NO_PHYSICS_FORCE );
+			CTakeDamageInfo	dmgInfo( m_pOwner, m_pOwner, 105, DMG_BULLET | DMG_NEVERGIB | DMG_NO_PHYSICS_FORCE );
 			pOther->DispatchTraceAttack( dmgInfo, vecNormalizedVel, pTrace );
 		}
 

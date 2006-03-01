@@ -204,7 +204,7 @@ CBaseEntity *CTeam::SpawnPlayer( CBasePlayer *pPlayer )
 		iSpawn++;
 	} while ( iSpawn != iStartingSpawn ); // loop if we're not back to the start
 
-	return NULL;
+	return m_aSpawnPoints[iSpawn];
 }
 
 void CTeam::AverageSpawns( void )
