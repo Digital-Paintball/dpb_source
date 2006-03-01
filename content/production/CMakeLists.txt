@@ -719,6 +719,10 @@ INSTALL_FILES(/materials/VGUI/logos/UI FILES
 	materials/VGUI/logos/UI/spray_canned.vmt
 )
 
+INSTALL_FILES(/media FILES
+	media/StartupVids.txt
+)
+
 INSTALL_FILES(/models FILES
 	models/rygPyramid.sw.vtx
 	models/rygpyramid.mdl
@@ -1191,6 +1195,10 @@ INSTALL_FILES(/sound/impact FILES
 )
 
 INSTALL_FILES(/sound/marker FILES
+	sound/marker/aercock.wav
+	sound/marker/aerinsert.wav
+	sound/marker/aerclick.wav
+	sound/marker/aerclick2.wav
 	sound/marker/fire1.wav
 	sound/marker/fire2.wav
 	sound/marker/fire3.wav
@@ -1211,6 +1219,11 @@ INSTALL_FILES(/sound/player FILES
 	sound/player/playerout6.wav
 	sound/player/playerout7.wav
 	sound/player/playerout8.wav
+	sound/player/hudnote.wav
+	sound/player/injurehorribly.wav
+	sound/player/injure1.wav
+	sound/player/injure2.wav
+	sound/player/injure3.wav
 )
 
 INSTALL_FILES(/sound/walkies FILES
@@ -1227,15 +1240,4 @@ INSTALL_FILES(/sound/walkies FILES
 	sound/walkies/ladder2.wav
 	sound/walkies/ladder3.wav
 	sound/walkies/ladder4.wav
-)
-
-INSTALL_FILES(/sound/weapons FILES
-	sound/weapons/pinpull.wav
-)
-
-INSTALL_FILES(/sound/weapons/hegrenade FILES
-	sound/weapons/hegrenade/explode3.wav
-	sound/weapons/hegrenade/explode4.wav
-	sound/weapons/hegrenade/explode5.wav
-	sound/weapons/hegrenade/he_bounce-1.wav
 )
