@@ -480,3 +480,12 @@
 	"pitch"	"PITCH_NORM"
 	"wave" "marker/aercock.wav"
 }
+
+"HudChat.Message"
+{
+	"channel"	"CHAN_ITEM"
+	"volume"	"1.0"
+	"soundlevel"  "SNDLVL_45dB"
+	"pitch"	"PITCH_NORM"
+	"wave" "player/hudnote.wav"
+}
