@@ -1,0 +1,7 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/norrshadow"
+	"$translucent" 1
+	"$decal" 1
+	"%keywords" "dpb norrington"
+}

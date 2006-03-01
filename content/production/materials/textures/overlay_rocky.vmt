@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/overlay_rocky"
+	"$translucent" 1
+	"$decal" 1
+	"$surfaceprop" "rock"
+	"%keywords" "dpb norrington"
+}
