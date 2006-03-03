@@ -101,7 +101,7 @@ norr_grass_2
 
 { 
 
-"density" "300.0" 
+"density" "500.0" 
 
 Group1 
 
@@ -113,9 +113,9 @@ Model1
 
 { 
 
-"sprite" "0 0 128 128 512" 
+"sprite" "0 288 128 128 512" 
 
-"spritesize" "0.5 0.0 13 14" 
+"spritesize" "0.5 0.0 20 21" 
 
 "spriterandomscale" "0.2" 
 
@@ -129,9 +129,9 @@ Model2
 
 { 
 
-"sprite" "0 144 128 128 512" 
+"sprite" "144 288 128 128 512" 
 
-"spritesize" "0.5 0.0 16 14" 
+"spritesize" "0.5 0.0 23 24" 
 
 "spriterandomscale" "0.2" 
 
