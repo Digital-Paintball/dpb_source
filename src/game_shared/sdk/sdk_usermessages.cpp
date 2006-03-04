@@ -47,5 +47,6 @@ void RegisterUserMessages()
 	usermessages->Register( "GameMessage", -1 );
 
 	usermessages->Register( "Paintball", 1 );
+	usermessages->Register( "Arena", -1 );
 }
 

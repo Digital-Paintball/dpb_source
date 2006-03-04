@@ -26,13 +26,15 @@ public:
 	static int GetArenaNumber();
 	static C_Arena* GetArena(int i);
 
-	bool HasPlayer(C_BasePlayer *pPlayer) { return true; };
+	bool	HasPlayer(C_BasePlayer *pPlayer);
 
 	CArenaShared::gamestate_t m_State;
 
+	bool	m_bHasLocalPlayer;
+
 private:
 	int									m_iID;
-	static CUtlVector<CHandle<C_Arena> >	s_hArenas;
+	static CUtlVector<C_Arena*>			s_hArenas;
 };
 
 #endif // C_MULTIARENA_H

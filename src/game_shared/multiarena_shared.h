@@ -21,6 +21,12 @@ public:
 		GS_VICTORY,		//One team has achieved victory
 		// If you add to here, also add the number of bits in SendPropInt
 	} gamestate_t;
+
+	typedef enum {
+		AE_JOIN,	//Player has joined the arena
+		AE_QUIT,	//Player has quit the arena
+		AE_VICTORY,	//Specified team won the round, unused ATM
+	} arenaevent_t;
 };
 
 #endif // MULTIARENA_SHARED_H

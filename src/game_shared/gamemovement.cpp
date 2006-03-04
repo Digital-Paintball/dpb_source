@@ -13,6 +13,12 @@
 #include "SoundEmitterSystem/isoundemittersystembase.h"
 #include "decals.h"
 
+#ifdef CLIENT_DLL
+#include "c_multiarena.h"
+#else
+#include "multiarena.h"
+#endif
+
 #if defined(HL2_DLL) || defined(HL2_CLIENT_DLL)
 #include "hl_movedata.h"
 #endif
@@ -684,7 +690,10 @@ void CGameMovement::ProcessMovement( CBasePlayer *pPlayer, CMoveData *pMove )
 
 	player = pPlayer;
 	mv = pMove;
-	mv->m_flMaxSpeed = sv_maxspeed.GetFloat();
+	if (player->GetArena() && player->GetArena()->HasPlayer(player))
+		mv->m_flMaxSpeed = sv_maxarenaspeed.GetFloat();
+	else
+		mv->m_flMaxSpeed = sv_maxspeed.GetFloat();
 
 	StartTrackPredictionErrors();
 

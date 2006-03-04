@@ -159,6 +159,9 @@ void CArena::SetupRound( )
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
 
+		if (m_hPlayers.HasElement( pPlayer ))
+			continue;
+
 		m_hPlayers.AddToHead( pPlayer );
 
 		pPlayer->ResetRounds();
@@ -166,6 +169,13 @@ void CArena::SetupRound( )
 
 		if (!pPlayer->GetTeam())
 			AssignTeam(pPlayer);
+
+		CSingleUserRecipientFilter user( pPlayer );
+		user.MakeReliable();
+		UserMessageBegin( user, "Arena" );
+			WRITE_BYTE( CArenaShared::AE_JOIN );
+			WRITE_BYTE( m_iID );
+		MessageEnd();
 	}
 
 	//Empty the queues.
@@ -388,6 +398,9 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 		return;
 	}
 
+	if (m_hJoiners.HasElement( pPlayer ) || m_hPlayers.HasElement( pPlayer ))
+		return;
+
 	m_hJoiners.AddToTail( pPlayer );
 
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
@@ -460,6 +473,12 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 	SpawnPlayer(pPlayer);
 
 	pPlayer->FishOutOfWater(false);
+
+	CSingleUserRecipientFilter user( pPlayer );
+	user.MakeReliable();
+	UserMessageBegin( user, "Arena" );
+		WRITE_BYTE( CArenaShared::AE_QUIT );
+	MessageEnd();
 }
 
 void CArena::SpawnPlayer( CBasePlayer *pPlayer )
