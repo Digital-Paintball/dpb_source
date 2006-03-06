@@ -151,6 +151,10 @@ void CArena::SetupRound( )
 	for (i = 0; i < m_hQuitters.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hQuitters[i]);
+
+		if (!pPlayer)
+			continue;
+
 		RemoveQuitter(pPlayer);
 	}
 
@@ -158,6 +162,9 @@ void CArena::SetupRound( )
 	for (i = 0; i < m_hJoiners.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
+
+		if (!pPlayer)
+			continue;
 
 		if (m_hPlayers.HasElement( pPlayer ))
 			continue;
@@ -208,6 +215,8 @@ void CArena::SetupRound( )
 
 		if (!pPlayer->GetTeam())
 			AssignTeam(pPlayer);
+
+		Assert(pPlayer->GetTeam());
 
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
