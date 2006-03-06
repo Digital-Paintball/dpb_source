@@ -576,6 +576,7 @@ void CPrediction::SetupMove( C_BasePlayer *player, CUserCmd *ucmd, IMoveHelper *
 	move->m_vecViewAngles	= ucmd->viewangles;
 	move->m_nImpulseCommand = ucmd->impulse;	
 	move->m_nButtons		= ucmd->buttons;
+	move->m_flLeaning		= ucmd->lean;
 
 	CBaseEntity *pMoveParent = player->GetMoveParent();
 	if (!pMoveParent)
@@ -650,6 +651,7 @@ void CPrediction::FinishMove( C_BasePlayer *player, CUserCmd *ucmd, CMoveData *m
 	
 	player->m_Local.m_nOldButtons = move->m_nButtons;
 
+	player->m_flLeaning = move->m_flLeaning;
 
 	player->m_flMaxspeed = move->m_flClientMaxSpeed;
 	

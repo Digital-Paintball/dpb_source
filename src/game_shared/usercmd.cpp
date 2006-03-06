@@ -105,6 +105,16 @@ void WriteUsercmd( bf_write *buf, CUserCmd *to, CUserCmd *from )
 		buf->WriteOneBit( 0 );
 	}
 
+	if ( to->lean != from->lean )
+	{
+		buf->WriteOneBit( 1 );
+		buf->WriteSBitLong( to->lean, 16 );
+	}
+	else
+	{
+		buf->WriteOneBit( 0 );
+	}
+
 	if ( to->buttons != from->buttons )
 	{
 		buf->WriteOneBit( 1 );
@@ -225,16 +235,22 @@ void ReadUsercmd( bf_read *buf, CUserCmd *move, CUserCmd *from )
 	if ( buf->ReadOneBit() )
 	{
 		move->viewangles[0] = buf->ReadBitAngle( 16 );
+		if (move->viewangles[0] > 180)
+			move->viewangles[0] -= 360;
 	}
 
 	if ( buf->ReadOneBit() )
 	{
 		move->viewangles[1] = buf->ReadBitAngle( 16 );
+		if (move->viewangles[1] > 180)
+			move->viewangles[1] -= 360;
 	}
 
 	if ( buf->ReadOneBit() )
 	{
 		move->viewangles[2] = buf->ReadBitAngle( 8 );
+		if (move->viewangles[2] > 180)
+			move->viewangles[2] -= 360;
 	}
 
 	// Read movement
@@ -253,6 +269,11 @@ void ReadUsercmd( bf_read *buf, CUserCmd *move, CUserCmd *from )
 		move->upmove = buf->ReadSBitLong( 16 );
 	}
 
+	if ( buf->ReadOneBit() )
+	{
+		move->lean = buf->ReadSBitLong( 16 );
+	}
+	
 	// read buttons
 	if ( buf->ReadOneBit() )
 	{

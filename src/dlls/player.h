@@ -648,6 +648,8 @@ public:
 	int						m_afButtonReleased;
 	int						m_afButtonLast;
 
+	float					m_flLeaning;
+
 	EHANDLE					m_hAutoAimTarget;	//If the crosshair is on a target, this is it
 	
 	CNetworkVar( bool, m_fOnTarget );		//Is the crosshair on a target?

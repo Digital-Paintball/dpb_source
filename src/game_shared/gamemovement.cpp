@@ -286,6 +286,27 @@ const Vector& CGameMovement::GetPlayerViewOffset( bool ducked ) const
 	return ducked ? VEC_DUCK_VIEW : VEC_VIEW;
 }
 
+void CGameMovement::SetPlayerViewOffset( const Vector& vecOffset )
+{
+	m_vecRegularViewOffset = vecOffset;
+	player->SetViewOffset( vecOffset + m_vecLean );
+}
+
+Vector& CGameMovement::GetLeanOffset( )
+{
+	return m_vecLean;
+}
+
+void CGameMovement::SetLeanOffset( Vector& vecOffset )
+{
+	m_vecLean = vecOffset;
+}
+
+Vector& CGameMovement::GetViewOffset( )
+{
+	return m_vecRegularViewOffset;
+}
+
 #if 0
 //-----------------------------------------------------------------------------
 // Traces player movement + position
@@ -688,7 +709,11 @@ void CGameMovement::ProcessMovement( CBasePlayer *pPlayer, CMoveData *pMove )
 	//  flag globally here once per usercmd cycle.
 	m_bSpeedCropped = false;
 
+	if (player != pPlayer)
+		m_vecRegularViewOffset = pPlayer->GetViewOffset();
+
 	player = pPlayer;
+
 	mv = pMove;
 	if (player->GetArena() && player->GetArena()->HasPlayer(player))
 		mv->m_flMaxSpeed = sv_maxarenaspeed.GetFloat();
@@ -870,7 +895,7 @@ void CGameMovement::CheckWaterJump( void )
 				return;
 		}
 
-		vecStart.z = mv->m_vecAbsOrigin.z + player->GetViewOffset().z + WATERJUMP_HEIGHT; 
+		vecStart.z = mv->m_vecAbsOrigin.z + GetViewOffset().z + WATERJUMP_HEIGHT; 
 		VectorMA( vecStart, 24.0f, flatforward, vecEnd );
 		VectorMA( vec3_origin, -50.0f, tr.plane.normal, player->m_vecWaterJumpVel );
 
@@ -2965,7 +2990,7 @@ bool CGameMovement::CheckWater( void )
 			player->SetWaterLevel( WL_Waist );
 
 			// Now check the eye position.  (view_ofs is relative to the origin)
-			point[2] = mv->m_vecAbsOrigin[2] + player->GetViewOffset()[2];
+			point[2] = mv->m_vecAbsOrigin[2] + GetViewOffset()[2];
 			cont = enginetrace->GetPointContents( point );
 			if ( cont & MASK_WATER )
 				player->SetWaterLevel( WL_Eyes );  // In over our eyes
@@ -3428,7 +3453,7 @@ void CGameMovement::FinishUnDuck( void )
 	player->m_Local.m_bDucked = false;
 	player->RemoveFlag( FL_DUCKING );
 	player->m_Local.m_bDucking  = false;
-	player->SetViewOffset( GetPlayerViewOffset( false ) );
+	SetPlayerViewOffset( GetPlayerViewOffset( false ) );
 	player->m_Local.m_flDucktime = 0;
 	
 	VectorCopy( newOrigin, mv->m_vecAbsOrigin );
@@ -3461,9 +3486,9 @@ void CGameMovement::UpdateDuckJumpEyeOffset( void )
 		
 		Vector vecDuckViewOffset = GetPlayerViewOffset( true );
 		Vector vecStandViewOffset = GetPlayerViewOffset( false );
-		Vector vecTemp = player->GetViewOffset();
+		Vector vecTemp = GetViewOffset();
 		vecTemp.z = ( ( vecDuckViewOffset.z - fMore ) * flDuckFraction ) + ( vecStandViewOffset.z * ( 1 - flDuckFraction ) );
-		player->SetViewOffset( vecTemp );
+		SetPlayerViewOffset( vecTemp );
 	}
 }
 
@@ -3494,7 +3519,7 @@ void CGameMovement::FinishUnDuckJump( trace_t &trace )
 	
 	Vector vecViewOffset = GetPlayerViewOffset( false );
 	vecViewOffset.z -= flDeltaZ;
-	player->SetViewOffset( vecViewOffset );
+	SetPlayerViewOffset( vecViewOffset );
 
 	VectorSubtract( vecNewOrigin, viewDelta, vecNewOrigin );
 	VectorCopy( vecNewOrigin, mv->m_vecAbsOrigin );
@@ -3514,7 +3539,7 @@ void CGameMovement::FinishDuck( void )
 	player->m_Local.m_bDucked = 1;
 	player->m_Local.m_bDucking = false;
 
-	player->SetViewOffset( GetPlayerViewOffset( true ) );
+	SetPlayerViewOffset( GetPlayerViewOffset( true ) );
 
 	// HACKHACK - Fudge for collision bug - no time to fix this properly
 	if ( player->GetGroundEntity() != NULL )
@@ -3548,7 +3573,7 @@ void CGameMovement::StartUnDuckJump( void )
 	player->m_Local.m_bDucked = true;
 	player->m_Local.m_bDucking = false;
 
-	player->SetViewOffset( GetPlayerViewOffset( true ) );
+	SetPlayerViewOffset( GetPlayerViewOffset( true ) );
 
 	Vector hullSizeNormal = VEC_HULL_MAX - VEC_HULL_MIN;
 	Vector hullSizeCrouch = VEC_DUCK_HULL_MAX - VEC_DUCK_HULL_MIN;
@@ -3576,10 +3601,10 @@ void CGameMovement::SetDuckedEyeOffset( float duckFraction )
 
 	Vector vecDuckViewOffset = GetPlayerViewOffset( true );
 	Vector vecStandViewOffset = GetPlayerViewOffset( false );
-	Vector temp = player->GetViewOffset();
+	Vector temp = GetViewOffset();
 	temp.z = ( ( vecDuckViewOffset.z - fMore ) * duckFraction ) +
 				( vecStandViewOffset.z * ( 1 - duckFraction ) );
-	player->SetViewOffset( temp );
+	SetPlayerViewOffset( temp );
 }
 
 //-----------------------------------------------------------------------------
@@ -3784,6 +3809,89 @@ void CGameMovement::Duck( void )
 	}
 }
 
+void CGameMovement::Lean()
+{
+	int buttonsChanged	= ( mv->m_nOldButtons ^ mv->m_nButtons );	// These buttons have changed this frame
+	int buttonsPressed	=  buttonsChanged & mv->m_nButtons;			// The changed ones still down are "pressed"
+	int buttonsReleased	=  buttonsChanged & mv->m_nOldButtons;		// The changed ones which were previously down are "released"
+
+	// Check to see if we are in the air.
+	bool bMoving = ( mv->m_nButtons & IN_FORWARD || mv->m_nButtons & IN_MOVELEFT || mv->m_nButtons & IN_BACK || mv->m_nButtons & IN_MOVERIGHT );
+	bool bWasMoving = ( mv->m_nOldButtons & IN_FORWARD || mv->m_nOldButtons & IN_MOVELEFT || mv->m_nOldButtons & IN_BACK || mv->m_nOldButtons & IN_MOVERIGHT );
+
+	if ( bMoving && !bWasMoving )
+	{
+		m_flLeanStopTime = gpGlobals->curtime + 1.5;
+	}
+	else if ( bWasMoving && !bMoving )
+	{
+		m_flLeanStopTime = 0;
+	}
+
+	// Handle death.
+	if ( IsDead() )
+		return;
+
+	if ( buttonsPressed & IN_LEAN )
+	{
+		m_flLeanStartTime = gpGlobals->curtime;
+		m_flLeanStopTime = 0;
+		m_bStoppingLean = false;
+	}
+	else if ( ((buttonsReleased & IN_LEAN) && (gpGlobals->curtime < m_flLeanStartTime + 0.1))
+		|| (buttonsPressed & IN_JUMP) || (m_flLeanStopTime && gpGlobals->curtime > m_flLeanStopTime) )
+	{
+		m_bStoppingLean = true;
+	}
+
+	if (m_bStoppingLean)
+	{
+		if (mv->m_flLeaning > 0)
+		{
+			mv->m_flLeaning -= 4;
+			if (mv->m_flLeaning <= 0)
+			{
+				mv->m_flLeaning = 0;
+				m_bStoppingLean = false;
+			}
+		}
+		else if (mv->m_flLeaning < 0)
+		{
+			mv->m_flLeaning += 4;
+			if (mv->m_flLeaning >= 0)
+			{
+				mv->m_flLeaning = 0;
+				m_bStoppingLean = false;
+			}
+		}
+		else
+		{
+			m_bStoppingLean = false;
+		}
+	}
+
+	if ( mv->m_flLeaning )
+	{
+		const int iLeanDist = 50;
+
+		//Get rid of roll.
+		QAngle angView = mv->m_vecViewAngles;
+		angView.z = 0;
+		Vector vecForward, vecUp, vecRight;
+		AngleVectors(angView, &vecForward, &vecRight, &vecUp);
+
+		float flA = cos(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
+		float flO = sin(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
+
+		m_vecLean = (vecUp * -(iLeanDist - flA)) + vecRight * flO;
+
+		//Minimize the effect if the player is looking up or down.
+		m_vecLean *= 1-fabs(angView.x)/90;
+
+		SetPlayerViewOffset( GetViewOffset() );
+	}
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -3842,6 +3950,8 @@ void CGameMovement::PlayerMove( void )
 
 	UpdateDuckJumpEyeOffset();
 	Duck();
+
+	Lean();
 
 	// Don't run ladder code if dead on on a train
 	if ( !player->pl.deadflag && !(player->GetFlags() & FL_ONTRAIN) )

@@ -53,6 +53,7 @@ public:
 		random_seed = 0;
 		mousedx = 0;
 		mousedy = 0;
+		lean = 0;
 
 		hasbeenpredicted = false;
 #if defined( HL2_DLL ) || defined( HL2_CLIENT_DLL )
@@ -78,6 +79,7 @@ public:
 		random_seed			= src.random_seed;
 		mousedx				= src.mousedx;
 		mousedy				= src.mousedy;
+		lean				= src.lean;
 
 		hasbeenpredicted	= src.hasbeenpredicted;
 
@@ -115,6 +117,8 @@ public:
 
 	short	mousedx;		// mouse accum in x from create move
 	short	mousedy;		// mouse accum in y from create move
+
+	float	lean;
 
 	// Client only, tracks whether we've predicted this command at least once
 	bool	hasbeenpredicted;

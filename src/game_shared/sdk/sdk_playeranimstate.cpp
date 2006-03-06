@@ -11,6 +11,7 @@
 #include "studio.h"
 #include "apparent_velocity_helper.h"
 #include "utldict.h"
+#include "movevars_shared.h"
 
 #include "sdk_playeranimstate.h"
 #include "weapon_sdkbase.h"
@@ -44,7 +45,8 @@
 #define FIRESEQUENCE_LAYER		(AIMSEQUENCE_LAYER+NUM_AIMSEQUENCE_LAYERS)
 #define RELOADSEQUENCE_LAYER	(FIRESEQUENCE_LAYER + 1)
 #define GRENADESEQUENCE_LAYER	(RELOADSEQUENCE_LAYER + 1)
-#define NUM_LAYERS_WANTED		(GRENADESEQUENCE_LAYER + 1)
+#define LEANSEQUENCE_LAYER		(GRENADESEQUENCE_LAYER + 1)
+#define NUM_LAYERS_WANTED		(LEANSEQUENCE_LAYER + 1)
 
 
 
@@ -87,6 +89,9 @@ protected:
 	int CalcGrenadePrimeSequence();
 	int CalcGrenadeThrowSequence();
 	int GetOuterGrenadeThrowCounter();
+
+	void ComputeLeanSequence();
+	int CalcLeanLayerSequence();
 
 	const char* GetWeaponSuffix();
 	bool HandleJumping();
@@ -366,6 +371,12 @@ void CSDKPlayerAnimState::ComputeGrenadeSequence()
 }
 
 
+int CSDKPlayerAnimState::CalcLeanLayerSequence()
+{
+	return CalcSequenceIndex( "lean_left" );
+}
+
+
 int CSDKPlayerAnimState::CalcGrenadePrimeSequence()
 {
 	return CalcSequenceIndex( "idle_shoot_gren1" );
@@ -394,6 +405,37 @@ void CSDKPlayerAnimState::ComputeReloadSequence()
 	UpdateLayerSequenceGeneric( RELOADSEQUENCE_LAYER, m_bReloading, m_flReloadCycle, m_iReloadSequence, false );
 #else
 	// Server doesn't bother with different fire sequences.
+#endif
+}
+
+
+void CSDKPlayerAnimState::ComputeLeanSequence()
+{
+	CAnimationLayer *pLayer = m_pOuter->GetAnimOverlay( LEANSEQUENCE_LAYER );
+
+	int iSequence = CalcLeanLayerSequence( );
+	if ( iSequence == -1 )
+		iSequence = 0;
+
+	CSDKPlayer *pPlayer = dynamic_cast<CSDKPlayer*>( m_pOuter );
+	Assert(pPlayer);
+
+	float flWeight = fabs(pPlayer->m_flLeaning / (sv_maxlean.GetFloat()?sv_maxlean.GetFloat():1));
+#ifdef GAME_DLL
+	pLayer->m_nSequence = iSequence;
+
+	pLayer->m_flCycle = 1;
+
+	pLayer->m_flPlaybackRate = 1.0;
+	pLayer->m_flWeight = flWeight;
+	pLayer->m_nOrder = CBaseAnimatingOverlay::MAX_OVERLAYS;
+	pLayer->m_fFlags |= ANIM_LAYER_ACTIVE;
+#else
+	pLayer->nSequence = iSequence;
+	pLayer->flPlaybackrate = 1.0;
+	pLayer->flWeight = flWeight;
+	pLayer->nOrder = CBaseAnimatingOverlay::MAX_OVERLAYS;
+	pLayer->flCycle = 1;
 #endif
 }
 
@@ -603,6 +645,7 @@ void CSDKPlayerAnimState::ComputeSequences()
 	BaseClass::ComputeSequences();
 
 	ComputeFireSequence();
+	ComputeLeanSequence();
 	ComputeReloadSequence();
 	ComputeGrenadeSequence();
 }

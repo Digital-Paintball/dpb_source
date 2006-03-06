@@ -274,5 +274,6 @@ extern kbutton_t in_moveleft;
 extern kbutton_t in_moveright;
 extern kbutton_t in_forward;
 extern kbutton_t in_back;
+extern kbutton_t in_lean;
 
 #endif // INPUT_H

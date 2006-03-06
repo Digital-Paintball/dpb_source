@@ -8,6 +8,7 @@
 //=============================================================================//
 
 #include "cbase.h"
+#include "igamemovement.h"
 #include "kbutton.h"
 #include "usercmd.h"
 #include "in_buttons.h"
@@ -19,6 +20,7 @@
 #include "checksum_md5.h"
 #include <ctype.h> // isalnum()
 #include <voice_status.h>
+#include "movevars_shared.h"
 
 extern ConVar in_joystick;
 
@@ -39,6 +41,8 @@ float anglemod( float a );
 // FIXME void V_Init( void );
 static int in_impulse = 0;
 static int in_cancel = 0;
+
+extern CMoveData *g_pMoveData;
 
 ConVar cl_anglespeedkey( "cl_anglespeedkey", "0.67", 0 );
 ConVar cl_yawspeed( "cl_yawspeed", "210", 0 );
@@ -87,6 +91,7 @@ kbutton_t	in_forward;
 kbutton_t	in_back;
 kbutton_t	in_moveleft;
 kbutton_t	in_moveright;
+kbutton_t	in_lean;
 // Display the netgraph
 kbutton_t	in_graph;  
 
@@ -411,6 +416,8 @@ void IN_BreakUp( void )
 	}
 #endif
 };
+void IN_LeanDown (void) {KeyDown(&in_lean);}
+void IN_LeanUp (void) {KeyUp(&in_lean);}
 void IN_KLookDown (void) {KeyDown(&in_klook);}
 void IN_KLookUp (void) {KeyUp(&in_klook);}
 void IN_JLookDown (void) {KeyDown(&in_jlook);}
@@ -947,6 +954,14 @@ void CInput::CreateMove ( int sequence_number, float input_sample_frametime, boo
 		}
 	}
 
+	cmd->lean += g_pMoveData->m_flLeaning;
+	if (cmd->lean > sv_maxlean.GetFloat())
+		cmd->lean = sv_maxlean.GetFloat();
+	if (cmd->lean < -sv_maxlean.GetFloat())
+		cmd->lean = -sv_maxlean.GetFloat();
+	g_pMoveData->m_flLeaning = cmd->lean;
+	viewangles[ROLL] = cmd->lean;
+
 	// Use new view angles if alive, otherwise user last angles we stored off.
 	if ( g_iAlive )
 	{
@@ -1142,6 +1157,7 @@ int CInput::GetButtonBits( int bResetState )
 	CalcButtonBits( bits, IN_ALT1, s_ClearInputState, &in_alt1, bResetState );
 	CalcButtonBits( bits, IN_SCORE, s_ClearInputState, &in_score, bResetState );
 	CalcButtonBits( bits, IN_ZOOM, s_ClearInputState, &in_zoom, bResetState );
+	CalcButtonBits( bits, IN_LEAN, s_ClearInputState, &in_lean, bResetState );
 
 	// Cancel is a special flag
 	if (in_cancel)
@@ -1231,6 +1247,8 @@ void CInput::AddIKGroundContactInfo( int entindex, float minheight, float maxhei
 
 static ConCommand startcommandermousemove("+commandermousemove", IN_CommanderMouseMoveDown);
 static ConCommand endcommandermousemove("-commandermousemove", IN_CommanderMouseMoveUp);
+static ConCommand startlean("+lean",IN_LeanDown);
+static ConCommand endlean("-lean",IN_LeanUp);
 static ConCommand startmoveup("+moveup",IN_UpDown);
 static ConCommand endmoveup("-moveup",IN_UpUp);
 static ConCommand startmovedown("+movedown",IN_DownDown);

@@ -50,6 +50,7 @@ public:
 	float			m_flForwardMove;
 	float			m_flSideMove;
 	float			m_flUpMove;
+	float			m_flLeaning;
 	
 	float			m_flMaxSpeed;
 	float			m_flClientMaxSpeed;

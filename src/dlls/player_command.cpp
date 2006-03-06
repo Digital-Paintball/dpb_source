@@ -155,6 +155,7 @@ void CPlayerMove::SetupMove( CBasePlayer *player, CUserCmd *ucmd, IMoveHelper *p
 	}
 
 	move->m_nButtons			= ucmd->buttons;
+	move->m_flLeaning			= ucmd->lean;
 
 	// Ingore buttons for movement if at controls
 	if ( player->GetFlags() & FL_ATCONTROLS )
@@ -207,6 +208,8 @@ void CPlayerMove::FinishMove( CBasePlayer *player, CUserCmd *ucmd, CMoveData *mo
 	player->SetAbsVelocity( move->m_vecVelocity );
 
 	player->m_Local.m_nOldButtons			= move->m_nButtons;
+
+	player->m_flLeaning = move->m_flLeaning;
 
 	// Convert final pitch to body pitch
 	float pitch = move->m_vecAngles[ PITCH ];

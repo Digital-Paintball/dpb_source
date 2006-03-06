@@ -294,6 +294,8 @@ public:
 
 	int				m_nButtons;
 
+	float			m_flLeaning;
+
 	CUserCmd		*m_pCurrentCommand;
 
 	// Movement constraints

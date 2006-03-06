@@ -38,6 +38,7 @@ ConVar m_pitch( "m_pitch","0.022", FCVAR_ARCHIVE, "Mouse pitch factor." );
 static ConVar m_filter( "m_filter","0", FCVAR_ARCHIVE, "Mouse filtering (set this to 1 to average the mouse over 2 frames)." );
 ConVar sensitivity( "sensitivity","3", FCVAR_ARCHIVE, "Mouse sensitivity.", true, 0.0001f, false, 10000000 );
 
+static ConVar m_lean( "m_lean","0.022", FCVAR_ARCHIVE, "Mouse lean factor." );
 static ConVar m_side( "m_side","0.8", FCVAR_ARCHIVE, "Mouse side factor." );
 static ConVar m_yaw( "m_yaw","0.022", FCVAR_ARCHIVE, "Mouse yaw factor." );
 static ConVar m_forward( "m_forward","1", FCVAR_ARCHIVE, "Mouse forward factor." );
@@ -372,9 +373,14 @@ void CInput::ScaleMouse( float *x, float *y )
 //-----------------------------------------------------------------------------
 void CInput::ApplyMouse( QAngle& viewangles, CUserCmd *cmd, float mouse_x, float mouse_y )
 {
+	// If holding lean key, apply horizontal mouse movement to leaning.
+	if ( in_lean.state & 1 )
+	{
+		cmd->lean += m_lean.GetFloat() * mouse_x;
+	}
+	else if ( (in_strafe.state & 1) || lookstrafe.GetInt())
 	// If holding strafe key or mlooking and have lookstrafe set to true, then apply
 	//  horizontal mouse movement to sidemove.
-	if ( (in_strafe.state & 1) || lookstrafe.GetInt())
 	{
 		cmd->sidemove += m_side.GetFloat() * mouse_x;
 	}
