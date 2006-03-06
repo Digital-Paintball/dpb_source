@@ -171,6 +171,9 @@ INSTALL_FILES(/materials/models/props_cars/jeep_truck FILES
 )
 
 INSTALL_FILES(/materials/models/props_field FILES
+	materials/models/props_field/picnictable_wood.vtf  
+	materials/models/props_field/picnictable_wood.vmt  
+	materials/models/props_field/picnictable_wood_normal.vtf  
 	materials/models/props_field/pallet_01.vtf
 	materials/models/props_field/pallet_02.vtf
 	materials/models/props_field/pallet_03.vtf
