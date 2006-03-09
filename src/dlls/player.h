@@ -249,6 +249,13 @@ public:
 	void					MakeTracer( const Vector &vecTracerSrc, const trace_t &tr, int iTracerType );
 	void					DoImpactEffect( trace_t &tr, int nDamageType );
 
+	void					StartSprinting( void );
+	void					StopSprinting( void );
+	bool					IsSprinting( void ) { return m_bIsSprinting; }
+	bool					CanSprint( void );
+
+	void					RegenerateStamina();
+
 	void					AddToPlayerSimulationList( CBaseEntity *other );
 	void					RemoveFromPlayerSimulationList( CBaseEntity *other );
 	void					SimulatePlayerSimulatedEntities( void );
@@ -659,6 +666,9 @@ public:
 	bool					m_bStoppingLean;
 
 	CNetworkVar( float, m_flLeaning );
+
+	bool					m_bSprintEnabled;		// Used to disable sprint temporarily
+	CNetworkVar( bool, m_bIsSprinting );
 
 	EHANDLE					m_hAutoAimTarget;	//If the crosshair is on a target, this is it
 	

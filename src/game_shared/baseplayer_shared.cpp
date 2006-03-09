@@ -1498,3 +1498,20 @@ int CBasePlayer::GetDefaultFOV( void ) const
 	return iFOV;
 }
 
+void CBasePlayer::RegenerateStamina()
+{
+	if (m_Local.m_flStamina < 100)
+	{
+		m_Local.m_flStamina += 5 * gpGlobals->frametime;
+	}
+
+	if (m_Local.m_flStamina > 100)
+	{
+		m_Local.m_flStamina = 100;
+	}
+
+	if (m_Local.m_flStamina < 20 && IsSprinting())
+	{
+		StopSprinting();
+	}
+}

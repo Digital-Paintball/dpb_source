@@ -690,7 +690,7 @@ void CGameMovement::ProcessMovement( CBasePlayer *pPlayer, CMoveData *pMove )
 	player = pPlayer;
 
 	mv = pMove;
-	if (player->GetArena() && player->GetArena()->HasPlayer(player))
+	if (player->GetArena() && player->GetArena()->HasPlayer(player) && !player->m_bIsSprinting)
 		mv->m_flMaxSpeed = sv_maxarenaspeed.GetFloat();
 	else
 		mv->m_flMaxSpeed = sv_maxspeed.GetFloat();
@@ -3790,7 +3790,6 @@ void CGameMovement::Lean()
 	int buttonsPressed	=  buttonsChanged & mv->m_nButtons;			// The changed ones still down are "pressed"
 	int buttonsReleased	=  buttonsChanged & mv->m_nOldButtons;		// The changed ones which were previously down are "released"
 
-	// Check to see if we are in the air.
 	bool bMoving = ( mv->m_nButtons & IN_FORWARD || mv->m_nButtons & IN_MOVELEFT || mv->m_nButtons & IN_BACK || mv->m_nButtons & IN_MOVERIGHT );
 	bool bWasMoving = ( mv->m_nOldButtons & IN_FORWARD || mv->m_nOldButtons & IN_MOVELEFT || mv->m_nOldButtons & IN_BACK || mv->m_nOldButtons & IN_MOVERIGHT );
 
@@ -3867,6 +3866,30 @@ void CGameMovement::Lean()
 	}
 }
 
+void CGameMovement::Sprint()
+{
+	int buttonsChanged	= ( mv->m_nOldButtons ^ mv->m_nButtons );	// These buttons have changed this frame
+	int buttonsPressed	=  buttonsChanged & mv->m_nButtons;			// The changed ones still down are "pressed"
+	int buttonsReleased	=  buttonsChanged & mv->m_nOldButtons;		// The changed ones which were previously down are "released"
+
+	// Handle death.
+	if ( IsDead() )
+		return;
+
+	if ( buttonsPressed & IN_SPEED )
+	{
+		if (player->CanSprint())
+			player->StartSprinting();
+	}
+	else if ( buttonsReleased & IN_SPEED  )
+	{
+		player->StopSprinting();
+	}
+
+	if ( player->m_bIsSprinting )
+		player->m_Local.m_flStamina -= 30 * gpGlobals->frametime;
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -3927,6 +3950,8 @@ void CGameMovement::PlayerMove( void )
 	Duck();
 
 	Lean();
+
+	Sprint();
 
 	// Don't run ladder code if dead on on a train
 	if ( !player->pl.deadflag && !(player->GetFlags() & FL_ONTRAIN) )

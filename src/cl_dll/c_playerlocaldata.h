@@ -63,6 +63,8 @@ public:
 	float					m_flStepSize;
 	bool					m_bAllowAutoMovement;
 
+	float					m_flStamina;
+
 	// 3d skybox
 	sky3dparams_t			m_skybox3d;
 	// wold fog

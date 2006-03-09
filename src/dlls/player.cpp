@@ -181,6 +181,8 @@ BEGIN_DATADESC( CBasePlayer )
 	DEFINE_FIELD( m_vecAdditionalPVSOrigin, FIELD_POSITION_VECTOR ),
 	DEFINE_FIELD( m_vecCameraPVSOrigin, FIELD_POSITION_VECTOR ),
 
+	DEFINE_FIELD( m_bSprintEnabled, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_bIsSprinting, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_hUseEntity, FIELD_EHANDLE ),
 	DEFINE_FIELD( m_iTrain, FIELD_INTEGER ),
 	DEFINE_FIELD( m_iRespawnFrames, FIELD_FLOAT ),
@@ -3119,6 +3121,8 @@ void CBasePlayer::PreThink(void)
 		m_Local.m_flFallVelocity = -GetAbsVelocity().z;
 	}
 
+	RegenerateStamina();
+
 	CNavArea *area = TheNavMesh->GetNavArea( GetAbsOrigin() );
 	if (area && area != m_lastNavArea)
 	{
@@ -4202,7 +4206,8 @@ void CBasePlayer::Precache( void )
 {
 	BaseClass::Precache();
 
-
+	PrecacheScriptSound( "Player.SprintNoStamina" );
+	PrecacheScriptSound( "Player.SprintStart" );
 	PrecacheScriptSound( "Player.FallGib" );
 	PrecacheScriptSound( "Player.Death" );
 	PrecacheScriptSound( "Player.PlasmaDamage" );
@@ -4327,6 +4332,47 @@ void CBasePlayer::OnRestore( void )
 {
 	Q_strncpy( m_szTeamName, pTeamName, TEAM_NAME_LENGTH );
 } */
+
+//-----------------------------------------------------------------------------
+// Purpose: Returns whether or not we are allowed to sprint now.
+//-----------------------------------------------------------------------------
+bool CBasePlayer::CanSprint()
+{
+	if (!GetArena() || !GetArena()->HasPlayer(this))
+		return false;
+	return ( !( m_Local.m_bDucked && !m_Local.m_bDucking ) &&			// Nor if we're ducking
+			(GetWaterLevel() != 3) );									// Certainly not underwater
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CBasePlayer::StartSprinting( void )
+{
+	if( m_Local.m_flStamina < 10 )
+	{
+		// Don't sprint unless there's a reasonable
+		// amount of suit power.
+		CPASAttenuationFilter filter( this );
+		filter.UsePredictionRules();
+		EmitSound( filter, entindex(), "Player.SprintNoStamina" );
+		return;
+	}
+
+	CPASAttenuationFilter filter( this );
+	filter.UsePredictionRules();
+	EmitSound( filter, entindex(), "Player.SprintStart" );
+
+	m_bIsSprinting = true;
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CBasePlayer::StopSprinting( void )
+{
+	m_bIsSprinting = false;
+}
 
 void CBasePlayer::SetArmorValue( int value )
 {
@@ -6284,8 +6330,6 @@ void SendProxy_CropFlagsToPlayerFlagBitsLength( const SendProp *pProp, const voi
 
 		SendPropArray3		( SENDINFO_ARRAY3(m_iAmmo), SendPropInt( SENDINFO_ARRAY(m_iAmmo), 10, SPROP_UNSIGNED ) ),
 			
-		SendPropFloat		( SENDINFO( m_flLeaning ), 8,	SPROP_CHANGES_OFTEN,	-32.0f,	32.0f),
-
 		SendPropInt			( SENDINFO( m_fOnTarget ), 2, SPROP_UNSIGNED ),
 
 		SendPropInt			( SENDINFO( m_nTickBase ), -1, SPROP_CHANGES_OFTEN ),
@@ -6333,6 +6377,8 @@ void SendProxy_CropFlagsToPlayerFlagBitsLength( const SendProp *pProp, const voi
 		SendPropEHandle	(SENDINFO(m_hObserverTarget) ),
 		SendPropArray	( SendPropEHandle( SENDINFO_ARRAY( m_hObserverViewModel ) ), m_hObserverViewModel ),
 		SendPropString	(SENDINFO(m_szLastPlaceName) ),
+
+		SendPropFloat		( SENDINFO( m_flLeaning ), 8,	SPROP_CHANGES_OFTEN,	-32.0f,	32.0f),
 
 		// Data that only gets sent to the local player.
 		SendPropDataTable( "localdata", 0, &REFERENCE_SEND_TABLE(DT_LocalPlayerExclusive), SendProxy_SendLocalDataTable ),

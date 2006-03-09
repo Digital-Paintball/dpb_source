@@ -184,6 +184,9 @@ protected:
 	// Leaning
 	virtual void	Lean( void );
 
+	// Sprinting
+	virtual void	Sprint( void );
+
 	// Ducking
 	virtual void	Duck( void );
 	virtual void	HandleDuckingSpeedCrop();

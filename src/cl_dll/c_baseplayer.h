@@ -108,6 +108,13 @@ public:
 	virtual CBaseEntity	*GetObserverTargetPlayer() const;	// This will return the player that they're observering (even
 															// if m_hObserverTarget is actually a ragdoll.
 
+	bool	CanSprint( void );
+	void	StartSprinting( void );
+	void	StopSprinting( void );
+	bool	IsSprinting( void );
+
+	void	RegenerateStamina();
+
 	bool IsObserver() const;
 	bool IsHLTV() const;
 	void ResetObserverMode();
@@ -305,6 +312,8 @@ public:
 	bool			m_bStoppingLean;
 
 	float			m_flLeaning;
+
+	bool			m_bIsSprinting;
 
 	CUserCmd		*m_pCurrentCommand;
 

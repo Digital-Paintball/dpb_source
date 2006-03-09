@@ -31,6 +31,7 @@
 #include "particles_simple.h"
 #include "fx_water.h"
 #include "hltvcamera.h"
+#include "c_multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -387,6 +388,53 @@ void C_BasePlayer::Spawn( void )
 	SetThink(NULL);
 
 	SharedSpawn();
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Returns whether or not we are allowed to sprint now.
+//-----------------------------------------------------------------------------
+bool C_BasePlayer::CanSprint( void )
+{
+	if (!GetArena() || !GetArena()->HasPlayer(this))
+		return false;
+	return ( (!m_Local.m_bDucked && !m_Local.m_bDucking) && (GetWaterLevel() != 3) );
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void C_BasePlayer::StartSprinting( void )
+{
+	if( m_Local.m_flStamina < 10 )
+	{
+		// Don't sprint unless there's a reasonable
+		// amount of suit power.
+		CPASAttenuationFilter filter( this );
+		filter.UsePredictionRules();
+		EmitSound( filter, entindex(), "Player.SprintNoStamina" );
+		return;
+	}
+
+	CPASAttenuationFilter filter( this );
+	filter.UsePredictionRules();
+	EmitSound( filter, entindex(), "Player.SprintStart" );
+
+	m_bIsSprinting = true;
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void C_BasePlayer::StopSprinting( void )
+{
+	m_bIsSprinting = false;
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+bool C_BasePlayer::IsSprinting( void )
+{
+	return m_bIsSprinting;
 }
 
 bool C_BasePlayer::IsHLTV() const
@@ -1338,6 +1386,8 @@ void C_BasePlayer::PreThink( void )
 	{
 		m_Local.m_flFallVelocity = -GetAbsVelocity().z;
 	}
+
+	RegenerateStamina();
 }
 
 void C_BasePlayer::PostThink( void )
