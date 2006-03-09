@@ -498,6 +498,11 @@ void C_BasePlayer::SetLeanOffset( const Vector &vecOffset )
 	BaseClass::SetViewOffset( m_vecRegularViewOffset + m_vecLeanOffset );
 };
 
+void C_BasePlayer::ResetLeaning( )
+{
+	m_bResetLeaning = true;;
+};
+
 //-----------------------------------------------------------------------------
 // Used by prediction, sets the view angles for the player
 //-----------------------------------------------------------------------------

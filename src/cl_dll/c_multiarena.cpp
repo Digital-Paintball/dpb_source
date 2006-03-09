@@ -34,6 +34,12 @@ void __MsgFunc_Arena(bf_read &msg)
 		for (int i = 0; i < C_Arena::GetArenaNumber(); i++)
 			C_Arena::GetArena(i)->m_bHasLocalPlayer = false;
 		break;
+	case CArenaShared::AE_VICTORY:
+		msg.ReadByte();	//This person won. Yipee... wait, why do we care?
+		break;
+	case CArenaShared::AE_RESET:
+		C_BasePlayer::GetLocalPlayer()->ResetLeaning();
+		break;
 	}
 }
 

@@ -25,7 +25,8 @@ public:
 	typedef enum {
 		AE_JOIN,	//Player has joined the arena
 		AE_QUIT,	//Player has quit the arena
-		AE_VICTORY,	//Specified team won the round, unused ATM
+		AE_RESET,	//Round is being reset
+		AE_VICTORY,	//Specified team won the round
 	} arenaevent_t;
 };
 

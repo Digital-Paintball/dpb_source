@@ -240,6 +240,12 @@ void CArena::SetupRound( )
 			}
 			else
 				AssertMsg(0, UTIL_VarArgs("No spawn spot found for player %s on team %d in arena %d.\n", pPlayer->GetPlayerName(), pPlayer->GetTeamNumber(), m_iID));
+
+			CSingleUserRecipientFilter user( pPlayer );
+			user.MakeReliable();
+			UserMessageBegin( user, "Arena" );
+				WRITE_BYTE( CArenaShared::AE_RESET );
+			MessageEnd();
 		}
 
 		if (bRoundStarting)
@@ -320,6 +326,13 @@ void CArena::RoundEnd( int iWinningTeam )
 
 	SetThink( WaitingThink );
 	SetNextThink( gpGlobals->curtime + 3.0 );
+
+	CArenaRecipientFilter user( this );
+	user.MakeReliable();
+	UserMessageBegin( user, "Arena" );
+		WRITE_BYTE( CArenaShared::AE_VICTORY );
+		WRITE_BYTE( iWinningTeam );
+	MessageEnd();
 }
 
 void CArena::StartTouch( CBaseEntity *pOther )
@@ -399,13 +412,6 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
 	{
 		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Leave your current arena first.\n");
-		return;
-	}
-
-	//Cordon off the hyperball arena for the demo. It's broken for some reason.
-	if (m_iID == 1)
-	{
-		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "This arena is not currently available.\n");
 		return;
 	}
 

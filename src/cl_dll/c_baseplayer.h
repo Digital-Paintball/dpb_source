@@ -235,6 +235,8 @@ public:
 	virtual void				SetLeanOffset( const Vector &vecOffset );
 	virtual void				SetViewOffset( const Vector &vecOffset );
 
+	virtual void				ResetLeaning();
+
 	// Is the player dead?
 	bool				IsPlayerDead();
 	bool				IsPoisoned( void ) { return m_Local.m_bPoisoned; }
@@ -312,6 +314,7 @@ public:
 	bool			m_bStoppingLean;
 
 	float			m_flLeaning;
+	bool			m_bResetLeaning;
 
 	bool			m_bIsSprinting;
 
