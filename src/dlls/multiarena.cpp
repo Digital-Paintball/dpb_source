@@ -213,6 +213,8 @@ void CArena::SetupRound( )
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 
+		pPlayer->SetArena(this);
+
 		if (!pPlayer->GetTeam())
 			AssignTeam(pPlayer);
 
