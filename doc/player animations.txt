@@ -52,12 +52,16 @@ Miscellaneous:
 	Shieling Eyes
 	Jump in place
 	Spriting Jump
+	Yelling / Calling another player out
+	Switch Gun Left/Right (and Right/Left)
+	Switch marker Ready/Idle (and Idle/Ready)
 
 Without Marker:
 	Standing Slow
 	Standing Fast
 	
 Modifiers:
+	Marker Ready / Marker Idle
 	Left/Right Handed
 	With Flag
 	
