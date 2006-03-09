@@ -1,0 +1,67 @@
+This is a list of all the player animations that will be in game, and thus need to be mo'capped.
+
+
+Base Positions:
+	Standing
+	Kneeling
+	Prone
+
+Standing Motions:
+	Idle (reference)
+	Idle (relaxed)
+	Reload
+	Slow Walk / Sneaky Walk
+	Fast Walk / Jog
+	Sprint / Running
+	Lean Left
+	Lean Right
+
+Kneeling Motions:
+	Idle (reference)
+	Reload
+	Crouch Walk
+	Lean Left
+	Lean right
+
+Prone Motions:
+	Idle (reference)
+	Reload
+	Prone Crawl
+	Lean Left
+	Lean Right
+	"Lean Up"
+	
+Transitions:
+	Standing Idle -> Kneeling
+	Standing Idle -> Prone
+	Standing Walk -> Kneeling
+	Standing Walk -> Prone
+	Sprint -> Kneeling (Slide)
+	Sprint -> Prone (Dive)
+	Kneeling Idle -> Prone
+	Kneeling Idle -> Standing
+	Kneeling Walk -> Standing
+	Kneeling Walk -> Prone
+	Prone Idle -> Standing
+	Prone Idle -> Kneeling
+
+Miscellaneous:
+	Dejected
+	Celebrating
+	Ready (Before round)
+	Shieling Eyes
+	Jump in place
+	Spriting Jump
+
+Without Marker:
+	Standing Slow
+	Standing Fast
+	
+Modifiers:
+	Left/Right Handed
+	With Flag
+	
+Out:
+	Standing -> Out
+	Kneeling -> Out
+	Prone -> Out
