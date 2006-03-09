@@ -36,7 +36,7 @@ void CPaintballMgr::LevelInitPreEntity()
 	}
 
 	m_iBalls = 0;
-	m_iLastBall = 0;
+	m_iLastBall = -1;
 	m_iFirstAvailable = 0;
 
 #ifdef CLIENT_DLL
@@ -109,6 +109,8 @@ void CPaintballMgr::AddBall( CBasePlayer *pOwner )
 	if (i == m_iFirstAvailable)
 		m_iFirstAvailable = FindEmptySpace();
 
+	SanityCheck();
+
 	pPB->Spawn();
 }
 
@@ -125,20 +127,57 @@ void CPaintballMgr::RemoveBall( int i )
 	m_iBalls--;
 	if (i == m_iLastBall)
 	{
+		bool bLastBallFound = false;
 		for (int j = m_iLastBall-1; j >= 0; j--)
 		{
 			if (m_aBalls[j].IsUsed())
 			{
 				m_iLastBall = j;
+				bLastBallFound = true;
 				break;
 			}
 		}
-		m_iLastBall = 0;
+		if (!bLastBallFound)
+			m_iLastBall = -1;
 	}
 	if (i < m_iFirstAvailable)
 		m_iFirstAvailable = i;
 
+	SanityCheck();
+
 	pPB->Destroy();
+}
+
+void CPaintballMgr::SanityCheck()
+{
+#ifdef _DEBUG
+	int iBalls = 0;
+	int iFirstAvailable = 0;
+	int iLastBall = -1;
+
+	//Do some sanity checking.
+	for (int i = 0; i < MAX_PAINTBALLS; i++)
+	{
+		// If we're before the first available ball, this ball had better be used.
+		Assert(i >= m_iFirstAvailable || m_aBalls[i].IsUsed());
+
+		// If we're beyond the last ball, this ball had better be unused.
+		Assert((m_iLastBall != -1 && i <= m_iLastBall) || m_aBalls[i].IsAvailable());
+
+		if (m_aBalls[i].IsUsed() && iFirstAvailable == i)
+			iFirstAvailable++;
+
+		if (m_aBalls[i].IsUsed() && i > iLastBall)
+			iLastBall = i;
+
+		if (m_aBalls[i].IsUsed())
+			iBalls++;
+	}
+
+	Assert(iBalls == m_iBalls);
+	Assert(iLastBall == iLastBall);
+	Assert(iFirstAvailable == m_iFirstAvailable);
+#endif
 }
 
 void CPaintballMgr::THINK_PROTOTYPE

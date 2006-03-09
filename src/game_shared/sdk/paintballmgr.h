@@ -41,6 +41,8 @@ public:
 	void	RemoveBall( int i );
 	int		FindEmptySpace( );
 
+	void	SanityCheck();
+
 	bool		m_bInitialized;
 
 	CPaintball	m_aBalls[MAX_PAINTBALLS];	//Paintball players love to shoot their balls.
