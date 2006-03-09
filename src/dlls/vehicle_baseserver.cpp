@@ -266,22 +266,15 @@ void CBaseServerVehicle::SetPassenger( int nRole, CBasePlayer *pPassenger )
 
 		GetDrivableVehicle()->EnterVehicle( pPassenger );
 
-#ifdef HL2_DLL
 		// Stop the player sprint and flashlight.
-		CHL2_Player *pHL2Player = dynamic_cast<CHL2_Player*>( pPassenger );
-		if ( pHL2Player )
+		CPlayer *pPlayer = dynamic_cast<CPlayer*>( pPassenger );
+		if ( pPlayer )
 		{
-			if ( pHL2Player->IsSprinting() )
+			if ( pPlayer->IsSprinting() )
 			{
-				pHL2Player->StopSprinting();
-			}
-
-			if ( pHL2Player->FlashlightIsOn() )
-			{
-				pHL2Player->FlashlightTurnOff();
+				pPlayer->StopSprinting();
 			}
 		}
-#endif
 	}
 	else
 	{
