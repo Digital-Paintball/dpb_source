@@ -81,7 +81,7 @@ void CBaseEntity::UnsetPlayerSimulated( void )
 // position of eyes
 Vector CBaseEntity::EyePosition( void )
 { 
-	return GetAbsOrigin() + m_vecViewOffset; 
+	return GetAbsOrigin() + GetViewOffset();
 }
 
 const QAngle &CBaseEntity::EyeAngles( void )

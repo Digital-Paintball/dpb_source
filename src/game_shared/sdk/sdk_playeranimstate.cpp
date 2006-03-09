@@ -373,7 +373,13 @@ void CSDKPlayerAnimState::ComputeGrenadeSequence()
 
 int CSDKPlayerAnimState::CalcLeanLayerSequence()
 {
-	return CalcSequenceIndex( "lean_left" );
+	CSDKPlayer *pPlayer = dynamic_cast<CSDKPlayer*>( m_pOuter );
+	Assert(pPlayer);
+
+	if (pPlayer->m_flLeaning <= 0)
+		return CalcSequenceIndex( "lean_left" );
+	else
+		return CalcSequenceIndex( "lean_right" );
 }
 
 
@@ -411,8 +417,6 @@ void CSDKPlayerAnimState::ComputeReloadSequence()
 
 void CSDKPlayerAnimState::ComputeLeanSequence()
 {
-	CAnimationLayer *pLayer = m_pOuter->GetAnimOverlay( LEANSEQUENCE_LAYER );
-
 	int iSequence = CalcLeanLayerSequence( );
 	if ( iSequence == -1 )
 		iSequence = 0;
@@ -420,8 +424,16 @@ void CSDKPlayerAnimState::ComputeLeanSequence()
 	CSDKPlayer *pPlayer = dynamic_cast<CSDKPlayer*>( m_pOuter );
 	Assert(pPlayer);
 
+#ifdef CLIENT_DLL
+	// Use local variables so UpdateLayerSequenceGeneric doesn't clobber values.
+	bool bEnabled = pPlayer->m_flLeaning != 0;
+	float flLean = fabs(pPlayer->m_flLeaning / (sv_maxlean.GetFloat()?sv_maxlean.GetFloat():1));
+	UpdateLayerSequenceGeneric( LEANSEQUENCE_LAYER, bEnabled, flLean, iSequence, true );
+#else
+	CAnimationLayer *pLayer = m_pOuter->GetAnimOverlay( LEANSEQUENCE_LAYER );
+
 	float flWeight = fabs(pPlayer->m_flLeaning / (sv_maxlean.GetFloat()?sv_maxlean.GetFloat():1));
-#ifdef GAME_DLL
+
 	pLayer->m_nSequence = iSequence;
 
 	pLayer->m_flCycle = 1;
@@ -430,12 +442,6 @@ void CSDKPlayerAnimState::ComputeLeanSequence()
 	pLayer->m_flWeight = flWeight;
 	pLayer->m_nOrder = CBaseAnimatingOverlay::MAX_OVERLAYS;
 	pLayer->m_fFlags |= ANIM_LAYER_ACTIVE;
-#else
-	pLayer->nSequence = iSequence;
-	pLayer->flPlaybackrate = 1.0;
-	pLayer->flWeight = flWeight;
-	pLayer->nOrder = CBaseAnimatingOverlay::MAX_OVERLAYS;
-	pLayer->flCycle = 1;
 #endif
 }
 

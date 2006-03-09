@@ -207,6 +207,7 @@ END_RECV_TABLE()
 
 		RecvPropEHandle( RECVINFO(m_hVehicle) ),
 		RecvPropInt		(RECVINFO(m_MoveType) ),
+		RecvPropFloat	(RECVINFO(m_flLeaning)),
 
 		RecvPropInt		(RECVINFO(m_iHealth)),
 		RecvPropInt		(RECVINFO(m_lifeState)),
@@ -274,7 +275,7 @@ BEGIN_PREDICTION_DATA( C_BasePlayer )
 	DEFINE_PRED_FIELD( m_nNextThinkTick, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_lifeState, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_nWaterLevel, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
-	
+
 	DEFINE_PRED_FIELD_TOL( m_vecBaseVelocity, FIELD_VECTOR, FTYPEDESC_INSENDTABLE, 0.05 ),
 
 	DEFINE_FIELD( m_nButtons, FIELD_INTEGER ),
@@ -317,7 +318,8 @@ C_BasePlayer::C_BasePlayer() : m_iv_vecViewOffset( "C_BasePlayer::m_iv_vecViewOf
 	CONSTRUCT_PREDICTABLE( C_BasePlayer );
 
 	AddVar( &m_vecViewOffset, &m_iv_vecViewOffset, LATCH_SIMULATION_VAR );
-	
+
+	SetViewOffset( VEC_VIEW );
 
 #ifdef _DEBUG																
 	m_vecLadderNormal.Init();
@@ -428,6 +430,25 @@ bool C_BasePlayer::ViewModel_IsTransparent( void )
 {
 	return IsTransparent();
 }
+
+void C_BasePlayer::SetViewOffset( const Vector &vecOffset )
+{
+	m_vecRegularViewOffset = vecOffset;
+	m_vecLeanOffset = vec3_origin;
+	BaseClass::SetViewOffset( vecOffset );
+};
+
+void C_BasePlayer::SetRegularViewOffset( const Vector &vecOffset )
+{
+	m_vecRegularViewOffset = vecOffset;
+	BaseClass::SetViewOffset( m_vecRegularViewOffset + m_vecLeanOffset );
+};
+
+void C_BasePlayer::SetLeanOffset( const Vector &vecOffset )
+{
+	m_vecLeanOffset = vecOffset;
+	BaseClass::SetViewOffset( m_vecRegularViewOffset + m_vecLeanOffset );
+};
 
 //-----------------------------------------------------------------------------
 // Used by prediction, sets the view angles for the player

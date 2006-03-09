@@ -42,11 +42,7 @@ public:
 	virtual const Vector&	GetPlayerMins( bool ducked ) const;
 	virtual const Vector&	GetPlayerMaxs( bool ducked ) const;
 
-	virtual void			SetPlayerViewOffset( const Vector& vecOffset );
 	virtual const Vector&	GetPlayerViewOffset( bool ducked ) const;
-	virtual Vector&			GetViewOffset( );
-	virtual void			SetLeanOffset( Vector& vecOffset );
-	virtual Vector&			GetLeanOffset( void );
 
 protected:
 	// Input/Output for this movement
@@ -59,13 +55,6 @@ protected:
 	Vector			m_vecForward;
 	Vector			m_vecRight;
 	Vector			m_vecUp;
-
-	Vector			m_vecRegularViewOffset;	//View offset without leaning.
-	Vector			m_vecLean;
-
-	float			m_flLeanStartTime;
-	float			m_flLeanStopTime;
-	bool			m_bStoppingLean;
 
 	// Does most of the player movement logic.
 	// Returns with origin, angles, and velocity modified in place.

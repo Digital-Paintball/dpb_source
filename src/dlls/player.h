@@ -279,7 +279,13 @@ public:
 	virtual QAngle			BodyAngles();
 	virtual Vector			BodyTarget( const Vector &posSrc, bool bNoisy);
 	virtual bool			ShouldFadeOnDeath( void ) { return FALSE; }
-	
+
+	virtual Vector			GetRegularViewOffset( ) { return m_vecRegularViewOffset; }
+	virtual void			SetRegularViewOffset( const Vector &vecOffset );
+	virtual Vector			GetLeanOffset( ) { return m_vecLeanOffset; }
+	virtual void			SetLeanOffset( const Vector &vecOffset );
+	virtual void			SetViewOffset( const Vector &vecOffset );
+
 	virtual int				OnTakeDamage_Alive( const CTakeDamageInfo &info );
 	virtual void			Event_Killed( const CTakeDamageInfo &info );
 	void					Event_Dying( void );
@@ -648,7 +654,11 @@ public:
 	int						m_afButtonReleased;
 	int						m_afButtonLast;
 
-	float					m_flLeaning;
+	float					m_flLeanStartTime;
+	float					m_flLeanStopTime;
+	bool					m_bStoppingLean;
+
+	CNetworkVar( float, m_flLeaning );
 
 	EHANDLE					m_hAutoAimTarget;	//If the crosshair is on a target, this is it
 	
@@ -667,6 +677,9 @@ public:
 	float		GetDeathTime( void ) { return m_flDeathTime; }
 
 private:
+
+	Vector					m_vecRegularViewOffset;	//View offset without leaning.
+	Vector					m_vecLeanOffset;
 
 	Activity				m_Activity;
 

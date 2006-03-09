@@ -2164,6 +2164,25 @@ void CBasePlayer::CheckObserverSettings()
 	}
 }
 
+void CBasePlayer::SetViewOffset( const Vector &vecOffset )
+{
+	m_vecRegularViewOffset = vecOffset;
+	m_vecLeanOffset = vec3_origin;
+	BaseClass::SetViewOffset( vecOffset );
+};
+
+void CBasePlayer::SetRegularViewOffset( const Vector &vecOffset )
+{
+	m_vecRegularViewOffset = vecOffset;
+	BaseClass::SetViewOffset( m_vecRegularViewOffset + m_vecLeanOffset );
+};
+
+void CBasePlayer::SetLeanOffset( const Vector &vecOffset )
+{
+	m_vecLeanOffset = vecOffset;
+	BaseClass::SetViewOffset( m_vecRegularViewOffset + m_vecLeanOffset );
+};
+
 CBaseEntity * CBasePlayer::GetObserverTarget()
 {
 	return m_hObserverTarget.Get();
@@ -6265,6 +6284,8 @@ void SendProxy_CropFlagsToPlayerFlagBitsLength( const SendProp *pProp, const voi
 
 		SendPropArray3		( SENDINFO_ARRAY3(m_iAmmo), SendPropInt( SENDINFO_ARRAY(m_iAmmo), 10, SPROP_UNSIGNED ) ),
 			
+		SendPropFloat		( SENDINFO( m_flLeaning ), 8,	SPROP_CHANGES_OFTEN,	-32.0f,	32.0f),
+
 		SendPropInt			( SENDINFO( m_fOnTarget ), 2, SPROP_UNSIGNED ),
 
 		SendPropInt			( SENDINFO( m_nTickBase ), -1, SPROP_CHANGES_OFTEN ),

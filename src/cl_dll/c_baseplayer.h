@@ -222,6 +222,12 @@ public:
 	virtual const Vector		GetPlayerMins( void ) const; // uses local player
 	virtual const Vector		GetPlayerMaxs( void ) const; // uses local player
 
+	virtual Vector				GetRegularViewOffset( ) { return m_vecRegularViewOffset; }
+	virtual void				SetRegularViewOffset( const Vector &vecOffset );
+	virtual Vector				GetLeanOffset( ) { return m_vecLeanOffset; }
+	virtual void				SetLeanOffset( const Vector &vecOffset );
+	virtual void				SetViewOffset( const Vector &vecOffset );
+
 	// Is the player dead?
 	bool				IsPlayerDead();
 	bool				IsPoisoned( void ) { return m_Local.m_bPoisoned; }
@@ -294,6 +300,10 @@ public:
 
 	int				m_nButtons;
 
+	float			m_flLeanStartTime;
+	float			m_flLeanStopTime;
+	bool			m_bStoppingLean;
+
 	float			m_flLeaning;
 
 	CUserCmd		*m_pCurrentCommand;
@@ -350,6 +360,9 @@ private:
 	int				m_iHealth;
 
 	CInterpolatedVar< Vector >	m_iv_vecViewOffset;
+
+	Vector			m_vecRegularViewOffset;	//View offset without leaning.
+	Vector			m_vecLeanOffset;
 
 	// Not replicated
 	Vector			m_vecWaterJumpVel;
