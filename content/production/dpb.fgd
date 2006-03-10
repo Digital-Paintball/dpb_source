@@ -15,7 +15,7 @@
 	input SetTeam(integer) : "Changes the entity's team"
 ]
 
-@PointClass base(Angles, TeamNum) studio("models/player/terror.mdl") = info_player_teamspawn :
+@PointClass base(Angles, TeamNum) studio("models/player/player.mdl") = info_player_teamspawn :
 	"This entity marks the start point for players. One of these needs to be placed for each team member. " +
 	"20 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
 [
