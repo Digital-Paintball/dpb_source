@@ -40,6 +40,7 @@ public:
 	void AssignTeam(CBasePlayer *pPlayer);
 
 	static void SpawnPlayer(CBasePlayer *pPlayer);
+	static void MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles);
 
 	void SetupRound();
 	void CheckForRoundEnd();

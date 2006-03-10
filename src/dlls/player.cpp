@@ -6586,7 +6586,7 @@ void CBasePlayer::VPhysicsShadowUpdate( IPhysicsObject *pPhysics )
 			if ( trace.allsolid || trace.startsolid )
 			{
 				// STUCK!?!?!
-				//Warning( "Stuck2 on %s!!\n", trace.m_pEnt->GetClassname() );
+				Warning( "CBasePlayer::VPhysicsShadowUpdate: Stuck on %s!!\n", trace.m_pEnt->GetClassname() );
 				SetAbsOrigin( newPosition );
 			}
 		}

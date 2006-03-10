@@ -50,7 +50,10 @@ void CTeamSpawnPoint::Activate( void )
 
 	if ( GetTeamNumber() > 0 && GetTeamNumber() <= MAX_TEAMS && GetTeam() )
 	{
-		UTIL_DropToFloor(this, MASK_PLAYERSOLID_BRUSHONLY);
+		int iDrop = UTIL_DropToFloor(this, MASK_PLAYERSOLID_BRUSHONLY);
+
+		AssertMsg(iDrop >= 0, UTIL_VarArgs("Spawn point at %f %f %f is in the floor. Move it up some.\n", GetAbsOrigin().x, GetAbsOrigin().y, GetAbsOrigin().z));
+
 		GetTeam()->AddSpawnpoint( this );
 	}
 	else

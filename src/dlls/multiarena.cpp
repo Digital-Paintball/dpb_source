@@ -233,9 +233,7 @@ void CArena::SetupRound( )
 				VectorAngles( pSpawnSpot->GetLocalOrigin() - m_vecSpawnAvg, angLookAt );
 				angLookAt.x = 15;	//Look somewhat at the ground.
 
-				pPlayer->SetAbsOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,10) );
-				pPlayer->SetAbsVelocity( Vector(0,0,0) );
-				pPlayer->SetAbsAngles( angLookAt );
+				MovePlayer(pPlayer, pSpawnSpot->GetLocalOrigin(), angLookAt);
 				pPlayer->SnapEyeAngles( angLookAt );
 			}
 			else
@@ -504,9 +502,22 @@ void CArena::SpawnPlayer( CBasePlayer *pPlayer )
 
 	// default to normal spawn
 	CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
-	pPlayer->SetAbsOrigin( pSpawnSpot->GetLocalOrigin() + Vector(0,0,1) );
-	pPlayer->SetAbsAngles( pSpawnSpot->GetLocalAngles() );
-	pPlayer->SnapEyeAngles( pSpawnSpot->GetLocalAngles() );
+	MovePlayer(pPlayer, pSpawnSpot->GetLocalOrigin(), pSpawnSpot->GetLocalAngles());
+}
+
+void CArena::MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles)
+{
+	Vector vecDrop = vecOrigin + Vector(0, 0, 64);
+
+	trace_t trace;
+	UTIL_TraceEntity( pPlayer, vecDrop, vecOrigin, MASK_PLAYERSOLID, pPlayer, COLLISION_GROUP_PLAYER_MOVEMENT, &trace );
+			
+	AssertMsg( !trace.allsolid && !trace.startsolid, "CArena::MovePlayer: allsolid or startsolid" );
+
+	pPlayer->SetAbsOrigin( trace.endpos );
+	pPlayer->SetAbsAngles( angAngles );
+	pPlayer->SetAbsVelocity( vec3_origin );
+	pPlayer->SnapEyeAngles( angAngles );
 }
 
 bool CArena::HasPlayer( CBasePlayer *pPlayer )
