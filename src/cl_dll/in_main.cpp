@@ -954,8 +954,11 @@ void CInput::CreateMove ( int sequence_number, float input_sample_frametime, boo
 		}
 	}
 
-	if (C_BasePlayer::GetLocalPlayer()->m_bResetLeaning)
-		C_BasePlayer::GetLocalPlayer()->m_bResetLeaning = false;
+	C_BasePlayer *pPlayer = C_BasePlayer::GetLocalPlayer();
+	if (pPlayer->m_bResetLeaning ||
+		pPlayer->GetFlags() & FL_FROZEN ||
+		pPlayer->m_lifeState >= LIFE_DEAD)
+		pPlayer->m_bResetLeaning = false;
 	else
 		cmd->lean += g_pMoveData->m_flLeaning;
 	if (cmd->lean > sv_maxlean.GetFloat())

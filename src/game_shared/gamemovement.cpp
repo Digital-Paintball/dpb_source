@@ -3814,7 +3814,8 @@ void CGameMovement::Lean()
 	}
 	else if ( ((buttonsReleased & IN_LEAN) && (gpGlobals->curtime < player->m_flLeanStartTime + 0.2))
 		|| player->IsSprinting() || (player->m_flLeanStopTime && gpGlobals->curtime > player->m_flLeanStopTime)
-		|| (buttonsPressed & IN_JUMP) || (buttonsPressed & IN_USE) )
+		|| (buttonsPressed & IN_ATTACK && bMoving)
+		|| (buttonsPressed & (IN_JUMP | IN_USE)) )
 	{
 		player->m_bStoppingLean = true;
 	}
@@ -3864,6 +3865,10 @@ void CGameMovement::Lean()
 		vecLean *= 1-fabs(angView.x)/90;
 
 		player->SetLeanOffset(vecLean);
+	}
+	else
+	{
+		player->SetLeanOffset(vec3_origin);
 	}
 }
 

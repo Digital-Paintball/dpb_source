@@ -71,6 +71,8 @@ static ConVar	cl_smoothtime	(
 
 ConVar zoom_sensitivity_ratio( "zoom_sensitivity_ratio", "1.0", 0, "Additional mouse sensitivity scale factor applied when FOV is zoomed in." );
 
+void RecvProxy_LifeState( const CRecvProxyData *pData, void *pStruct, void *pOut );
+
 void RecvProxy_FOV( const CRecvProxyData *pData, void *pStruct, void *pOut );
 void RecvProxy_DefaultFOV( const CRecvProxyData *pData, void *pStruct, void *pOut );
 
@@ -211,7 +213,7 @@ END_RECV_TABLE()
 		RecvPropFloat	(RECVINFO(m_flLeaning)),
 
 		RecvPropInt		(RECVINFO(m_iHealth)),
-		RecvPropInt		(RECVINFO(m_lifeState)),
+		RecvPropInt		(RECVINFO(m_lifeState), 0, RecvProxy_LifeState),
 
 		RecvPropFloat	(RECVINFO(m_flMaxspeed)),
 		RecvPropInt		(RECVINFO(m_fFlags)),
@@ -387,7 +389,17 @@ void C_BasePlayer::Spawn( void )
 
 	SetThink(NULL);
 
+	ResetLeaning();
+
 	SharedSpawn();
+}
+
+void C_BasePlayer::Killed( void )
+{
+	if (!IsLocalPlayer())
+		return;
+
+	m_bStoppingLean = true;
 }
 
 //-----------------------------------------------------------------------------
@@ -500,7 +512,7 @@ void C_BasePlayer::SetLeanOffset( const Vector &vecOffset )
 
 void C_BasePlayer::ResetLeaning( )
 {
-	m_bResetLeaning = true;;
+	m_bResetLeaning = true;
 };
 
 //-----------------------------------------------------------------------------
@@ -1613,6 +1625,7 @@ void C_BasePlayer::PhysicsSimulate( void )
 		ctx->cmd.upmove = 0;
 		ctx->cmd.buttons = 0;
 		ctx->cmd.impulse = 0;
+		ctx->cmd.lean = 0;
 		//VectorCopy ( pl.v_angle, ctx->cmd.viewangles );
 	}
 
@@ -1704,6 +1717,29 @@ float C_BasePlayer::GetFOV( void )
 	return fFOV;
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: Decodes lifestate and notes when it changes
+// Input  : *pStruct - ( C_BaseEntity * ) used to flag animtime is changine
+//			*pVarData - 
+//			*pIn - 
+//			objectID - 
+//-----------------------------------------------------------------------------
+void RecvProxy_LifeState( const CRecvProxyData *pData, void *pStruct, void *pOut )
+{
+	C_BaseEntity *pEntity = ( C_BaseEntity * )pStruct;
+
+	Assert( pOut == &pEntity->m_lifeState );
+	Assert( pEntity->IsPlayer() );
+
+	C_BasePlayer *pPlayer = (C_BasePlayer*)pEntity;
+
+	int iNewState = pData->m_Value.m_Int;
+
+	if (pEntity->m_lifeState == LIFE_ALIVE && iNewState > LIFE_ALIVE)
+		pPlayer->Killed();
+
+	pEntity->m_lifeState = iNewState;
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Called when the FOV changes from the server-side
