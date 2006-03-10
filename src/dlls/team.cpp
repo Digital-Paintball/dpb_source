@@ -194,9 +194,6 @@ CBaseEntity *CTeam::SpawnPlayer( CBasePlayer *pPlayer )
 		// check if pSpot is valid, and that the player is on the right team
 		if ( (loopCount > 3) || m_aSpawnPoints[iSpawn]->IsValid( pPlayer ) )
 		{
-			// DevMsg( 1, "player: spawning at (%s)\n", STRING(m_aSpawnPoints[iSpawn]->m_iName) );
-			m_aSpawnPoints[iSpawn]->m_OnPlayerSpawn.FireOutput( pPlayer, m_aSpawnPoints[iSpawn] );
-
 			m_iLastSpawn = iSpawn;
 			return m_aSpawnPoints[iSpawn];
 		}

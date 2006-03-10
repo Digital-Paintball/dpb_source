@@ -12,7 +12,6 @@
 		1 : "Blue"
 		2 : "Red"
 	]
-	input SetTeam(integer) : "Changes the entity's team"
 ]
 
 @PointClass base(Angles, TeamNum) studio("models/player/player.mdl") = info_player_teamspawn :
@@ -25,4 +24,6 @@
 	"This is a playing arena that a game is going on inside of. Don't overlap them. If a player is inside this area," +
 	"he is either playing or spectating the specified game. If omitted, everybody will be playing the same game."
 [
+	ArenaName(string) : "Arena Name" : : "This name will appear on the scoreboard and elsewhere."
+	RoundTime(float) : "Round time" : 3 : "How many minutes will a round last? 0 or empty for no round time."
 ]

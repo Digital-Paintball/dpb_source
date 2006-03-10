@@ -26,6 +26,7 @@ public:
 
 	void WaitingThink();
 	void BeginThink();
+	void TimesUpThink();
 
 	void StartTouch(CBaseEntity *pOther);
 	void EndTouch(CBaseEntity *pOther);
@@ -74,7 +75,11 @@ private:
 	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
 
-	Vector m_vecSpawnAvg;
+	Vector		m_vecSpawnAvg;
+
+	// Values which can be set in the FGD
+	string_t	m_iszName;
+	float		m_flMinutes;
 };
 
 #endif // MULTIARENA_H

@@ -25,14 +25,7 @@ public:
 	void	Activate( void );
 	virtual bool	IsValid( CBasePlayer *pPlayer );
 
-	COutputEvent m_OnPlayerSpawn;
-
 protected:	
-	int		m_iDisabled;
-
-	// Input handlers
-	void InputEnable( inputdata_t &inputdata );
-	void InputDisable( inputdata_t &inputdata );
 
 	DECLARE_DATADESC();
 };

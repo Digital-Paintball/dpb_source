@@ -21,16 +21,6 @@ LINK_ENTITY_TO_CLASS( info_player_teamspawn, CTeamSpawnPoint );
 
 BEGIN_DATADESC( CTeamSpawnPoint )
 
-	// keys
-	DEFINE_KEYFIELD( m_iDisabled, FIELD_INTEGER, "StartDisabled" ),
-
-	// input functions
-	DEFINE_INPUTFUNC( FIELD_VOID, "Enable", InputEnable ),
-	DEFINE_INPUTFUNC( FIELD_VOID, "Disable", InputDisable ),
-
-	// outputs
-	DEFINE_OUTPUT( m_OnPlayerSpawn, "OnPlayerSpawn" ),
-
 END_DATADESC()
 
 
@@ -79,23 +69,6 @@ bool CTeamSpawnPoint::IsValid( CBasePlayer *pPlayer )
 
 	return true;
 }
-
-//-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
-void CTeamSpawnPoint::InputEnable( inputdata_t &inputdata )
-{
-	m_iDisabled = FALSE;
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
-void CTeamSpawnPoint::InputDisable( inputdata_t &inputdata )
-{
-	m_iDisabled = TRUE;
-}
-
 
 //===========================================================================================================
 // VEHICLE SPAWNPOINTS

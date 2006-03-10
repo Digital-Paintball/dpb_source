@@ -16,6 +16,10 @@ BEGIN_DATADESC( CArena )
 	// Function Pointers
 	DEFINE_FUNCTION( WaitingThink ),
 	DEFINE_FUNCTION( BeginThink ),
+	DEFINE_FUNCTION( TimesUpThink ),
+
+	DEFINE_INPUT( m_iszName, FIELD_STRING, "ArenaName" ),
+	DEFINE_INPUT( m_flMinutes, FIELD_FLOAT, "RoundTime" ),
 
 END_DATADESC()
 
@@ -42,6 +46,12 @@ void CArena::Spawn( )
 	SetThink( WaitingThink );
 
 	s_hArenas.AddToTail( this );
+
+	// Rounds should not be less then 30 seconds long.
+	if (m_flMinutes < 0)
+		m_flMinutes = 0;
+	if (m_flMinutes > 0 && m_flMinutes < .5)
+		m_flMinutes = .5;
 }
 
 void CArena::AssembleArenas( )
@@ -123,6 +133,19 @@ void CArena::SetupRound( )
 
 	m_State = CArenaShared::GS_COUNTDOWN;
 
+	int iTeamsWithPlayers = 0;
+	//Check to see which teams have players at all.
+ 	for (i = 0; i < m_hTeams.Count(); i++)
+	{
+		if (m_hTeams[i]->GetNumPlayers() > 0)
+		{
+			iTeamsWithPlayers += 1;
+		}
+	}
+
+	if (iTeamsWithPlayers <= 1)
+		bRoundStarting = false;
+
 	// Fix things from last round.
 	int iPlayersCount = m_hPlayers.Count();
 	for (i = 0; i < iPlayersCount; i++)
@@ -140,7 +163,7 @@ void CArena::SetupRound( )
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
 
-		if (pPlayer->GetActiveWeapon())
+		if (pPlayer->GetActiveWeapon() && bRoundStarting)
 		{
 			pPlayer->GetActiveWeapon()->Holster();
 			pPlayer->GetActiveWeapon()->FinishReload();
@@ -196,7 +219,7 @@ void CArena::SetupRound( )
 		return;
 	}
 
-	int iTeamsWithPlayers = 0;
+	iTeamsWithPlayers = 0;
 	//Check to see which teams have players at all.
  	for (i = 0; i < m_hTeams.Count(); i++)
 	{
@@ -293,7 +316,18 @@ void CArena::BeginThink( )
 		pPlayer->AddRound();
 	}
 
+	if (m_flMinutes)
+	{
+		SetThink( TimesUpThink );
+		SetNextThink( gpGlobals->curtime + m_flMinutes * 60 );
+	}
+
 	CheckForRoundEnd();
+}
+
+void CArena::TimesUpThink()
+{
+	RoundEnd(0);
 }
 
 // Check for the necessary conditions to end the round.
