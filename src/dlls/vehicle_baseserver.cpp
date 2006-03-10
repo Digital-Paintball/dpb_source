@@ -19,6 +19,7 @@
 #include "collisionutils.h"
 #include "animation.h"
 #include "env_player_surface_trigger.h"
+#include "player.h"
 
 #ifdef HL2_DLL
 	#include "hl2_player.h"
@@ -266,8 +267,8 @@ void CBaseServerVehicle::SetPassenger( int nRole, CBasePlayer *pPassenger )
 
 		GetDrivableVehicle()->EnterVehicle( pPassenger );
 
-		// Stop the player sprint and flashlight.
-		CPlayer *pPlayer = dynamic_cast<CPlayer*>( pPassenger );
+		// Stop the player sprint.
+		CBasePlayer *pPlayer = dynamic_cast<CBasePlayer*>( pPassenger );
 		if ( pPlayer )
 		{
 			if ( pPlayer->IsSprinting() )
