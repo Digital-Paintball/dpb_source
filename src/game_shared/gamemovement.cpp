@@ -3814,7 +3814,6 @@ void CGameMovement::Lean()
 	}
 	else if ( ((buttonsReleased & IN_LEAN) && (gpGlobals->curtime < player->m_flLeanStartTime + 0.2))
 		|| player->IsSprinting() || (player->m_flLeanStopTime && gpGlobals->curtime > player->m_flLeanStopTime)
-		|| (buttonsPressed & IN_ATTACK && bMoving)
 		|| (buttonsPressed & (IN_JUMP | IN_USE)) )
 	{
 		player->m_bStoppingLean = true;
