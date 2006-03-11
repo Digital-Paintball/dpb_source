@@ -2,5 +2,7 @@ VertexLitGeneric
 {
 	$basetexture "models/props_cars/htch_white_stripe"
 	$bumpmap "models/props_cars/htch_normal"
-
+	$envmap env_cubemap
+	$envmaptint .3 .3 .3
+	$normalalphaenvmapmask 1
 }
