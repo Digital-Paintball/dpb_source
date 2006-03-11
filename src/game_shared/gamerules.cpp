@@ -32,14 +32,14 @@
 ConVar g_Language( "g_Language", "0", FCVAR_REPLICATED );
 
 static CViewVectors g_DefaultViewVectors(
-	Vector( 0, 0, 64 ),
+	Vector( 0, 0, 60 ),
 	
 	Vector(-16, -16, 0 ),
 	Vector( 16,  16,  72 ),
 	
 	Vector(-16, -16, 0 ),
 	Vector( 16,  16,  36 ),
-	Vector( 0, 0, 28 ),
+	Vector( 0, 0, 45 ),
 	
 	Vector(-10, -10, -10 ),
 	Vector( 10,  10,  10 ),
