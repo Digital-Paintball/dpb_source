@@ -167,6 +167,9 @@ void CWeaponMarker::PrimaryAttack( void )
 		return;
 #endif
 
+	if (pPlayer->IsSprinting())
+		return;
+
 	float flCycleTime = pWeaponInfo.m_flCycleTime;
 
 	float flSpread = 0.01f;

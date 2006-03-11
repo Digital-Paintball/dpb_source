@@ -589,6 +589,14 @@ void CGameMovement::CheckParameters( void )
 		mv->m_flUpMove      = 0;
 	}
 
+	if (player->IsSprinting())
+	{
+		mv->m_flSideMove = 0;
+		mv->m_flUpMove = 0;
+		if (mv->m_flForwardMove < 0)
+			mv->m_flForwardMove = 0;
+	}
+
 	DecayPunchAngle();
 
 	// Take angles from command.
@@ -3790,8 +3798,8 @@ void CGameMovement::Lean()
 	int buttonsPressed	=  buttonsChanged & mv->m_nButtons;			// The changed ones still down are "pressed"
 	int buttonsReleased	=  buttonsChanged & mv->m_nOldButtons;		// The changed ones which were previously down are "released"
 
-	bool bMoving = ( mv->m_nButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
-	bool bWasMoving = ( mv->m_nOldButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
+	bool bMoving = !!( mv->m_nButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
+	bool bWasMoving = !!( mv->m_nOldButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
 
 	if ( bMoving && !bWasMoving )
 	{
@@ -3891,7 +3899,7 @@ void CGameMovement::Sprint()
 		player->StopSprinting();
 	}
 
-	if ( player->m_bIsSprinting )
+	if ( player->IsSprinting() && (mv->m_nOldButtons & IN_FORWARD) )
 		player->m_Local.m_flStamina -= 30 * gpGlobals->frametime;
 }
 
