@@ -1893,6 +1893,9 @@ bool CGameMovement::CheckJumpButton( void )
 		return false;
 	}
 
+	if (player->m_Local.m_flStamina < 20)
+		return false;
+
 	// If we are in the water most of the way...
 	if ( player->GetWaterLevel() >= 2 )
 	{	
@@ -1937,6 +1940,7 @@ bool CGameMovement::CheckJumpButton( void )
 	if ( player->m_Local.m_flDuckJumpTime > 0.0f )
 		return false;
 
+	player->m_Local.m_flStamina -= 20;
 
 	// In the air now.
     SetGroundEntity( (CBaseEntity *)NULL );
