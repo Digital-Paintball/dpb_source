@@ -1502,7 +1502,7 @@ void CBasePlayer::RegenerateStamina()
 {
 	if (m_Local.m_flStamina < 100)
 	{
-		m_Local.m_flStamina += 5 * gpGlobals->frametime;
+		m_Local.m_flStamina += 5 * gpGlobals->frametime * (m_Local.m_bDucked?1.5:1);
 	}
 
 	if (m_Local.m_flStamina > 100)
