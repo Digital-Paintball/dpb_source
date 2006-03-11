@@ -3,6 +3,7 @@
 
 #define PAINTBALL_MODEL				"models/paintball/paintball.mdl"
 #define PAINTBALL_AIR_VELOCITY		3500
+#define PAINTBALL_DRAG_COEFF		(0.0002f)
 
 class IPaintball
 {
@@ -22,12 +23,14 @@ public:
 	inline bool IsAvailable() { return m_bAvailable; };
 	inline bool IsUsed() { return !m_bAvailable; };
 
-
 	bool			m_bAvailable;
 	int				m_iIndex;
+	CBasePlayer*	m_pOwner;
+
 	Vector			m_vecPosition;
 	Vector			m_vecVelocity;
-	CBasePlayer*	m_pOwner;
+	float			m_flXSpin;
+	float			m_flYSpin;
 };
 
 #endif // PAINTBALL_SHARED_H

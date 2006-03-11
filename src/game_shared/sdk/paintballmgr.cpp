@@ -95,13 +95,33 @@ void CPaintballMgr::AddBall( CBasePlayer *pOwner )
 	MessageEnd();
 #endif
 
+	float flSpread = pOwner->GetPredictedSpread();
+	const float flSpinFactor = 120;	// A popular show on Fox News.
+
+	RandomSeed( pOwner->GetPredictionRandomSeed() );
+
+	float flRadius = RandomFloat( 0.0, 1.0 );
+	float flTheta = RandomFloat( 0.0, 2*M_PI );
+
+	float flX = flRadius*cos(flTheta);
+	float flY = flRadius*sin(flTheta);
+
+	float flSpinTheta = RandomFloat( 0.0, 2*M_PI );
+
+	float flVelocity = PAINTBALL_AIR_VELOCITY + RandomFloat(-120, 120);
+
+	Vector vecForward, vecUp, vecRight;
+	AngleVectors( pOwner->EyeAngles() + pOwner->m_Local.m_vecPunchAngle, &vecForward, &vecRight, &vecUp );
+
 	CPaintball *pPB = &m_aBalls[i];
 
 	Assert(pPB->m_bAvailable);
 	pPB->m_bAvailable = false;
-	pPB->m_vecPosition = pOwner->Weapon_ShootPosition();
-	pPB->m_vecVelocity = pOwner->GetAutoaimVector( 0 ) * PAINTBALL_AIR_VELOCITY;
 	pPB->m_pOwner = pOwner;
+	pPB->m_vecPosition = pOwner->Weapon_ShootPosition();
+	pPB->m_vecVelocity = vecForward * flVelocity + flSpread * flX * vecRight + flSpread * flY * vecUp;
+	pPB->m_flXSpin = cos(flSpinTheta) * flSpinFactor;
+	pPB->m_flYSpin = sin(flSpinTheta) * flSpinFactor;
 
 	m_iBalls++;
 	if (i > m_iLastBall)
@@ -199,8 +219,29 @@ void CPaintballMgr::THINK_PROTOTYPE
 
 void IPaintball::Update( float flFrametime )
 {
-	//Apply gravity
-	m_vecVelocity.z -= sv_gravity.GetFloat() * flFrametime;
+	Vector vecVelNormal = m_vecVelocity;
+	VectorNormalize(vecVelNormal);
+
+	float flVelocity = m_vecVelocity.Length();
+
+	Vector vecForward, vecUp, vecRight;
+	QAngle angForward;
+	VectorAngles( vecVelNormal, angForward );
+	AngleVectors( angForward, &vecForward, &vecRight, &vecUp );
+
+	Vector vecGravity = Vector(0, 0, -1) * sv_gravity.GetFloat();
+	Vector vecSpin = vecRight * m_flXSpin + vecUp * m_flYSpin;
+	Vector vecDrag = flVelocity * flVelocity * PAINTBALL_DRAG_COEFF * -vecVelNormal;
+
+	// Apply all velocity changes at once.
+	m_vecVelocity += (vecGravity + vecSpin + vecDrag) * flFrametime;
+
+	// New velocity
+	flVelocity = m_vecVelocity.Length();
+
+	// Degrade spin
+	m_flXSpin *= 1 - (0.1 * flFrametime);
+	m_flYSpin *= 1 - (0.1 * flFrametime);
 
 	//TODO: Use vphysics instead.
 	CGameTrace tr;
@@ -212,9 +253,22 @@ void IPaintball::Update( float flFrametime )
 
 	if (tr.DidHit())
 	{
-		PaintballTouch(tr.m_pEnt, &tr);
+		bool bBroke = false;
+		if (m_pOwner && flVelocity < 2640 && flVelocity > 1680)	//Between 220 and 140 fps
+		{
+			RandomSeed( m_pOwner->GetPredictionRandomSeed() );
+			bBroke = RandomFloat( 0.0, 1.0 ) > (2640 - flVelocity)/(2640 - 1680);
+		}
+		else if (flVelocity >= 2640)
+			bBroke = true;
+
+		if (bBroke)
+			PaintballTouch(tr.m_pEnt, &tr);
+		
+		//Todo: bounce the ball if it did not break.
 		CPaintballMgr::GetManager()->RemoveBall(m_iIndex);
+		return;
 	}
-	else
-		m_vecPosition = tr.endpos;
+
+	m_vecPosition = tr.endpos;
 }

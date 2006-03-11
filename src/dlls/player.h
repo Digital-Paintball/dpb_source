@@ -355,6 +355,8 @@ public:
 
 	bool					HasAnyAmmoOfType( int nAmmoIndex );
 
+	virtual float			GetPredictedSpread();
+
 	// JOHN:  sends custom messages if player HUD data has changed  (eg health, ammo)
 	virtual void			UpdateClientData( void );
 	

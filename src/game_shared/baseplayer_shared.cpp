@@ -1515,3 +1515,17 @@ void CBasePlayer::RegenerateStamina()
 		StopSprinting();
 	}
 }
+
+float CBasePlayer::GetPredictedSpread()
+{
+	float flSpread = 10;	// units per every PAINTBALL_AIR_VELOCITY units.
+
+	if (m_nButtons & (IN_FORWARD|IN_BACK|IN_MOVELEFT|IN_MOVERIGHT))
+		flSpread *= 5;
+
+	// This shouldn't be possible, but just in case.
+	if (IsSprinting())
+		flSpread *= 10;
+
+	return flSpread;
+}

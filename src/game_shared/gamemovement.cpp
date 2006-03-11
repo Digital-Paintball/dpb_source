@@ -3790,8 +3790,8 @@ void CGameMovement::Lean()
 	int buttonsPressed	=  buttonsChanged & mv->m_nButtons;			// The changed ones still down are "pressed"
 	int buttonsReleased	=  buttonsChanged & mv->m_nOldButtons;		// The changed ones which were previously down are "released"
 
-	bool bMoving = ( mv->m_nButtons & IN_FORWARD || mv->m_nButtons & IN_MOVELEFT || mv->m_nButtons & IN_BACK || mv->m_nButtons & IN_MOVERIGHT );
-	bool bWasMoving = ( mv->m_nOldButtons & IN_FORWARD || mv->m_nOldButtons & IN_MOVELEFT || mv->m_nOldButtons & IN_BACK || mv->m_nOldButtons & IN_MOVERIGHT );
+	bool bMoving = ( mv->m_nButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
+	bool bWasMoving = ( mv->m_nOldButtons & (IN_FORWARD|IN_MOVELEFT|IN_BACK|IN_MOVERIGHT) );
 
 	if ( bMoving && !bWasMoving )
 	{

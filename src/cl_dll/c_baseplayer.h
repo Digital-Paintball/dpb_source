@@ -90,6 +90,8 @@ public:
 	virtual Vector			Weapon_ShootPosition();
 	virtual void			Weapon_DropPrimary( void ) {}
 
+	virtual float			GetPredictedSpread();
+
 	virtual Vector			GetAutoaimVector( float flDelta  );
 	void					SetSuitUpdate(char *name, int fgroup, int iNoRepeat);
 
