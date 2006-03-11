@@ -1,0 +1,5 @@
+"LightMappedGeneric"
+{
+	$basetexture "VGUI/gui/pb"
+	$alphatest 1
+}
