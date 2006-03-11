@@ -1,0 +1,5 @@
+VertexLitGeneric
+{
+	$basetexture "models/props_field/flag02"
+	$nocull 1
+}
