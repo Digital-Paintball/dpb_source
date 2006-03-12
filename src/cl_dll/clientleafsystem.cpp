@@ -18,6 +18,7 @@
 #include "DetailObjectSystem.h"
 #include "engine/IStaticPropMgr.h"
 #include "engine/IVDebugOverlay.h"
+#include "c_multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -1112,6 +1113,10 @@ void CClientLeafSystem::CollateRenderablesInLeaf( int leaf, int worldListLeafInd
 {
 	bool portalTestEnts = r_PortalTestEnts.GetBool() && !r_portalsopenall.GetBool();
 
+	C_BasePlayer* pPlayer = C_BasePlayer::GetLocalPlayer();
+	C_Arena* pArena = pPlayer->GetArena();
+	bool bPlaying = pArena && pArena->HasPlayer(pPlayer);
+
 	// Collate everything.
 	unsigned short idx = m_RenderablesInLeaf.FirstElement(leaf);
 	for ( ;idx != m_RenderablesInLeaf.InvalidIndex(); idx = m_RenderablesInLeaf.NextElement(idx) )
@@ -1122,6 +1127,22 @@ void CClientLeafSystem::CollateRenderablesInLeaf( int leaf, int worldListLeafInd
 		// Early out on static props if we don't want to render them
 		if ((!m_DrawStaticProps) && (renderable.m_Flags & RENDER_FLAGS_STATIC_PROP))
 			continue;
+
+		// Early out if the player is in an arena and this object is in another arena.
+		if (bPlaying)
+		{
+			IClientUnknown* pICU = renderable.m_pRenderable->GetIClientUnknown();
+			if (pICU)
+			{
+				C_BaseEntity* pEntity = pICU->GetBaseEntity();
+				if (pEntity)
+				{
+					C_Arena* pEntityArena = pEntity->GetArena();
+					if (pEntityArena && pEntityArena != pArena)
+						continue;
+				}
+			}
+		}
 
 		// Early out if we're told to not draw small objects (top view only,
 		/* that's why we don't check the z component).
