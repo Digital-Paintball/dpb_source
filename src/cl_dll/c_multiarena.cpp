@@ -39,6 +39,9 @@ void __MsgFunc_Arena(bf_read &msg)
 		break;
 	case CArenaShared::AE_RESET:
 		C_BasePlayer::GetLocalPlayer()->ResetLeaning();
+
+		//Including paintballmgr.h causes crashes for some reason, so I won't bother with this for now.
+//		CPaintballMgr::GetManager()->RemoveBalls( C_BasePlayer::GetLocalPlayer()->GetArena() );
 		break;
 	}
 }

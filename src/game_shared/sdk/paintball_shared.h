@@ -5,6 +5,12 @@
 #define PAINTBALL_AIR_VELOCITY		3500
 #define PAINTBALL_DRAG_COEFF		(0.0002f)
 
+#ifdef CLIENT_DLL
+#define CArena C_Arena
+#endif
+
+class CArena;
+
 class IPaintball
 {
 	friend class CPaintball;
@@ -18,6 +24,9 @@ public:
 
 	virtual void	PaintballTouch( CBaseEntity *pOther, CGameTrace* pTrace ) = 0;
 
+	virtual void	Spawn() = 0;
+	virtual void	Destroy() = 0;
+
 	void		Update( float flFrametime );
 
 	inline bool IsAvailable() { return m_bAvailable; };
@@ -26,6 +35,7 @@ public:
 	bool			m_bAvailable;
 	int				m_iIndex;
 	CBasePlayer*	m_pOwner;
+	CArena*			m_pArena;
 
 	Vector			m_vecPosition;
 	Vector			m_vecVelocity;

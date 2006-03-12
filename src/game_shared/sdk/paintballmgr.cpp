@@ -113,11 +113,12 @@ void CPaintballMgr::AddBall( CBasePlayer *pOwner )
 	Vector vecForward, vecUp, vecRight;
 	AngleVectors( pOwner->EyeAngles() + pOwner->m_Local.m_vecPunchAngle, &vecForward, &vecRight, &vecUp );
 
-	CPaintball *pPB = &m_aBalls[i];
+	IPaintball *pPB = &m_aBalls[i];
 
 	Assert(pPB->m_bAvailable);
 	pPB->m_bAvailable = false;
 	pPB->m_pOwner = pOwner;
+	pPB->m_pArena = pOwner->GetArena();
 	pPB->m_vecPosition = pOwner->Weapon_ShootPosition();
 	pPB->m_vecVelocity = vecForward * flVelocity + flSpread * flX * vecRight + flSpread * flY * vecUp;
 	pPB->m_flXSpin = cos(flSpinTheta) * flSpinFactor;
@@ -139,7 +140,7 @@ void CPaintballMgr::RemoveBall( int i )
 	if (i < 0 || i >= MAX_PAINTBALLS)
 		return;
 
-	CPaintball *pPB = &m_aBalls[i];
+	IPaintball *pPB = &m_aBalls[i];
 
 	Assert(!pPB->m_bAvailable);
 	pPB->m_bAvailable = true;
@@ -166,6 +167,16 @@ void CPaintballMgr::RemoveBall( int i )
 	SanityCheck();
 
 	pPB->Destroy();
+}
+
+void CPaintballMgr::RemoveBalls( CArena *pArena )
+{
+	if (!pArena)
+		return;
+
+	for (int i = 0; i < MAX_PAINTBALLS; i++)
+		if (m_aBalls[i].IsUsed() && m_aBalls[i].m_pArena == pArena)
+			RemoveBall( i );
 }
 
 void CPaintballMgr::SanityCheck()

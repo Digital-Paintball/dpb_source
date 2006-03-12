@@ -39,6 +39,7 @@ public:
 
 	void	AddBall( CBasePlayer* pOwner );
 	void	RemoveBall( int i );
+	void	RemoveBalls( CArena* pArena );
 	int		FindEmptySpace( );
 
 	void	SanityCheck();

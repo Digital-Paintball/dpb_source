@@ -12,8 +12,8 @@ public:
 	
 	void	Init(int i);
 
-	void	Spawn();
-	void	Destroy();
+	virtual void	Spawn();
+	virtual void	Destroy();
 
 	void	PaintballTouch( C_BaseEntity *pOther, CGameTrace* pTrace );
 

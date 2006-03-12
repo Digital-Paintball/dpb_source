@@ -7,6 +7,7 @@
 
 #include "multiarena.h"
 #include "team.h"
+#include "paintballmgr.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -132,6 +133,8 @@ void CArena::SetupRound( )
 	bool bRoundStarting = true;
 
 	m_State = CArenaShared::GS_COUNTDOWN;
+
+	CPaintballMgr::GetManager()->RemoveBalls( this );
 
 	int iTeamsWithPlayers = 0;
 	//Check to see which teams have players at all.

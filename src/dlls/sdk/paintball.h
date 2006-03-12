@@ -9,8 +9,8 @@ class CPaintball : public IPaintball
 public:
 	void	Init(int i);
 
-	void	Spawn( void );
-	void	Destroy( void );
+	virtual void	Spawn( void );
+	virtual void	Destroy( void );
 
 	void	PaintballTouch( CBaseEntity *pOther, CGameTrace* pTrace );
 };
