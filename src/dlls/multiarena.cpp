@@ -498,7 +498,7 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 		m_hJoiners.FindAndRemove( pPlayer );
 
 	// If the player has made his way outside the arena for some reason, remove him immediately.
-	if (pPlayer->FishOutOfWater())
+	if (pPlayer->FishOutOfWater() || !pPlayer->IsAlive())
 	{
 		RemoveQuitter(pPlayer);
 		CheckForRoundEnd();
@@ -522,6 +522,9 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 	SpawnPlayer(pPlayer);
 
 	pPlayer->FishOutOfWater(false);
+
+	if (!pPlayer->IsAlive())
+		pPlayer->Spawn();
 
 	CSingleUserRecipientFilter user( pPlayer );
 	user.MakeReliable();
