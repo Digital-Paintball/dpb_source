@@ -3857,30 +3857,69 @@ void CGameMovement::Lean()
 		}
 	}
 
-	if ( mv->m_flLeaning )
+	Vector vecOldOffset = player->GetLeanOffset();
+	bool bReduceLeaning = false;
+
+	do
 	{
-		const int iLeanDist = 50;
+		if (bReduceLeaning)
+		{
+			if (mv->m_flLeaning > 0)
+			{
+				mv->m_flLeaning -= 1;
+				if (mv->m_flLeaning <= 0)
+					mv->m_flLeaning = 0;
+			}
+			else if (mv->m_flLeaning < 0)
+			{
+				mv->m_flLeaning += 1;
+				if (mv->m_flLeaning >= 0)
+					mv->m_flLeaning = 0;
+			}
 
-		//Get rid of roll.
-		QAngle angView = mv->m_vecViewAngles;
-		angView.z = 0;
-		Vector vecForward, vecUp, vecRight;
-		AngleVectors(angView, &vecForward, &vecRight, &vecUp);
+			if (mv->m_flLeaning == 0)
+				bReduceLeaning = false;
+		}
 
-		float flA = cos(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
-		float flO = sin(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
+		if ( mv->m_flLeaning )
+		{
+			const int iLeanDist = 50;
 
-		Vector vecLean = (vecUp * -(iLeanDist - flA)) + vecRight * flO;
+			//Get rid of roll.
+			QAngle angView = mv->m_vecViewAngles;
+			angView.z = 0;
+			Vector vecForward, vecUp, vecRight;
+			AngleVectors(angView, &vecForward, &vecRight, &vecUp);
 
-		//Minimize the effect if the player is looking up or down.
-		vecLean *= 1-fabs(angView.x)/90;
+			float flA = cos(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
+			float flO = sin(DEG2RAD(mv->m_flLeaning)) * iLeanDist;
 
-		player->SetLeanOffset(vecLean);
-	}
-	else
-	{
-		player->SetLeanOffset(vec3_origin);
-	}
+			Vector vecLean = (vecUp * -(iLeanDist - flA)) + vecRight * flO;
+
+			//Minimize the effect if the player is looking up or down.
+			vecLean *= 1-fabs(angView.x)/90;
+
+			player->SetLeanOffset(vecLean);
+
+			// Make sure the player's eyes are far enough from a wall.
+			Vector vecEye = mv->m_vecAbsOrigin + player->GetViewOffset();
+			trace_t tr;
+			if (mv->m_flLeaning > 0)
+				UTIL_TraceLine(vecEye, vecEye + vecRight * 10, MASK_SOLID_BRUSHONLY, player, COLLISION_GROUP_NONE, &tr);
+			else if (mv->m_flLeaning < 0)
+				UTIL_TraceLine(vecEye, vecEye - vecRight * 10, MASK_SOLID_BRUSHONLY, player, COLLISION_GROUP_NONE, &tr);
+
+			if (tr.fraction < 1.0)
+				bReduceLeaning = true;
+			else
+				bReduceLeaning = false;
+		}
+		else
+		{
+			player->SetLeanOffset(vec3_origin);
+		}
+
+	} while (bReduceLeaning);
 }
 
 void CGameMovement::Sprint()
