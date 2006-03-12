@@ -689,7 +689,7 @@ void CBasePlayer::DrawDebugGeometryOverlays(void)
 //=========================================================
 void CBasePlayer::TraceAttack( const CTakeDamageInfo &inputInfo, const Vector &vecDir, trace_t *ptr )
 {
-	if ( m_takedamage )
+	if ( m_takedamage && GetArena() && GetArena()->HasPlayer(this) )
 	{
 		CTakeDamageInfo info = inputInfo;
 
