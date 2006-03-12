@@ -1235,7 +1235,7 @@ void CBaseCombatWeapon::ItemPostFrame( void )
 
 	bool bFired = false;
 
-	if ((pOwner->m_nButtons & IN_ATTACK2) && (m_flNextSecondaryAttack <= gpGlobals->curtime))
+	/*if ((pOwner->m_nButtons & IN_ATTACK2) && (m_flNextSecondaryAttack <= gpGlobals->curtime))
 	{
 		if (UsesSecondaryAmmo() && pOwner->GetAmmoCount(m_iSecondaryAmmoType)<=0 )
 		{
@@ -1261,9 +1261,9 @@ void CBaseCombatWeapon::ItemPostFrame( void )
 				}
 			}
 		}
-	}
+	}*/
 	
-	if ( !bFired && (pOwner->m_nButtons & IN_ATTACK) && (m_flNextPrimaryAttack <= gpGlobals->curtime))
+	if ( !bFired && (pOwner->m_afButtonPressed & (IN_ATTACK|IN_ATTACK2)) && (m_flNextPrimaryAttack <= gpGlobals->curtime))
 	{
 		// Clip empty? Or out of ammo on a no-clip weapon?
 		if ( !IsMeleeWeapon() &&  
