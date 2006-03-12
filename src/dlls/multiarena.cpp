@@ -522,7 +522,7 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 	pPlayer->RemoveAllItems(false);
 	pPlayer->UnlockPlayer();
 
-	SpawnPlayer(pPlayer);
+	SpawnPlayer(pPlayer, this);
 
 	pPlayer->FishOutOfWater(false);
 
@@ -536,12 +536,16 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 	MessageEnd();
 }
 
-void CArena::SpawnPlayer( CBasePlayer *pPlayer )
+void CArena::SpawnPlayer( CBasePlayer *pPlayer, CArena* pArena )
 {
-	//TODO: Try to find a spawn point in the current arena first.
+	CBaseEntity *pSpawnSpot = NULL;
 
-	// default to normal spawn
-	CBaseEntity *pSpawnSpot = pPlayer->EntSelectStartPoint();
+	if (pArena)
+		pSpawnSpot = pPlayer->EntSelectStartPoint( pArena );
+
+	if (!pSpawnSpot)
+		pSpawnSpot = pPlayer->EntSelectStartPoint();
+
 	MovePlayer(pPlayer, pSpawnSpot->GetLocalOrigin(), pSpawnSpot->GetLocalAngles());
 }
 

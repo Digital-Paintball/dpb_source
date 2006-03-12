@@ -4007,7 +4007,7 @@ Returns the entity to spawn at
 USES AND SETS GLOBAL g_pLastSpawn
 ============
 */
-CBaseEntity *CBasePlayer::EntSelectStartPoint()
+CBaseEntity *CBasePlayer::EntSelectStartPoint( CArena* pArena )
 {
 	CBaseEntity *pSpot;
 	edict_t		*player;
@@ -4028,6 +4028,12 @@ CBaseEntity *CBasePlayer::EntSelectStartPoint()
 	{
 		if ( pSpot )
 		{
+			if ( pSpot->GetArena() != pArena )
+			{
+				pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
+				continue;
+			}
+
 			// check if pSpot is valid
 			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
 			{
@@ -4045,9 +4051,9 @@ CBaseEntity *CBasePlayer::EntSelectStartPoint()
 		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
 	} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
 
-	if ( !pSpot  )
+	if ( !pSpot && !pArena )
 	{
-		Warning( "PutClientInServer: no info_player_start on level\n");
+		Warning( "PutClientInServer: no info_player_start on level outside an arena\n");
 		return CBaseEntity::Instance( INDEXENT( 0 ) );
 	}
 

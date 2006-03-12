@@ -40,7 +40,7 @@ public:
 	bool HasPlayer(CBasePlayer *pPlayer);
 	void AssignTeam(CBasePlayer *pPlayer);
 
-	static void SpawnPlayer(CBasePlayer *pPlayer);
+	static void SpawnPlayer(CBasePlayer *pPlayer, CArena* pArena = NULL);
 	static void MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles);
 
 	void SetupRound();

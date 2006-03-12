@@ -400,7 +400,7 @@ public:
 	virtual void			ResetObserverMode(); // resets all observer related settings
 
 	virtual void			CreateCorpse( void ) { }
-	virtual CBaseEntity		*EntSelectStartPoint( void );
+	virtual CBaseEntity		*EntSelectStartPoint( CArena* pArena = NULL );
 
 	// Vehicles
 	bool					IsInAVehicle( void ) const;
