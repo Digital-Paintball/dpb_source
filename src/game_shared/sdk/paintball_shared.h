@@ -1,9 +1,10 @@
 #ifndef PAINTBALL_SHARED_H
 #define PAINTBALL_SHARED_H
 
-#define PAINTBALL_MODEL				"models/paintball/paintball.mdl"
+#define PAINTBALL_MODEL				"sprites/pb_blur.vmt"
 #define PAINTBALL_AIR_VELOCITY		3500
 #define PAINTBALL_DRAG_COEFF		(0.0002f)
+#define PAINTBALL_DIAMETER			(0.68f)
 
 #ifdef CLIENT_DLL
 #define CArena C_Arena

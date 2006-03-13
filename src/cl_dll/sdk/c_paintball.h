@@ -10,7 +10,8 @@ class C_Paintball : public IClientRenderable, public IPaintball
 {
 public:
 	
-	void	Init(int i);
+	static void		Init();
+	void			Init(int i);
 
 	virtual void	Spawn();
 	virtual void	Destroy();
@@ -48,9 +49,9 @@ public:
 	virtual void				GetShadowRenderBounds( Vector &mins, Vector &maxs, ShadowType_t shadowType );
 
 protected:
-	const model_t* m_pModel;
-	ModelInstanceHandle_t m_ModelInstance;
-	ClientRenderHandle_t m_hRenderHandle;
+	static const model_t*			s_pModel;
+	ClientRenderHandle_t			m_hRenderHandle;
+	float							m_flBrightness;
 };
 
 #endif // C_PAINTBALL_H

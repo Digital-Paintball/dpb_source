@@ -1,6 +1,6 @@
 "LightMappedGeneric"
 	{
-		$basetexture "VGUI/gui/pb_blur"
+		$basetexture "sprites/pb_blur"
 		$additive 1
 	}
 	

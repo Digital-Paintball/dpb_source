@@ -41,6 +41,7 @@ void CPaintballMgr::LevelInitPreEntity()
 
 #ifdef CLIENT_DLL
 	HOOK_MESSAGE(Paintball);
+	C_Paintball::Init();
 #endif
 
 	m_bInitialized = true;
