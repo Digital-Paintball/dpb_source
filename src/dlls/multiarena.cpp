@@ -459,6 +459,10 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 	if (m_hJoiners.HasElement( pPlayer ) || m_hPlayers.HasElement( pPlayer ))
 		return;
 
+	for (int j = 0; j < s_hArenas.Count(); j++)
+		if (s_hArenas[j]->HasPlayer( pPlayer ) || s_hArenas[j]->m_hJoiners.HasElement( pPlayer ))
+			return;
+
 	m_hJoiners.AddToTail( pPlayer );
 
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
