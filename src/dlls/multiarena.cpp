@@ -239,6 +239,12 @@ void CArena::SetupRound( )
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
 
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+
 		pPlayer->SetArena(this);
 
 		if (!pPlayer->GetTeam())
