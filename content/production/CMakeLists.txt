@@ -171,6 +171,10 @@ INSTALL_FILES(/materials/models/props_cars/jeep_truck FILES
 )
 
 INSTALL_FILES(/materials/models/props_field FILES
+	materials/models/props_field/flag01.vmt
+	materials/models/props_field/flag02.vmt
+	materials/models/props_field/Flag01.vtf
+	materials/models/props_field/Flag02.vtf
 	materials/models/props_field/picnictable_wood.vtf  
 	materials/models/props_field/picnictable_wood.vmt  
 	materials/models/props_field/picnictable_wood_normal.vtf  
@@ -461,6 +465,8 @@ INSTALL_FILES(/materials/models/weapons FILES
 INSTALL_FILES(/materials/norrington FILES
 	materials/norrington/norr_mapmerc.vmt
 	materials/norrington/norr_mapmerc.vtf
+	materials/norrington/norrtape.vmt
+	materials/norrington/norrtape.vtf
 	materials/norrington/restroomsign.vmt
 	materials/norrington/restroomsign.vtf
 	materials/norrington/restroomsign_normal.vtf
@@ -505,10 +511,21 @@ INSTALL_FILES(/materials/norrington FILES
 	materials/norrington/pineline.vmt
 )
 
+INSTALL_FILES(/materials/sprites FILES
+	materials/sprites/pb.vtf
+	materials/sprites/pb.vmt
+	materials/sprites/pb_blur.vtf
+	materials/sprites/pb_blur.vmt
+)
+
 INSTALL_FILES(/materials/textures FILES
 	materials/textures/norrshadow.vtf
 	materials/textures/overlay_norrleaves.vtf
 	materials/textures/overlay_rocky.vtf
+	materials/textures/paintedbunkerRED.vtf
+	materials/textures/paintedbunkerRED.vmt
+	materials/textures/paintedbunkerBLUE.vtf
+	materials/textures/paintedbunkerBLUE.vmt
 	materials/textures/norrshadow.vmt
 	materials/textures/overlay_norrleaves.vmt
 	materials/textures/overlay_rocky.vmt
@@ -827,6 +844,11 @@ INSTALL_FILES(/models/props_field FILES
 	models/props_field/picnictable.dx90.vtx
 	models/props_field/rock1.dx90.vtx
 	models/props_field/rock2.dx80.vtx
+	models/props_field/towerflag.sw.vtx
+	models/props_field/towerflag.mdl
+	models/props_field/towerflag.vvd
+	models/props_field/towerflag.dx80.vtx
+	models/props_field/towerflag.dx90.vtx
 	models/props_field/pallet.dx90.vtx
 	models/props_field/longcanopy.mdl
 	models/props_field/rock3.dx90.vtx
