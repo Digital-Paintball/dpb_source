@@ -4129,7 +4129,11 @@ void CBasePlayer::Spawn( void )
 	if ( !m_fGameHUDInitialized )
 		g_pGameRules->SetDefaultPlayerTeam( this );
 
-    SetViewOffset( VEC_VIEW );
+	RemoveFlag( FL_DUCKING );
+	SetViewOffset( VEC_VIEW );
+	m_Local.m_bDucked = false;
+	m_Local.m_bDucking  = false;
+	m_Local.m_flDucktime = 0;
 	Precache();
 	
 	m_bitsDamageType = 0;
