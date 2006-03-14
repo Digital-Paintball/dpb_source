@@ -57,6 +57,7 @@ IMPLEMENT_CLIENTCLASS_DT( C_SDKPlayer, DT_SDKPlayer, CSDKPlayer )
 	RecvPropDataTable( "sdklocaldata", 0, 0, &REFERENCE_RECV_TABLE(DT_SDKLocalPlayerExclusive) ),
 	RecvPropFloat( RECVINFO( m_angEyeAngles[0] ) ),
 	RecvPropFloat( RECVINFO( m_angEyeAngles[1] ) ),
+	RecvPropFloat( RECVINFO( m_angEyeAngles[2] ) ),
 	RecvPropInt( RECVINFO( m_iThrowGrenadeCounter ) ),
 	RecvPropEHandle( RECVINFO( m_hRagdoll ) ),
 END_RECV_TABLE()

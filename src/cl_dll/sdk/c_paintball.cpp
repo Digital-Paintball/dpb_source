@@ -10,6 +10,7 @@
 #include "c_sprite.h"
 #include "enginesprite.h"
 #include "view.h"
+#include "movevars_shared.h"
 
 // Should be last include
 #include "tier0/memdbgon.h"
@@ -57,9 +58,11 @@ const QAngle& C_Paintball::GetRenderAngles( void )
 
 void C_Paintball::GetRenderBounds( Vector& mins, Vector& maxs )
 {
-	float flSpriteLength = m_vecVelocity.Length() * gpGlobals->frametime;
+	Vector vecPredictedVel = m_vecVelocity + Vector(0, 0, -1) * sv_gravity.GetFloat() * gpGlobals->frametime;
 
-	Vector vecVelNormal = m_vecVelocity;
+	float flSpriteLength = vecPredictedVel.Length() * gpGlobals->frametime;
+
+	Vector vecVelNormal = vecPredictedVel;
 	VectorNormalize(vecVelNormal);
 
 	Vector vecEffectEnd = vecVelNormal * flSpriteLength;
@@ -153,19 +156,11 @@ int C_Paintball::DrawModel( int flags )
 	if ( !pSprite )
 		return 0;
 
-	// Fade the paintball in so it's not so obvious it comes from VEC_VIEW.
-	float flBackBrightness = 1;
-	float flFrontBrightness = 1;
-	if (m_flBrightness < 1)
-	{
-		flBackBrightness = m_flBrightness;
-		m_flBrightness += 2 * gpGlobals->frametime;
-		flFrontBrightness = m_flBrightness;
-	}
+	Vector vecPredictedVel = m_vecVelocity + Vector(0, 0, -1) * sv_gravity.GetFloat() * gpGlobals->frametime;
 
-	float flSpriteLength = m_vecVelocity.Length() * gpGlobals->frametime;
+	float flSpriteLength = vecPredictedVel.Length() * gpGlobals->frametime;
 
-	Vector vecVelNormal = m_vecVelocity;
+	Vector vecVelNormal = vecPredictedVel;
 	VectorNormalize(vecVelNormal);
 
 	Vector vecEffectOrigin = GetRenderOrigin();
@@ -210,7 +205,7 @@ int C_Paintball::DrawModel( int flags )
 	VectorNormalize(vecBallForward);
 
 	Vector vecTop, vecBottom;
-	if (m_vecVelocity.z >= 0)
+	if (vecPredictedVel.z >= 0)
 	{
 		vecTop = GetRenderOrigin() + vecVelNormal * flSpriteLength + vecBallForward * (PAINTBALL_DIAMETER/2);
 		vecBottom = GetRenderOrigin() - vecBallForward * (PAINTBALL_DIAMETER/2);
@@ -236,6 +231,15 @@ int C_Paintball::DrawModel( int flags )
 	if( !pMaterial )
 		return 0;
 
+	pMaterial->AlphaModulate( m_flBrightness );
+
+	// Fade the paintball in so it's not so obvious it comes from VEC_VIEW.
+	if (m_flBrightness < 0.8)
+		m_flBrightness += 10 * gpGlobals->frametime;
+
+	if (m_flBrightness > 0.8)
+		m_flBrightness = 0.8;
+
 	materials->Bind( pMaterial, this );
 
 	Vector vecPoint;
@@ -244,7 +248,7 @@ int C_Paintball::DrawModel( int flags )
 	CMeshBuilder meshBuilder;
 	meshBuilder.Begin( pMesh, MATERIAL_QUADS, 1 );
 
-	meshBuilder.Color4ub (255, 255, 255, 255 * flBackBrightness);
+	meshBuilder.Color4ub (255, 255, 255, 255);
 	meshBuilder.TexCoord2f (0, 0, 1);
 	VectorMA (vecEffectOrigin, PAINTBALL_DIAMETER/2, vecRight, vecPoint);
 	meshBuilder.Position3fv (vecPoint.Base());
@@ -253,7 +257,7 @@ int C_Paintball::DrawModel( int flags )
 	if ( r_visualizeballphysics.GetBool() )
 		DebugDrawLine( vecEffectOrigin, vecPoint, 256, 256, 256, true, -1.0f );
 
-	meshBuilder.Color4ub (255, 255, 255, 255 * flFrontBrightness);
+	meshBuilder.Color4ub (255, 255, 255, 255);
 	meshBuilder.TexCoord2f (0, 1, 1);
 	VectorMA (vecEffectOrigin, -flSpriteLength, vecUp, vecPoint);
 	VectorMA (vecPoint, PAINTBALL_DIAMETER/2, vecRight, vecPoint);
@@ -263,7 +267,7 @@ int C_Paintball::DrawModel( int flags )
 	if ( r_visualizeballphysics.GetBool() )
 		DebugDrawLine( vecEffectOrigin, vecPoint, 256, 0, 0, true, -1.0f );
 
-	meshBuilder.Color4ub (255, 255, 255, 255 * flFrontBrightness);
+	meshBuilder.Color4ub (255, 255, 255, 255);
 	meshBuilder.TexCoord2f (0, 1, 0);
 	VectorMA (vecEffectOrigin, -flSpriteLength, vecUp, vecPoint);
 	VectorMA (vecPoint, -PAINTBALL_DIAMETER/2, vecRight, vecPoint);
@@ -273,7 +277,7 @@ int C_Paintball::DrawModel( int flags )
 	if ( r_visualizeballphysics.GetBool() )
 		DebugDrawLine( vecEffectOrigin, vecPoint, 0, 256, 0, true, -1.0f );
 
-	meshBuilder.Color4ub (255, 255, 255, 255 * flBackBrightness);
+	meshBuilder.Color4ub (255, 255, 255, 255);
 	meshBuilder.TexCoord2f (0, 0, 0);
 	VectorMA (vecEffectOrigin, -PAINTBALL_DIAMETER/2, vecRight, vecPoint);
 	meshBuilder.Position3fv (vecPoint.Base());

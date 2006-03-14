@@ -12,6 +12,9 @@
 
 #ifdef CLIENT_DLL
 #include "hud_macros.h"
+#include "c_sdk_player.h"
+#else
+#include "sdk_player.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -112,7 +115,19 @@ void CPaintballMgr::AddBall( CBasePlayer *pOwner )
 	float flVelocity = PAINTBALL_AIR_VELOCITY + RandomFloat(-120, 120);
 
 	Vector vecForward, vecUp, vecRight;
-	AngleVectors( pOwner->EyeAngles() + pOwner->m_Local.m_vecPunchAngle, &vecForward, &vecRight, &vecUp );
+	QAngle angEyeAngles;
+#ifdef CLIENT_DLL
+	if (pOwner->IsLocalPlayer())
+		angEyeAngles = pOwner->EyeAngles() + pOwner->m_Local.m_vecPunchAngle;
+	else
+	{
+		C_SDKPlayer *pSDKPlayer = dynamic_cast<C_SDKPlayer*>( pOwner );
+		angEyeAngles = pSDKPlayer->m_angEyeAngles + pOwner->m_Local.m_vecPunchAngle;
+	}
+#else
+	angEyeAngles = pOwner->EyeAngles() + pOwner->m_Local.m_vecPunchAngle;
+#endif
+	AngleVectors( angEyeAngles, &vecForward, &vecRight, &vecUp );
 
 	IPaintball *pPB = &m_aBalls[i];
 
