@@ -270,7 +270,7 @@ bool ClientModeShared::ShouldDrawDetailObjects( )
 //-----------------------------------------------------------------------------
 bool ClientModeShared::ShouldDrawCrosshair( void )
 {
-	return true;
+	return false;
 }
 
 //-----------------------------------------------------------------------------
