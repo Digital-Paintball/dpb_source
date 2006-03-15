@@ -1,0 +1,6 @@
+"LightMappedGeneric"
+	{
+		$basetexture "sprites/pb_blur"
+		$translucent 1
+	}
+	

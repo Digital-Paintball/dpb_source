@@ -1,0 +1,5 @@
+"LightMappedGeneric"
+{
+	$basetexture "sprites/pb"
+	$alphatest 1
+}
