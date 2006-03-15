@@ -1,9 +1,8 @@
 "VertexLitGeneric"
 {
 	"$basetexture" "models/weapons/blazer"
-	"$bumpmap" "models/weapons/blazer_normal"
-	"$normalalphaenvmapmask" 1
-	$envmaptint .25 .25 .25
-	"$envmap" "env_cubemap"
 	
+	"$envmap" "env_cubemap"	
+	$envmapmask "models/weapons/blazer_specmap"
+	$envmaptint .2 .2 .2
 }
