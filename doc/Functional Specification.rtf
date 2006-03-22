@@ -1,6 +1,11 @@
 {\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fcharset0 Arial;}}
-{\colortbl ;\red0\green0\blue255;}
-{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\f0\fs24\line This document is intended to be a definitive resource for the development of Digital Paintball. If there is any ambiguity in this document, or if there is any information that can be subjectively interpreted different ways, please seek out the authors of this document for clarification.\par
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\ul\b\f0\fs40 Functional Specification - Digital Paintball\ulnone\b0\fs24\par
+\par
+CONFIDENTIAL & PRIVILEGED\par
+This document and the information contained herein is privileged and confidential. The document is intended solely for the use of Soulstrewn Studios LLC. If the reader of this document is not authorized to read the document, you are hereby notified that any dissemination, distribution or copying of this document is strictly prohibited. If you have received this document in error or are not sure whether it is privileged, please immediately notify us and destroy any copies, electronic, paper or otherwise, which you may have of this document.\par
+\par
+$Id$\par
+\line This document is intended to be a definitive resource for the development of Digital Paintball. If there is any ambiguity in this document, or if there is any information that can be subjectively interpreted different ways, please seek out the authors of this document for clarification.\par
 \par
 \pard\fi-720\li1080\tx1080 I.\tab Main Menu\par
 \pard\fi-360\li1440\tx1440 a.\tab Training\par
@@ -95,103 +100,87 @@ e.\tab Bug Tracking\par
 \par
 \page\par
 \pard\fi-720\li1080\tx1080\b I.\tab Main Menu\par
-\pard\li1080\b0\ldblquote Or how I learned to stop worrying and love the bomb\rdblquote\par
-\par
+\pard\li1080\b0\par
 The main menu for Digital Paintball should be both functional and aesthetically pleasing. The Digital Paintball logo should be displayed prominently, and the Soulstrewn logo should be placed in the lower right-hand corner. \par
 \par
 The menu itself will be drawn in tree-view format, towards the left side of the screen. For menu items that do not require a dialog, when the menu item is clicked, the background camera will get \lquote gogged\rquote , and then wiped to reveal the new menu items. The background of the menu will be a special menu map, which will contain several \lquote mini scenes\rquote . This will be implemented into one background map, through the use of clever scripting and camerawork. The background will switch between these scenes at regular intervals. Also, a new set of background scenes will be unlocked upon the completion of the game.\par
 \par
 \pard\fi-360\li1440\tx1440\b a.\tab Training\par
-\pard\li1080\b0\ldblquote Paintball 101: This is a paintball\rdblquote\par
-\par
+\pard\li1080\b0\par
 The player will be spawned without any equipment or UI in the training area. Here the player should be taught how to move, lean, duck, sprint, prone \endash  all the movement. After getting the movement down, the player will be given a gun, and trained on how to use it. The voice over for this section should be provided by a pro. \par
 \par
 \pard\fi-360\li1440\tx1440\b b.\tab Single Player\par
-\pard\li1080\b0\ldblquote A date with Mr. Right \endash  Mr. Right Handy\rdblquote\par
-\par
-The single player element of the main menu should expand to reveal Career mode and Quick Game mode. If the player has not completed training, we should strongly suggest at this point that the player do so, though we should not force them to do anything.\par
+\pard\li1080\b0\par
+The single player element of the main menu should expand to reveal Career mode and Quick Game mode. The first time a player chooses to play a game, if he has not completed the training course yet, a prompt shall appear asking the player if he wants to do so. Accepting will load the training map, declining will proceed to the player's Career or Quick Game map.\par
 \par
 \pard\fi-180\li2160\tx2160\b i.\tab Career Mode\par
-\pard\li2160\b0\ldblquote This isn\rquote t stolen from any football game, honest.\rdblquote\par
-\par
+\pard\li2160\b0\par
 Instead of having a straight text menu here, there should be some form of graphical listbox element. In this way, an empty box can be chosen to start a new career, a \lquote filled\rquote  one (will probably have some sort of picture of the player or something) can be selected to either start or delete that career. \par
 \par
-\pard\fi-360\li2880\tx2880 1.\tab\page\b Start New Career\par
-\pard\fi360\li2520\b0\ldblquote This is the beginning of a beautiful relationship\rdblquote\par
-\pard\li2520\par
+\pard\fi-360\li2880\tx2880 1.\tab\b Start New Career\par
+\pard\li2520\b0\par
 When the player begins a new career, they are prompted for difficulty, and given the choice of a few home fields. \par
 \par
-Difficulty affects more than just the BOT AI. It affects how easy it is to get sponsorships, how often someone will become injured, how quickly you gain attribute points, etc. \par
+Difficulty affects more than just the BOT AI. It affects how easy it is to get sponsorships, how often someone will become injured, how quickly the player gains attribute points, etc. \par
 \par
-The home field really affects what tournaments and stuff you will have access to early in the game.\par
+The home field affects what tournaments and stuff the player will have access to early in the game.\par
 \par
-After these settings are chosen, the player is given the initial \lquote draft\rquote  dialog. Here\rquote s where our different body types and skins come into play. There should be enough variety that we can have a fair amount of body types, hair, and male/female to make it interesting. \par
+After these settings are chosen, the player is given the initial \lquote draft\rquote  dialog. There will be a fair amount of body types, hair, and male/female to make it interesting. \par
 \par
-From here you\rquote re taken to the configure load-out and configure guns dialog.\par
+From here the player is taken to the configure load-out and configure guns dialog.\par
 \par
 (MORE DETAIL IN SECTION II-B-ii)\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Load Saved Career\par
-\pard\li2880\b0\ldblquote I\rquote m going through a transitional period\rdblquote\par
-\pard\li2520\par
-When loading a saved career, you should be presented with a status dialog during the loading screen which displays the weeks completed, trophies, and other fun stats. Lets save the career data as XML RC4\rquote d with the save time. That\rquote d sure make it hard to edit...\par
+\pard\li2520\b0\par
+When loading a saved career, the player should be presented with a status dialog during the loading screen which displays the weeks completed, trophies, and other fun stats. Lets save the career data as XML RC4\rquote d with the save time. That\rquote d sure make it hard to edit...\par
 \pard\li2880\par
 \pard\fi-180\li2160\tx2160\b ii.\tab Quick Game\par
-\pard\li2160\b0\ldblquote To play it safe is not to play\rdblquote\par
-\par
+\pard\li2160\b0\par
 The only dialogs that should display here are a modified field selection and a difficulty selection. When a field is selected, it should say what different game types are available on that field. \par
 \pard\li1080\tab\tab\par
 \pard\fi-360\li1440\tx1440\b c.\tab Multi Player\par
-\pard\li1440\b0\ldblquote Check out your local BBS for more fine shareware products\rdblquote\par
-\par
-Multiplayer is going to be the bulk of the endgame for DPB. Like single player, if the player has not completed training we should suggest it to them at this point. Unlike single player, the user is able to reconfigure his load-out and so forth in-game, so we don\rquote t need any of those dialogs in the menu. We\rquote ll probably have to put some stupid ESRB thing stating that content may change on the internet. Maybe we\rquote ll have some sort of spam filter\'85 anyway \endash  multiplayer brings up the following options:\par
+\pard\li1440\b0\par
+Multiplayer is going to be the bulk of the endgame for DPB. Like single player, if the player has not completed training it shall be suggested to him at this point. Unlike single player, the user is able to reconfigure his load-out and so forth in-game, so there will be no dialogs in the menu. Multiplayer brings up the following options:\par
 \par
 \pard\fi-180\li2160\tx2160\b i.\tab Instant Action\par
-\pard\li2160\b0\ldblquote Ready for action!\rdblquote\par
-\par
+\pard\li2160\b0\par
 The purpose of this item is to a get a user into a game as soon as possible. This will query the master server list, and connect to the server with the lowest ping with an open slot from the first batch of servers returned. \par
 \par
 \pard\fi-180\li2160\tx2160\b ii.\tab Find Server\par
-\pard\li2160\b0\ldblquote Go forth and seek your destinies\rdblquote\par
-\par
-This item is very self explanatory \endash  show a dialog that displays a server listing from the master. For DPB, we\rquote ll probably need game type filters, but other than that the default source engine setup should be alright.\par
+\pard\li2160\b0\par
+Show a dialog that displays a server listing from the master. Allow the player to filter servers by game type.\par
 \par
 \pard\fi-180\li2160\tx2160\b iii.\tab Start Server\par
-\pard\li2160\b0\ldblquote Rivers belong where they can ramble\rdblquote\par
-\par
+\pard\li2160\b0\par
 There should be a one-time dialog here telling users about the various technical aspects of hosting a server (plenty of ram and cpu, fast connection, etc). A dialog should be shown that should include the modified map selection (to show gametype), a hostname and maxclient entry field, and whether or not to launch a listenserver.\par
 \par
 \pard\fi-180\li2160\tx2160\b iv.\tab Config\par
-\pard\li2160\b0\ldblquote Do these pants make my butt look big?\rdblquote\par
-\par
+\pard\li2160\b0\par
 There is going to be a whole lot of configurable stuff in DPB. \par
 \par
-While in single player, you\rquote re only ever going to have one setup at a time, in multiplayer, you have the option of switching your loadout between rounds. \par
+While in single player, the player is only ever going to have one setup at a time, in multiplayer, the player have the option of switching his loadout between rounds. \par
 \par
 With the huge amount of time that this takes, a certain amount of preconfiguration is in order. For one, DPB should ship with sample configurations. Apart from that, players will be able to define their own quick configurations which will be accessible from a dropdown in \endash game.\par
 \par
 \pard\fi-360\li2880\tx2880\b 1.\tab Default Player Config(s)\par
-\pard\li2880\b0\ldblquote Yes dear, they do\rdblquote\par
-\par
+\pard\li2880\b0\par
 This menu item brings up the player dialog from II-a-ii-2, with some slight modifications that make the management (deletion particularly) of player configs easier. \par
  \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Default Loadout(s)\par
-\pard\li2880\b0\ldblquote That\rquote s funny - I\rquote m not wearing any pants\rdblquote\par
-\par
+\pard\li2880\b0\par
 This menu item brings up the loadout dialog from II-a-ii-2, with some slight modifications that make the management (deletion particularly) of loadouts easier. \par
 \par
 Deja-vu?\par
 \par
 \pard\fi-360\li1440\tx1440\b d.\tab Options\par
-\pard\li1440\b0\ldblquote Do you want fries with that?\rdblquote\par
-\par
+\pard\li1440\b0\par
 This dialog should include the standard source options, including keyboard configuration, video, audio, voice etc. It should also include a special page with options for statistics, control style, etc.\par
 \par
-There\rquote ll also be a page that controls the behavior of the ingame music. Options should include when the music is played (all the time, menus only, in rounds only) and when to show hud (alwas, on song changes, never). It\rquote ll also include a way to pick and choose what music is played.\par
+There\rquote ll also be a page that controls the behavior of the ingame music. Options should include when the music is played (all the time, menus only, in rounds only) and when to show hud (always, on song changes, never). It\rquote ll also include a way to pick and choose what music is played.\par
 \par
 \pard\fi-360\li1440\tx1440\b e.\tab Statistics\par
-\pard\li1440\b0\ldblquote 9 digits of pi in base 16 is 826366246 in decimal\rdblquote\par
-\par
+\pard\li1440\b0\par
 Digital Paintball is a SPORTS game. As such, statistics should be kept - for personal use, or just for amusement. \par
 \par
 The single player statistics should be stored as individual xml files. For career mode, there should be one xml file for each career, which details each practice and event, in chronological order. Basically, the events of the career should almost be able to be \lquote replayed\rquote , sans actual games. The xml file should include:\par
@@ -202,7 +191,7 @@ The single player statistics should be stored as individual xml files. For caree
 \pard\li1440\par
 For quick games, individual xml files should be created with the overall stats for the quick game session.\par
 \par
-Multiplayer statistics will be stored on our central server.\par
+Multiplayer statistics will be stored on a central server.\par
 \par
 All statistical gathering is optional, but enabled by default.\par
 \par
@@ -1013,37 +1002,32 @@ d2002801000000002800000028010000d200000001000400000000000000000000000000000000
 22222222222222222222222222222222222222222222222222222222222222040000002701ffff
 030000000000
 }\f0\fs24\par
-\pard\li2160\ldblquote I did \i that?\i0\rdblquote\par
-\par
+\pard\li2160\par
 This will bring up a dialog which should be presented much like an email client. On a pane on the left side, there should be a list of logs (and the appropriate management (delete) options). On the right side, there should be a horizontal split between \lquote events\rquote  (not events as in tournaments or games, events as in log events) and the full display.\par
 \par
 An \lquote export as html\rquote  option should be present here.\par
 \par
 \pard\fi-180\li2160\tx2160\b ii.\tab Multiplayer Statistics\par
-\pard\li2160\b0\ldblquote I did \i what\i0 ?\rdblquote\par
+\pard\li2160\b0\par
+This dialog shall display the DPB website where the user is automagically logged on through their Steam ID.\par
 \par
-This dialog should be an interface (read: web browser control tuned to) our website where the user is automagically logged on through their steam id.\par
-\par
-Our web statistics will not be as verbose as the singleplayer ones. They won\rquote t be separated into sessions, rather, sort of a synopsis of everything ever done. Mostly the statistics will be broken down per map and per marker. Other than that, there will be some overall \lquote interesting\rquote  facts, like how often a player has been the last one alive, or taken out the last person alive. Total volume of paint and rounds played should be stated here too. A sample entry for a marker might read: \par
+The web statistics will not be as verbose as the singleplayer ones. They won\rquote t be separated into sessions, rather, sort of a synopsis of everything ever done. Mostly the statistics will be broken down per map and per marker. Other than that, there will be some overall \lquote interesting\rquote  facts, like how often a player has been the last one alive, or taken out the last person alive. Total volume of paint and rounds played should be stated here too. A sample entry for a marker might read: \par
 \pard\li2880 Blazer: Accuracy 67% (All-time: 40%). Volume: 12,220 rounds. You have gotten 124 people out with this marker. People have gotten you out 35 times with this marker.\par
 \pard\tab\tab\tab Whereas for a map:\par
 \pard\li2880 Norrington: Volume: 3450. Field 1: 45W/5L (90%)  Field 2:  5W/45L (11%)\par
 \pard\li2160 There will be a section for clans, where users can organize clans and join and leave these clans on the interface. Clans will have similar statistics to users, but also include a tournaments section which will detail the results of tournaments that the clan has participated in.\par
 \par
 \pard\fi-360\li1440\tx1440\b f.\tab Quit Game\par
-\pard\li1440\b0\ldblquote Screw you guys, I\rquote m going home\rdblquote\par
-\par
+\pard\li1440\b0\par
 Uh, it quits the game. If there\rquote s a career mode event in progress, or a multiplayer tournament is going on, it\rquote ll ask to make sure the user really wants to interrupt their game.\par
 \par
 \pard\fi-720\li1080\tx1080\b II.\tab In-Game\par
-\pard\li1080\b0\ldblquote Don\rquote t be afraid, it\rquote s just a book\rdblquote\par
-\par
-Digital Paintball has progressed far from the days when the odd Russian and Swede would converse about various male anatomies in an internet chat channel. While the graphics and interface have gotten a major overhaul, the core gameplay \endash  that what which everything else is a wrapper for \endash  has remained pretty much unchanged. You\rquote ve got two teams, they\rquote ve both got guns, and they\rquote re both trying to win. \par
+\pard\li1080\b0\par
+Digital Paintball's core gameplay is traditional and simple: there are two teams, players are equipped with paintball markers, and the goal is to shoot players on opposing teams to get them "out". When there are only players on one team alive, or a particular arena's objective has been accomplished, the round is over and the team that accomplished their objectives wins.\par
 \par
 \pard\fi-360\li1440\tx1440\b a.\tab Multiplayer / General\par
-\pard\li1440\b0\ldblquote Why\rquote s it general and not colonel?\rdblquote\par
-\pard\li1080\par
-\pard\li1440 Most of the single player is a wrapper around the core game, so most it makes sense to start with multiplayer, which should explain the base concepts of the game so that single player can deal with just the specificities of single-player play.\par
+\pard\li1080\b0\par
+\pard\li1440 Most of the single player is a wrapper around the core game, so it makes most sense to start with multiplayer, which should explain the base concepts of the game so that single player can deal with just the specificities of single-player play.\par
 \pard\li1080\par
 \pard\fi-180\li2160\tx2160\b i.\tab Paintballs\par
 \pard\li2160\b0\par
@@ -1392,8 +1376,7 @@ Digital Paintball has progressed far from the days when the odd Russian and Swed
 222222222222222222222222222222222222222222222222222222222222222222222222222222
 2222222222222220040000002701ffff030000000000
 }\f0\fs24\par
-\pard\li2160\ldblquote Melts in your mouth, not in your gun\rdblquote\par
-\par
+\pard\li2160\par
 Paintballs are pretty much the most important part of the game. They have to look realistically, behave realistically, yet not so realistically that they do annoying things like break or jam. \par
 \par
 \par
@@ -2051,13 +2034,11 @@ Paintballs in real life are affected by all sorts of forces. First, they\rquote 
 Paintballs will have different quality grades, and different colors. The different quality grades will affect things such as spin and tendency to break at lower velocities, while the colors will be personal preference in multiplayer, or tied to a specific brand or team in single player.\par
 \par
 \pard\fi-180\li2160\tx2160\b ii.\tab Dialogs\par
-\pard\li2160\b0\ldblquote Isn\rquote t that spelled dialogues?\rdblquote\par
-\par
+\pard\li2160\b0\par
 Dialogs are how the users interact with the less realistic game world. While the majority of them are triggered by button presses, most can be activated by going to certain areas of the game world (the player config can be activated by pressing the use key while in the parking lot, the loadout can be activated by pressing the use key while standing near the pro-shop, the tweak \lquote n tinker can be activated by using the use key near a chronograph, the scoreboard can be activated by pressing the use key near a field, etc etc)\par
 \par
 \pard\fi-360\li2880\tx2880\b 1.\tab MOTD\par
-\pard\fi360\li2520\b0\ldblquote Attention Students. That will be all\rdblquote\par
-\pard\li2520\par
+\pard\li2520\b0\par
 \pard\li2880\par
 \pard\f2\fs20{\pict\wmetafile8\picwgoal3416\pichgoal2425 
 0100090000034a69000000002569000000000400000003010800050000000b0200000000050000
@@ -3447,8 +3428,7 @@ Dialogs are how the users interact with the less realistic game world. While the
 \pard\li2880 The message of the day dialog will be shown upon entering a multiplayer server for the first time. It will include the standard customizable html message of the day, and a ticker which will display news and other updates from the central dpb server.\par
 \pard\li2520\par
 \pard\fi-360\li2880\tx2880\b 2.\tab Player Configuration / Loadout\par
-\pard\fi360\li2520\b0\ldblquote Or, these dialogs had better not suck\rdblquote\par
-\pard\li2520\par
+\pard\li2520\b0\par
 \pard\li2880 The player configuration screen needs to be extremely simplified and intuitive. Oversized, graphical buttons need to be used that can convey easily their functions.\par
 \pard\li2520\par
 \pard\li2880 The buttons on the left side of the dialog are used to select the \lquote stage\rquote  of configuration, though they\rquote ll advance automagically if not touched. The center of the screen should be dominated by a spinning (though interact-able) model of the player that will show the changes as they\rquote re applied. \par
@@ -3465,49 +3445,43 @@ Dialogs are how the users interact with the less realistic game world. While the
 \pard\li2520\par
 \pard\li2880 For the marker dialog, there needs to  be a set of checkmarks which will act as filters, since there will be a ridiculous amount of markers. The filters will be: Pump, Semi, Electro. This will roughly break down the markers into two even groups (semi and electro) and a smaller group of pumps. \par
 \pard\li2520\par
-\pard\li2880 The second category, accessories, is marker specific. If the user goes back to change their marker, the accessories page will be reset to default (factory parts). However, configurations for markers will stick. That is, if you configure marker A, and go back and select marker B, and then click on marker A, the configuration of the accessories for marker A will stick. The user may or may not elect to have these configurations stick between sessions (in options)\par
+\pard\li2880 The second category, accessories, is marker specific. If the user goes back to change their marker, the accessories page will be reset to default (factory parts). However, configurations for markers will stick. That is, if the user configures marker A, and go back and select marker B, and then clicks on marker A, the configuration of the accessories for marker A will stick. The user may or may not elect to have these configurations stick between sessions (in options)\par
 \pard\li2520\par
 \pard\fi360\li2520 The category on paintballs is mutually exclusive. \par
 \pard\li2520\par
 \pard\fi-360\li2880\tx2880\b 3.\tab Tweak \lquote N Tinker\par
-\pard\li2880\b0\ldblquote Gimmicks that don\rquote t affect gameplay, much\rdblquote\par
-\par
-Use of the TnT dialog is completely optional. Most users will use it only for the chronograph, to see how consistent their marker is. This is the dialog where you adjust the properties of the accessories applied to the gun. Where low end guns are only going to be able to have their main regulators turned up or down, high end guns are going to be able to have a whole host of parameters changed. Barrel bore sizes can be adjusted to fit paint (the further the deviation from the \lquote right\rquote  bore size will cause greater inaccuracy). Dwell, Eye sensitivity, LPR, etc can be adjusted. For ease of implementation, most of these settings are going to have a default, which is going to be within a certain range of the \lquote perfect\rquote  (the perfect can be generated by deviating a random amount from the default at compile time). Anyway, if you have a perfectly tweaked market, it may be a little more accurate and fire a little faster than one with the parts at default settings. More expensive addons allow for more tweaking.\par
+\pard\li2880\b0\par
+Use of the TnT dialog is completely optional. Most users will use it only for the chronograph, to see how consistent their marker is. This is the dialog where the player adjusts the properties of the accessories applied to the gun. Where low end guns are only going to be able to have their main regulators turned up or down, high end guns are going to be able to have a whole host of parameters changed. Barrel bore sizes can be adjusted to fit paint (the further the deviation from the \lquote right\rquote  bore size will cause greater inaccuracy). Dwell, Eye sensitivity, LPR, etc can be adjusted. For ease of implementation, most of these settings are going to have a default, which is going to be within a certain range of the \lquote perfect\rquote  (the perfect can be generated by deviating a random amount from the default at compile time). If the player has a perfectly tweaked market, it may be a little more accurate and fire a little faster than one with the parts at default settings. More expensive addons allow for more tweaking.\par
 \pard\li2520\par
 \pard\fi-360\li2880\tx2880\b 4.\tab Select Field\par
-\pard\li2880\b0\ldblquote Where you at?\rdblquote\par
-\par
+\pard\li2880\b0\par
 Users can join fields one of two ways. They can go up to a field and hit the general \lquote contextual use\rquote  key, (which becomes join arena, contextually), or they can (in multiplayer) use the join arena dialog. The dialog should identify the field by number, game type, field type, and how many players are on each team.\par
 \par
 If there are queues, it should also show the queue length and the time before users are switched out.\par
 \par
 \pard\fi-360\li2880\tx2880\b 5.\tab Scoreboard\par
-\pard\li2880\b0\ldblquote Scoreboard spelled backwards is droaberocs\rdblquote\par
+\pard\li2880\b0\par
+The scoreboard is going to be tabbed, one tab for each field plus the tab for the map. The tab for the map is just going to be a listing of players, what location they\rquote re in, and what their ping is. The tab for the fields are going to show what team the players are on, their personal marked/out stats, points, and team wins. If in a tournament, there will be an additional tab with the box scores for each field, which include a breakdown per round of the team scores. Team scoring will be as follows:\par
 \par
-The scoreboard for DPB needs a bit of overhaulin` from the standard. The scoreboard is going to be tabbed, one tab for each field plus the tab for the map. The tab for the map is just going to be a wrote listing of players, what location they\rquote re in, and what their ping is. The tab for the fields are going to show what team the players are on, their personal marked/out stats, points, and team wins. If in a tournament, there will be an additional tab with the box scores for each field, which include a breakdown per round of the team scores. Team scoring will be as follows:\par
-\par
-\pard\fi-360\li3600\tx3600\f1\'b7\tab\f0 3 points for every person on the other team shot out\par
-\pard\fi-360\li3600\f1\'b7\tab\f0 2 points for every person on your team left alive.\par
+\pard\fi-360\li3600\tx3600\f1\'b7\tab\f0 3 points for every person on the opposing team shot out\par
+\pard\fi-360\li3600\f1\'b7\tab\f0 2 points for every person on the player's team left alive.\par
 \f1\'b7\tab\f0 25 points for reaching the objective first\par
 \f1\'b7\tab\f0 50 points for completing the objective\par
 \pard\li2880\par
 \pard\fi-360\li2880\tx2880\b 6.\tab Pre/Post Round\par
-\pard\li2880\b0\ldblquote Almost done with section ii\rdblquote\par
-\par
+\pard\li2880\b0\par
 There will only be a pre-round ui displayed during tournaments. The pre-round will display the wins and losses of each team, the team names, and the box score. It will only take up a smaller portion of the screen, and automatically disappear before the round begins.\par
 \par
 The post-round screen will provide round statistics. Which team won, who got out the most people, total rounds fired, etc. In multiplayer, it\rquote ll show the win count for each team.\par
 \par
 \pard\fi-180\li2160\tx2160\b iii.\tab HUD\par
-\pard\li2160\b0\ldblquote We\rquote ve got three bogey\rquote s incoming from nine-o\rquote clock\rdblquote\par
-\par
-The heads up display is the second most important element to the game. A minimalist HUD should be used, in the style of Digital Paintball Gold 2.2. \par
+\pard\li2160\b0\par
+The heads up display is the second most important element to the game. A minimalist HUD should be used. \par
 \par
 While not in a round, the heads up display should include only global chat. While in a round, global chat should be either muted (not turned off, but somehow made less annoying) and only field public or private text should make it to the hud.\par
 \par
 \pard\fi-360\li2880\tx2880\b 1.\tab In-Game\par
-\pard\li2880\b0\ldblquote Roger that Black Sparrow, over\rdblquote\par
-\par
+\pard\li2880\b0\par
 \par
 \pard\f2\fs20{\pict\wmetafile8\picwgoal720\pichgoal270 
 0100090000033e01000000001901000000000400000003010800050000000b0200000000050000
@@ -4054,7 +4028,7 @@ a200f3000000000028000000f3000000a200000001000400000000000000000000000000000000
 333333333333333333300222222222222222222222222222222222222222222222222003030400
 00002701ffff030000000000
 }\f0\fs24\par
-\pard\li2880 The cluster of information should \i not\i0  include how full the hopper is, or how many pods you have left. The only information in the cluster should be a round timer, and an ephemeral stamina bar. It might be worth investigating using blurred out sprites at the top left and right corners and along the bottom to simulate a mask. If this were the case, then the stamina and round timer would just be overlaid onto the blurred out mask.\par
+\pard\li2880 The cluster of information should \i not\i0  include how full the hopper is, or how many pods the player has left. The only information in the cluster should be a round timer, and an ephemeral stamina bar. It might be worth investigating using blurred out sprites at the top left and right corners and along the bottom to simulate a mask. If this were the case, then the stamina and round timer would just be overlaid onto the blurred out mask.\par
 \par
 The box for chatter should be situated in such a position that it does not interfere with the majority of the other interface.\par
 When the player reloads, a message in the chat area will read one of three things:\par
@@ -4063,9 +4037,9 @@ When the player reloads, a message in the chat area will read one of three thing
 \f1\'b7\tab\f0\ldblquote Pod is medium\rdblquote\par
 \pard\li2880 These correspond to how much paint is in the pod, and augments the amount of information available to the player. (note that if the player has transparent pods it will be immediately apparent visually if the player has paint in his pods.\par
 \par
-The marker is a very important piece of the hud. It\rquote s used for aiming, the hopper shows you how much ammo you\rquote ve got left, etcetera, so it should be pleasing to look at.\par
+The marker is a very important piece of the hud. It\rquote s used for aiming, and the hopper shows the player how much ammo remains, so it should be pleasing to look at.\par
 \par
-Ephemerals are things that occur when you point at them. For instance, if you point at a bunker, its name should appear underneath the center of the screen (configurable), if you point at a player on your team, their name should appear underneath the center of the screen. If you point at a player on the other team, nothing should appear unless the \lquote spotted\rquote  key is pressed, at which time the chat channel will spit something out like \ldblquote There\rquote s one in the %BUNKERNAME\rdblquote\par
+Ephemerals are things that occur when the player points at them. For instance, if the player points at a bunker, its name should appear underneath the center of the screen (configurable), if the player points at a player on his team, their name should appear underneath the center of the screen. If the player points at a player on the other team, nothing should appear unless the \lquote spotted\rquote  key is pressed, at which time the chat channel will spit something out like \ldblquote There\rquote s one in the %BUNKERNAME\rdblquote\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Spectator\par
 \pard\li2880\b0\par
@@ -4185,18 +4159,15 @@ Ephemerals are things that occur when you point at them. For instance, if you po
 333333333333333333333333333333333333333333333333333333302222222222222220020204
 0000002701ffff030000000000
 }\f0\fs24\par
-\pard\li2880\ldblquote Thank god that John Madden doesn\rquote t spectate golf\rdblquote\par
-\par
-The spectator UI should be arranged in a fashion that makes it appear as if you\rquote re watching a paintball game being telecast on TV. An overlay at the top of the screen will have a DPB logo on it, as well as the current point score of the game. To the right, there will be the standard dropdowns for view mode, etc, and a button to leave the field (if available)\par
+\pard\li2880\par
+The spectator UI should be arranged in a fashion that makes it appear as if the player is watching a paintball game being telecast on TV. An overlay at the top of the screen will have a DPB logo on it, as well as the current point score of the game. To the right, there will be the standard dropdowns for view mode, etc, and a button to leave the field (if available)\par
 \b\par
 \pard\fi-180\li2160\tx2160 iv.\tab Control Scheme(s)\par
-\pard\li2160\b0\ldblquote Communism.\rdblquote\par
-\par
-The controls need to be intuitive. What intuitive is varies by person, so we should have at least two sets of control styles.\par
+\pard\li2160\b0\par
+The controls need to be intuitive. What intuitive is varies by person, so multiple control styles will be provided.\par
 \par
 \pard\fi-360\li2880\tx2880\b 1.\tab Classic\par
-\pard\li2880\b0\ldblquote Church.\rdblquote\par
-\par
+\pard\li2880\b0\par
 Classic is a very simple style. It offers the least control, and the least buttons.\par
 \par
 Defaults:\par
@@ -4215,8 +4186,7 @@ Mouse2: Iron-sighting\par
 The transition from hunched to crouched and from hunched to standing is automagic.\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Pro\par
-\pard\li2880\b0\ldblquote Republicats.\rdblquote\par
-\par
+\pard\li2880\b0\par
 Pro is a very advanced style. It allows for much finer control at the cost of leaning curve.\par
 \par
 Defaults:\par
@@ -4237,65 +4207,54 @@ The transition from hunched to crouched and from hunched to standing is done by 
 \par
 \par
 \pard\fi-180\li2160\tx2160\b v.\tab Gameplay/Flow\par
-\pard\li2160\b0\ldblquote Hustle and Flow\rdblquote\par
-\par
-There should be a bitfield in the arena map entity that will toggle which game types are available on a given field. If more than one gametype is available, the first player to join a field decides which game type to play on that field, and it can only be changed when the number of players dwindles down to one. This is through a special dialog which appears when you\rquote re the only player in a field. (this also solves what to do when there\rquote s only one player)\par
+\pard\li2160\b0\par
+There should be a bitfield in the arena map entity that will toggle which game types are available on a given field. If more than one gametype is available, the first player to join a field decides which game type to play on that field, and it can only be changed when the number of players dwindles down to one. This is through a special dialog which appears when the player is the only player in a field.\par
 \b\par
 \pard\fi-360\li2880\tx2880 1.\tab Game Types\par
-\pard\li2880\b0\ldblquote Nearly common knowledge\rdblquote\par
-\par
+\pard\li2880\b0\par
 \pard\fi-360\li3600\tx3600\b a.\tab Elimination\par
-\pard\li3600\b0\ldblquote Do I really have to put a humorous anecdote after every bullet\rdblquote\par
-\par
+\pard\li3600\b0\par
 Elimination has no \lquote objective\rquote , so it cannot be used in tournaments.  \par
 \par
 The only objective in elimination is to get everyone on the opposing team out whilst surviving. It gets kind of boring after a while.\par
 \par
 \pard\fi-360\li3600\tx3600\b b.\tab Capture the Flag\par
-\pard\li3600\b0\ldblquote Go fetch, boy!\rdblquote\par
-\par
+\pard\li3600\b0\par
 The objective of capture the flag is to reach the other player\rquote s base, grab their flag, and bring it all the way back to home base, unscathed. If the player is hit, the flag is dropped where they are out. \par
 \pard\tx6285\par
 \pard\fi-360\li3600\tx3600\b c.\tab Center Flag\par
-\pard\li3600\b0\ldblquote The hardest thing to do is nothing at all\rdblquote\par
-\par
+\pard\li3600\b0\par
 CF is probably going to be the most played game mode, mainly because it\rquote s the most popular. The objective is to carry a flag which is situated in the middle of the field to the opponent\rquote s base. \par
 \par
 \pard\fi-360\li3600\tx3600\b d.\tab Assault / Onslaught / Capture & Hold\par
-\pard\li3600\b0\ldblquote DOD anyone?\rdblquote\par
-\par
+\pard\li3600\b0\par
 This is a recreational game mode. \par
 \par
 There are numerous points in a map, and both teams try to capture and hold each of them. Re-spawns are enabled. \par
  \par
 \pard\fi-360\li3600\tx3600\b e.\tab Attack/Defend / Bombing Run\par
-\pard\li3600\b0\ldblquote Remember the Alamo!\rdblquote\par
-\par
+\pard\li3600\b0\par
 This is a recreational game mode.\par
 \par
 One team are attackers and one team are defenders. The defenders try to prevent the attackers from reaching the objective.\par
 \par
 \pard\fi-360\li3600\tx3600\b f.\tab Rescue\par
-\pard\li3600\b0\ldblquote Call 911!\rdblquote\par
-\par
+\pard\li3600\b0\par
 This is a recreational game mode.\par
 \par
 Attackers try to escort the hostage(s) to the rescue zone, while the defenders attempt to prevent that from happening. \par
 \par
 \pard\fi-360\li3600\tx3600\b g.\tab Capture/Bomb \par
-\pard\li3600\b0\ldblquote de what?\rdblquote\par
-\par
+\pard\li3600\b0\par
 This is a recreational game mode.\par
 \par
 The attackers negotiate the course to deliver a package to a location, and wait whilst the \lquote bomb\rquote  is armed. The defenders attempt to prevent this from happening.\tab\tab\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Tournaments\par
-\pard\li2880\b0\ldblquote An awesome feature\rdblquote\par
-\pard\par
+\pard\b0\par
 \pard\li2880 Tournaments are going to be a feature which is going to be awesome for the online community, as it allows for organized matches where the server handles most of the matching.\par
 \par
-Given a max of 32 persons per server, the maximum amount of teams in a 7 man tournament is 4, the maximum amount of teams in a 5 man tournament is 6, and the maximum amount of teams in a 3 man tournament is 10. We may be able to ignore these rules of math if we make it so that only teams in scheduled matches are allowed in the server, and after a match everyone is disconnected. This is worth talking about.\par
-\par
+Given a max of 32 persons per server, the maximum amount of teams in a 7 man tournament is 4, the maximum amount of teams in a 5 man tournament is 6, and the maximum amount of teams in a 3 man tournament is 10.\par
 To set the server into tournament mode, the server administrator issues the \lquote tournament\rquote  command, which takes the following arguments:\par
 \par
 \pard\fi-360\li3600\tx3600\f1\'b7\tab\f0 Size of tournament team: 7 / 5 / 3\par
@@ -4314,108 +4273,48 @@ Once tournament mode has been initialized, it can only be stopped by changing th
 All players who are not listed as administrators in the server configuration or are not part of the clans listed in tournament mode will be given a warning and then kicked after ten seconds. (HLTV can be listed as an administrator, if people want to spectate). Players will be looked up upon connect, and if they\rquote re not listed in the clans, then they will be denied entry.\par
 \par
 \pard\fi-360\li3600\tx3600\b a.\tab Changes to game play\par
-\pard\li3600\b0\ldblquote This will be fun to program and debug \endash  not\rdblquote\par
-\par
+\pard\li3600\b0\par
 When in a tournament, the game server will allow as many matches to happen simultaneously as possible given the ladder. \par
 \par
-Given our earlier example of four teams and single elimination, this means that there will be two matches in the opening bracket, Clan A vs Clan C, and Clan B vs. Clan D.\par
+Given the earlier example of four teams and single elimination, this means that there will be two matches in the opening bracket, Clan A vs Clan C, and Clan B vs. Clan D.\par
 \par
-The rounds will run a little bit differently in tournament mode. The first member of a clan to join a field sets that field as the field for the match. For instance, initially the server will display \ldblquote Match 1: Clan A vs Clan C <undecided> \\n Match 2: Clan B vs Clan D <undecided>\rdblquote . Then someone from Clan A joins field 1. The message will change to \ldblquote Match 1: Clan A vs Clan C <Field 1>\rdblquote . Members of either clan will be prevented from joining any other field until such time as the match is over or the initial player leaves the field. Once two or more players are on a field, the field is decided, and (configurably, we can make them walk) all remaining players in those two clans are warped to the field. \par
+The rounds will run a little bit differently in tournament mode. The first member of a clan to join a field sets that field as the field for the match. For instance, initially the server will display \ldblquote Match 1: Clan A vs Clan C <undecided> \\n Match 2: Clan B vs Clan D <undecided>\rdblquote . Then someone from Clan A joins field 1. The message will change to \ldblquote Match 1: Clan A vs Clan C <Field 1>\rdblquote . Members of either clan will be prevented from joining any other field until such time as the match is over or the initial player leaves the field. Once two or more players are on a field, the field is decided, and all remaining players in those two clans are warped to the field. \par
 \par
 The rounds do not start until all players from both clans are in a field, and every single player has clicked the ready dialog.\par
 \par
 It\rquote s important to note that while in tournament mode, all players on a clan will appear exactly the same as the configuration on the website for their player configuration, and their load-out can be whatever they want. This can mean that teams are not forced into Blue and Red (even if this configuration is set, it will be ignored)\par
 \par
-Once a match has been completed, the ladder is updated and any available new matches are posted. In our example, Clan A beat clan C, and Clan D beat clan B, so the next match is between Clans A & D. Clan A wins that match, so they are the winners of the tournament. Scores are reported (and logged to an xml file server side), and the map reloads to exit tournament mode.\par
+Once a match has been completed, the ladder is updated and any available new matches are posted. In the example, Clan A beat clan C, and Clan D beat clan B, so the next match is between Clans A & D. Clan A wins that match, so they are the winners of the tournament. Scores are reported (and logged to an xml file server side), and the map reloads to exit tournament mode.\par
 \par
 \pard\fi-360\li3600\tx3600\b b.\tab Additional dialogs\par
-\pard\li3600\b0\ldblquote VGUI stand for Very Gay Unintuitive Interface\rdblquote\par
-\par
+\pard\li3600\b0\par
 There needs to be some special dialogs, most of which can be nabbed from single player. The scoreboards pre-round, and the brackets themselves both need to be borrowed. The ready screens, and so forth, need to be created.\par
 \par
 \pard\fi-180\li2160\tx2160\b vi.\tab Special Effects\par
-\pard\li2160\b0\ldblquote Why not?\rdblquote\par
+\pard\li2160\b0\par
+To add to the replay-ability, there will be weather effects.\par
 \par
-To add to the replay-ability, we should add weather effects.\par
-\par
-\pard\fi-360\li2880\tx2880\b 1.\tab Weather\par
-\pard\li2880\b0\ldblquote Whether the weather should be weathered\'85\rdblquote\par
-\par
-\pard\f2\fs20{\pict\wmetafile8\picwgoal2875\pichgoal2028 
-0100090000035e03000000003903000000000400000003010800050000000b0200000000050000
-000c020b000f00030000001e00040000000701040039030000410b2000cc0014001c0000000000
-0a000e0000000000280000001c0000001400000001000800000000000000000000000000000000
-00000000000000000000000000ffffff009a9a9a006f6f6f006c6c6c00767676006b6b6b007171
-710096969600a2a2a200b2b2b200b6b6b600c3c3c300c7c7c700c9c9c900c4c4c400cdcdcd00c0
-c0c000bebebe00b1b1b100acacac0097979700b3b3b300bbbbbb00a1a1a1006969690019191900
-161616002d2d2d001f1f1f001c1c1c00262626003e3e3e008c8c8c0093939300bababa00bcbcbc
-00b8b8b800b4b4b400bdbdbd00828282008b8b8b0087878700a8a8a8009d9d9d00555555009898
-98006767670013131300151515003c3c3c002a2a2a002f2f2f004f4f4f00505050007d7d7d00aa
-aaaa00c6c6c600d1d1d100aeaeae00b7b7b700a4a4a400afafaf00414141005a5a5a0080808000
-898989009c9c9c00adadad00c5c5c500cecece00cccccc00d2d2d200b9b9b900b0b0b000686868
-0044444400777777008d8d8d009b9b9b008e8e8e0092929200c8c8c800d3d3d300cacaca00d0d0
-d000d9d9d900cbcbcb0073737300484848007f7f7f0099999900a0a0a000d6d6d600bfbfbf00db
-dbdb00dedede00c1c1c100838383009e9e9e00b5b5b500d5d5d500dcdcdc00d7d7d70091919100
-585858008484840095959500a9a9a900a3a3a300dadada0081818100a5a5a500c2c2c200a7a7a7
-00eeeeee005e5e5e006e6e6e008a8a8a009f9f9f00d8d8d80045454500515151004e4e4e007070
-700090909000868686007c7c7c004d4d4d007e7e7e007b7b7b0078787800424242003232320033
-33330040404000595959008888880094949400858585006d6d6d002c2c2c00272727004c4c4c00
-62626200757575007a7a7a002121210025252500292929005c5c5c00606060008f8f8f00727272
-005d5d5d006a6a6a00232323002e2e2e003b3b3b004a4a4a00313131005b5b5b00747474006363
-630035353500282828005252520065656500646464005656560049494900303030003a3a3a0037
-37370043434300474747002b2b2b00171717007979790000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-000000000000000000000000000000000000000000000000000000000000000000000000000000
-0000000000000000000000000000000000000043b27f9281b2626a6a8b7e624e4e7d4e227d685b
-2e984241416f913d4b9333ab9c334c87ac3f879eaa87adae880699a796979a69afb0b1379b1e8e
-a5a58520847b847b32a68035a7929192286fa8a959aa8da58b9b9c9d9e9f9da09fa1407a4c7b74
-8ca237a32f682a8b8b8c2f7aa42a04939433958d86364d5a968897742d8c839843682e8a8a2a81
-999a2e8c868d8e8e858f8c687c902f4d5a6f8a7e7e183d095c702a91924d6c4d84858687887c29
-8982077e5b4222436c3b0b130b0a13148a838b267f69078006814d1551765a82835b6417242570
-2349110a0a2c08432437797a7b5a7c6a63187d42133c14714867551217494925263c7e7e5e2874
-4b047576771614705b236161545d607839550e0f65570d5b5a0c2158422229216d14724438135e
-46470e5354520c6155736539717139686f3d643c5b3d2e6c2464705e26711049121010573b1645
-4745710d68696a6b2b6c6d6d3d160b45450b125b3d3a55566e575e553a5e120f50592f41620863
-3e0a6445540d5c655325663a6546615567450b240e58595a4e185b4f5c2b26520d1145105d5e5d
-525d5f605410241223614b4c07064d4e4f50513e521211270d535354464855565457392611392f
-1f3f40332d414243442345100f251012464647484617274938424a2f3031323334353637143817
-0f0f130a393a103b123c3d3d120a3e0a191a1b1c1d1e1f20052122131723241724250d26272829
-2a2b2c2d2e0203040506030708090a0b0b0c0d0e0f10110e1213140c151617180a040000002701
-ffff030000000000
-}\f0\fs24\par
+\pard\fi-360\li2880\tx2880\b 1.\tab Weather\b0\par
 \pard\li2880\par
-We should be able to add rain pretty easily, and snow a little less easily. \par
-\par
 Rain (from a visual perspective) will involve particles falling from the sky, sound, a shader to make the world seem more grey and washed out, and a shader to make the water droplets appear on the mask, drip down, and fade away. Rain will also affect the paintballs in the air, adding more resistance and making them curve more.\par
 \par
 Snow will only be an option on fields that already have a snow-textured theme, or with cheats on. Snow will involve particles in the air, and a pervasive fog. It won\rquote t affect the balls flight, but it will swirl around ropes of paint properly.\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Wind\par
-\pard\li2880\b0\ldblquote Or, what happens when you let Kuja have a phone\rdblquote\par
-\par
+\pard\li2880\b0\par
 It needs to be mentioned, even though it probably is more hassle than it\rquote s worth. I\rquote d like to have wind, which will affect paintball\rquote s flight, compiled into maps. It\rquote d require placing wind generators, and at compile time doing a fluid dynamics simulation. At run time, the wind would be fixed, though scalable. It\rquote ll make wind noises when gusting, and so forth.\par
 \par
 \pard\fi-360\li1440\tx1440\b b.\tab Single Player\par
-\pard\li1440\b0\ldblquote Not tacked on to add replay value at all\rdblquote\par
-\par
+\pard\li1440\b0\par
 Single player is going to rely heavily on bots. If the single-player is bad, then the game is bad, and the amount of time that\rquote s going to be spend on single player would have gone to waste.\par
 \par
 \pard\fi-180\li2160\tx2160\b i.\tab Bots\par
-\pard\li2160\b0\ldblquote Gir! Fetch me some poodles.\rdblquote\par
-\par
-The source engine utilizes advanced (3g) ai to do decision making. They can work in teams to accomplish a goal, yadda yadda yadda. Assuming we get access to the hl2 AI, the ai for DPB will be easy to implement. The hl2 ai just needs to be aware of the new body motions \endash  aware as in \ldblquote in their decision tree\rdblquote  \endash  and the objective.\par
-\par
-Bots are node-based, so nodes would need to be placed by every item of interest \endash  bunkers, places where it\rquote d be a good idea to go prone, pro shop, chronograph, cars, etc.\line\par
+\pard\li2160\b0\par
+Bots will make use of cover, leaning, diving and prone, arenas, and sprinting. \par
 \par
 \pard\fi-180\li2160\tx2160\b ii.\tab Career\par
-\pard\li2160\b0\ldblquote or, what Kuja gave up to make this game\rdblquote\par
-\par
-When a new career is started, the player is given a number of dialogs in sequence. First, they\rquote re prompted for difficulty: \ldblquote Novice, Amateur, Pro\rdblquote  \endash  the higher levels are locked until you complete the lower ones.  Difficulty affects how well the bots play, how much money you start off with, how easy it is to impress representatives (get sponsorships), how easily someone will get injured, and how much benefit you get from training.\par
+\pard\li2160\b0\par
+When a new career is started, the player is given a number of dialogs in sequence. First, they\rquote re prompted for difficulty: \ldblquote Novice, Amateur, Pro\rdblquote  \endash  the higher levels are locked until the player completes the lower ones.  Difficulty affects how well the bots play, how much money the player starts off with, how easy it is to impress representatives (get sponsorships), how easily someone will get injured, and how much benefit the player gets from training.\par
 \par
 Next, the player is prompted which field to make their home fields.  \par
 \par
@@ -4680,41 +4579,39 @@ Home fields are fields that have at least one of each type of field, supair, hyp
 \par
 At the bottom, there should be bars which show their relative strengths and weaknesses in the traits that can be trained (when clicked). When drafted, the silhouette button around the render of the person turns green. \par
 \par
-From here, you\rquote re taking to the configure player and configure load-out screens. \par
+From here, the player is taken to the configure player and configure load-out screens. \par
 \par
 In single player, the configure player dialog has prices on it, as does the configure load-out dialog. In place of the usual credits/max, will be a credits display. One credit is approximately $5. Depending on the difficulty, players will start with either 1500c, 1000c, or 650c. \par
 \par
 The single player campaign is broken down by weeks. It lasts for a year, so that\rquote s 52 weeks. \par
 \par
-Weeks start Mondays. Tournaments can be held on either a Saturday or a Sunday, but not both in one week. Early in the game, you can only practice on Saturdays or Sundays, so you have to make good use of your time, and allow your players time to rest. After you gain respect with your home field, they will let you practice on other days of the week. \par
+Weeks start Mondays. Tournaments can be held on either a Saturday or a Sunday, but not both in one week. Early in the game, the player can only practice on Saturdays or Sundays, so you have to make good use of your time, and allow your players time to rest. After the player gains respect with his home field, they will let the player practice on other days of the week.\par
 \par
-Some tournaments may be 3-man (in which case you get to choose which two of your players you take with you) and some may be 7-man (in which case you get two ringers). \par
+Some tournaments may be 3-man (in which case the player gets to choose which two of his players to take with him) and some may be 7-man (in which case the player will be assigned two ringers). \par
 \par
 In career mode, everyone has certain stats that affect aspects of how they play. These stats are:\par
 \par
 \pard\fi-360\li2880\tx2880\f1\'b7\tab\i\f0 Speed\par
-\pard\li2880\i0 Speed affects how much stamina you have, and how long it takes to recover after it\rquote s been used. For bots, this also affects where in the field they will take position.\par
+\pard\li2880\i0 Speed affects how much stamina the player has, and how long it takes to recover after it\rquote s been used. For bots, this also affects where in the field they will take position.\par
 \pard\fi-360\li2880\tx2880\f1\'b7\tab\i\f0 Skill\par
-\pard\li2880\i0 Skill affects many aspects of the game. The higher your skill, the more effectively you can use your gun: You\rquote ll fire faster (up to the maximum rate of the gun), you\rquote ll reload, switch hands, prone and unprone faster, etc etc. For bots, this also affects tracking and accuracy, as well as the amount of noise added to the nodal path choosing.\par
+\pard\li2880\i0 Skill affects many aspects of the game. The higher the player's skill, the more effectively he can use his gun: The player will fire faster (up to the maximum rate of the gun), reload, switch hands, prone and unprone faster, etc etc. For bots, this also affects tracking and accuracy, as well as the amount of noise added to the nodal path choosing.\par
 \pard\fi-360\li2880\tx2880\f1\'b7\tab\i\f0 Guts\par
 \pard\li2880\i0 While mostly affecting Bot AI, guts will allow the player to dive longer distances, hold the gun steadier while moving around, etc.\par
 \pard\fi-360\li2880\tx2880\f1\'b7\tab\i\f0 Charisma\par
-\pard\li2880\i0 While not affecting any specific element in the game, the higher your charisma the better chance of certain sponsorships. You get this by winning. \par
+\pard\li2880\i0 While not affecting any specific element in the game, the higher the player's charisma the better chance of certain sponsorships. The players get this by winning. \par
 \pard\li2160\par
 \pard\fi-360\li2880\tx2880\b 1.\tab Main hub\par
-\pard\li2880\b0\ldblquote Some guy\rquote s garage with a couch and a TV\rdblquote\par
-\par
+\pard\li2880\b0\par
 The main hub for career mode should be more than a UI screen. It should be a physical place, that the player has ties to. It\rquote ll be a den or a garage, with a couch, a tv, a book case, a trophy case, a calendar on the wall, a tackboard, a gun rack, a door, and a closet.\par
 \par
-You can\rquote t walk around here, it\rquote s just a static camera view into the room, sort of like the counter-strike sound test. You have mouse control. It\rquote s not dark, but you may still be eaten by a grue.\par
+The player can\rquote t walk around here, it\rquote s just a static camera view into the room. The player has mouse control. It\rquote s not dark, but the player may still be eaten by a grue.\par
 \par
-When you\rquote re here, the other members of your team will be doing things. Some will be sitting on the couch, one will be standing looking at the trophy case. \par
+When the player is here, the other members of the team will be doing things. Some will be sitting on the couch, one will be standing looking at the trophy case. \par
 \par
-Your main interaction here is with the various things. The calendar will bring up the calendar screen. The closet or gun rack will bring up the team management dialog. The tackboard will bring up the sponsorship dialog. The door will bring up settings.\par
+The player's main interaction here is with the various things. The calendar will bring up the calendar screen. The closet or gun rack will bring up the team management dialog. The tackboard will bring up the sponsorship dialog. The door will bring up settings.\par
 \par
 \pard\fi-360\li3600\tx3600\b a.\tab Calendar\par
-\pard\li3600\b0\ldblquote Did I really just make a Zork joke? Gruesome.\rdblquote\par
-\par
+\pard\li3600\b0\par
 \par
 \pard\f2\fs20{\pict\wmetafile8\picwgoal3795\pichgoal2970 
 010009000003e63100000000c131000000000400000003010800050000000b0200000000050000
@@ -5374,27 +5271,24 @@ c600fd000000000028000000fd000000c600000001000400000000000000000000000000000000
 22222222222222222222222222222222222222222222222222222000040000002701ffff030000
 000000
 }\f0\fs24\par
-\pard\li3600 The calendar screen will bring up, amazingly enough, a calendar. It will show upcoming events such as tournaments on it, and on days where you can schedule practices or scrimmages, the cell will be white (otherwise, gray). If you click on an empty white cell, it gives you the option to schedule a practice (or a scrimmage, if you\rquote re far enough in the game). If you click on a cell containing an event, it\rquote ll give you the option to attend the event, run a practice instead of going to the event, or do nothing. \par
+\pard\li3600 The calendar screen will bring up, amazingly enough, a calendar. It will show upcoming events such as tournaments on it, and on days where the player can schedule practices or scrimmages, the cell will be white (otherwise, gray). If the player clicks on an empty white cell, it gives him the option to schedule a practice (or a scrimmage, if the player is far enough in the game). If the player clicks on a cell containing an event, it\rquote ll give him the option to attend the event, run a practice instead of going to the event, or do nothing. \par
 \par
 At the bottom of the dialog is an okay button, and a close button. The close button keeps the changes, but closes the dialog. The okay button keeps the changes, and the game will progress down the week and do all the scheduled events.\par
 \par
 \pard\fi-360\li3600\tx3600\b b.\tab Settings\par
-\pard\li3600\b0\ldblquote Money, money, money; MON\'c9T\rdblquote\par
-\par
-The save and load game interfaces live here, as do the quit buttons. This also has a quick summary of how your career is going.\par
+\pard\li3600\b0\par
+The save and load game interfaces live here, as do the quit buttons. This also has a quick summary of how the player's career is going.\par
 \par
 \pard\fi-360\li3600\tx3600\b c.\tab Sponsorship Management\par
-\pard\li3600\b0\ldblquote Free sh*t!\rdblquote\par
-\par
-Various companies (real and fake) will approach you at various points during the game. These will either be determined by chance after you obtain a certain reputation, or after you\rquote ve accomplished certain goals (these will remain hidden). \par
+\pard\li3600\b0\par
+Various companies (real and fake) will approach the player at various points during the game. These will either be determined by chance after the player obtains a certain reputation, or after the player has accomplished certain goals (these will remain hidden). \par
 \par
 The sponsorships will appear in a list on the left side of the dialog grouped as \lquote accepted\rquote  and \lquote pending\rquote , and when clicked, a description of the company and what is being sponsored appears on the right. The team has the option to drop sponsorships, and after a new sponsorship is offered they may be forced to drop other ones to accept it.\par
 \par
 Things that are sponsored appear in their respective team management dialogs.\par
 \par
 \pard\fi-360\li3600\tx3600\b d.\tab Team Management\par
-\pard\li3600\b0\ldblquote The hardest thing you can do is\'85 wait I used that one already\rdblquote\par
-\par
+\pard\li3600\b0\par
 \pard\f2\fs20{\pict\wmetafile8\picwgoal3691\pichgoal2460 
 010009000003b651000000009151000000000400000003010800050000000b0200000000050000
 000c02a500f700030000001e00040000000701040091510000410b2000cc00a400f60000000000
@@ -6471,47 +6365,39 @@ fe00ad808000fefed60080add600fed6ad0097c2eb00ebc29700c2ebfe0080809700d6c2970080
 0202020202020202020202020000040000002701ffff030000000000
 }\f0\fs24\par
 \pard\li3600\par
-The team management dialogs are where you can check on each of your teammates to see how their stats are doing, and configure what gun they\rquote re using. Everyone on your team has the same player configuration, and you can edit that here, too.\par
+The team management dialogs are where the player can check on each of his teammates to see how their stats are doing, and configure what gun they\rquote re using. Everyone on the player's team has the same player configuration, and the player can edit that here, too.\par
 \par
-The main screen has a window with each of the four teammates and one for you (and a small set of bars representing their stats), an overall team ranking, and a button to go into the player config screen.\par
+The main screen has a window with each of the four teammates and one for the player (and a small set of bars representing their stats), an overall team ranking, and a button to go into the player config screen.\par
 \par
 \pard\fi-180\li4320\tx4320\b i.\tab Team Player Config\par
-\pard\li4320\b0\ldblquote Writing these gets old at 4AM\rdblquote\par
-\par
-The team player config screen is the same as the one for when you\rquote re just doing yourself, except that everything costs 5X as much (because of course, you\rquote re buying for everyone on your team). This screen does not have the body-type category in it (for obvious reasons).\par
+\pard\li4320\b0\par
+The team player config screen is the same as the one for the player, except that everything costs 5X as much, because of course, the player is buying for everyone on his team). This screen does not have the body-type category in it (for obvious reasons).\par
 \par
 \pard\fi-180\li4320\tx4320\b ii.\tab Per-player Load-outs\par
-\pard\li4320\b0\ldblquote Anyone want a DPB sticker?\rdblquote\par
-\par
-This dialog is the same as the multiplayer/general loadout dialog, except that there is the additional category which has status. In this category, there is nothing to buy, it just has a rundown of the various stats that can be leveled-up by training (or just by playing in tournaments and gaining experience) and an overall ranking (out of 5 stars) of the player in terms of progress. This window will also say if a player is exhausted (prone to injury) and if a player is injured (can\rquote t play for a week \endash  no tournaments but you can practice)\par
+\pard\li4320\b0\par
+This dialog is the same as the multiplayer/general loadout dialog, except that there is the additional category which has status. In this category, there is nothing to buy, it just has a rundown of the various stats that can be leveled-up by training (or just by playing in tournaments and gaining experience) and an overall ranking (out of 5 stars) of the player in terms of progress. This window will also say if a player is exhausted (prone to injury) and if a player is injured (can\rquote t play for a week \endash  no tournaments but the player can practice)\par
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Practice / Training\par
-\pard\li2880\b0\ldblquote Practice makes perfect\rdblquote\par
-\par
+\pard\li2880\b0\par
 Practice and training are important parts of single player. Practice and training will be the primary method for increasing the statistics of the player and the AI.  Training will run like a normal single player game except that when the player joins a field he will be accompanied by his team and there will be random AI opponents.  At the end of the round there is no score displayed, rather the newly-improved stats are displayed much like the screen at the end of a battle in an RPG.  There will only be a set number of rounds played per training session. At the end of the session, the players will be showed a summation of all the skills that have increased broken down by player.\par
 \b\par
 \pard\fi-360\li2880\tx2880 3.\tab Tournaments\par
-\pard\li2880\b0\ldblquote The bulk of the gameplay\rdblquote\par
-\par
+\pard\li2880\b0\par
 Tournaments in career mode will be run much the same as their multiplayer counterparts, with the obvious exception that all of the opponents will be bot AI.  Player statistics will be updated at the end of the tournament.\par
 \pard\fi-360\li3600\tx3600\b a.\tab Local\par
-\pard\li3600\b0\ldblquote Hicks with guns\rdblquote\par
-\par
+\pard\li3600\b0\par
 The vast majority of tournaments are going to be local tournaments.  The player will meet a lot of the same teams over and over, so these teams should have at least a modicum of personality.\par
 \par
 \pard\fi-360\li3600\tx3600\b b.\tab Specialty (Stock Class, etc)\par
-\pard\li3600\b0\ldblquote More fun than a barrel of monkeys\rdblquote\par
-\par
+\pard\li3600\b0\par
 Specialty tournaments will have special requirements that the player and his team must own a certain type of gun or meet certain requirements to be eligible to play.\par
 \par
 \pard\fi-360\li3600\tx3600\b c.\tab National\par
-\pard\li3600\b0\ldblquote The big time\rdblquote\par
-\par
+\pard\li3600\b0\par
 National tournaments will have more participating teams than local tournaments and the difficulty will be higher.  Doing well at the national tournament will increase the chance of getting a sponsorship.  National tournaments have bigger cash prizes than local tournaments.\par
 \b\par
 \pard\fi-180\li2160\tx2160 iii.\tab Quick Game\par
-\pard\li2160\b0\ldblquote Instant action\rdblquote\par
-\par
+\pard\li2160\b0\par
 In a quick game the user does not have the choice of load out as it is pre-selected for him.  The objective of a quick game is to get the user into a game as fast as possible with as little dialog interaction as is feasible.  At the end of the round in a quick game the users brought back to the main menu with some quick stats on how they did.\par
 \par
 \pard\fi-720\li1080\tx1080\b III.\tab Development Concerns\par
@@ -6659,11 +6545,7 @@ Maps, in addition to the fields and their required entities, require AI nodes to
 \par
 Every map needs at least one pro-shop area, one chrono, and one arena. For maps destined for single-player, each map should have a minimum of two arenas, with four/five being desired.\par
 \par
-Weather effects will be accomplished by code in maps, so it is not necessary to retexture based on rain or sleet (or snow, though it might look better). The idea is to use the chroma mapping like dod:s, except instead of a terrible looking \lquote night\rquote , we get a nice looking overcast.  \par
-\par
-\pard\fi-360\li1440\tx1440\b d.\tab Textures\par
-\pard\li1440\b0\par
-There needs to be a lot of different textures for dpb. We\rquote ll need a bunch of outdoor ones, blends too. We\rquote ll also need various indoor ones, buildings, city ones, etc etc. Textures should be at least 512x512, and tile well. \par
+Weather effects will be accomplished by code in maps, so it is not necessary to retexture based on rain or sleet (or snow, though it might look better). The idea is to use the chroma mapping like dod:s, except instead of a terrible looking \lquote night\rquote , there is a nice looking overcast.  \par
 \par
 \pard\fi-360\li1440\tx1440\b e.\tab Sounds\par
 \pard\li1440\par
@@ -6690,11 +6572,11 @@ Promotional unlocks can be single player, multiplayer, or both.\par
 \par
 \pard\fi-180\li2160\tx2160\b i.\tab Single Player\par
 \pard\li2160\b0\par
-Single-player goal unlocks are unlocked when you\rquote ve attained certain goals in career mode. These unlocks can be single player only, or affect your multiplayer character as well.\par
+Single-player goal unlocks are unlocked when the player has attained certain goals in career mode. These unlocks can be single player only, or affect the multiplayer character as well.\par
 \par
 \pard\fi-180\li2160\tx2160\b ii.\tab Multiplayer\par
 \pard\li2160\par
-\b0 Multiplayer unlocks are unlocked when you\rquote ve attained certain stats. These unlocks can be for single player, or for multiplayer only.\par
+\b0 Multiplayer unlocks are unlocked when the player has attained certain stats. These unlocks can be for single player, or for multiplayer only.\par
 \par
 \b\par
 \pard\fi-360\li1440\tx1440 c.\tab Advertisements / Licensing\par
