@@ -1,5 +1,5 @@
 {\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}{\f1\froman\fprq2\fcharset2 Symbol;}{\f2\fswiss\fcharset0 Arial;}}
-{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\ul\b\f0\fs40 Functional Specification - Digital Paintball\ulnone\b0\fs24\par
+{\*\generator Msftedit 5.41.21.2506;}\viewkind4\uc1\pard\ul\b\f0\fs40 Functional Specification - Digital Paintball\ulnone\b0\fs24\par
 \par
 CONFIDENTIAL & PRIVILEGED\par
 This document and the information contained herein is privileged and confidential. The document is intended solely for the use of Soulstrewn Studios LLC. If the reader of this document is not authorized to read the document, you are hereby notified that any dissemination, distribution or copying of this document is strictly prohibited. If you have received this document in error or are not sure whether it is privileged, please immediately notify us and destroy any copies, electronic, paper or otherwise, which you may have of this document.\par
@@ -103,7 +103,7 @@ e.\tab Bug Tracking\par
 \pard\li1080\b0\par
 The main menu for Digital Paintball should be both functional and aesthetically pleasing. The Digital Paintball logo should be displayed prominently, and the Soulstrewn logo should be placed in the lower right-hand corner. \par
 \par
-The menu itself will be drawn in tree-view format, towards the left side of the screen. For menu items that do not require a dialog, when the menu item is clicked, the background camera will get \lquote gogged\rquote , and then wiped to reveal the new menu items. The background of the menu will be a special menu map, which will contain several \lquote mini scenes\rquote . This will be implemented into one background map, through the use of clever scripting and camerawork. The background will switch between these scenes at regular intervals. Also, a new set of background scenes will be unlocked upon the completion of the game.\par
+The menu itself will be drawn in tree-view format, towards the left side of the screen. For menu items that do not require a dialog, when the menu item is clicked, the background camera will appear to have been shot with a paintball, and then wiped clean to reveal the new menu items. The background of the menu will be a special menu map, which will contain several \lquote mini scenes\rquote . This will be implemented into one background map, through the use of clever scripting and camerawork. The background will switch between these scenes at regular intervals. Also, a new set of background scenes will be unlocked upon the completion of the game.\par
 \par
 \pard\fi-360\li1440\tx1440\b a.\tab Training\par
 \pard\li1080\b0\par
@@ -133,7 +133,7 @@ From here the player is taken to the configure load-out and configure guns dialo
 \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Load Saved Career\par
 \pard\li2520\b0\par
-When loading a saved career, the player should be presented with a status dialog during the loading screen which displays the weeks completed, trophies, and other fun stats. Lets save the career data as XML RC4\rquote d with the save time. That\rquote d sure make it hard to edit...\par
+When loading a saved career, the player should be presented with a status dialog during the loading screen which displays the weeks completed, trophies, and other relevent statistics stats. The save data should be stored encrypted with the key as the file modification time.\par
 \pard\li2880\par
 \pard\fi-180\li2160\tx2160\b ii.\tab Quick Game\par
 \pard\li2160\b0\par
@@ -143,7 +143,7 @@ The only dialogs that should display here are a modified field selection and a d
 \pard\li1440\b0\par
 Multiplayer is going to be the bulk of the endgame for DPB. Like single player, if the player has not completed training it shall be suggested to him at this point. Unlike single player, the user is able to reconfigure his load-out and so forth in-game, so there will be no dialogs in the menu. Multiplayer brings up the following options:\par
 \par
-\pard\fi-180\li2160\tx2160\b i.\tab Instant Action\par
+\pard\fi-180\li2160\tx2160\b i.\tab\tab Instant Action\par
 \pard\li2160\b0\par
 The purpose of this item is to a get a user into a game as soon as possible. This will query the master server list, and connect to the server with the lowest ping with an open slot from the first batch of servers returned. \par
 \par
@@ -169,9 +169,7 @@ This menu item brings up the player dialog from II-a-ii-2, with some slight modi
  \par
 \pard\fi-360\li2880\tx2880\b 2.\tab Default Loadout(s)\par
 \pard\li2880\b0\par
-This menu item brings up the loadout dialog from II-a-ii-2, with some slight modifications that make the management (deletion particularly) of loadouts easier. \par
-\par
-Deja-vu?\par
+This menu item brings up the loadout dialog from II-a-ii-2, with some slight modifications that make the management (deletion particularly) of loadouts easier.\par
 \par
 \pard\fi-360\li1440\tx1440\b d.\tab Options\par
 \pard\li1440\b0\par
@@ -6563,14 +6561,14 @@ There should be few, if any lyrics.\par
 \b\par
 \pard\fi-720\li1080\tx1080 IV.\tab Miscellaneous\par
 \pard\fi-360\li1440\tx1440 a.\tab Statistics Gathering\par
-\pard\li1440\b0 <To be expanded>\par
+\pard\li1440\b0 <To be expanded upon>\par
 \pard\fi-360\li1440\tx1440\b b.\tab Unlocks\par
 \pard\li1440\par
 \b0 Unlocks increase the replay value of the game. There are three kinds of unlocks: \par
 \pard\li1980 Single Player Goal unlocks, Multiplayer Stat Unlocks, and Promotional Unlocks.\par
 Promotional unlocks can be single player, multiplayer, or both.\par
 \par
-\pard\fi-180\li2160\tx2160\b i.\tab Single Player\par
+\pard\fi-180\li2160\tx2160\b i.\tab\tab Single Player\par
 \pard\li2160\b0\par
 Single-player goal unlocks are unlocked when the player has attained certain goals in career mode. These unlocks can be single player only, or affect the multiplayer character as well.\par
 \par
