@@ -623,12 +623,6 @@ void CGameMovement::CheckParameters( void )
 		mv->m_vecAngles = mv->m_vecOldAngles;
 	}
 
-	// Set dead player view_offset
-	if ( IsDead() )
-	{
-		player->SetViewOffset( VEC_DEAD_VIEWHEIGHT );
-	}
-
 	// Adjust client view angles to match values used on server.
 	if ( mv->m_vecAngles[YAW] > 180.0f )
 	{
