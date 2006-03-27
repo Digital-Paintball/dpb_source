@@ -618,3 +618,12 @@ CTeam* CArena::GetTeamByNumber(int iTeam)
 
 	return NULL;
 }
+
+int CArena::GetNumberOfPlayers()
+{
+	int iPlayers = 0;
+	for (int i = 0; i < m_hTeams.Count(); i++)
+		iPlayers += m_hTeams[i]->m_aPlayers.Count();
+
+	return iPlayers;
+}

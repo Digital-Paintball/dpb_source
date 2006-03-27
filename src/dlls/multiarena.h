@@ -53,6 +53,8 @@ public:
 	int GetTeamNumber();
 	bool HasTeam(int i);
 
+	int GetNumberOfPlayers();
+
 	static void AssembleArenas();
 	static void ClearArenas();
 	static int GetArenaNumber();

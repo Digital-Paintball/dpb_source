@@ -17,7 +17,7 @@
 #include "in_buttons.h"
 #include "movehelper_server.h"
 #include "gameinterface.h"
-
+#include "multiarena.h"
 
 class CSDKBot;
 void Bot_Think( CSDKBot *pBot );
@@ -111,6 +111,44 @@ CBasePlayer *BotPutInServer( bool bFrozen )
 	pPlayer->ChangeTeam( TEAM_UNASSIGNED );
 	pPlayer->RemoveAllItems( true );
 	pPlayer->Spawn();
+
+	CArena *pBestArena = NULL;
+	int iBestArenaPlayers;
+	for (int i = 0; i < CArena::GetArenaNumber(); i++)
+	{
+		CArena *pArena = CArena::GetArena(i);
+
+		Assert(pArena);
+
+		if (!pBestArena)
+		{
+			pBestArena = pArena;
+			iBestArenaPlayers = pBestArena->GetNumberOfPlayers();
+			continue;
+		}
+
+		int iArenaPlayers = pArena->GetNumberOfPlayers();
+		// Prefer an arena with players in it.
+		if (iBestArenaPlayers == 0 && iArenaPlayers > 0)
+		{
+			pBestArena = pArena;
+			iBestArenaPlayers = iArenaPlayers;
+			continue;
+		}
+
+		// Prefer an arena with fewer players in it.
+		if (iArenaPlayers > 0 && iArenaPlayers < iBestArenaPlayers)
+		{
+			pBestArena = pArena;
+			iBestArenaPlayers = iArenaPlayers;
+			continue;
+		}
+	}
+
+	if (pBestArena)
+	{
+		pBestArena->JoinPlayer( pPlayer );
+	}
 
 	g_CurBotNumber++;
 
@@ -474,6 +512,10 @@ void Bot_Think( CSDKBot *pBot )
 		cmd.viewangles = pBot->GetLocalAngles();
 		cmd.upmove = 0;
 		cmd.impulse = 0;
+	}
+	else
+	{
+		Bot_HandleSendCmd( pBot );
 	}
 
 
