@@ -436,6 +436,7 @@ INSTALL_FILES(/materials/models/weapons FILES
 	materials/models/weapons/dpb_ppsbar_brs.vtf
 	materials/models/weapons/dpb_blazerEframe.vtf
 	materials/models/weapons/blazer.vmt
+	materials/models/weapons/blazer_specmap.vtf
 	materials/models/weapons/drop_asa.vtf
 	materials/models/weapons/dpb_co2_20oz.vmt
 	materials/models/weapons/dpb_co2_20oz_normal.vtf
