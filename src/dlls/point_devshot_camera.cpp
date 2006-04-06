@@ -112,6 +112,7 @@ void CPointDevShotCamera::DevShotThink_Setup( void )
 	// Hide stuff
 	engine->ClientCommand( pPlayer->edict(), "developer 0" );
 	engine->ClientCommand( pPlayer->edict(), "cl_drawhud 0" );
+	engine->ClientCommand( pPlayer->edict(), "hidepanel all" );
 
 	pPlayer->AddSolidFlags( FSOLID_NOT_SOLID );
 	pPlayer->EnableControl(FALSE);
