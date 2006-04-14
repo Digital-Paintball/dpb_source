@@ -460,6 +460,10 @@ LINK_DIRECTORIES(
 	${DPB_SOURCE_DIR}/src/lib/public
 )
 
+IF(WIN32)
+	SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /YX")
+ENDIF(WIN32)
+
 ADD_LIBRARY(client SHARED ${CLIENT_ALL_SRCS})
 
 TARGET_LINK_LIBRARIES(client tier0 tier1 vstdlib nvtc vgui_controls winmm)
