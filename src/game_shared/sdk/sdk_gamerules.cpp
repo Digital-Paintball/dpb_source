@@ -155,7 +155,15 @@ IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
 	//-----------------------------------------------------------------------------
 	bool CSDKGameRules::ClientCommand( const char *pcmd, CBaseEntity *pEdict )
 	{
-		return BaseClass::ClientCommand( pcmd, pEdict );
+		if ( BaseClass::ClientCommand( pcmd, pEdict ) )
+			return true;
+
+		CBasePlayer *pPlayer = (CBasePlayer *) pEdict;
+
+		if ( pPlayer->ClientCommand( pcmd ) )
+			return true;
+
+		return false;
 	}
 
 	//-----------------------------------------------------------------------------

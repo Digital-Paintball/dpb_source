@@ -60,6 +60,7 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	SetKeyBoardInputEnabled(false);
 	SetMouseInputEnabled(false);
 	SetSizeable(false);
+	SetMoveable(false);
 
 	// hide the system buttons
 	SetTitleBarVisible( false );
@@ -70,6 +71,20 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	m_pPlayerList = new SectionedListPanel(this, "PlayerList");
 	m_pPlayerList->SetVerticalScrollbar(false);
 
+	m_pButtons.EnsureCount(5);
+	m_pButtons[0] = new ToggleButton( this, "Arena1Button", "Arena" );
+	m_pButtons[1] = new ToggleButton( this, "Arena2Button", "Arena" );
+	m_pButtons[2] = new ToggleButton( this, "Arena3Button", "Arena" );
+	m_pButtons[3] = new ToggleButton( this, "Arena4Button", "Arena" );
+	m_pButtons[4] = new ToggleButton( this, "Arena5Button", "Arena" );
+
+	m_pJoinButton = new Button( this, "JoinButton", "Join" );
+	m_pJoinButton->SetCommand( "JoinButton" );
+	m_pJoinButton->SetMouseInputEnabled(true);
+	m_pJoinButton->AddActionSignalTarget(this);
+
+	m_iViewingArena = 0;
+
 	LoadControlSettings("Resource/UI/ScoreBoard.res");
 	m_iDesiredHeight = GetTall();
 	m_pPlayerList->SetVisible( false ); // hide this until we load the images in applyschemesettings
@@ -79,12 +94,6 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	// update scoreboard instantly if on of these events occure
 	gameeventmanager->AddListener(this, "hltv_status", false );
 	gameeventmanager->AddListener(this, "server_spawn", false );
-
-	// Four default buttons to work with.
-	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 1", "Arena"));
-	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 2", "Arena"));
-	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 3", "Arena"));
-	//m_hButtons.AddToTail(new vgui::ToggleButton(this, "Arena Button 4", "Arena"));
 }
 
 //-----------------------------------------------------------------------------
@@ -94,8 +103,10 @@ CClientScoreBoardDialog::~CClientScoreBoardDialog()
 {
 	gameeventmanager->RemoveListener(this);
 
-	for (int i = 0; i < m_hButtons.Count(); i++)
-		delete m_hButtons[i];
+	for (int i = 0; i < m_pButtons.Count(); i++)
+		delete m_pButtons[i];
+
+	delete m_pJoinButton;
 }
 
 //-----------------------------------------------------------------------------
@@ -164,7 +175,7 @@ void CClientScoreBoardDialog::ShowPanel(bool bShow)
 		Reset();
 		Update();
 
-		//SetMouseInputEnabled( true );
+		SetMouseInputEnabled( true );
 		Activate();
 	}
 	else
@@ -202,8 +213,6 @@ void CClientScoreBoardDialog::FireGameEvent( IGameEvent *event )
 bool CClientScoreBoardDialog::NeedsUpdate( void )
 {
 	return (m_fNextUpdateTime < gpGlobals->curtime);
-		
-
 }
 
 //-----------------------------------------------------------------------------
@@ -304,11 +313,13 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 
 		if ( gr && gr->IsConnected( i ) )
 		{
+			if (UTIL_PlayerByIndex(i)->GetArena() != C_Arena::GetArena(m_iViewingArena))
+				continue;
+
 			// add the player to the list
 			KeyValues *playerData = new KeyValues("data");
 			GetPlayerScoreInfo( i, playerData );
 
-	
 			const char *oldName = playerData->GetString("name","");
 			int bufsize = strlen(oldName) * 2;
 			char *newName = (char *)_alloca( bufsize );
@@ -366,26 +377,30 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 //-----------------------------------------------------------------------------
 void CClientScoreBoardDialog::UpdateArenaInfo()
 {
-/*	int i;
-	for (i = 0; i < m_hButtons.Count(); i++)
+	int i;
+	for (i = 0; i < m_pButtons.Count(); i++)
 	{
 		if (i < C_Arena::GetArenaNumber())
 		{
-			m_hButtons[i]->SetVisible(true);
-			//If this manual spacing becomes a problem, add a GetColumnBounds function to SectionedListPanel
-			m_hButtons[i]->SetPos(i*70+10, 26);
-			m_hButtons[i]->SetText(VarArgs("Arena %d", i+1));
+			m_pButtons[i]->SetVisible(true);
+			m_pButtons[i]->SetText(VarArgs("Arena %d", i+1));
+			m_pButtons[i]->SetCommand( new KeyValues("ArenaButton", "arena", i ) );
+			m_pButtons[i]->SetMouseInputEnabled(true);
+			m_pButtons[i]->AddActionSignalTarget(this);
+
+			if (i == m_iViewingArena)
+				m_pButtons[i]->ForceDepressed(true);
+			else
+				m_pButtons[i]->ForceDepressed(false);
 		}
 		else
-			m_hButtons[i]->SetVisible(false);
+			m_pButtons[i]->SetVisible(false);
 	}
 
-	for (i = m_hButtons.Count(); i < C_Arena::GetArenaNumber(); i++)
-	{
-		m_hButtons.AddToTail(new vgui::ToggleButton(this, VarArgs("Arena Button %d", i+1), VarArgs("Arena %d", i+1)));
-		m_hButtons[i]->SetVisible(true);
-		m_hButtons[i]->SetPos(i*70+10, 26);
-	}*/
+	if (PlayingInArena(C_BasePlayer::GetLocalPlayer()))
+		m_pJoinButton->SetText( "Leave arena!" );
+	else
+		m_pJoinButton->SetText( "Join arena!" );
 }
 
 //-----------------------------------------------------------------------------
@@ -397,11 +412,6 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-
-	/*m_iSectionId = 1; //make a blank one for arenas
-	m_pPlayerList->AddSection(m_iSectionId, "");
-	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );*/
 
 	m_iSectionId = 1;
 	m_pPlayerList->AddSection(m_iSectionId, "");
@@ -547,9 +557,6 @@ int CClientScoreBoardDialog::FindItemIDForPlayerIndex(int playerIndex)
 	return -1;
 }
 
-
-
-
 //-----------------------------------------------------------------------------
 // Purpose: Sets the text of a control by name
 //-----------------------------------------------------------------------------
@@ -562,3 +569,41 @@ void CClientScoreBoardDialog::MoveLabelToFront(const char *textEntryName)
 	}
 }
 
+bool CClientScoreBoardDialog::PlayingInArena(C_BasePlayer* pPlayer)
+{
+	if (!pPlayer)
+		return false;
+
+	C_Arena* pArena = pPlayer->GetArena();
+	if (!pArena)
+		return false;
+	
+	if (!pArena->HasPlayer(pPlayer))
+		return false;
+
+	return true;
+}
+
+void CClientScoreBoardDialog::OnArenaButton( int iArena )
+{
+	if (iArena >= 0 && iArena <= 4)
+	{
+		m_iViewingArena = iArena;
+		Update();
+	}
+}
+
+void CClientScoreBoardDialog::OnCommand(const char* pszCommand)
+{
+	if (FStrEq(pszCommand, "JoinButton"))
+	{
+		char szCmd[64];
+
+		if (PlayingInArena(C_BasePlayer::GetLocalPlayer()))
+			Q_snprintf( szCmd, sizeof( szCmd ), "quitgame" );
+		else
+			Q_snprintf( szCmd, sizeof( szCmd ), "joinarena %i", m_iViewingArena );
+
+		engine->ClientCmd(szCmd);
+	}
+}

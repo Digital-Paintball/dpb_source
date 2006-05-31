@@ -10,6 +10,7 @@ CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/motd.txt.in ${CMAKE_CURRENT_BINARY_DI
 
 INSTALL_FILES(/ FILES
 	GameInfo.txt
+	lights.rad
 	maplist.txt
 	motd.txt
 	dpb.fgd
@@ -20,6 +21,7 @@ INSTALL_FILES(/ FILES
 
 INSTALL_FILES(/cfg FILES
 	cfg/config_default.cfg
+	cfg/game.cfg
 	cfg/listenserver.cfg
 	cfg/valve.rc  
 )

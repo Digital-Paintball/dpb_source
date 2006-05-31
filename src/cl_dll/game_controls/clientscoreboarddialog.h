@@ -73,12 +73,22 @@ protected:
 	// finds the player in the scoreboard
 	int FindItemIDForPlayerIndex(int playerIndex);
 
+	bool PlayingInArena(C_BasePlayer* pPlayer);
+
+	// command callbacks
+	MESSAGE_FUNC_INT( OnArenaButton, "ArenaButton", arena );
+	virtual void OnCommand(const char* pszCommand);
+
 	int m_iNumTeams;
 
 	vgui::SectionedListPanel *m_pPlayerList;
 	int				m_iSectionId; // the current section we are entering into
 
-	CUtlVector<vgui::ToggleButton*>	m_hButtons;
+	CUtlVector<vgui::ToggleButton*>	m_pButtons;
+
+	vgui::Button*	m_pJoinButton;
+
+	int				m_iViewingArena;
 
 	int s_VoiceImage[5];
 	int TrackerImage;

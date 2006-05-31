@@ -564,6 +564,10 @@ void CBaseViewport::ReloadScheme(const char *fromFile)
 	// reload the .res file from disk
 	LoadControlSettings("scripts/HudLayout.res");
 
+	// recreate all the default panels
+	RemoveAllPanels();
+	CreateDefaultPanels();
+
 	gHUD.RefreshHudTextures();
 
 	InvalidateLayout( true, true );
