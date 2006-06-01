@@ -1124,8 +1124,10 @@ INSTALL_FILES(/resource FILES
 )
 
 INSTALL_FILES(/resource/ui FILES
+	resource/ui/BottomSpectator.res
 	resource/ui/MOTD.res
 	resource/ui/ScoreBoard.res
+	resource/ui/Spectator.res
 	resource/ui/TextWindow.res
 )
 
