@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+
+<!-- WSDL description of the SoulVision API. -->
+
+<!-- Revision $Id$ -->
+
+<definitions name="SV"
+             targetNamespace="urn:SV"
+             xmlns:typens="urn:SV"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+  <!-- Types for SV API -->
+
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" 
+                targetNamespace="urn:SV"
+                xmlns:impl="urn:SV">
+
+      <xsd:complexType name="PlayerRating">
+        <xsd:all>
+          <xsd:element name="rating"                      type="xsd:float"/>
+          <xsd:element name="category"                    type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="PlayerRatingArray">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded"
+                    name="ratings"
+                    type="impl:PlayerRating"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="Category">
+        <xsd:all>
+          <xsd:element name="name"	type="xsd:string"/>
+          <xsd:element name="id"	type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="CategoryArray">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded"
+                    name="categories"
+                    type="impl:Category"/>
+        </xsd:sequence>
+      </xsd:complexType>
+
+    </xsd:schema>
+  </types> 
+
+  <!-- Messages for SV API -->
+             
+  <message name="doGetSVVersion">
+    <part name="major"	type="xsd:int"/>
+    <part name="minor"	type="xsd:int"/>
+  </message>
+
+  <message name="doGetSVVersionResponse">
+    <part name="major"	type="xsd:int"/>
+    <part name="minor"	type="xsd:int"/>
+  </message>
+
+  <message name="doGetCategories">
+  </message>
+
+  <message name="doGetCategoriesResponse">
+    <part name="result"	type="typens:CategoryArray"/>
+  </message>
+
+  <message name="doGetPlayerID">
+    <part name="networkID"      type="xsd:string"/>
+    <part name="network"        type="xsd:int"/>
+  </message>
+
+  <message name="doGetPlayerIDResponse">
+    <part name="rateID"         type="xsd:int"/>
+  </message>
+
+  <message name="doGetPlayerRating">
+    <part name="rateID"         type="xsd:int"/>
+    <part name="category"       type="xsd:int"/>
+  </message>
+
+  <message name="doGetPlayerRatingResponse">
+    <part name="result" type="xsd:float"/>
+  </message>
+
+  <message name="doGetPlayerRatings">
+    <part name="rateID"         type="xsd:int"/>
+  </message>
+
+  <message name="doGetPlayerRatingsResponse">
+    <part name="result" type="typens:PlayerRatingArray"/>
+  </message>
+
+  <message name="doRatePlayer">
+    <part name="raterID"        type="xsd:int"/>
+    <part name="ratedID"        type="xsd:int"/>
+    <part name="category"       type="xsd:int"/>
+    <part name="rating"         type="xsd:int"/>
+  </message>
+
+  <message name="doRatePlayerResponse">
+  </message>
+
+  <!-- Port for SV API, "SV" -->
+
+  <portType name="SVPort">
+
+    <operation name="doGetSVVersion">
+      <input message="typens:doGetSVVersion"/>
+      <output message="typens:doGetSVVersionResponse"/>
+    </operation>
+
+    <operation name="doGetCategories">
+      <input message="typens:doGetCategories"/>
+      <output message="typens:doGetCategoriesResponse"/>
+    </operation>
+
+    <operation name="doGetPlayerID">
+      <input message="typens:doGetPlayerID"/>
+      <output message="typens:doGetPlayerIDResponse"/>
+    </operation>
+
+    <operation name="doGetPlayerRating">
+      <input message="typens:doGetPlayerRating"/>
+      <output message="typens:doGetPlayerRatingResponse"/>
+    </operation>
+
+    <operation name="doGetPlayerRatings">
+      <input message="typens:doGetPlayerRatings"/>
+      <output message="typens:doGetPlayerRatingsResponse"/>
+    </operation>
+
+    <operation name="doRatePlayer">
+      <input message="typens:doRatePlayer"/>
+      <output message="typens:doRatePlayerResponse"/>
+    </operation>
+
+  </portType>
+
+
+  <!-- Binding for SV API - RPC, SOAP over HTTP -->
+
+  <binding name="SVBinding" type="typens:SVPort">
+    <soap:binding style="rpc"
+                  transport="http://schemas.xmlsoap.org/wsdl/soap/"/>
+
+    <operation name="doGetSVVersion">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="doGetCategories">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="doGetPlayerID">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="doGetPlayerRating">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="doGetPlayerRatings">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+    <operation name="doRatePlayer">
+      <soap:operation soapAction="urn:SVAction"/>
+      <input>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:SV" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </output>
+    </operation>
+
+  </binding>
+
+  <service name="SVService">
+	<port name="SVPort" binding="typens:SVBinding">
+	<soap:address location="bsbhd.com:41285"/>
+	</port>
+  </service>
+
+</definitions>

@@ -1,0 +1,49 @@
+drop table if exists sv_status;
+create table sv_status (
+    ${COL_STATUS_SUMMED} tinyint,
+	${COL_STATUS_PLAYERS} int,
+	${COL_STATUS_CATEGORIES} tinyint
+) ENGINE=InnoDB;
+
+drop table if exists sv_users;
+create table sv_users (
+    ${COL_USERS_ID} int not null auto_increment primary key, -- RATE ID
+    ${COL_USERS_USER} tinytext not null,
+    ${COL_USERS_PASSWD} tinytext
+) ENGINE=InnoDB;
+
+drop table if exists sv_game_ids;
+create table sv_game_ids (
+	${COL_GAMEIDS_ID} int not null primary key,
+	${COL_GAMEIDS_NETWORK} int not null,
+	${COL_GAMEIDS_VALUE} tinytext not null,
+	UNIQUE INDEX(${COL_GAMEIDS_VALUE}(10), ${COL_GAMEIDS_NETWORK})
+) ENGINE=InnoDB;
+
+drop table if exists sv_categories;
+create table sv_categories (
+	${COL_CATS_ID} tinyint unsigned not null auto_increment primary key,
+	${COL_CATS_NAME} tinytext not null
+) ENGINE=InnoDB;
+
+-- Be size-conscious in this table, there will be many of them.
+-- Keep the names short too, to shorten lookup times on the column names.
+drop table if exists sv_votes;
+create table sv_votes (
+	${COL_VOTES_CATEGORY} tinyint unsigned not null,	-- Category voted under
+	${COL_VOTES_VOTE} tinyint not null,					-- The vote
+	${COL_VOTES_FROMPLAYER} int not null,				-- The player that voted
+	${COL_VOTES_TOPLAYER} int not null,					-- The player that was voted on
+	INDEX(${COL_VOTES_TOPLAYER}, ${COL_VOTES_CATEGORY}),
+	UNIQUE INDEX(${COL_VOTES_FROMPLAYER}, ${COL_VOTES_TOPLAYER}, ${COL_VOTES_CATEGORY})
+) ENGINE=InnoDB;
+
+-- This is a cache for a player's current total vote in an area.
+drop table if exists sv_vote_sums;
+create table sv_vote_sums (
+	${COL_SUMS_CATEGORY} tinyint unsigned not null,	-- Category voted under
+	${COL_SUMS_PLAYER} int not null,			-- The player voted on
+	${COL_SUMS_VOTE} float not null,			-- Vote average
+	${COL_SUMS_TOTAL} mediumint not null,		-- Total votes cast
+	UNIQUE INDEX(${COL_SUMS_PLAYER}, ${COL_SUMS_CATEGORY})
+) ENGINE=InnoDB;

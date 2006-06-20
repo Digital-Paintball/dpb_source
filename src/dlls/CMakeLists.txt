@@ -226,6 +226,8 @@ SET( SERVER_SRCS
 	steamjet.cpp
 	subs.cpp
 	sun.cpp
+	sv.cpp
+	sv_soap.cpp
 	tanktrain.cpp
 	te.cpp
 	te_armorricochet.cpp
@@ -454,6 +456,7 @@ INCLUDE_DIRECTORIES(
 	${DPB_SOURCE_DIR}/src/public/tier1
 	${SERVER_BUILD_INC_GAME_SHARED}
 	${DPB_SOURCE_DIR}/src/public
+	${DPB_BINARY_DIR}/src/game_shared
 	${DPB_SOURCE_DIR}/src/game_shared
 	${DPB_SOURCE_DIR}/src/utils/common
 	${DPB_SOURCE_DIR}/src/dlls
@@ -461,6 +464,8 @@ INCLUDE_DIRECTORIES(
 	${DPB_SOURCE_DIR}/src/cl_dll
 	${DPB_SOURCE_DIR}/src/dlls/hl2_dll
 	${DPB_SOURCE_DIR}/src/game_shared/hl2
+	${DPB_BINARY_DIR}/src/soulvision/sh
+	${DPB_SOURCE_DIR}/src/soulvision/sh
 )
 
 ADD_DEFINITIONS(
@@ -489,6 +494,10 @@ ENDIF(WIN32)
 
 ADD_LIBRARY(server SHARED ${SERVER_ALL_SRCS})
 
-TARGET_LINK_LIBRARIES(server tier0 tier1 vstdlib)
+TARGET_LINK_LIBRARIES(server tier0 tier1 vstdlib stats)
+
+IF(WIN32)
+	TARGET_LINK_LIBRARIES(server wsock32)
+ENDIF(WIN32)
 
 INSTALL_TARGETS(/bin server)

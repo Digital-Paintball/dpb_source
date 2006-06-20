@@ -1,0 +1,32 @@
+insert into sv_status (${COL_STATUS_SUMMED}) values (0);
+
+insert into sv_users (${COL_USERS_USER},${COL_USERS_PASSWD}) values ('vino','d84375d25d7c34c2dd1cf89298ba1027');
+insert into sv_users (${COL_USERS_USER}) values ('omega');
+insert into sv_users (${COL_USERS_USER}) values ('noob');
+
+insert into sv_game_ids (${COL_GAMEIDS_ID},${COL_GAMEIDS_NETWORK},${COL_GAMEIDS_VALUE}) values (1,1,REVERSE('STEAM_0:0:4119'));
+insert into sv_game_ids (${COL_GAMEIDS_ID},${COL_GAMEIDS_NETWORK},${COL_GAMEIDS_VALUE}) values (2,1,REVERSE('STEAM_0:1:4400'));
+insert into sv_game_ids (${COL_GAMEIDS_ID},${COL_GAMEIDS_NETWORK},${COL_GAMEIDS_VALUE}) values (3,1,REVERSE('STEAM_0:1:10903392'));
+
+insert into sv_categories (${COL_CATS_NAME}) values ('Skill');
+insert into sv_categories (${COL_CATS_NAME}) values ('Cooperation');
+
+-- Vino votes omega as having awesome skill
+insert into sv_votes (${COL_VOTES_CATEGORY},${COL_VOTES_VOTE},${COL_VOTES_FROMPLAYER},${COL_VOTES_TOPLAYER})
+	values (1,5,1,2);
+
+-- Vino votes omega as being somewhat cooperative
+insert into sv_votes (${COL_VOTES_CATEGORY},${COL_VOTES_VOTE},${COL_VOTES_FROMPLAYER},${COL_VOTES_TOPLAYER})
+	values (2,3,1,2);
+
+-- Vino votes noob as having no skill
+insert into sv_votes (${COL_VOTES_CATEGORY},${COL_VOTES_VOTE},${COL_VOTES_FROMPLAYER},${COL_VOTES_TOPLAYER})
+	values (1,0,1,3);
+
+-- Vino votes noob as being mostly uncooperative
+insert into sv_votes (${COL_VOTES_CATEGORY},${COL_VOTES_VOTE},${COL_VOTES_FROMPLAYER},${COL_VOTES_TOPLAYER})
+	values (2,1,1,3);
+
+-- omega votes noob as having being totally uncooperative
+insert into sv_votes (${COL_VOTES_CATEGORY},${COL_VOTES_VOTE},${COL_VOTES_FROMPLAYER},${COL_VOTES_TOPLAYER})
+	values (2,0,2,3);

@@ -2,7 +2,8 @@ PROJECT(DPB)
 
 SET(DPB_MAJOR_VERSION 0)
 SET(DPB_MINOR_VERSION 17)
-SET(DPB_VERSION "${DPB_MAJOR_VERSION}.${DPB_MINOR_VERSION}")
+SET(DPB_PATCH_VERSION 0)
+SET(DPB_VERSION "${DPB_MAJOR_VERSION}.${DPB_MINOR_VERSION}.${DPB_PATCH_VERSION}")
 
 EXEC_PROGRAM(svnversion ${DPB_SOURCE_DIR} ARGS ${DPB_SOURCE_DIR} OUTPUT_VARIABLE DPB_REVISION)
 
@@ -10,6 +11,8 @@ MESSAGE("-- Building Digital Paintball ${DPB_VERSION} Build ${DPB_REVISION}")
 
 SET(LIBRARY_OUTPUT_PATH ${DPB_BINARY_DIR}/lib CACHE INTERNAL "Single output directory for building all libraries.")
 SET(EXECUTABLE_OUTPUT_PATH ${DPB_BINARY_DIR}/bin CACHE INTERNAL "Single output directory for building all executables.")
+
+CONFIGURE_FILE(${DPB_SOURCE_DIR}/src/game_shared/config.h.in ${DPB_BINARY_DIR}/src/game_shared/config.h)
 
 IF(WIN32)
 	# Single-threaded, static link instead of default multithreaded, dynamic link

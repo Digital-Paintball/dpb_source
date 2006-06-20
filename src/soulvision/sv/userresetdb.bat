@@ -1,0 +1,1 @@
+resetdb.bat vino sv
