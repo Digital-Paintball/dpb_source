@@ -171,6 +171,6 @@ int CSOAP::RatePlayer(SVID iFromPlayer, SVID iToPlayer, int iCategory, int iRati
 SOAP_STUB_STRUCT_INTINT(GetSVVersion, iMajor, iMinor);
 SOAP_STUB_STRUCT(GetCategories);
 SOAP_STUB_INT_STRINGINT(GetPlayerID, pszGameID, iNetwork);
-SOAP_STUB_FLOAT_INTINT(GetPlayerRating, rateID, iCategory);
-SOAP_STUB_STRUCT_INT(GetPlayerRatings, rateID);
+SOAP_STUB_FLOAT_INTINT(GetPlayerRating, SVID, iCategory);
+SOAP_STUB_STRUCT_INT(GetPlayerRatings, SVID);
 SOAP_STUB_STRUCT_INTINTINTINT(RatePlayer, iFromPlayer, iToPlayer, iCategory, iRating);

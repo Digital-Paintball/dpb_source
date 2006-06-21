@@ -76,11 +76,11 @@
   </message>
 
   <message name="doGetPlayerIDResponse">
-    <part name="rateID"         type="xsd:int"/>
+    <part name="SVID"         type="xsd:int"/>
   </message>
 
   <message name="doGetPlayerRating">
-    <part name="rateID"         type="xsd:int"/>
+    <part name="SVID"         type="xsd:int"/>
     <part name="category"       type="xsd:int"/>
   </message>
 
@@ -89,7 +89,7 @@
   </message>
 
   <message name="doGetPlayerRatings">
-    <part name="rateID"         type="xsd:int"/>
+    <part name="SVID"         type="xsd:int"/>
   </message>
 
   <message name="doGetPlayerRatingsResponse">
