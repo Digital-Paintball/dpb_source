@@ -1,0 +1,24 @@
+#
+# t68_mappedsmoothed.mtl
+#
+
+newmtl t68p_accessories
+Ka 0.200000 0.200000 0.200000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ns 0.000000
+map_Kd .\t68p_accessories.bmp
+
+newmtl t68p_main
+Ka 0.200000 0.200000 0.200000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ns 0.000000
+map_Kd .\t68p_main.bmp
+
+newmtl Material03
+Ka 0.200000 0.200000 0.200000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ns 0.000000
+map_Kd .\t68p_grips.bmp
