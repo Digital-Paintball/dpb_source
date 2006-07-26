@@ -1,0 +1,8 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/overlay_healthygrass"
+	"$translucent" 1
+	"$decal" 1
+	"$surfaceprop" "grass"
+	"%keywords" "dpb norrington grass decal"
+}
