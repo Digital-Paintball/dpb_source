@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "textures/healthygrassshort"
+	"%keywords" "dpb,shortigo,healthy,grass,short"
+        "$surfaceprop" "grass" 
+}
