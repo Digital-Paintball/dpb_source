@@ -1,0 +1,11 @@
+"WorldVertexTransition" 
+{ 
+   "$basetexture" "textures/plaingrass"
+   "$basetexture2" "textures/darkergrass" 
+   "%tooltexture" "textures/darkergrass" 
+   "$basetexturetransform" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+   "$basetexturetransform2" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+   "%keywords" "dpb,blend,grass,darker,plain" 
+   "$surfaceprop" "grass"
+//   "%detailtype" "norr_grass_2" 
+}
