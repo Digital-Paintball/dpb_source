@@ -5,4 +5,5 @@
 	"$selfIllum"			0
 	"$translucent"			0
 	"$alpha"				1
+        "$surfaceprop" "wood" 
 }
