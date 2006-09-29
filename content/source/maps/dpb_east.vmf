@@ -1,8 +1,8 @@
 versioninfo
 {
 	"editorversion" "400"
-	"editorbuild" "3368"
-	"mapversion" "39"
+	"editorbuild" "3576"
+	"mapversion" "43"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -13,13 +13,14 @@ viewsettings
 {
 	"bSnapToGrid" "1"
 	"bShowGrid" "1"
+	"bShowLogicalGrid" "0"
 	"nGridSpacing" "1"
 	"bShow3DGrid" "0"
 }
 world
 {
 	"id" "1"
-	"mapversion" "39"
+	"mapversion" "43"
 	"classname" "worldspawn"
 	"skyname" "sky_day03_06"
 	"maxpropscreenwidth" "-1"
@@ -791,6 +792,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-112 -672 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -949,6 +951,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[104 -672 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -1325,7 +1328,7 @@ world
 		{
 			"id" "290"
 			"plane" "(16 -168 4) (112 -168 4) (112 -672 4)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -1401,7 +1404,7 @@ world
 		{
 			"id" "312"
 			"plane" "(16 -672 4) (112 -672 4) (64 -744 4)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -1476,6 +1479,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-64 -744 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -1634,6 +1638,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[64 -744 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -1792,6 +1797,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-64 -1464 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -2179,7 +2185,7 @@ world
 		{
 			"id" "560"
 			"plane" "(-160 -1458 0) (-118 -1458 0) (-118 48 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -2190,7 +2196,7 @@ world
 		{
 			"id" "561"
 			"plane" "(-160 48 6) (-160 -1458 6) (-160 -1458 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2201,7 +2207,7 @@ world
 		{
 			"id" "562"
 			"plane" "(-118 48 0) (-118 -1458 0) (-118 -1458 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2212,7 +2218,7 @@ world
 		{
 			"id" "563"
 			"plane" "(-118 48 6) (-160 48 6) (-160 48 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2223,7 +2229,7 @@ world
 		{
 			"id" "564"
 			"plane" "(-118 -1458 0) (-160 -1458 0) (-160 -1458 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2255,7 +2261,7 @@ world
 		{
 			"id" "605"
 			"plane" "(-70 -1458 0) (-70 -744 0) (-118 -672 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 40] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -2266,7 +2272,7 @@ world
 		{
 			"id" "604"
 			"plane" "(-118 -1458 6) (-118 -1458 0) (-118 -672 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2277,7 +2283,7 @@ world
 		{
 			"id" "603"
 			"plane" "(-70 -1458 0) (-70 -1458 6) (-70 -744 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2288,7 +2294,7 @@ world
 		{
 			"id" "602"
 			"plane" "(-118 -672 6) (-118 -672 0) (-70 -744 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -2299,7 +2305,7 @@ world
 		{
 			"id" "601"
 			"plane" "(-118 -1458 0) (-118 -1458 6) (-70 -1458 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 -40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -6450,6 +6456,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-192 -1384 4]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -6608,6 +6615,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-192 -1384 4]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -7147,7 +7155,7 @@ world
 		{
 			"id" "3034"
 			"plane" "(-160 -1416 0) (-1024 -1416 0) (-1024 -1458 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 -8] 0.25"
 			"vaxis" "[1 0 0 8] 0.25"
 			"rotation" "0"
@@ -7158,7 +7166,7 @@ world
 		{
 			"id" "3033"
 			"plane" "(-160 -1458 0) (-1024 -1458 0) (-1024 -1458 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -7169,7 +7177,7 @@ world
 		{
 			"id" "3032"
 			"plane" "(-1024 -1416 0) (-160 -1416 0) (-160 -1416 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -7180,7 +7188,7 @@ world
 		{
 			"id" "3031"
 			"plane" "(-160 -1416 0) (-160 -1458 0) (-160 -1458 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -7222,6 +7230,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-1024 -1416 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -7380,6 +7389,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-1024 -1384 4]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -7604,7 +7614,7 @@ world
 		{
 			"id" "3065"
 			"plane" "(-584 -1312 6) (-584 -1352 6) (-648 -1352 6)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 -160] 0.25"
 			"vaxis" "[-1 0 0 96] 0.25"
 			"rotation" "0"
@@ -7615,7 +7625,7 @@ world
 		{
 			"id" "3064"
 			"plane" "(-648 -1312 0) (-648 -1352 0) (-584 -1352 0)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 160] 0.25"
 			"vaxis" "[-1 0 0 96] 0.25"
 			"rotation" "0"
@@ -7626,7 +7636,7 @@ world
 		{
 			"id" "3063"
 			"plane" "(-584 -1312 6) (-648 -1312 6) (-648 -1312 0)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 96] 0.25"
 			"vaxis" "[0 0 -1 -24] 0.25"
 			"rotation" "0"
@@ -7637,7 +7647,7 @@ world
 		{
 			"id" "3062"
 			"plane" "(-584 -1352 0) (-648 -1352 0) (-648 -1352 6)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 -96] 0.25"
 			"vaxis" "[0 0 -1 -24] 0.25"
 			"rotation" "0"
@@ -7648,7 +7658,7 @@ world
 		{
 			"id" "3061"
 			"plane" "(-584 -1352 6) (-584 -1312 6) (-584 -1312 0)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 160] 0.25"
 			"vaxis" "[0 0 -1 -24] 0.25"
 			"rotation" "0"
@@ -7659,7 +7669,7 @@ world
 		{
 			"id" "3060"
 			"plane" "(-648 -1352 0) (-648 -1312 0) (-648 -1312 6)"
-			"material" "CONCRETE/CONCRETEFLOOR033O"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 -160] 0.25"
 			"vaxis" "[0 0 -1 -24] 0.25"
 			"rotation" "0"
@@ -7994,6 +8004,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40 -264 8]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -8128,6 +8139,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[30 -262 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8197,6 +8209,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[30 -262 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8266,6 +8279,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[30 -262 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8335,6 +8349,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46 -262 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8404,6 +8419,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[30 -248 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8473,6 +8489,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[30 -262 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8552,6 +8569,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46.1438 -272.124 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8621,6 +8639,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46.1438 -272.124 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8690,6 +8709,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46.1423 -272.125 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8759,6 +8779,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[60 -264.124 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8828,6 +8849,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.143 -260 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8897,6 +8919,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46.1425 -272.124 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -8976,6 +8999,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[64.125 -278 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9045,6 +9069,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[64.125 -278 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9114,6 +9139,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[64.1238 -278 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9183,6 +9209,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[72.1244 -264.144 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9252,6 +9279,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[52 -271 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9321,6 +9349,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[64.1246 -278 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9400,6 +9429,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.3205 -271.02 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9469,6 +9499,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.3205 -271.02 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9538,6 +9569,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.3205 -271.019 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9607,6 +9639,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.3205 -255.019 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9676,6 +9709,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[70.3205 -271.02 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9745,6 +9779,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.3205 -271.02 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9824,6 +9859,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[88.2931 -266.607 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9893,6 +9929,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[88.2931 -266.607 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -9962,6 +9999,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[88.2932 -266.607 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10031,6 +10069,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[99.6075 -255.292 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10100,6 +10139,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[78.393 -256.707 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10169,6 +10209,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[88.2914 -266.605 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10248,6 +10289,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[86.1469 -248.404 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10317,6 +10359,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[86.1469 -248.404 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10386,6 +10429,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[86.1469 -248.404 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10455,6 +10499,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.601 -244.263 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10524,6 +10569,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.5233 -234.881 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10593,6 +10639,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[86.1463 -248.404 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10672,6 +10719,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.8524 -232.336 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10741,6 +10789,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.8524 -232.336 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10810,6 +10859,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.8533 -232.336 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10879,6 +10929,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[24.3986 -236.477 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -10948,6 +10999,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.4774 -245.859 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11017,6 +11069,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.8544 -232.336 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11096,6 +11149,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[37.7068 -214.133 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11165,6 +11219,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[37.7068 -214.133 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11234,6 +11289,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[37.7078 -214.132 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11303,6 +11359,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[26.3942 -225.446 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11372,6 +11429,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.6062 -224.033 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11441,6 +11499,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[37.7088 -214.134 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11520,6 +11579,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.6795 -209.723 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11589,6 +11649,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.6795 -209.723 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11658,6 +11719,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.6795 -209.721 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11727,6 +11789,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.6795 -225.721 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11796,6 +11859,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[55.6795 -209.723 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11865,6 +11929,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.6795 -209.723 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -11944,6 +12009,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[61.8763 -202.739 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12013,6 +12079,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[61.8763 -202.739 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12082,6 +12149,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[61.8758 -202.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12151,6 +12219,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[53.8752 -216.597 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12220,6 +12289,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[74 -209.739 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12289,6 +12359,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[61.8763 -202.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12368,6 +12439,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.857 -202.74 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12437,6 +12509,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.857 -202.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12506,6 +12579,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.8571 -202.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12575,6 +12649,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[70 -210.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12644,6 +12719,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[90.8574 -214.864 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12713,6 +12789,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.8557 -202.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12792,6 +12869,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100 -216.74 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12861,6 +12939,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100 -216.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12930,6 +13009,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100 -216.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -12999,6 +13079,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84 -216.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13068,6 +13149,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100 -230.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13137,6 +13219,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100 -216.74 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13369,7 +13452,7 @@ world
 		{
 			"id" "3334"
 			"plane" "(246 -2054 0) (246 -672 0) (198 -744 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 40] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -13380,7 +13463,7 @@ world
 		{
 			"id" "3333"
 			"plane" "(246 -672 0) (246 -2054 0) (246 -2054 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -13391,7 +13474,7 @@ world
 		{
 			"id" "3332"
 			"plane" "(198 -2054 0) (198 -744 0) (198 -744 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -13402,7 +13485,7 @@ world
 		{
 			"id" "3331"
 			"plane" "(198 -744 0) (246 -672 0) (246 -672 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -13413,7 +13496,7 @@ world
 		{
 			"id" "3330"
 			"plane" "(246 -2054 0) (198 -2054 0) (198 -2054 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -13792,6 +13875,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.34 -394.078 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13861,6 +13945,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.34 -394.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13930,6 +14015,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.338 -394.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -13999,6 +14085,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.3382 -394.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14068,6 +14155,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.34 -408.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14137,6 +14225,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[101.34 -394.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14216,6 +14305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.1952 -380.077 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14285,6 +14375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.1952 -380.077 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14354,6 +14445,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.1948 -380.077 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14423,6 +14515,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[71.3378 -388.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14492,6 +14585,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[92.1954 -392.202 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14561,6 +14655,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.1953 -380.077 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14640,6 +14735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[63.2143 -380.078 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14709,6 +14805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[63.2143 -380.078 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14778,6 +14875,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[63.2142 -380.079 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14847,6 +14945,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[55.2147 -393.934 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14916,6 +15015,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[75.3387 -387.079 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -14985,6 +15085,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[63.2143 -380.079 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15064,6 +15165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.0177 -387.059 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15133,6 +15235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.0177 -387.059 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15202,6 +15305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.0177 -387.059 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15271,6 +15375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.0177 -403.059 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15340,6 +15445,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[57.0177 -387.059 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15409,6 +15515,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[43.0177 -387.059 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15488,6 +15595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.0481 -391.471 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15557,6 +15665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.0481 -391.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15626,6 +15735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.0464 -391.473 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15695,6 +15805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[27.7325 -402.786 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15764,6 +15875,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[48.9458 -401.371 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15833,6 +15945,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[39.046 -391.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15912,6 +16025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.192 -409.674 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -15981,6 +16095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.192 -409.674 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16050,6 +16165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.1915 -409.674 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16119,6 +16235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[25.7366 -413.816 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16188,6 +16305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.8154 -423.197 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16257,6 +16375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.192 -409.674 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16336,6 +16455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.4848 -425.742 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16405,6 +16525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.4848 -425.742 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16474,6 +16595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.4846 -425.742 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16543,6 +16665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[102.94 -421.601 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16612,6 +16735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.8615 -412.219 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16681,6 +16805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.4846 -425.742 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16760,6 +16885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[89.6305 -443.943 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16829,6 +16955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[89.6305 -443.943 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16898,6 +17025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[89.6305 -443.943 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -16967,6 +17095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100.945 -432.628 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17036,6 +17165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[79.7305 -434.043 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17105,6 +17235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[89.6289 -443.943 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17184,6 +17315,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.6587 -448.355 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17253,6 +17385,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.6587 -448.355 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17322,6 +17455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.6587 -448.357 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17391,6 +17525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.6587 -432.357 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17460,6 +17595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[71.6587 -448.355 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17529,6 +17665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[85.6587 -448.355 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17608,6 +17745,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[65.4632 -455.337 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17677,6 +17815,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[65.4632 -455.337 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17746,6 +17885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[65.4625 -455.339 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17815,6 +17955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[73.4626 -441.482 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17884,6 +18025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[53.339 -448.34 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -17953,6 +18095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[65.462 -455.34 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18032,6 +18175,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.4807 -449.462 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18101,6 +18245,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.4807 -449.462 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18170,6 +18315,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.4799 -449.462 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18239,6 +18385,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[61.339 -441.462 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18308,6 +18455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4813 -437.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18377,6 +18525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.481 -449.461 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18456,6 +18605,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[31.3398 -439.338 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18525,6 +18675,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[31.3398 -439.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18594,6 +18745,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[31.3382 -439.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18663,6 +18815,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[47.3382 -439.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18732,6 +18885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[31.3398 -425.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18801,6 +18955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[31.3398 -439.338 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -18880,6 +19035,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[41.3398 -441.338 8]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -19014,6 +19170,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[38.7305 -616.731 8]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -19148,6 +19305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[28.7305 -614.731 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19217,6 +19375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[28.7305 -614.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19286,6 +19445,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[28.731 -614.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19355,6 +19515,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.731 -614.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19424,6 +19585,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[28.7305 -600.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19493,6 +19655,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[28.7305 -614.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19572,6 +19735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.872 -624.856 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19641,6 +19805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.872 -624.856 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19710,6 +19875,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.8715 -624.856 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19779,6 +19945,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[58.7315 -616.855 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19848,6 +20015,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[37.8734 -612.73 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19917,6 +20085,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[44.8724 -624.856 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -19996,6 +20165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[62.8557 -630.731 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20065,6 +20235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[62.8557 -630.731 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20134,6 +20305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[62.8552 -630.732 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20203,6 +20375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[70.8548 -616.876 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20272,6 +20445,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[50.7299 -623.732 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20341,6 +20515,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[62.8549 -630.732 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20420,6 +20595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.0515 -623.75 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20489,6 +20665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.0515 -623.75 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20558,6 +20735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.0515 -623.75 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20627,6 +20805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.0515 -607.75 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20696,6 +20875,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[69.0515 -623.75 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20765,6 +20945,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[83.0515 -623.75 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20844,6 +21025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.0223 -619.336 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20913,6 +21095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.0223 -619.336 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -20982,6 +21165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.0213 -619.337 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21051,6 +21235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.3356 -608.023 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21120,6 +21305,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[77.124 -609.436 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21189,6 +21375,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[87.0228 -619.337 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21268,6 +21455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.8785 -601.135 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21337,6 +21525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.8785 -601.135 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21406,6 +21595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.8776 -601.135 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21475,6 +21665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[100.332 -597 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21544,6 +21735,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[81.2538 -587.613 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21613,6 +21805,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[84.8768 -601.135 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21692,6 +21885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[38.5832 -585.068 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21761,6 +21955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[38.5832 -585.068 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21830,6 +22025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[38.5852 -585.067 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21899,6 +22095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[23.13 -589.208 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -21968,6 +22165,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[42.2075 -598.591 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22037,6 +22235,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[38.5841 -585.067 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22116,6 +22315,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[36.4407 -566.864 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22185,6 +22385,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[36.4407 -566.864 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22254,6 +22455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[36.4399 -566.865 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22323,6 +22525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[25.1252 -578.179 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22392,6 +22595,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[46.3393 -576.765 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22461,6 +22665,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[36.4397 -566.865 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22540,6 +22745,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4105 -562.453 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22609,6 +22815,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4105 -562.453 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22678,6 +22885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4105 -562.452 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22747,6 +22955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4105 -578.452 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22816,6 +23025,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[54.4105 -562.453 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22885,6 +23095,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[40.4105 -562.453 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -22964,6 +23175,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[60.6075 -555.471 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23033,6 +23245,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[60.6075 -555.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23102,6 +23315,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[60.6071 -555.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23171,6 +23385,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[52.6067 -569.328 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23240,6 +23455,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[72.7306 -562.47 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23309,6 +23525,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[60.6074 -555.473 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23388,6 +23605,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.5871 -555.471 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23457,6 +23675,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.5871 -555.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23526,6 +23745,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.5875 -555.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23595,6 +23815,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[68.7305 -563.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23664,6 +23885,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[89.5888 -567.596 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23733,6 +23955,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.5879 -555.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23812,6 +24035,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.7305 -569.471 10]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23881,6 +24105,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.7305 -569.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -23950,6 +24175,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.731 -569.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -24019,6 +24245,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[82.731 -569.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -24088,6 +24315,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.7305 -583.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -24157,6 +24385,7 @@ world
 			{
 				"power" "2"
 				"startposition" "[98.7305 -569.471 2]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "1"
 				normals
@@ -24237,7 +24466,7 @@ world
 		{
 			"id" "3810"
 			"plane" "(-1842 -2054 0) (-1800 -2096 0) (246 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -40] 0.25"
 			"vaxis" "[-1 0 0 32] 0.25"
 			"rotation" "0"
@@ -24248,7 +24477,7 @@ world
 		{
 			"id" "3809"
 			"plane" "(246 -2054 0) (246 -2054 6) (-1842 -2054 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 32] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -24259,7 +24488,7 @@ world
 		{
 			"id" "3808"
 			"plane" "(-1800 -2096 0) (-1800 -2096 6) (246 -2096 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 -32] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -24270,7 +24499,7 @@ world
 		{
 			"id" "3807"
 			"plane" "(-1842 -2054 0) (-1842 -2054 6) (-1800 -2096 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -24540,6 +24769,7 @@ world
 			{
 				"power" "4"
 				"startposition" "[-1024 -2048 0]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -26325,7 +26555,7 @@ world
 		{
 			"id" "4397"
 			"plane" "(246 -2096 0) (1341 -2096 0) (1341 48 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -26336,7 +26566,7 @@ world
 		{
 			"id" "4396"
 			"plane" "(1341 48 6) (1341 48 0) (1341 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -26347,7 +26577,7 @@ world
 		{
 			"id" "4395"
 			"plane" "(246 -2096 6) (246 -2096 0) (246 48 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -26358,7 +26588,7 @@ world
 		{
 			"id" "4394"
 			"plane" "(246 48 6) (246 48 0) (1341 48 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -26369,7 +26599,7 @@ world
 		{
 			"id" "4393"
 			"plane" "(1341 -2096 6) (1341 -2096 0) (246 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -26932,6 +27162,7 @@ world
 			{
 				"power" "4"
 				"startposition" "[-1800 -3360 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -27139,7 +27370,7 @@ world
 		{
 			"id" "4769"
 			"plane" "(-1842 -3360 0) (-1800 -3360 0) (-1800 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -8] 0.25"
 			"vaxis" "[0 -1 0 8] 0.25"
 			"rotation" "0"
@@ -27150,7 +27381,7 @@ world
 		{
 			"id" "4768"
 			"plane" "(-1842 -2054 0) (-1842 -2054 6) (-1842 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -27161,7 +27392,7 @@ world
 		{
 			"id" "4767"
 			"plane" "(-1800 -3360 0) (-1800 -3360 6) (-1800 -2096 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -27172,7 +27403,7 @@ world
 		{
 			"id" "4766"
 			"plane" "(-1842 -3360 0) (-1842 -3360 6) (-1800 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28847,7 +29078,7 @@ world
 		{
 			"id" "5266"
 			"plane" "(-2080 -2096 0) (-2038 -2054 0) (-4224 -2054 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -40] 0.25"
 			"vaxis" "[1 0 0 0] 0.25"
 			"rotation" "0"
@@ -28858,7 +29089,7 @@ world
 		{
 			"id" "5265"
 			"plane" "(-4224 -2054 6) (-4224 -2054 0) (-2038 -2054 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28869,7 +29100,7 @@ world
 		{
 			"id" "5264"
 			"plane" "(-2080 -2096 6) (-2080 -2096 0) (-4224 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28880,7 +29111,7 @@ world
 		{
 			"id" "5263"
 			"plane" "(-2038 -2054 6) (-2038 -2054 0) (-2080 -2096 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28923,7 +29154,7 @@ world
 		{
 			"id" "5272"
 			"plane" "(-2038 -2054 0) (-2080 -2096 0) (-2080 -3360 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 -40] 0.25"
 			"vaxis" "[0 -1 0 8] 0.25"
 			"rotation" "0"
@@ -28934,7 +29165,7 @@ world
 		{
 			"id" "5271"
 			"plane" "(-2038 -3360 0) (-2038 -3360 6) (-2038 -2054 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28945,7 +29176,7 @@ world
 		{
 			"id" "5270"
 			"plane" "(-2080 -2096 0) (-2080 -2096 6) (-2080 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28956,7 +29187,7 @@ world
 		{
 			"id" "5269"
 			"plane" "(-2080 -3360 0) (-2080 -3360 6) (-2038 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -28999,7 +29230,7 @@ world
 		{
 			"id" "5314"
 			"plane" "(-1439 -84 0) (-1481 -84 0) (-1481 -1348 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 60] 0.25"
 			"vaxis" "[0 1 0 -40] 0.25"
 			"rotation" "0"
@@ -29010,7 +29241,7 @@ world
 		{
 			"id" "5313"
 			"plane" "(-1439 -1390 0) (-1439 -1390 6) (-1439 -84 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29021,7 +29252,7 @@ world
 		{
 			"id" "5312"
 			"plane" "(-1481 -84 0) (-1481 -84 6) (-1481 -1348 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 40] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29032,7 +29263,7 @@ world
 		{
 			"id" "5311"
 			"plane" "(-1439 -84 0) (-1439 -84 6) (-1481 -84 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -60] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29075,7 +29306,7 @@ world
 		{
 			"id" "5320"
 			"plane" "(-1439 -1390 0) (-1481 -1348 0) (-4224 -1348 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 8] 0.25"
 			"vaxis" "[1 0 0 36] 0.25"
 			"rotation" "0"
@@ -29086,7 +29317,7 @@ world
 		{
 			"id" "5319"
 			"plane" "(-4224 -1390 0) (-4224 -1390 6) (-1439 -1390 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 36] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29097,7 +29328,7 @@ world
 		{
 			"id" "5318"
 			"plane" "(-1481 -1348 0) (-1481 -1348 6) (-4224 -1348 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -36] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29108,7 +29339,7 @@ world
 		{
 			"id" "5317"
 			"plane" "(-1439 -1390 0) (-1439 -1390 6) (-1481 -1348 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -8] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29140,7 +29371,7 @@ world
 		{
 			"id" "4171"
 			"plane" "(-3570 0 6) (-1481 0 6) (-1481 -1348 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 48.0588] 0.25"
 			"vaxis" "[-1 0 0 -158.413] 0.25"
 			"rotation" "0"
@@ -29150,6 +29381,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-3570 -1348 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -29202,15 +29434,15 @@ world
 				}
 				alphas
 				{
-					"row0" "0 0 0 0 0 0 0 0 0"
-					"row1" "0 0 0 0 0 0 0 0 0"
-					"row2" "0 0 0 0 0 0 0 0 0"
-					"row3" "0 0 0 0 0 0 0 0 0"
-					"row4" "0 0 0 0 0 0 0 0 0"
-					"row5" "0 0 0 0 0 0 0 0 0"
-					"row6" "0 0 0 0 0 0 0 0 0"
-					"row7" "0 0 0 0 0 0 0 0 0"
-					"row8" "0 0 0 0 0 0 0 0 0"
+					"row0" "255 255 255 255 255 255 255 255 255"
+					"row1" "255 255 255 255 255 255 255 255 255"
+					"row2" "255 255 255 255 255 255 255 255 255"
+					"row3" "255 255 255 255 255 255 255 255 255"
+					"row4" "255 255 255 255 255 255 255 255 255"
+					"row5" "255 255 255 255 255 255 255 255 255"
+					"row6" "255 255 255 255 255 255 255 255 255"
+					"row7" "255 255 255 255 255 255 255 255 255"
+					"row8" "255 255 255 255 255 255 255 255 255"
 				}
 				triangle_tags
 				{
@@ -29277,7 +29509,7 @@ world
 		{
 			"id" "4166"
 			"plane" "(-1481 -1348 6) (-1481 0 6) (-1481 0 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 -488.062] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29308,6 +29540,7 @@ world
 			{
 				"power" "4"
 				"startposition" "[-4224 -2054 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -29439,7 +29672,7 @@ world
 		{
 			"id" "5323"
 			"plane" "(-4224 -2054 0) (-1024 -2054 0) (-1024 -1390 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -29450,7 +29683,7 @@ world
 		{
 			"id" "5324"
 			"plane" "(-4224 -1390 6) (-4224 -2054 6) (-4224 -2054 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29461,7 +29694,7 @@ world
 		{
 			"id" "5325"
 			"plane" "(-1024 -1390 0) (-1024 -2054 0) (-1024 -2054 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29472,7 +29705,7 @@ world
 		{
 			"id" "5326"
 			"plane" "(-1024 -1390 6) (-4224 -1390 6) (-4224 -1390 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29483,7 +29716,7 @@ world
 		{
 			"id" "5327"
 			"plane" "(-1024 -2054 0) (-4224 -2054 0) (-4224 -2054 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29590,6 +29823,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-2038 -3360 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -29673,7 +29907,7 @@ world
 		{
 			"id" "5335"
 			"plane" "(-2038 -3360 0) (-1842 -3360 0) (-1842 -2054 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -29684,7 +29918,7 @@ world
 		{
 			"id" "5336"
 			"plane" "(-2038 -2054 6) (-2038 -3360 6) (-2038 -3360 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29695,7 +29929,7 @@ world
 		{
 			"id" "5337"
 			"plane" "(-1842 -2054 0) (-1842 -3360 0) (-1842 -3360 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29706,7 +29940,7 @@ world
 		{
 			"id" "5338"
 			"plane" "(-1842 -2054 6) (-2038 -2054 6) (-2038 -2054 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29717,7 +29951,7 @@ world
 		{
 			"id" "5339"
 			"plane" "(-1842 -3360 0) (-2038 -3360 0) (-2038 -3360 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29749,7 +29983,7 @@ world
 		{
 			"id" "5350"
 			"plane" "(288 -2096 0) (288 -3360 0) (1341 -3360 0)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 24] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -29760,7 +29994,7 @@ world
 		{
 			"id" "5349"
 			"plane" "(1341 -2096 0) (1341 -3360 0) (1341 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29771,7 +30005,7 @@ world
 		{
 			"id" "5348"
 			"plane" "(288 -3360 0) (288 -2096 0) (288 -2096 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29782,7 +30016,7 @@ world
 		{
 			"id" "5347"
 			"plane" "(288 -2096 0) (1341 -2096 0) (1341 -2096 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[1 0 0 24] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -29793,7 +30027,7 @@ world
 		{
 			"id" "5346"
 			"plane" "(1341 -3360 0) (288 -3360 0) (288 -3360 6)"
-			"material" "TOOLS/TOOLSNODRAW"
+			"material" "TEXTURES/DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 -24] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30052,6 +30286,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[319 -3360 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -30210,6 +30445,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-5246 -4382 367]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -30368,6 +30604,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-5246 -4382 367]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -30516,7 +30753,7 @@ world
 		{
 			"id" "5979"
 			"plane" "(-4224 0 6) (-3570 0 6) (-3570 -1348 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -30527,7 +30764,7 @@ world
 		{
 			"id" "5980"
 			"plane" "(-4224 -1348 -10) (-3570 -1348 -10) (-3570 0 -10)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -30538,7 +30775,7 @@ world
 		{
 			"id" "5981"
 			"plane" "(-4224 0 6) (-4224 -1348 6) (-4224 -1348 -10)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30549,7 +30786,7 @@ world
 		{
 			"id" "5982"
 			"plane" "(-3570 0 -10) (-3570 -1348 -10) (-3570 -1348 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30560,7 +30797,7 @@ world
 		{
 			"id" "5983"
 			"plane" "(-3570 0 6) (-4224 0 6) (-4224 0 -10)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30571,7 +30808,7 @@ world
 		{
 			"id" "5984"
 			"plane" "(-3570 -1348 -10) (-4224 -1348 -10) (-4224 -1348 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30592,7 +30829,7 @@ world
 		{
 			"id" "4518"
 			"plane" "(-4224 -3360 6) (-4224 -2096 6) (-2080 -2096 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 -319.941] 0.25"
 			"vaxis" "[-1 0 0 -510.413] 0.25"
 			"rotation" "0"
@@ -30602,6 +30839,7 @@ world
 			{
 				"power" "3"
 				"startposition" "[-4224 -3360 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -30654,15 +30892,15 @@ world
 				}
 				alphas
 				{
-					"row0" "0 0 0 0 0 0 0 0 0"
-					"row1" "0 0 0 0 0 0 0 0 0"
-					"row2" "0 0 0 0 0 0 0 0 0"
-					"row3" "0 0 0 0 0 0 0 0 0"
-					"row4" "0 0 0 0 0 0 0 0 0"
-					"row5" "0 0 0 0 0 0 0 0 0"
-					"row6" "0 0 0 0 0 0 0 0 0"
-					"row7" "0 0 0 0 0 0 0 0 0"
-					"row8" "0 0 0 0 0 0 0 0 0"
+					"row0" "255 255 255 255 255 255 255 255 255"
+					"row1" "255 255 255 255 255 255 255 255 255"
+					"row2" "255 255 255 255 255 255 255 255 255"
+					"row3" "255 255 255 255 255 255 255 255 255"
+					"row4" "255 255 255 255 255 255 255 255 255"
+					"row5" "255 255 255 255 255 255 255 255 255"
+					"row6" "255 255 255 255 255 255 255 255 255"
+					"row7" "255 255 255 255 255 255 255 255 255"
+					"row8" "255 255 255 255 255 255 255 255 255"
 				}
 				triangle_tags
 				{
@@ -30729,7 +30967,7 @@ world
 		{
 			"id" "4513"
 			"plane" "(-2080 -3360 -5.97206) (-2080 -3360 6) (-2080 -2096 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 391.941] 0.25"
 			"vaxis" "[0 0 -1 -25.9713] 0.25"
 			"rotation" "0"
@@ -30750,7 +30988,7 @@ world
 		{
 			"id" "5985"
 			"plane" "(-440 48 6) (-224 48 6) (-224 -8 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -30761,7 +30999,7 @@ world
 		{
 			"id" "5986"
 			"plane" "(-440 -8 0) (-224 -8 0) (-224 48 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 -1 0 0] 0.25"
 			"rotation" "0"
@@ -30772,7 +31010,7 @@ world
 		{
 			"id" "5987"
 			"plane" "(-440 48 6) (-440 -8 6) (-440 -8 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 -1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30783,7 +31021,7 @@ world
 		{
 			"id" "5988"
 			"plane" "(-224 48 0) (-224 -8 0) (-224 -8 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[0 1 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30794,7 +31032,7 @@ world
 		{
 			"id" "5989"
 			"plane" "(-224 48 6) (-440 48 6) (-440 48 0)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[-1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30805,7 +31043,7 @@ world
 		{
 			"id" "5990"
 			"plane" "(-224 -8 0) (-440 -8 0) (-440 -8 6)"
-			"material" "TEXTURES/DARKFORESTGRASS"
+			"material" "TEXTURES/BLENDFORESTGRASS_DARKFORESTGRASS"
 			"uaxis" "[1 0 0 0] 0.25"
 			"vaxis" "[0 0 -1 0] 0.25"
 			"rotation" "0"
@@ -30836,6 +31074,7 @@ world
 			{
 				"power" "4"
 				"startposition" "[-5246 448 6]"
+				"flags" "0"
 				"elevation" "0"
 				"subdiv" "0"
 				normals
@@ -32465,6 +32704,82 @@ world
 		editor
 		{
 			"color" "0 139 112"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	solid
+	{
+		"id" "32628"
+		side
+		{
+			"id" "6181"
+			"plane" "(56 -8 104) (80 -8 104) (80 -48 104)"
+			"material" "STONE/STONEWALL013A"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 -1 0 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "6182"
+			"plane" "(56 -48 103) (80 -48 103) (80 -8 103)"
+			"material" "LIGHTS/FLUORESCENTCOOL003A"
+			"uaxis" "[0 1 0 51.2] 0.15625"
+			"vaxis" "[-1 0 0 42.6667] 0.1875"
+			"rotation" "90"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "6183"
+			"plane" "(56 -8 104) (56 -48 104) (56 -48 103)"
+			"material" "STONE/STONEWALL013A"
+			"uaxis" "[0 -1 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "6184"
+			"plane" "(80 -8 103) (80 -48 103) (80 -48 104)"
+			"material" "STONE/STONEWALL013A"
+			"uaxis" "[0 1 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "6185"
+			"plane" "(80 -8 104) (56 -8 104) (56 -8 103)"
+			"material" "STONE/STONEWALL013A"
+			"uaxis" "[-1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "6186"
+			"plane" "(80 -48 103) (56 -48 103) (56 -48 104)"
+			"material" "STONE/STONEWALL013A"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "0 177 234"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 		}
@@ -41291,82 +41606,6 @@ world
 			"visgroupautoshown" "1"
 		}
 	}
-	solid
-	{
-		"id" "32628"
-		side
-		{
-			"id" "6181"
-			"plane" "(56 -8 104) (80 -8 104) (80 -48 104)"
-			"material" "STONE/STONEWALL013A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 -1 0 0] 0.25"
-			"rotation" "0"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		side
-		{
-			"id" "6182"
-			"plane" "(56 -48 103) (80 -48 103) (80 -8 103)"
-			"material" "LIGHTS/FLUORESCENTCOOL003A"
-			"uaxis" "[0 1 0 51.2] 0.15625"
-			"vaxis" "[-1 0 0 42.6667] 0.1875"
-			"rotation" "90"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		side
-		{
-			"id" "6183"
-			"plane" "(56 -8 104) (56 -48 104) (56 -48 103)"
-			"material" "STONE/STONEWALL013A"
-			"uaxis" "[0 -1 0 0] 0.25"
-			"vaxis" "[0 0 -1 0] 0.25"
-			"rotation" "0"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		side
-		{
-			"id" "6184"
-			"plane" "(80 -8 103) (80 -48 103) (80 -48 104)"
-			"material" "STONE/STONEWALL013A"
-			"uaxis" "[0 1 0 0] 0.25"
-			"vaxis" "[0 0 -1 0] 0.25"
-			"rotation" "0"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		side
-		{
-			"id" "6185"
-			"plane" "(80 -8 104) (56 -8 104) (56 -8 103)"
-			"material" "STONE/STONEWALL013A"
-			"uaxis" "[-1 0 0 0] 0.25"
-			"vaxis" "[0 0 -1 0] 0.25"
-			"rotation" "0"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		side
-		{
-			"id" "6186"
-			"plane" "(80 -48 103) (56 -48 103) (56 -48 104)"
-			"material" "STONE/STONEWALL013A"
-			"uaxis" "[1 0 0 0] 0.25"
-			"vaxis" "[0 0 -1 0] 0.25"
-			"rotation" "0"
-			"lightmapscale" "16"
-			"smoothing_groups" "0"
-		}
-		editor
-		{
-			"color" "0 177 234"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
 	group
 	{
 		"id" "26"
@@ -41963,6 +42202,7 @@ entity
 		"groupid" "19700"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
 	}
 }
 entity
@@ -41984,6 +42224,7 @@ entity
 		"groupid" "19700"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 500]"
 	}
 }
 entity
@@ -42000,6 +42241,7 @@ entity
 		"groupid" "19775"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 1000]"
 	}
 }
 entity
@@ -42021,6 +42263,7 @@ entity
 		"groupid" "19775"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 1500]"
 	}
 }
 entity
@@ -42037,6 +42280,7 @@ entity
 		"groupid" "19847"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 2000]"
 	}
 }
 entity
@@ -42058,6 +42302,7 @@ entity
 		"groupid" "19847"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
 	}
 }
 entity
@@ -42074,6 +42319,7 @@ entity
 		"groupid" "19899"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 3000]"
 	}
 }
 entity
@@ -42095,6 +42341,7 @@ entity
 		"groupid" "19899"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 3500]"
 	}
 }
 entity
@@ -42113,6 +42360,7 @@ entity
 		"groupid" "20785"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 4000]"
 	}
 }
 entity
@@ -42131,6 +42379,7 @@ entity
 		"groupid" "20785"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 4500]"
 	}
 }
 entity
@@ -42150,6 +42399,7 @@ entity
 		"groupid" "20813"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 5000]"
 	}
 }
 entity
@@ -42169,6 +42419,7 @@ entity
 		"groupid" "20813"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 5500]"
 	}
 }
 entity
@@ -42188,6 +42439,7 @@ entity
 		"groupid" "20847"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 6000]"
 	}
 }
 entity
@@ -42207,6 +42459,7 @@ entity
 		"groupid" "20847"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 6500]"
 	}
 }
 entity
@@ -42226,6 +42479,7 @@ entity
 		"groupid" "20872"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 7000]"
 	}
 }
 entity
@@ -42245,6 +42499,7 @@ entity
 		"groupid" "20872"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 7500]"
 	}
 }
 entity
@@ -42264,6 +42519,7 @@ entity
 		"groupid" "20906"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 8000]"
 	}
 }
 entity
@@ -42283,6 +42539,7 @@ entity
 		"groupid" "20906"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 8500]"
 	}
 }
 entity
@@ -42302,6 +42559,7 @@ entity
 		"groupid" "20931"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 9000]"
 	}
 }
 entity
@@ -42321,6 +42579,7 @@ entity
 		"groupid" "20931"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 9500]"
 	}
 }
 entity
@@ -42340,6 +42599,7 @@ entity
 		"groupid" "20956"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 10000]"
 	}
 }
 entity
@@ -42359,6 +42619,7 @@ entity
 		"groupid" "20956"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 10500]"
 	}
 }
 entity
@@ -42378,6 +42639,7 @@ entity
 		"groupid" "20981"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 11000]"
 	}
 }
 entity
@@ -42397,6 +42659,7 @@ entity
 		"groupid" "20981"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 11500]"
 	}
 }
 entity
@@ -42415,6 +42678,7 @@ entity
 		"groupid" "21014"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 12000]"
 	}
 }
 entity
@@ -42433,6 +42697,7 @@ entity
 		"groupid" "21014"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 12500]"
 	}
 }
 entity
@@ -42451,6 +42716,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 13000]"
 	}
 }
 entity
@@ -42469,6 +42735,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 13500]"
 	}
 }
 entity
@@ -42487,6 +42754,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 14000]"
 	}
 }
 entity
@@ -42505,6 +42773,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 14500]"
 	}
 }
 entity
@@ -42523,6 +42792,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 15000]"
 	}
 }
 entity
@@ -42541,6 +42811,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 15500]"
 	}
 }
 entity
@@ -42559,6 +42830,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 16000]"
 	}
 }
 entity
@@ -42577,6 +42849,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -16268]"
 	}
 }
 entity
@@ -42595,6 +42868,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -15768]"
 	}
 }
 entity
@@ -42613,6 +42887,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -15268]"
 	}
 }
 entity
@@ -42631,6 +42906,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -14768]"
 	}
 }
 entity
@@ -42649,6 +42925,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -14268]"
 	}
 }
 entity
@@ -42667,6 +42944,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -13768]"
 	}
 }
 entity
@@ -42685,6 +42963,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -13268]"
 	}
 }
 entity
@@ -42703,6 +42982,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -12768]"
 	}
 }
 entity
@@ -42721,6 +43001,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -12268]"
 	}
 }
 entity
@@ -42739,6 +43020,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -11768]"
 	}
 }
 entity
@@ -42757,6 +43039,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -11268]"
 	}
 }
 entity
@@ -42775,6 +43058,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -10768]"
 	}
 }
 entity
@@ -42793,6 +43077,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -10268]"
 	}
 }
 entity
@@ -42811,6 +43096,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -9768]"
 	}
 }
 entity
@@ -42829,6 +43115,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -9268]"
 	}
 }
 entity
@@ -42847,6 +43134,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -8768]"
 	}
 }
 entity
@@ -42865,6 +43153,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -8268]"
 	}
 }
 entity
@@ -42883,6 +43172,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -7768]"
 	}
 }
 entity
@@ -42901,6 +43191,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -7268]"
 	}
 }
 entity
@@ -42919,6 +43210,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -6768]"
 	}
 }
 entity
@@ -42937,6 +43229,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -6268]"
 	}
 }
 entity
@@ -42955,6 +43248,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -5768]"
 	}
 }
 entity
@@ -42973,6 +43267,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -5268]"
 	}
 }
 entity
@@ -42991,6 +43286,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -4768]"
 	}
 }
 entity
@@ -43009,6 +43305,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -4268]"
 	}
 }
 entity
@@ -43027,6 +43324,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -3768]"
 	}
 }
 entity
@@ -43045,6 +43343,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -3268]"
 	}
 }
 entity
@@ -43063,6 +43362,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -2768]"
 	}
 }
 entity
@@ -43081,6 +43381,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -2268]"
 	}
 }
 entity
@@ -43099,6 +43400,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -1768]"
 	}
 }
 entity
@@ -43117,6 +43419,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -1268]"
 	}
 }
 entity
@@ -43135,6 +43438,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[0 -768]"
 	}
 }
 entity
@@ -43153,6 +43457,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 0]"
 	}
 }
 entity
@@ -43171,6 +43476,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 500]"
 	}
 }
 entity
@@ -43189,6 +43495,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 1000]"
 	}
 }
 entity
@@ -43207,6 +43514,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 1500]"
 	}
 }
 entity
@@ -43225,6 +43533,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 2000]"
 	}
 }
 entity
@@ -43243,6 +43552,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 2500]"
 	}
 }
 entity
@@ -43261,6 +43571,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 3000]"
 	}
 }
 entity
@@ -43279,6 +43590,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 3500]"
 	}
 }
 entity
@@ -43297,6 +43609,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 4000]"
 	}
 }
 entity
@@ -43315,6 +43628,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 4500]"
 	}
 }
 entity
@@ -43333,6 +43647,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 5000]"
 	}
 }
 entity
@@ -43351,6 +43666,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 5500]"
 	}
 }
 entity
@@ -43369,6 +43685,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 6000]"
 	}
 }
 entity
@@ -43387,6 +43704,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 6500]"
 	}
 }
 entity
@@ -43405,6 +43723,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 7000]"
 	}
 }
 entity
@@ -43423,6 +43742,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 7500]"
 	}
 }
 entity
@@ -43441,6 +43761,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 8000]"
 	}
 }
 entity
@@ -43459,6 +43780,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 8500]"
 	}
 }
 entity
@@ -43477,6 +43799,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 9000]"
 	}
 }
 entity
@@ -43495,6 +43818,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 9500]"
 	}
 }
 entity
@@ -43513,6 +43837,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 10000]"
 	}
 }
 entity
@@ -43531,6 +43856,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 10500]"
 	}
 }
 entity
@@ -43549,6 +43875,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 11000]"
 	}
 }
 entity
@@ -43567,6 +43894,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 11500]"
 	}
 }
 entity
@@ -43585,6 +43913,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 12000]"
 	}
 }
 entity
@@ -43603,6 +43932,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 12500]"
 	}
 }
 entity
@@ -43621,6 +43951,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 13000]"
 	}
 }
 entity
@@ -43639,6 +43970,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 13500]"
 	}
 }
 entity
@@ -43657,6 +43989,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 14000]"
 	}
 }
 entity
@@ -43675,6 +44008,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 14500]"
 	}
 }
 entity
@@ -43693,6 +44027,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 15000]"
 	}
 }
 entity
@@ -43711,6 +44046,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 15500]"
 	}
 }
 entity
@@ -43729,6 +44065,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 16000]"
 	}
 }
 entity
@@ -43747,6 +44084,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -16268]"
 	}
 }
 entity
@@ -43765,6 +44103,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -15768]"
 	}
 }
 entity
@@ -43783,6 +44122,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -15268]"
 	}
 }
 entity
@@ -43801,6 +44141,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -14768]"
 	}
 }
 entity
@@ -43819,6 +44160,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -14268]"
 	}
 }
 entity
@@ -43837,6 +44179,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -13768]"
 	}
 }
 entity
@@ -43855,6 +44198,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -13268]"
 	}
 }
 entity
@@ -43873,6 +44217,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -12768]"
 	}
 }
 entity
@@ -43891,6 +44236,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -12268]"
 	}
 }
 entity
@@ -43909,6 +44255,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -11768]"
 	}
 }
 entity
@@ -43927,6 +44274,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -11268]"
 	}
 }
 entity
@@ -43945,6 +44293,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -10768]"
 	}
 }
 entity
@@ -43963,6 +44312,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -10268]"
 	}
 }
 entity
@@ -43981,6 +44331,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -9768]"
 	}
 }
 entity
@@ -43999,6 +44350,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -9268]"
 	}
 }
 entity
@@ -44017,6 +44369,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -8768]"
 	}
 }
 entity
@@ -44035,6 +44388,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -8268]"
 	}
 }
 entity
@@ -44053,6 +44407,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -7768]"
 	}
 }
 entity
@@ -44071,6 +44426,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -7268]"
 	}
 }
 entity
@@ -44089,6 +44445,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -6768]"
 	}
 }
 entity
@@ -44107,6 +44464,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -6268]"
 	}
 }
 entity
@@ -44125,6 +44483,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -5768]"
 	}
 }
 entity
@@ -44143,6 +44502,7 @@ entity
 		"groupid" "24079"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -5268]"
 	}
 }
 entity
@@ -44161,6 +44521,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -4768]"
 	}
 }
 entity
@@ -44179,6 +44540,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -4268]"
 	}
 }
 entity
@@ -44197,6 +44559,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -3768]"
 	}
 }
 entity
@@ -44215,6 +44578,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -3268]"
 	}
 }
 entity
@@ -44233,6 +44597,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -2768]"
 	}
 }
 entity
@@ -44251,6 +44616,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -2268]"
 	}
 }
 entity
@@ -44269,6 +44635,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -1768]"
 	}
 }
 entity
@@ -44287,6 +44654,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -1268]"
 	}
 }
 entity
@@ -44305,6 +44673,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[500 -768]"
 	}
 }
 entity
@@ -44323,6 +44692,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 0]"
 	}
 }
 entity
@@ -44341,6 +44711,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 500]"
 	}
 }
 entity
@@ -44359,6 +44730,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 1000]"
 	}
 }
 entity
@@ -44377,6 +44749,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 1500]"
 	}
 }
 entity
@@ -44395,6 +44768,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 2000]"
 	}
 }
 entity
@@ -44413,6 +44787,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 2500]"
 	}
 }
 entity
@@ -44431,6 +44806,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 3000]"
 	}
 }
 entity
@@ -44449,6 +44825,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 3500]"
 	}
 }
 entity
@@ -44467,6 +44844,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 4000]"
 	}
 }
 entity
@@ -44485,6 +44863,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 4500]"
 	}
 }
 entity
@@ -44503,6 +44882,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 5000]"
 	}
 }
 entity
@@ -44521,6 +44901,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 5500]"
 	}
 }
 entity
@@ -44539,6 +44920,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 6000]"
 	}
 }
 entity
@@ -44557,6 +44939,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 6500]"
 	}
 }
 entity
@@ -44575,6 +44958,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 7000]"
 	}
 }
 entity
@@ -44593,6 +44977,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 7500]"
 	}
 }
 entity
@@ -44611,6 +44996,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 8000]"
 	}
 }
 entity
@@ -44629,6 +45015,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 8500]"
 	}
 }
 entity
@@ -44647,6 +45034,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 9000]"
 	}
 }
 entity
@@ -44665,6 +45053,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 9500]"
 	}
 }
 entity
@@ -44683,6 +45072,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 10000]"
 	}
 }
 entity
@@ -44701,6 +45091,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 10500]"
 	}
 }
 entity
@@ -44719,6 +45110,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 11000]"
 	}
 }
 entity
@@ -44737,6 +45129,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 11500]"
 	}
 }
 entity
@@ -44755,6 +45148,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 12000]"
 	}
 }
 entity
@@ -44773,6 +45167,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 12500]"
 	}
 }
 entity
@@ -44791,6 +45186,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 13000]"
 	}
 }
 entity
@@ -44809,6 +45205,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 13500]"
 	}
 }
 entity
@@ -44827,6 +45224,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 14000]"
 	}
 }
 entity
@@ -44845,6 +45243,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 14500]"
 	}
 }
 entity
@@ -44863,6 +45262,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 15000]"
 	}
 }
 entity
@@ -44881,6 +45281,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 15500]"
 	}
 }
 entity
@@ -44899,6 +45300,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 16000]"
 	}
 }
 entity
@@ -44917,6 +45319,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -16268]"
 	}
 }
 entity
@@ -44935,6 +45338,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -15768]"
 	}
 }
 entity
@@ -44953,6 +45357,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -15268]"
 	}
 }
 entity
@@ -44971,6 +45376,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -14768]"
 	}
 }
 entity
@@ -44989,6 +45395,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -14268]"
 	}
 }
 entity
@@ -45007,6 +45414,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -13768]"
 	}
 }
 entity
@@ -45025,6 +45433,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -13268]"
 	}
 }
 entity
@@ -45043,6 +45452,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -12768]"
 	}
 }
 entity
@@ -45061,6 +45471,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -12268]"
 	}
 }
 entity
@@ -45079,6 +45490,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -11768]"
 	}
 }
 entity
@@ -45097,6 +45509,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -11268]"
 	}
 }
 entity
@@ -45115,6 +45528,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -10768]"
 	}
 }
 entity
@@ -45133,6 +45547,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -10268]"
 	}
 }
 entity
@@ -45151,6 +45566,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -9768]"
 	}
 }
 entity
@@ -45169,6 +45585,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -9268]"
 	}
 }
 entity
@@ -45187,6 +45604,7 @@ entity
 		"groupid" "26003"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -8768]"
 	}
 }
 entity
@@ -45205,6 +45623,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -8268]"
 	}
 }
 entity
@@ -45223,6 +45642,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -7768]"
 	}
 }
 entity
@@ -45241,6 +45661,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -7268]"
 	}
 }
 entity
@@ -45259,6 +45680,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -6768]"
 	}
 }
 entity
@@ -45277,6 +45699,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -6268]"
 	}
 }
 entity
@@ -45295,6 +45718,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -5768]"
 	}
 }
 entity
@@ -45313,6 +45737,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -5268]"
 	}
 }
 entity
@@ -45331,6 +45756,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -4768]"
 	}
 }
 entity
@@ -45349,6 +45775,7 @@ entity
 		"groupid" "28968"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -4268]"
 	}
 }
 entity
@@ -45367,6 +45794,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -3768]"
 	}
 }
 entity
@@ -45385,6 +45813,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -3268]"
 	}
 }
 entity
@@ -45403,6 +45832,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -2768]"
 	}
 }
 entity
@@ -45421,6 +45851,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -2268]"
 	}
 }
 entity
@@ -45439,6 +45870,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -1768]"
 	}
 }
 entity
@@ -45457,6 +45889,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -1268]"
 	}
 }
 entity
@@ -45475,6 +45908,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1000 -768]"
 	}
 }
 entity
@@ -45493,6 +45927,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 0]"
 	}
 }
 entity
@@ -45511,6 +45946,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 500]"
 	}
 }
 entity
@@ -45529,6 +45965,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 1000]"
 	}
 }
 entity
@@ -45547,6 +45984,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 1500]"
 	}
 }
 entity
@@ -45565,6 +46003,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 2000]"
 	}
 }
 entity
@@ -45583,6 +46022,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 2500]"
 	}
 }
 entity
@@ -45601,6 +46041,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 3000]"
 	}
 }
 entity
@@ -45619,6 +46060,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 3500]"
 	}
 }
 entity
@@ -45637,6 +46079,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 4000]"
 	}
 }
 entity
@@ -45655,6 +46098,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 4500]"
 	}
 }
 entity
@@ -45673,6 +46117,7 @@ entity
 		"groupid" "29249"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 5000]"
 	}
 }
 entity
@@ -45690,6 +46135,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 5500]"
 	}
 }
 entity
@@ -45707,6 +46153,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 6000]"
 	}
 }
 entity
@@ -45724,6 +46171,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 6500]"
 	}
 }
 entity
@@ -45741,6 +46189,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 7000]"
 	}
 }
 entity
@@ -45758,6 +46207,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 7500]"
 	}
 }
 entity
@@ -45775,6 +46225,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 8000]"
 	}
 }
 entity
@@ -45792,6 +46243,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 8500]"
 	}
 }
 entity
@@ -45809,6 +46261,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 9000]"
 	}
 }
 entity
@@ -45826,6 +46279,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 9500]"
 	}
 }
 entity
@@ -45843,6 +46297,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 10000]"
 	}
 }
 entity
@@ -45860,6 +46315,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 10500]"
 	}
 }
 entity
@@ -45873,6 +46329,7 @@ entity
 		"color" "0 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 11000]"
 	}
 }
 entity
@@ -46802,6 +47259,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 11500]"
 	}
 }
 entity
@@ -46819,6 +47277,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 12000]"
 	}
 }
 entity
@@ -46836,6 +47295,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 12500]"
 	}
 }
 entity
@@ -46853,6 +47313,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 13000]"
 	}
 }
 entity
@@ -46867,6 +47328,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 13500]"
 	}
 }
 entity
@@ -46881,6 +47343,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 14000]"
 	}
 }
 entity
@@ -46895,6 +47358,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 14500]"
 	}
 }
 entity
@@ -46912,6 +47376,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 15000]"
 	}
 }
 entity
@@ -46929,6 +47394,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 15500]"
 	}
 }
 entity
@@ -46946,6 +47412,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 16000]"
 	}
 }
 entity
@@ -46963,6 +47430,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -16268]"
 	}
 }
 entity
@@ -46980,6 +47448,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -15768]"
 	}
 }
 entity
@@ -46997,6 +47466,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -15268]"
 	}
 }
 entity
@@ -47014,6 +47484,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -14768]"
 	}
 }
 entity
@@ -47031,6 +47502,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -14268]"
 	}
 }
 entity
@@ -47048,6 +47520,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -13768]"
 	}
 }
 entity
@@ -47065,6 +47538,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -13268]"
 	}
 }
 entity
@@ -47082,6 +47556,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -12768]"
 	}
 }
 entity
@@ -47099,6 +47574,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -12268]"
 	}
 }
 entity
@@ -47116,6 +47592,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -11768]"
 	}
 }
 entity
@@ -47133,6 +47610,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -11268]"
 	}
 }
 entity
@@ -47150,6 +47628,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -10768]"
 	}
 }
 entity
@@ -47167,6 +47646,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -10268]"
 	}
 }
 entity
@@ -47184,6 +47664,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -9768]"
 	}
 }
 entity
@@ -47201,6 +47682,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -9268]"
 	}
 }
 entity
@@ -47218,6 +47700,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -8768]"
 	}
 }
 entity
@@ -47235,6 +47718,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -8268]"
 	}
 }
 entity
@@ -47252,6 +47736,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -7768]"
 	}
 }
 entity
@@ -47269,6 +47754,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -7268]"
 	}
 }
 entity
@@ -47286,6 +47772,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -6768]"
 	}
 }
 entity
@@ -47303,6 +47790,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -6268]"
 	}
 }
 entity
@@ -47320,6 +47808,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -5768]"
 	}
 }
 entity
@@ -47337,6 +47826,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -5268]"
 	}
 }
 entity
@@ -47354,6 +47844,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -4768]"
 	}
 }
 entity
@@ -47371,6 +47862,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -4268]"
 	}
 }
 entity
@@ -47388,6 +47880,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -3768]"
 	}
 }
 entity
@@ -47405,6 +47898,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -3268]"
 	}
 }
 entity
@@ -47422,6 +47916,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -2768]"
 	}
 }
 entity
@@ -47439,6 +47934,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -2268]"
 	}
 }
 entity
@@ -47456,6 +47952,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -1768]"
 	}
 }
 entity
@@ -47473,6 +47970,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -1268]"
 	}
 }
 entity
@@ -47490,6 +47988,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[1500 -768]"
 	}
 }
 entity
@@ -47507,6 +48006,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 0]"
 	}
 }
 entity
@@ -47524,6 +48024,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 500]"
 	}
 }
 entity
@@ -47541,6 +48042,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 1000]"
 	}
 }
 entity
@@ -47558,6 +48060,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 1500]"
 	}
 }
 entity
@@ -47575,6 +48078,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 2000]"
 	}
 }
 entity
@@ -47592,6 +48096,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 2500]"
 	}
 }
 entity
@@ -47609,6 +48114,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 3000]"
 	}
 }
 entity
@@ -47626,6 +48132,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 3500]"
 	}
 }
 entity
@@ -47643,6 +48150,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 4000]"
 	}
 }
 entity
@@ -47660,6 +48168,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 4500]"
 	}
 }
 entity
@@ -47677,6 +48186,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 5000]"
 	}
 }
 entity
@@ -47694,6 +48204,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 5500]"
 	}
 }
 entity
@@ -47711,6 +48222,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 6000]"
 	}
 }
 entity
@@ -47728,6 +48240,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 6500]"
 	}
 }
 entity
@@ -47745,6 +48258,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 7000]"
 	}
 }
 entity
@@ -47762,6 +48276,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 7500]"
 	}
 }
 entity
@@ -47779,6 +48294,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 8000]"
 	}
 }
 entity
@@ -47796,6 +48312,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 8500]"
 	}
 }
 entity
@@ -47813,6 +48330,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 9000]"
 	}
 }
 entity
@@ -47830,6 +48348,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 9500]"
 	}
 }
 entity
@@ -47847,6 +48366,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 10000]"
 	}
 }
 entity
@@ -47864,6 +48384,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 10500]"
 	}
 }
 entity
@@ -47881,6 +48402,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 11000]"
 	}
 }
 entity
@@ -47898,6 +48420,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 11500]"
 	}
 }
 entity
@@ -47915,6 +48438,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 12000]"
 	}
 }
 entity
@@ -47932,6 +48456,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 12500]"
 	}
 }
 entity
@@ -47949,6 +48474,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 13000]"
 	}
 }
 entity
@@ -47966,6 +48492,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 13500]"
 	}
 }
 entity
@@ -47983,6 +48510,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 14000]"
 	}
 }
 entity
@@ -48000,6 +48528,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 14500]"
 	}
 }
 entity
@@ -48017,6 +48546,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 15000]"
 	}
 }
 entity
@@ -48034,6 +48564,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 15500]"
 	}
 }
 entity
@@ -48051,6 +48582,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 16000]"
 	}
 }
 entity
@@ -48068,6 +48600,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -16268]"
 	}
 }
 entity
@@ -48085,6 +48618,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -15768]"
 	}
 }
 entity
@@ -48100,6 +48634,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -15268]"
 	}
 }
 entity
@@ -48120,6 +48655,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -14768]"
 	}
 }
 entity
@@ -48135,6 +48671,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -14268]"
 	}
 }
 entity
@@ -48155,6 +48692,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -13768]"
 	}
 }
 entity
@@ -48170,6 +48708,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -13268]"
 	}
 }
 entity
@@ -48185,6 +48724,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -12768]"
 	}
 }
 entity
@@ -48205,6 +48745,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -12268]"
 	}
 }
 entity
@@ -48225,6 +48766,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -11768]"
 	}
 }
 entity
@@ -48245,6 +48787,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -11268]"
 	}
 }
 entity
@@ -48265,6 +48808,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -10768]"
 	}
 }
 entity
@@ -48280,6 +48824,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -10268]"
 	}
 }
 entity
@@ -48295,6 +48840,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -9768]"
 	}
 }
 entity
@@ -48310,6 +48856,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -9268]"
 	}
 }
 entity
@@ -48325,6 +48872,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -8768]"
 	}
 }
 entity
@@ -48345,6 +48893,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -8268]"
 	}
 }
 entity
@@ -48365,6 +48914,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7768]"
 	}
 }
 entity
@@ -48382,6 +48932,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
 	}
 }
 entity
@@ -48399,6 +48950,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -6768]"
 	}
 }
 entity
@@ -48416,6 +48968,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -6268]"
 	}
 }
 entity
@@ -48433,6 +48986,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -5768]"
 	}
 }
 entity
@@ -48450,6 +49004,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -5268]"
 	}
 }
 entity
@@ -48467,6 +49022,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -4768]"
 	}
 }
 entity
@@ -48484,6 +49040,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -4268]"
 	}
 }
 entity
@@ -48501,6 +49058,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -3768]"
 	}
 }
 entity
@@ -48518,6 +49076,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -3268]"
 	}
 }
 entity
@@ -48535,6 +49094,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -2768]"
 	}
 }
 entity
@@ -48552,6 +49112,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -2268]"
 	}
 }
 entity
@@ -48569,6 +49130,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -1768]"
 	}
 }
 entity
@@ -48586,6 +49148,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -1268]"
 	}
 }
 entity
@@ -48603,6 +49166,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -768]"
 	}
 }
 entity
@@ -48620,6 +49184,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 0]"
 	}
 }
 entity
@@ -48637,6 +49202,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 500]"
 	}
 }
 entity
@@ -48654,6 +49220,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 1000]"
 	}
 }
 entity
@@ -48671,6 +49238,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 1500]"
 	}
 }
 entity
@@ -48688,6 +49256,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 2000]"
 	}
 }
 entity
@@ -48705,6 +49274,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 2500]"
 	}
 }
 entity
@@ -48718,6 +49288,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 3000]"
 	}
 }
 entity
@@ -48731,6 +49302,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 3500]"
 	}
 }
 entity
@@ -48744,6 +49316,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 4000]"
 	}
 }
 entity
@@ -48757,6 +49330,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 4500]"
 	}
 }
 entity
@@ -48770,6 +49344,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 5000]"
 	}
 }
 entity
@@ -48783,6 +49358,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 5500]"
 	}
 }
 entity
@@ -48796,6 +49372,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 6000]"
 	}
 }
 entity
@@ -48809,6 +49386,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 6500]"
 	}
 }
 entity
@@ -48822,6 +49400,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 7000]"
 	}
 }
 entity
@@ -48835,6 +49414,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 7500]"
 	}
 }
 entity
@@ -48848,6 +49428,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 8000]"
 	}
 }
 entity
@@ -48861,6 +49442,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 8500]"
 	}
 }
 entity
@@ -48874,6 +49456,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 9000]"
 	}
 }
 entity
@@ -48887,6 +49470,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 9500]"
 	}
 }
 entity
@@ -48900,6 +49484,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 10000]"
 	}
 }
 entity
@@ -48913,6 +49498,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 10500]"
 	}
 }
 entity
@@ -48926,6 +49512,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 11000]"
 	}
 }
 entity
@@ -48940,6 +49527,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 11500]"
 	}
 }
 entity
@@ -48954,6 +49542,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 12000]"
 	}
 }
 entity
@@ -48968,6 +49557,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 12500]"
 	}
 }
 entity
@@ -48982,6 +49572,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 13000]"
 	}
 }
 entity
@@ -48996,6 +49587,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 13500]"
 	}
 }
 entity
@@ -49010,6 +49602,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 14000]"
 	}
 }
 entity
@@ -49024,6 +49617,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 14500]"
 	}
 }
 entity
@@ -49038,6 +49632,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 15000]"
 	}
 }
 entity
@@ -49052,6 +49647,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 15500]"
 	}
 }
 entity
@@ -49066,6 +49662,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 16000]"
 	}
 }
 entity
@@ -49080,6 +49677,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -16268]"
 	}
 }
 entity
@@ -49094,6 +49692,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -15768]"
 	}
 }
 entity
@@ -49108,6 +49707,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -15268]"
 	}
 }
 entity
@@ -49122,6 +49722,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -14768]"
 	}
 }
 entity
@@ -49136,6 +49737,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -14268]"
 	}
 }
 entity
@@ -49150,6 +49752,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -13768]"
 	}
 }
 entity
@@ -49164,6 +49767,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -13268]"
 	}
 }
 entity
@@ -49178,6 +49782,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -12768]"
 	}
 }
 entity
@@ -49192,6 +49797,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -12268]"
 	}
 }
 entity
@@ -49206,6 +49812,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -11768]"
 	}
 }
 entity
@@ -49219,6 +49826,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -11268]"
 	}
 }
 entity
@@ -49232,6 +49840,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -10768]"
 	}
 }
 entity
@@ -49245,6 +49854,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -10268]"
 	}
 }
 entity
@@ -49258,6 +49868,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -9768]"
 	}
 }
 entity
@@ -49271,6 +49882,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -9268]"
 	}
 }
 entity
@@ -49284,6 +49896,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -8768]"
 	}
 }
 entity
@@ -49297,6 +49910,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -8268]"
 	}
 }
 entity
@@ -49310,6 +49924,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -7768]"
 	}
 }
 entity
@@ -49323,6 +49938,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -7268]"
 	}
 }
 entity
@@ -49340,6 +49956,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -6768]"
 	}
 }
 entity
@@ -49362,6 +49979,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -6268]"
 	}
 }
 entity
@@ -49384,6 +50002,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -5768]"
 	}
 }
 entity
@@ -49405,6 +50024,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -5268]"
 	}
 }
 entity
@@ -49427,6 +50047,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -4768]"
 	}
 }
 entity
@@ -49449,6 +50070,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -4268]"
 	}
 }
 entity
@@ -49471,6 +50093,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -3768]"
 	}
 }
 entity
@@ -49493,6 +50116,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -3268]"
 	}
 }
 entity
@@ -49515,6 +50139,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -2768]"
 	}
 }
 entity
@@ -49537,6 +50162,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -2268]"
 	}
 }
 entity
@@ -49559,6 +50185,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -1768]"
 	}
 }
 entity
@@ -49581,6 +50208,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -1268]"
 	}
 }
 entity
@@ -49603,6 +50231,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[2500 -768]"
 	}
 }
 entity
@@ -49617,6 +50246,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 0]"
 	}
 }
 entity
@@ -49634,6 +50264,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 500]"
 	}
 }
 entity
@@ -49649,6 +50280,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 1000]"
 	}
 }
 entity
@@ -49666,6 +50298,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 1500]"
 	}
 }
 entity
@@ -49683,6 +50316,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 2000]"
 	}
 }
 entity
@@ -49698,6 +50332,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 2500]"
 	}
 }
 entity
@@ -49715,6 +50350,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 3000]"
 	}
 }
 entity
@@ -49732,6 +50368,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 3500]"
 	}
 }
 entity
@@ -49747,6 +50384,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 4000]"
 	}
 }
 entity
@@ -49764,6 +50402,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 4500]"
 	}
 }
 entity
@@ -49781,6 +50420,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 5000]"
 	}
 }
 entity
@@ -49796,6 +50436,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 5500]"
 	}
 }
 entity
@@ -49813,6 +50454,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 6000]"
 	}
 }
 entity
@@ -49830,6 +50472,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 6500]"
 	}
 }
 entity
@@ -49847,6 +50490,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 7000]"
 	}
 }
 entity
@@ -49864,6 +50508,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 7500]"
 	}
 }
 entity
@@ -49881,6 +50526,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 8000]"
 	}
 }
 entity
@@ -49898,6 +50544,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 8500]"
 	}
 }
 entity
@@ -49915,6 +50562,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 9000]"
 	}
 }
 entity
@@ -49932,6 +50580,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 9500]"
 	}
 }
 entity
@@ -49949,6 +50598,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 10000]"
 	}
 }
 entity
@@ -49966,6 +50616,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 10500]"
 	}
 }
 entity
@@ -49983,6 +50634,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 11000]"
 	}
 }
 entity
@@ -50000,6 +50652,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 11500]"
 	}
 }
 entity
@@ -50017,6 +50670,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 12000]"
 	}
 }
 entity
@@ -50034,6 +50688,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 12500]"
 	}
 }
 entity
@@ -50051,6 +50706,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 13000]"
 	}
 }
 entity
@@ -50068,6 +50724,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 13500]"
 	}
 }
 entity
@@ -50085,6 +50742,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 14000]"
 	}
 }
 entity
@@ -50106,6 +50764,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 14500]"
 	}
 }
 entity
@@ -50118,6 +50777,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 15000]"
 	}
 }
 entity
@@ -50130,6 +50790,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 15500]"
 	}
 }
 entity
@@ -50142,6 +50803,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 16000]"
 	}
 }
 entity
@@ -50154,6 +50816,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -16268]"
 	}
 }
 entity
@@ -50166,6 +50829,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -15768]"
 	}
 }
 entity
@@ -50178,6 +50842,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -15268]"
 	}
 }
 entity
@@ -50190,6 +50855,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -14768]"
 	}
 }
 entity
@@ -50202,6 +50868,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -14268]"
 	}
 }
 entity
@@ -50214,6 +50881,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -13768]"
 	}
 }
 entity
@@ -50226,6 +50894,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -13268]"
 	}
 }
 entity
@@ -50238,6 +50907,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -12768]"
 	}
 }
 entity
@@ -50250,6 +50920,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -12268]"
 	}
 }
 entity
@@ -50262,6 +50933,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -11768]"
 	}
 }
 entity
@@ -50274,6 +50946,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -11268]"
 	}
 }
 entity
@@ -50286,6 +50959,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -10768]"
 	}
 }
 entity
@@ -50298,6 +50972,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -10268]"
 	}
 }
 entity
@@ -50310,6 +50985,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -9768]"
 	}
 }
 entity
@@ -50322,6 +50998,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -9268]"
 	}
 }
 entity
@@ -50334,6 +51011,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -8768]"
 	}
 }
 entity
@@ -50346,6 +51024,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -8268]"
 	}
 }
 entity
@@ -50358,6 +51037,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -7768]"
 	}
 }
 entity
@@ -50370,6 +51050,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -7268]"
 	}
 }
 entity
@@ -50382,6 +51063,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -6768]"
 	}
 }
 entity
@@ -50394,6 +51076,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -6268]"
 	}
 }
 entity
@@ -50406,6 +51089,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -5768]"
 	}
 }
 entity
@@ -50418,6 +51102,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -5268]"
 	}
 }
 entity
@@ -50430,6 +51115,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -4768]"
 	}
 }
 entity
@@ -50442,6 +51128,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -4268]"
 	}
 }
 entity
@@ -50454,6 +51141,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -3768]"
 	}
 }
 entity
@@ -50466,6 +51154,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -3268]"
 	}
 }
 entity
@@ -50478,6 +51167,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -2768]"
 	}
 }
 entity
@@ -50490,6 +51180,7 @@ entity
 		"color" "0 0 255"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -2268]"
 	}
 }
 entity
@@ -50507,6 +51198,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -1768]"
 	}
 }
 entity
@@ -50522,6 +51214,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -1268]"
 	}
 }
 entity
@@ -50539,6 +51232,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3000 -768]"
 	}
 }
 entity
@@ -50556,6 +51250,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 0]"
 	}
 }
 entity
@@ -50571,6 +51266,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 500]"
 	}
 }
 entity
@@ -50588,6 +51284,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 1000]"
 	}
 }
 entity
@@ -50605,6 +51302,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 1500]"
 	}
 }
 entity
@@ -50620,6 +51318,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 2000]"
 	}
 }
 entity
@@ -50637,6 +51336,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 2500]"
 	}
 }
 entity
@@ -50654,6 +51354,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 3000]"
 	}
 }
 entity
@@ -50669,6 +51370,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 3500]"
 	}
 }
 entity
@@ -50686,6 +51388,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 4000]"
 	}
 }
 entity
@@ -50777,6 +51480,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 4500]"
 	}
 }
 entity
@@ -50799,6 +51503,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 5000]"
 	}
 }
 entity
@@ -50821,6 +51526,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 5500]"
 	}
 }
 entity
@@ -50843,6 +51549,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 6000]"
 	}
 }
 entity
@@ -50864,6 +51571,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 6500]"
 	}
 }
 entity
@@ -50886,6 +51594,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 7000]"
 	}
 }
 entity
@@ -50908,6 +51617,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 7500]"
 	}
 }
 entity
@@ -50930,6 +51640,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 8000]"
 	}
 }
 entity
@@ -50951,6 +51662,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 8500]"
 	}
 }
 entity
@@ -51042,6 +51754,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 9000]"
 	}
 }
 entity
@@ -51057,6 +51770,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 9500]"
 	}
 }
 entity
@@ -51074,198 +51788,207 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 10000]"
 	}
 }
 entity
 {
 	"id" "27748"
 	"classname" "light_spot"
-	"angles" "-45 90 90"
+	"angles" "-53 90 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-53"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-1373.98 -3252.58 229.281"
+	"origin" "-1373.98 -3252.04 229.743"
 	editor
 	{
-		"color" "0 145 202"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 10500]"
 	}
 }
 entity
 {
 	"id" "27730"
 	"classname" "light_spot"
-	"angles" "-45 90 90"
+	"angles" "-53 90 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-53"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-961.977 -3252.58 229.281"
+	"origin" "-961.977 -3252.04 229.743"
 	editor
 	{
-		"color" "0 247 124"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 11000]"
 	}
 }
 entity
 {
 	"id" "27712"
 	"classname" "light_spot"
-	"angles" "-45 90 90"
+	"angles" "-53 90 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-53"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-548.977 -3252.58 229.317"
+	"origin" "-548.977 -3252.03 229.779"
 	editor
 	{
-		"color" "0 121 122"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 11500]"
 	}
 }
 entity
 {
 	"id" "27694"
 	"classname" "light_spot"
-	"angles" "-45 90 90"
+	"angles" "-53 90 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-53"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-137 -3252.79 229.317"
+	"origin" "-137 -3252.24 229.808"
 	editor
 	{
-		"color" "0 255 164"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 12000]"
 	}
 }
 entity
 {
 	"id" "22562"
 	"classname" "light_spot"
-	"angles" "-45 270 90"
+	"angles" "-54 270 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-54"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-1373.98 -2186.21 229.317"
+	"origin" "-1373.98 -2186.84 229.864"
 	editor
 	{
-		"color" "0 193 210"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 12500]"
 	}
 }
 entity
 {
 	"id" "22656"
 	"classname" "light_spot"
-	"angles" "-45 270 90"
+	"angles" "-54 270 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-54"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-962 -2186.42 229.317"
+	"origin" "-962 -2187.04 229.831"
 	editor
 	{
-		"color" "0 199 132"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 13000]"
 	}
 }
 entity
 {
 	"id" "22732"
 	"classname" "light_spot"
-	"angles" "-45 270 90"
+	"angles" "-54 270 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-54"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-549 -2186.42 229.281"
+	"origin" "-549 -2187.04 229.796"
 	editor
 	{
-		"color" "0 161 174"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 13500]"
 	}
 }
 entity
 {
 	"id" "22789"
 	"classname" "light_spot"
-	"angles" "-45 270 90"
+	"angles" "-54 270 90"
 	"_light" "255 255 255 400"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"_inner_cone" "15"
 	"_cone" "15"
 	"_exponent" "1"
-	"pitch" "-45"
+	"pitch" "-54"
 	"_distance" "512"
 	"_fifty_percent_distance" "400"
 	"spawnflags" "0"
 	"_zero_percent_distance" "0"
-	"origin" "-137 -2186.42 229.281"
+	"origin" "-137 -2187.04 229.796"
 	editor
 	{
-		"color" "0 255 132"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 14000]"
 	}
 }
 entity
@@ -51283,6 +52006,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 14500]"
 	}
 }
 entity
@@ -51300,6 +52024,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 15000]"
 	}
 }
 entity
@@ -51315,6 +52040,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 15500]"
 	}
 }
 entity
@@ -51336,9 +52062,10 @@ entity
 	"origin" "242.761 -1343.98 229.281"
 	editor
 	{
-		"color" "0 255 132"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 16000]"
 	}
 }
 entity
@@ -51360,9 +52087,10 @@ entity
 	"origin" "222.792 -910.023 229.281"
 	editor
 	{
-		"color" "0 255 132"
+		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 -16268]"
 	}
 }
 entity
@@ -51378,6 +52106,7 @@ entity
 		"color" "220 30 220"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 -15768]"
 	}
 }
 entity
@@ -51395,6 +52124,7 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 -15268]"
 	}
 }
 entity
@@ -51412,6 +52142,463 @@ entity
 		"color" "255 255 0"
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
+		"logicalpos" "[3500 -14768]"
+	}
+}
+entity
+{
+	"id" "34261"
+	"classname" "prop_static"
+	"angles" "0 85.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1114.6 -1983.97 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34281"
+	"classname" "prop_static"
+	"angles" "0 100.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1320.6 -1978.97 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34297"
+	"classname" "prop_static"
+	"angles" "0 81.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1552.6 -1960.97 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34333"
+	"classname" "prop_static"
+	"angles" "0 91.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/longcanopy.mdl"
+	"skin" "0"
+	"origin" "-1348 -1967 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34366"
+	"classname" "prop_static"
+	"angles" "0 1.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/longcanopy.mdl"
+	"skin" "0"
+	"origin" "-1952 -3007 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34435"
+	"classname" "prop_static"
+	"angles" "0 87.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1921 -2770 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34495"
+	"classname" "prop_static"
+	"angles" "0 88.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1919 -2927 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34527"
+	"classname" "prop_static"
+	"angles" "0 88.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1911 -3076 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34531"
+	"classname" "prop_static"
+	"angles" "0 88.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1911 -3237 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34590"
+	"classname" "prop_static"
+	"angles" "0 271.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/longcanopy.mdl"
+	"skin" "0"
+	"origin" "-3688.05 -1970 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34594"
+	"classname" "prop_static"
+	"angles" "0 357.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-3451.05 -2001 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34598"
+	"classname" "prop_static"
+	"angles" "0 358.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-3608.05 -2003 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34602"
+	"classname" "prop_static"
+	"angles" "0 358.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-3757.05 -2011 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34606"
+	"classname" "prop_static"
+	"angles" "0 358.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-3918.05 -2011 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34770"
+	"classname" "prop_static"
+	"angles" "0 181.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/longcanopy.mdl"
+	"skin" "0"
+	"origin" "-4108 -1714.76 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34774"
+	"classname" "prop_static"
+	"angles" "0 267.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-4139 -1951.76 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34778"
+	"classname" "prop_static"
+	"angles" "0 268.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-4141 -1794.76 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34782"
+	"classname" "prop_static"
+	"angles" "0 268.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-4149 -1645.76 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34786"
+	"classname" "prop_static"
+	"angles" "0 268.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-4149 -1484.76 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34830"
+	"classname" "prop_static"
+	"angles" "0 91.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/longcanopy.mdl"
+	"skin" "0"
+	"origin" "-1931.95 -1448 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34834"
+	"classname" "prop_static"
+	"angles" "0 177.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-2168.95 -1417 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34838"
+	"classname" "prop_static"
+	"angles" "0 178.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-2011.95 -1415 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34842"
+	"classname" "prop_static"
+	"angles" "0 178.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1862.95 -1407 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
+	}
+}
+entity
+{
+	"id" "34846"
+	"classname" "prop_static"
+	"angles" "0 178.5 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/picnictable.mdl"
+	"skin" "0"
+	"origin" "-1701.95 -1407 5"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2000 -7268]"
 	}
 }
 cameras
@@ -51419,8 +52606,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-448.211 -1745.09 135.282]"
-		"look" "[-441.75 -1741.18 136.182]"
+		"position" "[-1665.08 -2141.12 277.97]"
+		"look" "[-1665.72 -2148.67 277.334]"
 	}
 }
 cordon
