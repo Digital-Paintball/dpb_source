@@ -8,6 +8,7 @@
 #include "multiarena.h"
 #include "team.h"
 #include "paintballmgr.h"
+#include "viewport_panel_names.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -403,9 +404,15 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 	}
 
 	pPlayer->SetArena( this );
-
+	
+	// open arena panel on client showing JoinArena:
+	//pPlayer->ShowViewPortPanel( PANEL_ARENAJOIN, true, NULL );
+	//pPlayer->ClientCommnd( "ShowJoinArena" );
+	engine->ClientCommand(engine->PEntityOfEntIndex(pPlayer->entindex()), "ShowJoinArena" );
 	m_hSpectators.AddToHead(pPlayer);
 
+
+	
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("You are now in arena #%d.\n", m_iID+1) );
 }
 
