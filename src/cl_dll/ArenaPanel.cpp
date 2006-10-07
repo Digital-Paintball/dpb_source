@@ -25,6 +25,7 @@ void CJoinArenaPanel::OnCommand(const char *command)
 	if (!stricmp(command, "Join"))
 	{
 		engine->ClientCmd("joingame");
+		engine->ClientCmd("ShowJoinArena");
 	}
 		BaseClass::OnCommand(command);
 }

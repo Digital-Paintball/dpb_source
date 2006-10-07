@@ -32,6 +32,12 @@ public:
 
 	bool	m_bHasLocalPlayer;
 
+		// jeff hold team scores
+	int m_iRedTeamScore;
+	int m_iBlueTeamScore;
+	int m_iRoundTime;
+
+
 private:
 	int									m_iID;
 	static CUtlVector<C_Arena*>			s_hArenas;

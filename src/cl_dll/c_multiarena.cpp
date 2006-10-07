@@ -36,9 +36,20 @@ void __MsgFunc_Arena(bf_read &msg)
 		break;
 	case CArenaShared::AE_VICTORY:
 		msg.ReadByte();	//This person won. Yipee... wait, why do we care?
+		// jeff team won dialog / end of round dialog goes HURRR
+		break;
+	case CArenaShared::AE_TVICTORY:
+		pArena = C_Arena::GetArena(msg.ReadByte()); // Jeff - in this arena the
+		pArena->m_iRedTeamScore = msg.ReadByte(); // Jeff - red team score is now
+		pArena->m_iBlueTeamScore = msg.ReadByte(); // Jeff - blue team score is now
+		break;
+	case CArenaShared::AE_TIMEUPDATE: 
+		pArena = C_Arena::GetArena(msg.ReadByte());
+		pArena->m_iRoundTime = msg.ReadByte(); // Jeff - Clients should know how long they have left.
 		break;
 	case CArenaShared::AE_RESET:
 		C_BasePlayer::GetLocalPlayer()->ResetLeaning();
+		pArena = C_Arena::GetArena(msg.ReadByte());
 
 		//Including paintballmgr.h causes crashes for some reason, so I won't bother with this for now.
 //		CPaintballMgr::GetManager()->RemoveBalls( C_BasePlayer::GetLocalPlayer()->GetArena() );
@@ -51,6 +62,8 @@ C_Arena::C_Arena( )
 	s_hArenas.AddToTail( this );
 	gViewPortInterface->UpdatePanel( PANEL_SCOREBOARD );
 	m_bHasLocalPlayer = false;
+	m_iRedTeamScore=0;
+	m_iBlueTeamScore=0;
 	HOOK_MESSAGE(Arena);
 }
 

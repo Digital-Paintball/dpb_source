@@ -22,6 +22,8 @@
 
 // added by Jeff 10/6 test panel
 #include <arenapanel.h>
+// added by Jeff 10/7 hud
+#include <hudpanel.h>
 
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
@@ -151,10 +153,11 @@ void VGui_CreateGlobalPanels( void )
 	VPANEL gameParent = enginevgui->GetPanel( PANEL_CLIENTDLL );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
 	VPANEL uiParent = enginevgui->GetPanel( PANEL_GAMEUIDLL );  // jeff - add panel for all ui
-
+	VPANEL cViewPort = g_pClientMode->GetViewport()->GetVPanel(); // jeff, get vguiviewport
 	//console->Create( parent );
 	// Part of game
-	JoinArena->Create( gameParent );  // jeff - this is a test panel
+	JoinArena->Create( gameParent );  // jeff - this is the join arena panel
+	MyHud->Create( cViewPort );  // jeff - this is the hud panel
 	textmessage->Create( gameParent );
 	internalCenterPrint->Create( gameParent );
 	loadingdisc->Create( gameParent );
@@ -174,6 +177,7 @@ void VGui_Shutdown()
 	netgraphpanel->Destroy();
 	fps->Destroy();
 	JoinArena->Destroy(); // jeff - keep it clean
+	MyHud->Destroy();
 	messagechars->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
