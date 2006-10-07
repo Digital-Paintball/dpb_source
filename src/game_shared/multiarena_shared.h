@@ -27,6 +27,8 @@ public:
 		AE_QUIT,	//Player has quit the arena
 		AE_RESET,	//Round is being reset
 		AE_VICTORY,	//Specified team won the round
+		AE_TIMEUPDATE, // I have a message for you - it has round time in it. -Jeff
+		AE_TVICTORY, // This team won - Jeff
 	} arenaevent_t;
 };
 
