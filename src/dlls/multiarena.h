@@ -27,6 +27,7 @@ public:
 	void WaitingThink();
 	void BeginThink();
 	void TimesUpThink();
+	void KeepTimeThink();
 
 	void StartTouch(CBaseEntity *pOther);
 	void EndTouch(CBaseEntity *pOther);
@@ -64,6 +65,10 @@ public:
 
 	CNetworkVar( CArenaShared::gamestate_t, m_State );
 
+	// jeff hold team scores
+	int RedTeamScore;
+	int BlueTeamScore;
+
 private:
 	CNetworkVar( int, m_iID );
 	static CUtlVector<CHandle<CArena> >	s_hArenas;
@@ -82,6 +87,8 @@ private:
 	// Values which can be set in the FGD
 	string_t	m_iszName;
 	float		m_flMinutes;
+	float		m_startedWhen;
+	float		m_willEnd;
 };
 
 #endif // MULTIARENA_H

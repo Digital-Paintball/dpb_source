@@ -19,6 +19,7 @@ BEGIN_DATADESC( CArena )
 	DEFINE_FUNCTION( WaitingThink ),
 	DEFINE_FUNCTION( BeginThink ),
 	DEFINE_FUNCTION( TimesUpThink ),
+	DEFINE_FUNCTION( KeepTimeThink ),
 
 	DEFINE_INPUT( m_iszName, FIELD_STRING, "ArenaName" ),
 	DEFINE_INPUT( m_flMinutes, FIELD_FLOAT, "RoundTime" ),
@@ -56,6 +57,7 @@ void CArena::Spawn( )
 		m_flMinutes = .5;
 }
 
+
 void CArena::AssembleArenas( )
 {
 	CBaseEntity *pList[1024];
@@ -83,6 +85,8 @@ void CArena::AssembleArenas( )
 				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
 				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber(), pArena );
 				pArena->m_hTeams.AddToTail(pTeam);
+				pArena->RedTeamScore = 0;
+				pArena->BlueTeamScore = 0; // reset team scores
 			}
 		}
 	}
@@ -124,6 +128,7 @@ void CArena::WaitingThink( )
 	else
 	{
 		// Try again in five seconds.
+		SetThink( WaitingThink );
 		SetNextThink( gpGlobals->curtime + 5.0 );
 	}
 }
@@ -148,7 +153,12 @@ void CArena::SetupRound( )
 	}
 
 	if (iTeamsWithPlayers <= 1)
+	{
 		bRoundStarting = false;
+		RedTeamScore = 0;
+		BlueTeamScore = 0;
+	}
+	// jeff - put message here to notify clients no round - not enough players?
 
 	// Fix things from last round.
 	int iPlayersCount = m_hPlayers.Count();
@@ -276,6 +286,7 @@ void CArena::SetupRound( )
 			user.MakeReliable();
 			UserMessageBegin( user, "Arena" );
 				WRITE_BYTE( CArenaShared::AE_RESET );
+				WRITE_BYTE( m_iID ); // what arena are we resetting
 			MessageEnd();
 		}
 
@@ -302,11 +313,16 @@ void CArena::SetupRound( )
 
 	SetThink( BeginThink );
 	SetNextThink( gpGlobals->curtime + 5.0 );
+	if (m_flMinutes)
+	{
+		m_startedWhen = gpGlobals->curtime;
+		m_willEnd = ( gpGlobals->curtime + m_flMinutes * 60 );
+
+	}
 }
 
 void CArena::BeginThink( )
 {
-	m_State = CArenaShared::GS_INPROGRESS;
 
 	int iPlayersCount = m_hPlayers.Count();
 	for (int i = 0; i < iPlayersCount; i++)
@@ -328,21 +344,72 @@ void CArena::BeginThink( )
 
 	if (m_flMinutes)
 	{
-		SetThink( TimesUpThink );
-		SetNextThink( gpGlobals->curtime + m_flMinutes * 60 );
+//		SetThink( TimesUpThink );
+//		SetNextThink( gpGlobals->curtime + m_flMinutes * 60 );
 	}
+		
+	SetThink( KeepTimeThink );
+	SetNextThink( gpGlobals->curtime + 1.0 );
 
 	CheckForRoundEnd();
+
 }
 
 void CArena::TimesUpThink()
 {
-	RoundEnd(0);
+	RoundEnd(-1);
+}
+
+void CArena::KeepTimeThink() // jeff
+{
+	m_State = CArenaShared::GS_INPROGRESS;
+
+	int iPlayersCount = m_hPlayers.Count();
+	for (int i = 0; i < iPlayersCount; i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+
+		//Maybe the client has disconnected or something?
+		//Get him out of here!
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+
+		// jeff - client time updates go here
+		CSingleUserRecipientFilter user( pPlayer );
+			
+		user.MakeReliable();
+		UserMessageBegin( user, "Arena" );
+			WRITE_BYTE( CArenaShared::AE_TIMEUPDATE );
+
+			WRITE_BYTE( m_iID ); // tell them what arena we're in too
+			int temp = (int)(m_willEnd - gpGlobals->curtime);
+			WRITE_BYTE( temp );  
+		MessageEnd();
+	}
+
+
+	DevMsg("%f seconds left in round! Time is %f Started %f, ends %f\n", m_willEnd - gpGlobals->curtime, gpGlobals->curtime, m_startedWhen, m_willEnd);
+	if ((m_willEnd - gpGlobals->curtime) < 0)
+		{		
+			DevMsg("Ending round!");
+			RoundEnd(-2);
+			return;
+		}
+
+	SetThink( KeepTimeThink );
+	SetNextThink( gpGlobals->curtime + 1.0 );
 }
 
 // Check for the necessary conditions to end the round.
 void CArena::CheckForRoundEnd( )
 {
+	if (m_State != CArenaShared::GS_INPROGRESS) // if we check for the round end, but the round isn't in progress - jeff
+	{
+		RoundEnd(-1); // just go to the default reset round, which is -1
+	}
 	int iTeamsBitmask = 0;	//Bitmask of teams with players alive
 	int	iTeamsAlive = 0;	//Number of teams with players alive
 
@@ -355,15 +422,21 @@ void CArena::CheckForRoundEnd( )
 		}
 	}
 
+
+
 	if (iTeamsAlive == 1)
 		//The following log arithmetic is equal to log2(x) which gives us the team number from the bitmask.
 		RoundEnd(log10((float)iTeamsBitmask)/log10((float)2));
 	else if (iTeamsAlive == 0)
-		RoundEnd(0);	//Everybody is dead for some reason! Round draw.
+		RoundEnd(-1);	//Everybody is dead for some reason! Round draw.
 }
 
 void CArena::RoundEnd( int iWinningTeam )
 {
+	if ( iWinningTeam != -1 ) // if the winning team is -1, we're forcing it because everyone is dead for some reason
+	if 	((m_State != CArenaShared::GS_INPROGRESS))
+		return;
+
 	m_State = CArenaShared::GS_VICTORY;
 
 	SetThink( WaitingThink );
@@ -372,9 +445,24 @@ void CArena::RoundEnd( int iWinningTeam )
 	CArenaRecipientFilter user( this );
 	user.MakeReliable();
 	UserMessageBegin( user, "Arena" );
-		WRITE_BYTE( CArenaShared::AE_VICTORY );
+		WRITE_BYTE( CArenaShared::AE_VICTORY ); // jeff - why are we sending the team that won as the player that won?
 		WRITE_BYTE( iWinningTeam );
 	MessageEnd();
+
+	DevMsg("Team %i has won!\n", iWinningTeam);
+
+	if (iWinningTeam==0)
+		BlueTeamScore++;
+	if (iWinningTeam==1)
+		RedTeamScore++;
+
+	UserMessageBegin( user, "Arena" );
+		WRITE_BYTE( CArenaShared::AE_TVICTORY );
+		WRITE_BYTE( m_iID );
+		WRITE_BYTE( RedTeamScore );
+		WRITE_BYTE( BlueTeamScore );
+	MessageEnd();
+	
 }
 
 void CArena::StartTouch( CBaseEntity *pOther )
@@ -405,13 +493,8 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 
 	pPlayer->SetArena( this );
 	
-	// open arena panel on client showing JoinArena:
-	//pPlayer->ShowViewPortPanel( PANEL_ARENAJOIN, true, NULL );
-	//pPlayer->ClientCommnd( "ShowJoinArena" );
-	engine->ClientCommand(engine->PEntityOfEntIndex(pPlayer->entindex()), "ShowJoinArena" );
+	engine->ClientCommand(engine->PEntityOfEntIndex(pPlayer->entindex()), "ShowJoinArena" ); // jeff - show the join arena dialog
 	m_hSpectators.AddToHead(pPlayer);
-
-
 	
 	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("You are now in arena #%d.\n", m_iID+1) );
 }
