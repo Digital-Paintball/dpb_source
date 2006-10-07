@@ -66,8 +66,10 @@ CClientScoreBoardDialog::CClientScoreBoardDialog(IViewPort *pViewPort) : Frame( 
 	SetTitleBarVisible( false );
 
 	// set the scheme before any child control is created
-	SetScheme("ClientScheme");
-
+	//SetScheme("ClientScheme");
+	vgui::HScheme scheme = vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme");
+	SetScheme( scheme ); // Jeff - make us look pretty
+	
 	m_pPlayerList = new SectionedListPanel(this, "PlayerList");
 	m_pPlayerList->SetVerticalScrollbar(false);
 
