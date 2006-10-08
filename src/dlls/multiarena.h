@@ -67,9 +67,9 @@ public:
 
 	CNetworkVar( CArenaShared::gamestate_t, m_State );
 
+	CNetworkVar ( int, m_iRedTeamScore );
+	CNetworkVar ( int, m_iBlueTeamScore );
 	// jeff hold team scores
-	int RedTeamScore;
-	int BlueTeamScore;
 
 private:
 	CNetworkVar( int, m_iID );

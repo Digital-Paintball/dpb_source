@@ -226,8 +226,6 @@ SET( SERVER_SRCS
 	steamjet.cpp
 	subs.cpp
 	sun.cpp
-	sv.cpp
-	sv_soap.cpp
 	tanktrain.cpp
 	te.cpp
 	te_armorricochet.cpp
@@ -494,7 +492,7 @@ ENDIF(WIN32)
 
 ADD_LIBRARY(server SHARED ${SERVER_ALL_SRCS})
 
-TARGET_LINK_LIBRARIES(server tier0 tier1 vstdlib stats)
+TARGET_LINK_LIBRARIES(server tier0 tier1 vstdlib)
 
 IF(WIN32)
 	TARGET_LINK_LIBRARIES(server wsock32)

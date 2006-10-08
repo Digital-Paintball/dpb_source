@@ -29,6 +29,8 @@ END_DATADESC()
 IMPLEMENT_SERVERCLASS_ST( CArena, DT_Arena )
 	SendPropInt( SENDINFO( m_State ), 2, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO( m_iID ), 4, SPROP_UNSIGNED ),
+	SendPropInt( SENDINFO( m_iRedTeamScore ), 4, SPROP_UNSIGNED ),
+	SendPropInt( SENDINFO( m_iBlueTeamScore ), 4, SPROP_UNSIGNED ),
 END_SEND_TABLE() 
 
 LINK_ENTITY_TO_CLASS(game_arena, CArena);
@@ -85,8 +87,8 @@ void CArena::AssembleArenas( )
 				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
 				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber(), pArena );
 				pArena->m_hTeams.AddToTail(pTeam);
-				pArena->RedTeamScore = 0;
-				pArena->BlueTeamScore = 0; // reset team scores
+				pArena->m_iRedTeamScore = 0;
+				pArena->m_iBlueTeamScore = 0; // reset team scores
 			}
 		}
 	}
@@ -155,8 +157,8 @@ void CArena::SetupRound( )
 	if (iTeamsWithPlayers <= 1)
 	{
 		bRoundStarting = false;
-		RedTeamScore = 0;
-		BlueTeamScore = 0;
+		m_iRedTeamScore = 0;
+		m_iBlueTeamScore = 0;
 	}
 	// jeff - put message here to notify clients no round - not enough players?
 
@@ -506,15 +508,15 @@ void CArena::RoundEnd( int iWinningTeam )
 	DevMsg("Team %i has won!\n", iWinningTeam);
 
 	if (iWinningTeam==0)
-		BlueTeamScore++;
+		m_iBlueTeamScore++;
 	if (iWinningTeam==1)
-		RedTeamScore++;
+		m_iRedTeamScore++;
 
 	UserMessageBegin( user, "Arena" );
 		WRITE_BYTE( CArenaShared::AE_TVICTORY );
 		WRITE_BYTE( m_iID );
-		WRITE_BYTE( RedTeamScore );
-		WRITE_BYTE( BlueTeamScore );
+		WRITE_BYTE( m_iRedTeamScore );
+		WRITE_BYTE( m_iBlueTeamScore );
 	MessageEnd();
 	
 }

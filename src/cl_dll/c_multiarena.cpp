@@ -15,6 +15,8 @@
 IMPLEMENT_CLIENTCLASS_DT( C_Arena, DT_Arena, CArena )
 	RecvPropInt( RECVINFO( m_State ) ),
 	RecvPropInt( RECVINFO( m_iID ) ),
+	RecvPropInt( RECVINFO( m_iRedTeamScore ) ),
+	RecvPropInt( RECVINFO( m_iBlueTeamScore ) ),
 END_RECV_TABLE()
 
 CUtlVector<C_Arena*> C_Arena::s_hArenas;
