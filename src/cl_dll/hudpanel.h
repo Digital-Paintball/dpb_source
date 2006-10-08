@@ -12,12 +12,17 @@ class CMyHudPanel : public EditablePanel
 	DECLARE_CLASS_SIMPLE(CMyHudPanel,EditablePanel);
 public:
 	CMyHudPanel( vgui::VPANEL parent );
+	~CMyHudPanel();
 	void OnCommand(const char *command);
 	void CMyHudPanel::ShowPanel(bool bShow);
 	void CMyHudPanel::OnThink();
 	void CMyHudPanel::Paint();
 	void CMyHudPanel::PaintBackground();
 	void CMyHudPanel::OnTick();
+	
+	wchar_t * rText;
+	wchar_t * bText;
+	wchar_t * tText;
 private:
 	int m_nTextureID;
 };

@@ -263,6 +263,7 @@ void CClientScoreBoardDialog::UpdateTeamInfo()
 	IGameResources *gr = GameResources();
 	if ( !gr )
 		return;
+	
 
 	for (i = TEAM_UNASSIGNED; i < TEAM_COUNT; i++)
 	{
@@ -283,8 +284,12 @@ void CClientScoreBoardDialog::UpdateTeamInfo()
 			m_iLatency[i] = 0;
 
 		wchar_t sz[6];
-		swprintf(sz, L"%d", gr->GetTeamScore(i));
+		
+		swprintf(sz, L"%d", (i==1)?C_Arena::GetArena(m_iViewingArena)->m_iRedTeamScore:C_Arena::GetArena(m_iViewingArena)->m_iBlueTeamScore); // jeff -get arena codes
+		//swprintf(sz, L"%d", gr->GetTeamScore(i));
+		
 		m_pPlayerList->ModifyColumn(sectionId, "score", sz);
+		
 		if (m_iLatency[i] < 1)
 		{
 			m_pPlayerList->ModifyColumn(sectionId, "ping", L"");
@@ -399,7 +404,8 @@ void CClientScoreBoardDialog::UpdateArenaInfo()
 			m_pButtons[i]->SetVisible(false);
 	}
 
-	if (PlayingInArena(C_BasePlayer::GetLocalPlayer()))
+	if (PlayingInArena(C_BasePlayer::GetLocalPlayer())) // jeff - fixed
+	//if (C_BasePlayer::GetLocalPlayer()->GetArena() != C_Arena::GetArena(m_iViewingArena))
 		m_pJoinButton->SetText( "Leave arena!" );
 	else
 		m_pJoinButton->SetText( "Join arena!" );
@@ -419,7 +425,7 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "#PlayerScore", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "Splats", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
 
@@ -575,12 +581,12 @@ bool CClientScoreBoardDialog::PlayingInArena(C_BasePlayer* pPlayer)
 {
 	if (!pPlayer)
 		return false;
-
+	
 	C_Arena* pArena = pPlayer->GetArena();
 	if (!pArena)
 		return false;
 	
-	if (!pArena->HasPlayer(pPlayer))
+	if (pArena != C_Arena::GetArena(m_iViewingArena)) // fixed
 		return false;
 
 	return true;

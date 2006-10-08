@@ -221,10 +221,35 @@ void CArena::SetupRound( )
 			WRITE_BYTE( m_iID );
 		MessageEnd();
 	}
+	//Then, add people who have switched teams, the scurvy dogs! - jeff
+	for (i = 0; i < m_hSwitchersRed.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hSwitchersRed[i]);
+
+		if (!pPlayer) // person got tired of waiting, apparently. asshat
+			continue;
+
+		pPlayer->ResetFragCount(); // all your scores are die when you switch teams. sorry
+		SwitchTeam(pPlayer, 1); // red is team #1, blue is team #0. The devel plays on team -1. mwahaha.
+	}
+	// blue, too
+	for (i = 0; i < m_hSwitchersBlue.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hSwitchersBlue[i]);
+
+		if (!pPlayer) // person got tired of waiting, apparently. asshat
+			continue;
+
+		pPlayer->ResetFragCount(); // all your scores are die when you switch teams. sorry
+		SwitchTeam(pPlayer, 0); 
+	}
+
 
 	//Empty the queues.
 	m_hJoiners.RemoveAll();
 	m_hQuitters.RemoveAll();
+	m_hSwitchersRed.RemoveAll();
+	m_hSwitchersBlue.RemoveAll();
 
 	if (m_hPlayers.Count() <= 0)
 	{
@@ -406,9 +431,11 @@ void CArena::KeepTimeThink() // jeff
 // Check for the necessary conditions to end the round.
 void CArena::CheckForRoundEnd( )
 {
-	if (m_State != CArenaShared::GS_INPROGRESS) // if we check for the round end, but the round isn't in progress - jeff
+	//if ((m_State != CArenaShared::GS_INPROGRESS)||(m_State != CArenaShared::GS_VICTORY)) // if we check for the round end, but the round isn't in progress - jeff
+	if (m_State == CArenaShared::GS_COUNTDOWN)
 	{
 		RoundEnd(-1); // just go to the default reset round, which is -1
+		return;
 	}
 	int iTeamsBitmask = 0;	//Bitmask of teams with players alive
 	int	iTeamsAlive = 0;	//Number of teams with players alive
@@ -422,8 +449,6 @@ void CArena::CheckForRoundEnd( )
 		}
 	}
 
-
-
 	if (iTeamsAlive == 1)
 		//The following log arithmetic is equal to log2(x) which gives us the team number from the bitmask.
 		RoundEnd(log10((float)iTeamsBitmask)/log10((float)2));
@@ -433,7 +458,35 @@ void CArena::CheckForRoundEnd( )
 
 void CArena::RoundEnd( int iWinningTeam )
 {
-	if ( iWinningTeam != -1 ) // if the winning team is -1, we're forcing it because everyone is dead for some reason
+//	if ( iWinningTeam != -1 ) // if the winning team is -1, we're forcing it because everyone is dead for some reason
+	if ((iWinningTeam==-1)||(iWinningTeam==-2)) // jeff - do this whole thing better
+	{
+	int iPlayersCount = m_hPlayers.Count();
+	for (int i = 0; i < iPlayersCount; i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+			
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+		if (this->HasPlayer(pPlayer)) // we only need to send them this message if they're like, in the arena.
+		{
+			if (iWinningTeam==-1) // warmup
+			{
+				ClientPrint( pPlayer, HUD_PRINTCENTER, "Warmup Mode\nWaiting for players..." );
+			}
+			if (iWinningTeam==-2) // timeup (consider replacing with whistle)
+			{
+				ClientPrint( pPlayer, HUD_PRINTCENTER, "Time's up!\nDraw!" );
+			}
+		}
+	}
+
+	
+		
+	}
 	if 	((m_State != CArenaShared::GS_INPROGRESS))
 		return;
 
@@ -449,6 +502,7 @@ void CArena::RoundEnd( int iWinningTeam )
 		WRITE_BYTE( iWinningTeam );
 	MessageEnd();
 
+	
 	DevMsg("Team %i has won!\n", iWinningTeam);
 
 	if (iWinningTeam==0)
@@ -487,7 +541,7 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
 	{
-		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Leave your current arena first.\n");
+		ClientPrint( pPlayer, HUD_PRINTNOTIFY, "You must leave your current arena before joining a new one.\n");
 		return;
 	}
 
@@ -496,7 +550,7 @@ void CArena::AddToArena( CBasePlayer *pPlayer )
 	engine->ClientCommand(engine->PEntityOfEntIndex(pPlayer->entindex()), "ShowJoinArena" ); // jeff - show the join arena dialog
 	m_hSpectators.AddToHead(pPlayer);
 	
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("You are now in arena #%d.\n", m_iID+1) );
+	ClientPrint( pPlayer, HUD_PRINTCENTER, UTIL_VarArgs("You are now able to join Arena #%d\n", m_iID+1) );
 }
 
 void CArena::EndTouch( CBaseEntity *pOther )
@@ -523,11 +577,12 @@ void CArena::RemoveFromArena( CBasePlayer *pPlayer )
 		return;
 	}
 
+	pPlayer->ResetFragCount(); // jeff - set their score to zerrrooo
 	pPlayer->SetArena( NULL );
 
 	m_hSpectators.FindAndRemove(pPlayer);
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Now leaving arena #%d.\n", m_iID+1) );
+	//ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Now leaving arena #%d.\n", m_iID+1) );
 }
 
 void CBasePlayer::JoinGame()
@@ -542,7 +597,7 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 {
 	if (pPlayer->GetArena() && pPlayer->GetArena() != this)
 	{
-		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Leave your current arena first.\n");
+		ClientPrint( pPlayer, HUD_PRINTCENTER, "You must leave your current arena before you join another one.\n");
 		return;
 	}
 
@@ -555,7 +610,32 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 
 	m_hJoiners.AddToTail( pPlayer );
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Joining game in arena #%d.\n", m_iID+1) );
+	ClientPrint( pPlayer, HUD_PRINTCENTER, UTIL_VarArgs("Added to join queue for Arena #%d\n", m_iID+1) );
+}
+
+void CArena::SwitchQueueAdd( CBasePlayer *pPlayer, int newteam )
+{
+	// TODO - see todo in switchteam
+	CTeam *pTeam = NULL;
+	pTeam = m_hTeams[newteam];
+	if (newteam==1) // red
+	{
+		m_hSwitchersRed.AddToTail (pPlayer);
+		ClientPrint( pPlayer, HUD_PRINTCENTER, "You will switch to the red team after the end of the round." );
+	}
+	if (newteam==0) // blue
+	{
+		m_hSwitchersBlue.AddToTail (pPlayer);
+		ClientPrint( pPlayer, HUD_PRINTCENTER, "You will switch to the blue team after the end of the round." );
+	}
+}
+
+void CArena::SwitchTeam( CBasePlayer *pPlayer, int newteam )
+{
+	// at some point, this should check spawns and so forth, and probably account for team balancing. consider it a TODO - jeff
+	CTeam *pTeam = NULL;
+	pTeam = m_hTeams[newteam];
+	pPlayer->ChangeTeam(pTeam->GetTeamNumber());
 }
 
 void CArena::AssignTeam( CBasePlayer *pPlayer )
@@ -607,7 +687,7 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 		CheckForRoundEnd();
 	}
 
-	ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs("Quitting game in arena #%d.\n", m_iID+1) );
+	ClientPrint( pPlayer, HUD_PRINTCENTER, UTIL_VarArgs("Added to queue to leave Arena #%d\n", m_iID+1) );
 }
 
 void CArena::RemoveQuitter( CBasePlayer *pPlayer )

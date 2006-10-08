@@ -242,6 +242,9 @@ SET( CLIENT_SRCS
 	weapon_selection.cpp
 	weapons_resource.cpp
 	worlddimsproxy.cpp
+	HudPanel.cpp
+	ArenaPanel.cpp
+	ChangeTeamPanel.cpp
 )
 
 SET( CLIENT_SDK_SRCS

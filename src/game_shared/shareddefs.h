@@ -137,11 +137,16 @@ public:
 // The Source engine is really designed for 32 or less players.  If you raise this number above 32, you better know what you are doing
 //  and have a good answer for a bunch of perf question related to player simulation, thinking logic, tracelines, networking overhead, etc.
 // But if you are brave or are doing something interesting, go for it...   ywb 9/22/03
+/*
 #if defined( CSTRIKE_DLL ) || defined( DOD_DLL )
 	#define MAX_PLAYERS				64  // Absolute max players supported
 #else
 	#define MAX_PLAYERS				32  // Absolute max players supported
 #endif
+*/
+
+#define MAX_PLAYERS 72 // Absolute max players supported.
+// Jeff - I'm not afraid of your comment, ywb. MAX_PLAYERS 72! RAWR
 
 //===================================================================================================================
 // Team Defines
@@ -149,7 +154,7 @@ enum eteams_list
 {
     TEAM_UNASSIGNED = 0,    // not assigned to a team
     TEAM_BLUE = 1,			// These values are important, don't change.
-    TEAM_RED = 2,
+    TEAM_RED = 2,           // jeff - they weren't kidding
     TEAM_SPECTATOR,
     TEAM_COUNT
 };

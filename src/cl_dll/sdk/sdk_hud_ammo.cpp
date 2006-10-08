@@ -112,6 +112,12 @@ void CHudAmmo::UpdatePlayerAmmo( C_BasePlayer *player )
 		SetPaintBackgroundEnabled(false);
 		return;
 	}
+	
+	// jeff - disable this hud
+	SetPaintEnabled(false);
+	SetPaintBackgroundEnabled(false);
+	return;
+	// jeff - disable this hud piece
 
 	SetPaintEnabled(true);
 	SetPaintBackgroundEnabled(true);

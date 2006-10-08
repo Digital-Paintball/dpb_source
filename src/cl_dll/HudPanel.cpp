@@ -26,12 +26,16 @@ CMyHudPanel::CMyHudPanel( vgui::VPANEL parent ) : BaseClass( NULL, "MyHud" )
 	ivgui()->AddTickSignal(this->GetVPanel(), 1000); // call our tick every second
     SetPos((ScreenWidth()-GetWide())/2,0); // center on screen
 
+	rText = new wchar_t[10]; // jeff - moved these to the constructor to prevent thrashing
+	bText = new wchar_t[10];
+	tText = new wchar_t[40];
+
 //	AlignPanel(this, ipanel()->GetPanel(parent, GetControlsModuleName()), 3);
 //	IViewPortPanel* newpanel = NULL;
 //	newpanel = new CMapOverview(  );
 //	newpanel->ShowPanel(true);
 
-// I'll come back to the map overview later -Jeff
+// TODO I'll come back to the map overview later -Jeff
 
 	SetVisible(false);
 	SetEnabled(true);
@@ -40,6 +44,14 @@ void CMyHudPanel::OnCommand(const char *command)
 {
 	BaseClass::OnCommand(command);
 }
+
+CMyHudPanel::~CMyHudPanel()
+{
+	delete[] rText; // jeff - moved these to the deconstructor to prevent thrashing
+	delete[] bText;
+	delete[] tText;
+}
+
 void CMyHudPanel::OnThink()
 {
 	BaseClass::OnThink();
@@ -49,8 +61,7 @@ void CMyHudPanel::Paint()
 {
 	BaseClass::Paint();  
 	vgui::surface()->DrawSetTexture( m_nTextureID );
-	vgui::surface()->DrawSetColor(50,50,50,100);
-//	vgui::surface()->DrawFilledRect(0,0,256,30);
+	vgui::surface()->DrawSetColor(50,50,50,150);
 	vgui::surface()->DrawTexturedRect( 0, 0, 256, 30 );
 
 	C_BasePlayer* pPlayer = C_BasePlayer::GetLocalPlayer();
@@ -62,35 +73,22 @@ void CMyHudPanel::Paint()
 	{
 		return;
 	}
-	
-	int red = pArena->m_iRedTeamScore;
-	int blue = pArena->m_iBlueTeamScore;
 
-	wchar_t * rText = new wchar_t[10];
-	wchar_t * bText = new wchar_t[10];
-	wchar_t * tText = new wchar_t[40];
-
-	swprintf( rText, L"%i", red);
-	swprintf( bText, L"%i", blue);
+	swprintf( bText, L"%i", pArena->m_iRedTeamScore);
+	swprintf( rText, L"%i", pArena->m_iBlueTeamScore);
 	swprintf( tText, L"%i sec", pArena->m_iRoundTime);
 
-	vgui::IScheme *pScheme = vgui::scheme()->GetIScheme(GetScheme());
-	vgui::HFont hFont = pScheme->GetFont( "DefaultSmall" );
-	surface()->DrawSetTextFont( hFont );	
+	surface()->DrawSetTextFont(  vgui::scheme()->GetIScheme(GetScheme())->GetFont( "Default" ) );	
 	surface()->DrawSetTextColor( 255, 255, 255, 255 ); 
 
-	surface()->DrawSetTextPos( 24, 4 ); 
+	surface()->DrawSetTextPos( 36, 2 ); 
 	surface()->DrawPrintText( rText, wcslen(rText) );
 
-	surface()->DrawSetTextPos( 192, 4 ); 
+	surface()->DrawSetTextPos( 206, 2 ); 
 	surface()->DrawPrintText( bText, wcslen(bText) );	
 	
-	surface()->DrawSetTextPos( 96, 13 ); 
+	surface()->DrawSetTextPos( 110, 6 ); 
 	surface()->DrawPrintText( tText, wcslen(tText) );	
-
-	delete[] rText;
-	delete[] bText;
-	delete[] tText;
 }
 
 void CMyHudPanel::PaintBackground()
@@ -116,33 +114,4 @@ void CMyHudPanel::OnTick()
 	}
 	
 	SetVisible(true);
-
-	/*
-	IGameResources *gr = GameResources();
-	if (!gr)
-		return;
-	int red = gr->GetTeamScore(0);
-	int blue = gr->GetTeamScore(1);
-
-	wchar_t * rText = new wchar_t[10];
-	wchar_t * bText = new wchar_t[10];
-	const wchar_t * fomat = L"%i";
-
-	swprintf( rText, fomat, red);
-	swprintf( bText, fomat, blue);
-
-	vgui::IScheme *pScheme = vgui::scheme()->GetIScheme(GetScheme());
-	vgui::HFont hFont = pScheme->GetFont( "DefaultSmall" );
-	surface()->DrawSetTextFont( hFont );	
-	surface()->DrawSetTextColor( 255, 255, 255, 255 ); 
-
-	surface()->DrawSetTextPos( 24, 4 ); 
-	surface()->DrawPrintText( rText, wcslen(rText) );
-
-	surface()->DrawSetTextPos( 192, 4 ); 
-	surface()->DrawPrintText( bText, wcslen(bText) );	
-
-	delete[] rText;
-	delete[] bText;
-	*/
 }

@@ -962,6 +962,39 @@ void CC_QuitGame (void)
 
 ConCommand quitgame("quitgame", CC_QuitGame, "Quit a game in progress.", FCVAR_GAMEDLL);
 
+//------------------------------------------------------------------------------
+// Jeff - switch teams (YA SCURVY DAWG)
+//------------------------------------------------------------------------------
+void CC_SwitchTeams (void)
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+	
+	if ( engine->Cmd_Argc() < 1 )
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Usage:  changeteam <team#>  (red is 1, blue is 0)\n");
+		return;
+	}
+
+	if (( atoi( engine->Cmd_Argv(1) ) != 1 )&&( atoi( engine->Cmd_Argv(1) ) != 0 )) // if it's not a team
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Invalid team #!\nUsage:  changeteam <team#>  (red is 1, blue is 0)\n");
+		return;
+	}
+
+	if(!pPlayer->GetArena()) // if we're not in an arena, change what team we'd like to be on
+	{
+		pPlayer->ChangeTeam( atoi( engine->Cmd_Argv(1) ) );
+
+	} else // otherwise, add us to the queue
+	{
+		pPlayer->GetArena()->SwitchQueueAdd(pPlayer, atoi( engine->Cmd_Argv(1) ));
+	}
+}
+
+ConCommand changeteam("changeteam", CC_SwitchTeams, "Change what team you're on.", FCVAR_GAMEDLL);
+
 //-----------------------------------------------------------------------------
 // Purpose: called each time a player uses a "cmd" command
 // Input  : *pEdict - the player who issued the command

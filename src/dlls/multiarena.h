@@ -40,6 +40,8 @@ public:
 	void QuitPlayer(CBasePlayer *pPlayer);
 	bool HasPlayer(CBasePlayer *pPlayer);
 	void AssignTeam(CBasePlayer *pPlayer);
+	void SwitchTeam(CBasePlayer *pPlayer, int newteam);
+	void SwitchQueueAdd(CBasePlayer *pPlayer, int newteam);
 
 	static void SpawnPlayer(CBasePlayer *pPlayer, CArena* pArena = NULL);
 	static void MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles);
@@ -81,7 +83,8 @@ private:
 
 	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
-
+	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersRed;	//Those who are about to die... switch teams - Jeff
+	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersBlue;
 	Vector		m_vecSpawnAvg;
 
 	// Values which can be set in the FGD

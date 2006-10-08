@@ -72,10 +72,14 @@ CTextWindow::CTextWindow(IViewPort *pViewPort) : Frame(NULL, PANEL_INFO	)
 	// initialize dialog
 	m_pViewPort = pViewPort;
 
-//	SetTitle("", true);
+	SetTitle("", true); // jeff - no title
 
 	// load the new scheme early!!
-	SetScheme("ClientScheme");
+	// jeff - make this look new-vguiish
+	vgui::HScheme scheme = vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme");
+	SetScheme( scheme );
+
+	// SetScheme("ClientScheme");
 	SetMoveable(false);
 	SetSizeable(false);
 	SetProportional(true);

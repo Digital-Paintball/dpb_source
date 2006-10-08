@@ -20,10 +20,12 @@
 #include "tier0/vprof.h"
 #include "iclientmode.h"
 
-// added by Jeff 10/6 test panel
+// added by Jeff 10/6 arena panel
 #include <arenapanel.h>
 // added by Jeff 10/7 hud
 #include <hudpanel.h>
+// added by Jeff 10/8 change team
+#include <changeteampanel.h>
 
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
@@ -156,6 +158,7 @@ void VGui_CreateGlobalPanels( void )
 	VPANEL cViewPort = g_pClientMode->GetViewport()->GetVPanel(); // jeff, get vguiviewport
 	//console->Create( parent );
 	// Part of game
+	ChangeTeam->Create( gameParent);
 	JoinArena->Create( gameParent );  // jeff - this is the join arena panel
 	MyHud->Create( cViewPort );  // jeff - this is the hud panel
 	textmessage->Create( gameParent );
@@ -176,6 +179,7 @@ void VGui_Shutdown()
 	debugoverlaypanel->Destroy();
 	netgraphpanel->Destroy();
 	fps->Destroy();
+	ChangeTeam->Destroy();
 	JoinArena->Destroy(); // jeff - keep it clean
 	MyHud->Destroy();
 	messagechars->Destroy();
