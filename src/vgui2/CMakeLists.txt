@@ -51,6 +51,7 @@ SET( VGUI_CONTROLS_SRCS
 	controls/WizardPanel.cpp
 	controls/WizardSubPanel.cpp
 	controls/controls.cpp
+	controls/RenderImagePanel.cpp
 )
 
 INCLUDE_DIRECTORIES(
