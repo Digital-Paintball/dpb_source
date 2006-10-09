@@ -14,11 +14,17 @@
 	]
 ]
 
+@PointClass base(Angles) size(-4 -4 -4, 4 4 4) color(0 180 0) = info_viewpoint : 
+	"This entity adds viewpoints for the player to spawn into when first joining the game."
+[
+]
+
 @PointClass base(Angles, TeamNum) studio("models/player/player.mdl") = info_player_teamspawn :
 	"This entity marks the start point for players. One of these needs to be placed for each team member. " +
 	"20 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
 [
 ]
+
 
 @SolidClass base(Trigger) = game_arena :
 	"This is a playing arena that a game is going on inside of. Don't overlap them. If a player is inside this area," +
