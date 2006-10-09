@@ -733,6 +733,17 @@ INSTALL_FILES(/materials/textures FILES
 	materials/textures/splat.vmt  
 )
 
+INSTALL_FILES(/materials/VGUI FILES
+	materials/VGUI/skin1.vmt
+	materials/VGUI/skin1.vtf
+	materials/VGUI/skin2.vmt
+	materials/VGUI/skin2.vtf
+	materials/VGUI/skin3.vmt
+	materials/VGUI/skin3.vtf
+	materials/VGUI/skin4.vmt
+	materials/VGUI/skin4.vtf
+)
+
 INSTALL_FILES(/materials/VGUI/gui FILES
 	materials/VGUI/gui/vactive.vtf
 	materials/VGUI/gui/vbanned.vmt
@@ -742,6 +753,8 @@ INSTALL_FILES(/materials/VGUI/gui FILES
 	materials/VGUI/gui/vbanned.vtf
 	materials/VGUI/gui/vdisabled.vtf
 	materials/VGUI/gui/vneutral.vtf
+	materials/VGUI/gui/hud.vtf
+	materials/VGUI/gui/hud.vmt
 )
 
 INSTALL_FILES(/materials/VGUI/logos/UI FILES
@@ -1129,6 +1142,11 @@ INSTALL_FILES(/resource/ui FILES
 	resource/ui/ScoreBoard.res
 	resource/ui/Spectator.res
 	resource/ui/TextWindow.res
+	resource/ui/ChangeTeamPanel.res
+	resource/ui/HudPanel.res
+	resource/ui/JoinArenaPanel.res
+	resource/ui/ChangeSkinPanel.res
+	resource/ui/ChangeTeamPanel.res
 )
 
 INSTALL_FILES(/scripts FILES
