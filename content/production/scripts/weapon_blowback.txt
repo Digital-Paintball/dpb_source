@@ -1,0 +1,68 @@
+WeaponData
+{
+	// Weapon characteristics:
+	"Bullets"			"1"		// bullets per shoot
+	"CycleTime"			"0.1"		// time between shoots
+	
+	
+	// Weapon data is loaded by both the Game and Client DLLs.
+	"printname"			"DeePeeb Blowback"
+	"viewmodel"			"models/weapons/v_blazer.mdl"
+	"playermodel"		"models/weapons/w_blazer.mdl"
+	
+	"anim_prefix"			"anim"
+	"bucket"			"0"
+	"bucket_position"		"0"
+
+	"clip_size"			"150"
+	
+	"primary_ammo"			"AMMO_PAINT"
+	"secondary_ammo"		"None"
+
+	"weight"			"25"
+	"item_flags"			"0"
+
+	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
+	SoundData
+	{
+		//"reload"			"Default.Reload"
+		//"empty"			"Default.ClipEmpty_Rifle"
+		"single_shot"			"weapon_marker.Single"
+		"double_shot"			"weapon_marker.Double"
+		"reload"			"weapon_marker.Reload"
+		"empty"				"weapon_marker.Dryfire"
+	}
+
+	// Weapon Sprite data is loaded by the Client DLL.
+	TextureData
+	{
+		"weapon"
+		{
+				"font"		"WeaponIcons"
+				"character"	"a"
+		}
+		"weapon_s"
+		{	
+				"font"		"WeaponIconsSelected"
+				"character"	"a"
+		}
+		"ammo"
+		{
+				"font"		"WeaponIcons"
+				"character"	"r"
+		}
+	}
+	ModelBounds
+	{
+		Viewmodel
+		{
+			Mins	"-10 -4 -13"
+			Maxs	"21 9 -1"
+		}
+		World
+		{
+			Mins	"-10 -7 -6"
+			Maxs	"22 8 9"
+		}
+	}
+}

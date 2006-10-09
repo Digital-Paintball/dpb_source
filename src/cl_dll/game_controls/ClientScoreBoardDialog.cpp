@@ -284,7 +284,7 @@ void CClientScoreBoardDialog::UpdateTeamInfo()
 			m_iLatency[i] = 0;
 
 		wchar_t sz[6];
-		
+		if (C_Arena::GetArena(m_iViewingArena))
 		swprintf(sz, L"%d", (i==1)?C_Arena::GetArena(m_iViewingArena)->m_iRedTeamScore:C_Arena::GetArena(m_iViewingArena)->m_iBlueTeamScore); // jeff -get arena codes
 		//swprintf(sz, L"%d", gr->GetTeamScore(i));
 		

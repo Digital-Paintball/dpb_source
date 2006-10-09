@@ -362,6 +362,8 @@ SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/weapon_grenade.cpp
 	../game_shared/sdk/weapon_marker.cpp
 	../game_shared/sdk/weapon_sdkbase.cpp
+	../game_shared/sdk/weapon_blazer.cpp
+	../game_shared/sdk/weapon_blowback.cpp
 )
 
 SET( PUBLIC_SRCS

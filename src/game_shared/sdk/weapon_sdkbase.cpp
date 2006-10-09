@@ -31,8 +31,10 @@
 static const char * s_WeaponAliasInfo[] = 
 {
 	"none",		// WEAPON_NONE
-	"marker",	// WEAPON_MARKER
+	"marker",	// WEAPON_MARKER // generic marker
 	"grenade",	// WEAPON_GRENADE
+	"blazer",	// WEAPON_blazer
+	"blowback",	// WEAPON_blowback
 	NULL,		// WEAPON_NONE
 };
 

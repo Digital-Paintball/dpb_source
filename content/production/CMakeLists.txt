@@ -1159,6 +1159,8 @@ INSTALL_FILES(/scripts FILES
 	scripts/liblist.gam
 	scripts/weapon_grenade.txt
 	scripts/weapon_marker.txt
+	scripts/weapon_blazer.txt
+	scripts/weapon_blowback.txt
 	scripts/HudLayout.res
 	scripts/ChapterBackgrounds.txt
 	scripts/soundscapes.txt

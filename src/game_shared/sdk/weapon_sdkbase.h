@@ -33,6 +33,8 @@ typedef enum
 
 	WEAPON_MARKER,
 	WEAPON_GRENADE,
+	WEAPON_BLAZER,
+	WEAPON_BLOWBACK,
 	
 	WEAPON_MAX,		// number of weapons weapon index
 } SDKWeaponID;

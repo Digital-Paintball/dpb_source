@@ -345,7 +345,9 @@ void CBasePlayer::DeployArmaments()
 	else
 	{
 		// TODO: Buy all the weapons the player wants to have.
-		GiveNamedItem( "weapon_marker" );
+		// GiveNamedItem( "weapon_marker" );
+		GiveNamedItem( "weapon_blazer" );
+		GiveNamedItem( "weapon_blowback" );
 	}
 }
 
