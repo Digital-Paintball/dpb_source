@@ -321,6 +321,7 @@ public:
 	bool			m_bResetLeaning;
 
 	bool			m_bIsSprinting;
+	int				m_iSkin;
 
 	CUserCmd		*m_pCurrentCommand;
 

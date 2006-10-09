@@ -683,6 +683,8 @@ public:
 	bool					m_bLagCompensation;	// user wants lag compenstation
 	bool					m_bPredictWeapons; //  user has client side predicted weapons
 	
+	CNetworkVar( int, m_iSkin );
+
 	IMPLEMENT_NETWORK_VAR_FOR_DERIVED( m_vecBaseVelocity );
 	
 

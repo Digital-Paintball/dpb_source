@@ -963,6 +963,42 @@ void CC_QuitGame (void)
 ConCommand quitgame("quitgame", CC_QuitGame, "Quit a game in progress.", FCVAR_GAMEDLL);
 
 //------------------------------------------------------------------------------
+// Jeff - change skin
+//------------------------------------------------------------------------------
+void CC_ChangeSkin (void)
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+
+	if ( engine->Cmd_Argc() < 1 )
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Usage:  changeskin <skin#>\n");
+		return;
+	}
+
+	if (( atoi( engine->Cmd_Argv(1) ) < 0 )||( atoi( engine->Cmd_Argv(1) ) > 3 )) 
+	{
+		ClientPrint( pPlayer, HUD_PRINTCONSOLE, "Invalid skin #!\n");
+		return;
+	}
+
+	pPlayer->m_iSkin=atoi( engine->Cmd_Argv(1) );
+
+	CTeam * pTeam = pPlayer->GetTeam();
+
+	if(pTeam) // if we're on a team
+	{
+	if (pTeam->m_iTeamNum == TEAM_RED)
+		pPlayer->m_nSkin = pPlayer->m_iSkin;
+	else if (pTeam->m_iTeamNum == TEAM_BLUE)
+		pPlayer->m_nSkin = pPlayer->m_iSkin + 4; 
+	} 	
+}
+
+ConCommand changeskin("changeskin", CC_ChangeSkin, "Change player appearance.", FCVAR_GAMEDLL);
+
+//------------------------------------------------------------------------------
 // Jeff - switch teams (YA SCURVY DAWG)
 //------------------------------------------------------------------------------
 void CC_SwitchTeams (void)

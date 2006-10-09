@@ -245,6 +245,7 @@ SET( CLIENT_SRCS
 	HudPanel.cpp
 	ArenaPanel.cpp
 	ChangeTeamPanel.cpp
+	ChangeSkinPanel.cpp
 )
 
 SET( CLIENT_SDK_SRCS

@@ -151,6 +151,7 @@ BEGIN_RECV_TABLE_NOBASE( CPlayerLocalData, DT_Local )
 	RecvPropInt( RECVINFO( m_audio.soundscapeIndex ) ),
 	RecvPropInt( RECVINFO( m_audio.localBits ) ),
 	RecvPropEHandle( RECVINFO( m_audio.ent ) ),
+
 END_RECV_TABLE()
 
 // -------------------------------------------------------------------------------- //
@@ -172,7 +173,7 @@ END_RECV_TABLE()
 
 		RecvPropInt			( RECVINFO( m_nTickBase ) ),
 		RecvPropInt			( RECVINFO( m_nNextThinkTick ) ),
-
+		RecvPropInt( RECVINFO( m_iSkin ) ),
 		RecvPropEHandle		( RECVINFO( m_hLastWeapon ) ),
 		RecvPropEHandle		( RECVINFO( m_hGroundEntity ) ),
 

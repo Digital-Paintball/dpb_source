@@ -236,9 +236,9 @@ void CTeam::AddPlayer( CBasePlayer *pPlayer )
 	NetworkStateChanged();
 
 	if (m_iTeamNum == TEAM_RED)
-		pPlayer->m_nSkin = random->RandomInt( 0, 3 );
+		pPlayer->m_nSkin = pPlayer->m_iSkin; // random->RandomInt( 0, 3 ); // jeff, make it not random anymore
 	else if (m_iTeamNum == TEAM_BLUE)
-		pPlayer->m_nSkin = random->RandomInt( 4, 7 );
+		pPlayer->m_nSkin = pPlayer->m_iSkin + 4; // random->RandomInt( 4, 7 );
 }
 
 //-----------------------------------------------------------------------------
