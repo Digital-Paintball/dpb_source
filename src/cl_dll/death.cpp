@@ -39,6 +39,7 @@ public:
 
 private:
 	CHudTexture			*m_iconD_skull;  // sprite index of skull icon
+	CHudTexture			*m_iconD_splat;  // sprite index of splat icon
 
 	vgui::HFont		m_hTextFont;
 	Color			m_clrText;
@@ -77,7 +78,6 @@ void CHudDeathNotice::ApplySchemeSettings( IScheme *scheme )
 
 //-----------------------------------------------------
 struct DeathNoticeItem {
-	char szKiller[MAX_PLAYER_NAME_LENGTH];
 	char szVictim[MAX_PLAYER_NAME_LENGTH];
 	CHudTexture *iconDeath;	// the index number of the associated sprite
 	int iSuicide;
@@ -110,6 +110,7 @@ void CHudDeathNotice::Init( void )
 void CHudDeathNotice::VidInit( void )
 {
 	m_iconD_skull = gHUD.GetIcon( "d_skull" );
+	m_iconD_splat = gHUD.GetIcon( "d_splat" );
 }
 
 //-----------------------------------------------------------------------------
@@ -156,32 +157,12 @@ void CHudDeathNotice::Paint()
 			continue;
 
 		wchar_t victim[ 256 ];
-		wchar_t killer[ 256 ];
 
 		vgui::localize()->ConvertANSIToUnicode( rgDeathNoticeList[i].szVictim, victim, sizeof( victim ) );
-		vgui::localize()->ConvertANSIToUnicode( rgDeathNoticeList[i].szKiller, killer, sizeof( killer ) );
 
 		int len = UTIL_ComputeStringWidth( m_hTextFont, victim );
 
 		x = ScreenWidth() - len - icon->Width() - 5;
-
-		if ( !rgDeathNoticeList[i].iSuicide )
-		{
-			int lenkiller = UTIL_ComputeStringWidth( m_hTextFont, killer );
-
-			x -= (5 + lenkiller );
-
-			// Draw killer's name
-			surface()->DrawSetTextPos( x, y );
-			const wchar_t *p = killer;
-			while ( *p )
-			{
-				surface()->DrawUnicodeChar( *p++ );
-			}
-	
-			surface()->DrawGetTextPos( x, y );
-			x += 5;
-		}
 
 		Color iconColor( 255, 80, 0, 255 );
 
@@ -219,12 +200,7 @@ void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 	int iVictimID = event->GetInt("userid");
 	int killer = engine->GetPlayerForUserID( iKillerID );
 	int victim = engine->GetPlayerForUserID( iVictimID );
-
-	char killedwith[32];
-	Q_snprintf( killedwith, sizeof( killedwith ), "d_%s", event->GetString("weapon") );
-
-	if (FStrEq(killedwith, "d_world"))
-		killedwith[0] = '\0';
+	bool world = event->GetBool( "world" );
 
 	int i;
 	for ( i = 0; i < MAX_DEATHNOTICES; i++ )
@@ -246,22 +222,13 @@ void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 	if ( !victim_name )
 		victim_name = "";
 
-	Q_strncpy( rgDeathNoticeList[i].szKiller, killer_name, MAX_PLAYER_NAME_LENGTH );
 	Q_strncpy( rgDeathNoticeList[i].szVictim, victim_name, MAX_PLAYER_NAME_LENGTH );
 
 	if ( killer == victim || killer == 0 )
 		rgDeathNoticeList[i].iSuicide = true;
 
-	if ( !strcmp( killedwith, "d_teammate" ) )
+	if ( g_PR->GetTeam( killer ) == g_PR->GetTeam( victim ) )
 		rgDeathNoticeList[i].iTeamKill = true;
-
-	// try and find the death identifier in the icon list
-	rgDeathNoticeList[i].iconDeath = gHUD.GetIcon( killedwith );
-	if ( !rgDeathNoticeList[i].iconDeath )
-	{
-		// can't find it, so use the default skull & crossbones icon
-		rgDeathNoticeList[i].iconDeath = m_iconD_skull;
-	}
 
 	DEATHNOTICE_DISPLAY_TIME = hud_deathnotice_time.GetFloat();
 
@@ -270,9 +237,11 @@ void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 	// record the death notice in the console
 	if ( rgDeathNoticeList[i].iSuicide )
 	{
+		rgDeathNoticeList[i].iconDeath = m_iconD_skull;
+
 		Msg( "%s", rgDeathNoticeList[i].szVictim );
 
-		if ( !strcmp( killedwith, "d_world" ) )
+		if ( !world )
 		{
 			Msg( " died" );
 		}
@@ -281,35 +250,23 @@ void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 			Msg( " killed self" );
 		}
 	}
-	else if ( rgDeathNoticeList[i].iTeamKill )
-	{
-		Msg( "%s", rgDeathNoticeList[i].szKiller );
-		Msg( " killed his teammate " );
-		Msg( "%s", rgDeathNoticeList[i].szVictim );
-	}
 	else
 	{
-		Msg( "%s", rgDeathNoticeList[i].szKiller );
-		Msg( " killed " );
-		Msg( "%s", rgDeathNoticeList[i].szVictim );
-	}
+		rgDeathNoticeList[i].iconDeath = m_iconD_splat;
 
-	if ( killedwith && *killedwith && (*killedwith > 13 ) && strcmp( killedwith, "d_world" ) && !rgDeathNoticeList[i].iTeamKill )
-	{
-		Msg( " with " );
-
-		// replace the code names with the 'real' names
-		if ( !strcmp( killedwith+2, "egon" ) )
-			Q_strncpy( killedwith, "d_gluon gun", sizeof( killedwith ) );
-		if ( !strcmp( killedwith+2, "gauss" ) )
-			Q_strncpy( killedwith, "d_tau cannon", sizeof( killedwith ) );
-
-		Msg( killedwith+2 ); // skip over the "d_" part
+		if ( rgDeathNoticeList[i].iTeamKill )
+		{
+			Msg( "%s", killer_name );
+			Msg( " killed his teammate " );
+			Msg( "%s", victim_name );
+		}
+		else
+		{
+			Msg( "%s", killer_name );
+			Msg( " killed " );
+			Msg( "%s", victim_name );
+		}
 	}
 
 	Msg( "\n" );
 }
-
-
-
-

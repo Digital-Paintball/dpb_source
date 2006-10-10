@@ -518,7 +518,7 @@ bool CMultiplayRules::IsMultiplayer( void )
 	void CMultiplayRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &info )
 	{
 		// Work out what killed the player, and send a message to all clients about it
-		const char *killer_weapon_name = "world";		// by default, the player is killed by the world
+		bool worldkill = true;		// by default, the player is killed by the world
 		int killer_ID = 0;
 
 		// Find the killer & the scorer
@@ -529,7 +529,7 @@ bool CMultiplayRules::IsMultiplayer( void )
 		// Custom kill type?
 		if ( info.GetCustomKill() )
 		{
-			killer_weapon_name = GetCustomKillString( info );
+			worldkill = false;
 			if ( pScorer )
 			{
 				killer_ID = pScorer->GetUserID();
@@ -548,33 +548,17 @@ bool CMultiplayRules::IsMultiplayer( void )
 					{
 						// If the inflictor is the killer,  then it must be their current weapon doing the damage
 						if ( pScorer->GetActiveWeapon() )
-						{
-							killer_weapon_name = pScorer->GetActiveWeapon()->GetDeathNoticeName();
-						}
+							worldkill = false;
 					}
 					else
 					{
-						killer_weapon_name = STRING( pInflictor->m_iClassname );  // it's just that easy
+						worldkill = false;
 					}
 				}
 			}
 			else
 			{
-				killer_weapon_name = STRING( pInflictor->m_iClassname );
-			}
-
-			// strip the NPC_* or weapon_* from the inflictor's classname
-			if ( strncmp( killer_weapon_name, "weapon_", 7 ) == 0 )
-			{
-				killer_weapon_name += 7;
-			}
-			else if ( strncmp( killer_weapon_name, "NPC_", 8 ) == 0 )
-			{
-				killer_weapon_name += 8;
-			}
-			else if ( strncmp( killer_weapon_name, "func_", 5 ) == 0 )
-			{
-				killer_weapon_name += 5;
+				worldkill = false;
 			}
 		}
 
@@ -583,7 +567,7 @@ bool CMultiplayRules::IsMultiplayer( void )
 		{
 			event->SetInt("userid", pVictim->GetUserID() );
 			event->SetInt("attacker", killer_ID );
-			event->SetString("weapon", killer_weapon_name);
+			event->SetBool("world", worldkill);
 			event->SetInt("priority", 10 );
 			
 			gameeventmanager->FireEvent( event );
