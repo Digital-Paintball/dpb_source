@@ -27,7 +27,6 @@ INSTALL_FILES(/cfg FILES
 )
 
 INSTALL_FILES(/DownloadLists FILES
-	DownloadLists/dpb_begin.lst
 )
 
 INSTALL_FILES(/maps FILES
@@ -1170,7 +1169,6 @@ INSTALL_FILES(/scripts FILES
 )
 
 INSTALL_FILES(/scripts/vehicles FILES
-	scripts/vehicles/jeep_test.txt
 )
 
 INSTALL_FILES(/sound/ambient FILES
