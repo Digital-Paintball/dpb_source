@@ -44,8 +44,8 @@
 		"ypos"	"432"
 		"wide"	"136"
 		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
+		"visible" "0"
+		"enabled" "0"
 
 		"PaintBackgroundType"	"2"
 
@@ -64,8 +64,8 @@
 		"ypos"	"432"
 		"wide"	"60"
 		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
+		"visible" "0"
+		"enabled" "0"
 
 		"PaintBackgroundType"	"2"
 
@@ -123,8 +123,8 @@
 	HudDamageIndicator
 	{
 		"fieldName" "HudDamageIndicator"
-		"visible" "1"
-		"enabled" "1"
+		"visible" "0"
+		"enabled" "0"
 		"DmgColorLeft" "255 0 0 0"
 		"DmgColorRight" "255 0 0 0"
 		
@@ -151,8 +151,8 @@
 	{
 		"fieldName" "HudWeaponSelection"
 		"ypos" 	"16"
-		"visible" "1"
-		"enabled" "1"
+		"visible" "0"
+		"enabled" "0"
 		"SmallBoxSize" "32"
 		"LargeBoxWide" "112"
 		"LargeBoxTall" "80"
@@ -166,8 +166,8 @@
 	HudCrosshair
 	{
 		"fieldName" "HudCrosshair"
-		"visible" "1"
-		"enabled" "1"
+		"visible" "0"
+		"enabled" "0"
 		"wide"	 "640"
 		"tall"	 "480"
 	}

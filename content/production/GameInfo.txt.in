@@ -1,8 +1,9 @@
 "GameInfo"
 {
 	game			"Digital Paintball ${DPB_VERSION} Build ${DPB_REVISION}"
-	developer		"DPB Team"
-	developer_url	"http://www.digitalpaintball.net"
+	developer		"Soulstrewn Studios LLC"
+	developer_url		"http://www.digitalpaintball.net"
+	manual			"http://www.digitalpaintball.net/files/dpb_manual_${DPB_VERSION}.pdf"
 	icon			"dpb"
 	type			"multiplayer_only"
 
@@ -13,7 +14,6 @@
 		
 		SearchPaths
 		{
-			GameBin				\build\dpb-vs\lib\debug
 			Game				|gameinfo_path|.
 			Game				hl2
 		}

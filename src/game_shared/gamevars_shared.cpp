@@ -27,3 +27,15 @@ ConVar friendlyfire(
 	"mp_friendlyfire",
 	"0",
 	FCVAR_REPLICATED | FCVAR_NOTIFY );
+
+ConVar mp_balanceteams( // jeff - unimplemented
+	"mp_balanceteams",
+	"0",
+	FCVAR_REPLICATED | FCVAR_NOTIFY,
+	"Bitmask for arenas that will have auto-team-balance enabled");
+
+ConVar mp_balanceteams_threshold( // jeff - unimplemented
+	"mp_balanceteams_threshold",
+	"2",
+	FCVAR_REPLICATED | FCVAR_NOTIFY,
+	"How much of an advantage makes a team unbalanced");
