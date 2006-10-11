@@ -3,9 +3,13 @@
 // memdbgon must be the last include file in a .cpp file!!! 
 #include "tier0/memdbgon.h"
 PanelGlobals(CJoinArena,CJoinArenaPanel,JoinArena);
+
+static ConVar friendly_ui("friendly_ui", "1", 0, "Enables or disables the friendly join arena UI", true, 0, true, 1);
+
 CON_COMMAND(ShowJoinArena,NULL)
 {
-	ToggleVisibility(JoinArena->GetPanel());
+	if(friendly_ui.GetBool()) // jeff - don't show this panel if friendly_ui is 0.
+		ToggleVisibility(JoinArena->GetPanel());
 }
 CJoinArenaPanel::CJoinArenaPanel( vgui::VPANEL parent ) : BaseClass( NULL, "JoinArena" )
 {
