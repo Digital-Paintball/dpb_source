@@ -42,7 +42,18 @@
 	"CompatibilityAttenuation"	"1.0"
 	"pitch"		"PITCH_NORM"
 
-	"wave"			"hopper/reload_demo.wav"
+	"wave"			"hopper/hop_pop.wav"
+	
+}
+
+"weapon_marker.ReloadMore"
+{
+	"channel"		"CHAN_ITEM"
+	"volume"		"1.0"
+	"CompatibilityAttenuation"	"1.0"
+	"pitch"		"PITCH_NORM"
+
+	"wave"			"hopper/hopperrefill1.wav"
 	
 }
 

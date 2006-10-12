@@ -30,6 +30,7 @@ WeaponData
 		"single_shot"			"weapon_marker.Single"
 		"double_shot"			"weapon_marker.Double"
 		"reload"			"weapon_marker.Reload"
+		"reload2"			"weapon_marker.ReloadMore"
 		"empty"				"weapon_marker.Dryfire"
 	}
 

@@ -30,6 +30,7 @@ typedef enum {
 	DOUBLE_NPC,
 	BURST,
 	RELOAD,
+	RELOAD2,
 	RELOAD_NPC,
 	MELEE_MISS,
 	MELEE_HIT,

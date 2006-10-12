@@ -1536,7 +1536,7 @@ bool CBaseCombatWeapon::DefaultReload( int iClipSize1, int iClipSize2, int iActi
 
 #ifdef CLIENT_DLL
 	// Play reload
-	WeaponSound( RELOAD );
+	// WeaponSound( RELOAD ); // jeff moved to independant weapon files
 #endif
 	SendWeaponAnim( iActivity );
 

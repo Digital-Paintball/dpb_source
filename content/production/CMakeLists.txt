@@ -1207,6 +1207,7 @@ INSTALL_FILES(/sound/ambient FILES
 
 INSTALL_FILES(/sound/hopper FILES
 	sound/hopper/hopperrefill1.wav  
+	sound/hopper/hop_pop.wav  
 	sound/hopper/shake_low_gentle1.wav
 	sound/hopper/shake_low_gentle2.wav
 	sound/hopper/shake_full_gentle1.wav
@@ -1226,7 +1227,6 @@ INSTALL_FILES(/sound/hopper FILES
 	sound/hopper/shake_low_rough3.wav
 	sound/hopper/shake_full_rough3.wav
 	sound/hopper/shake_lowballs_gentle1.wav
-	sound/hopper/reload_demo.wav
 	sound/hopper/shake_lowballs_gentle2.wav
 	sound/hopper/shake_lowballs_gentle3.wav
 	sound/hopper/shake_lowballs_gentle4.wav

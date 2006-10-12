@@ -100,6 +100,7 @@ bool CWeaponBlazer::Reload( )
 	{
 		pPlayer->SetFOV( pPlayer, pPlayer->GetDefaultFOV() );
 	}
+
 #endif
 
 	pPlayer->m_iShotsFired = 0;
@@ -121,11 +122,17 @@ void CWeaponBlazer::CheckReload( void )
 		case ACT_VM_RELOAD1:
 			{
 				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
+#ifdef CLIENT_DLL
+				WeaponSound( RELOAD );
+#endif
 				m_iReloadStage = ACT_VM_RELOAD2;
 				break;
 			}
 		case ACT_VM_RELOAD2:
 			{
+#ifdef CLIENT_DLL
+				WeaponSound( RELOAD2 );
+#endif
 				if (pOwner->m_nButtons & IN_RELOAD)
 				{
 					DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
