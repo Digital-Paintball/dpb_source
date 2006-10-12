@@ -23,8 +23,7 @@ $origin 0 0 0 0
 $sequence idle "Idle" fps 30 snap activity ACT_VM_IDLE 1 node Ready
 $sequence draw "Draw" fps 30 snap activity ACT_VM_DRAW 1 node Ready
 $sequence holster "Holster" fps 30 snap activity ACT_VM_HOLSTER 1 node Ready
-//$sequence fire "Fire" fps 63 snap activity ACT_VM_PRIMARYATTACK 1 node Ready //9BPS, 7 frames each
-//$sequence reload1a "Reload1a" fps 30 snap activity ACT_VM_RELOAD1A 1 node Ready
-//$sequence reload1b "Reload1b" fps 30 snap activity ACT_VM_RELOAD1B 1 node Ready
-//$sequence reload2 "Reload2" fps 30 snap activity ACT_VM_RELOAD2 1 node Ready
-//$sequence reload3 "Reload3" fps 30 snap activity ACT_VM_RELOAD3 1 node Ready
+$sequence fire "Fire" fps 63 snap activity ACT_VM_PRIMARYATTACK 1 node Ready //9BPS, 7 frames each
+$sequence reload1 "Reload1" fps 30 snap activity ACT_VM_RELOAD1 1 node Ready
+$sequence reload2 "Reload2" fps 30 snap activity ACT_VM_RELOAD2 1 node Ready
+$sequence reload3 "Reload3" fps 30 snap activity ACT_VM_RELOAD3 1 node Ready
