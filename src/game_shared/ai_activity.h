@@ -211,8 +211,6 @@ typedef enum
 	ACT_VM_SECONDARYATTACK,		// alt. fire
 	ACT_VM_RELOAD,
 	ACT_VM_RELOAD1,
-	ACT_VM_RELOAD1A,
-	ACT_VM_RELOAD1B,
 	ACT_VM_RELOAD2,
 	ACT_VM_RELOAD3,
 	ACT_VM_DRYFIRE,				// fire with no ammo loaded.

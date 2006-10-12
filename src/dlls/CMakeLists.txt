@@ -388,12 +388,8 @@ SET( GAME_SHARED_SDK_SRCS
 	../game_shared/sdk/sdk_playeranimstate.cpp
 	../game_shared/sdk/sdk_usermessages.cpp
 	../game_shared/sdk/sdk_weapon_parse.cpp
-	../game_shared/sdk/weapon_basesdkgrenade.cpp
-	../game_shared/sdk/weapon_grenade.cpp
-	../game_shared/sdk/weapon_marker.cpp
 	../game_shared/sdk/weapon_sdkbase.cpp
 	../game_shared/sdk/weapon_blazer.cpp
-	../game_shared/sdk/weapon_blowback.cpp
 
 )
 

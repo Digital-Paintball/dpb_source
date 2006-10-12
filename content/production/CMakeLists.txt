@@ -514,12 +514,34 @@ INSTALL_FILES(/materials/norrington FILES
 INSTALL_FILES(/materials/city FILES
 	materials/city/cityarcade.vmt
 	materials/city/cityarcade.vtf
+	materials/city/citybar.vmt
+	materials/city/citybar.vtf
+	materials/city/citybar_normal.vtf
 	materials/city/cityfade.vmt
 	materials/city/cityfade.vtf
 	materials/city/citylight.vmt
 	materials/city/citylight.vtf
+	materials/city/citylogo.vmt
+	materials/city/citylogo.vtf
+	materials/city/citymen.vmt
+	materials/city/citymen.vtf
 	materials/city/cityshop.vmt
 	materials/city/cityshop.vtf
+	materials/city/citywomen.vmt
+	materials/city/citywomen.vtf
+	materials/city/poster_dye.vmt
+	materials/city/poster_dye.vtf
+	materials/city/poster_icd.vmt
+	materials/city/poster_icd.vtf
+	materials/city/poster_normal.vtf
+	materials/city/poster_nps.vmt
+	materials/city/poster_nps.vtf
+	materials/city/poster_rap4.vmt
+	materials/city/poster_rap4.vtf
+	materials/city/rygProshopCarpetgreen.vmt
+	materials/city/rygProshopCarpetgreen.vtf
+	materials/city/rygProshopCarpetgreen_normal.vtf
+
 )
 
 
