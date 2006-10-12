@@ -83,11 +83,11 @@ bool CWeaponBlazer::Reload( )
 	if (pPlayer->GetAmmoCount( GetPrimaryAmmoType() ) <= 0)
 		return false;
 
-	int iResult = DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD1A );
+	int iResult = DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD1 );
 	if ( !iResult )
 		return false;
 
-	m_iReloadStage = ACT_VM_RELOAD1A;
+	m_iReloadStage = ACT_VM_RELOAD1;
 
 	pPlayer->SetAnimation( PLAYER_RELOAD );
 
@@ -118,13 +118,7 @@ void CWeaponBlazer::CheckReload( void )
 	{
 		switch (m_iReloadStage)
 		{
-		case ACT_VM_RELOAD1A:
-			{
-				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD1B );
-				m_iReloadStage = ACT_VM_RELOAD1B;
-				break;
-			}
-		case ACT_VM_RELOAD1B:
+		case ACT_VM_RELOAD1:
 			{
 				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
 				m_iReloadStage = ACT_VM_RELOAD2;

@@ -455,14 +455,10 @@ INSTALL_FILES(/materials/models/weapons FILES
 	materials/models/weapons/dpb_gravhopper_main.vmt
 	materials/models/weapons/dpb_gravhopper_main_normal.vtf
 	materials/models/weapons/blazer.vtf
-	materials/models/weapons/v_smg.vmt
-	materials/models/weapons/v_smg.vtf
-	materials/models/weapons/v_smg_hopper.vmt
-	materials/models/weapons/v_smg_hopper.vtf
-	materials/models/weapons/v_smg_tank.vmt
-	materials/models/weapons/v_smg_tank.vtf
 	materials/models/weapons/w_blazer.vmt
 	materials/models/weapons/w_blazer.vtf
+	materials/models/weapons/newhandstex.vtf
+	materials/models/weapons/newhandstex.vmt
 )
 
 INSTALL_FILES(/materials/norrington FILES
@@ -1095,46 +1091,10 @@ INSTALL_FILES(/models/supair FILES
 )
 
 INSTALL_FILES(/models/weapons FILES
-	models/weapons/v_eq_fraggrenade.dx80.vtx
-	models/weapons/v_eq_fraggrenade.dx90.vtx
-	models/weapons/v_eq_fraggrenade.mdl
-	models/weapons/v_eq_fraggrenade.sw.vtx
-	models/weapons/v_eq_fraggrenade.vvd
-	models/weapons/v_smg1.dx80.vtx
-	models/weapons/v_smg1.dx90.vtx
-	models/weapons/v_smg1.mdl
-	models/weapons/v_smg1.sw.vtx
-	models/weapons/v_smg1.vvd
-	models/weapons/w_eq_fraggrenade.dx80.vtx
-	models/weapons/w_eq_fraggrenade.dx90.vtx
-	models/weapons/w_eq_fraggrenade.mdl
-	models/weapons/w_eq_fraggrenade.phy
-	models/weapons/w_eq_fraggrenade.sw.vtx
-	models/weapons/w_eq_fraggrenade.vvd
-	models/weapons/w_eq_fraggrenade_thrown.dx80.vtx
-	models/weapons/w_eq_fraggrenade_thrown.dx90.vtx
-	models/weapons/w_eq_fraggrenade_thrown.mdl
-	models/weapons/w_eq_fraggrenade_thrown.phy
-	models/weapons/w_eq_fraggrenade_thrown.sw.vtx
-	models/weapons/w_eq_fraggrenade_thrown.vvd
-	models/weapons/w_smg_mp5.dx80.vtx
-	models/weapons/w_smg_mp5.dx90.vtx
-	models/weapons/w_smg_mp5.mdl
-	models/weapons/w_smg_mp5.phy
-	models/weapons/w_smg_mp5.sw.vtx
-	models/weapons/w_smg_mp5.vvd
 	models/weapons/v_blazer.mdl
-	models/weapons/w_smg1.dx90.vtx
 	models/weapons/v_blazer.vvd
 	models/weapons/v_blazer.dx90.vtx
-	models/weapons/w_smg1.mdl
-	models/weapons/w_smg1.jpg
-	models/weapons/w_smg1.vvd
-	models/weapons/w_smg1.phy
-	models/weapons/w_smg1.dx80.vtx
-	models/weapons/w_smg1.sw.vtx
 	models/weapons/v_blazer.dx80.vtx
-	models/weapons/v_smg1.jpg
 	models/weapons/v_blazer.sw.vtx
 	models/weapons/w_blazer.dx90.vtx
 	models/weapons/w_blazer.mdl
@@ -1155,6 +1115,7 @@ INSTALL_FILES(/resource FILES
 	resource/spectatormenu.res
 	resource/spectatormodes.res
 	resource/TrackerScheme.res
+	resource/OptionsSubMultiplayer.res
 )
 
 INSTALL_FILES(/resource/ui FILES
