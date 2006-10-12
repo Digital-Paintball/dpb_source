@@ -28,7 +28,8 @@
 #include <changeteampanel.h>
 // added by Jeff 10/8 change skin
 #include <changeskinpanel.h>
-
+// added by Jeff 10/12 change gun
+#include <changegunpanel.h>
 
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
@@ -163,6 +164,7 @@ void VGui_CreateGlobalPanels( void )
 	// Part of game
 	ChangeTeam->Create( gameParent);
 	ChangeSkin->Create( gameParent);
+	ChangeGun->Create( gameParent);
 	JoinArena->Create( gameParent );  // jeff - this is the join arena panel
 	MyHud->Create( cViewPort );  // jeff - this is the hud panel
 	textmessage->Create( gameParent );
@@ -185,6 +187,7 @@ void VGui_Shutdown()
 	fps->Destroy();
 	ChangeTeam->Destroy();
 	ChangeSkin->Destroy();
+	ChangeGun->Destroy();
 	JoinArena->Destroy(); // jeff - keep it clean
 	MyHud->Destroy();
 	messagechars->Destroy();

@@ -31,6 +31,7 @@ INSTALL_FILES(/DownloadLists FILES
 
 INSTALL_FILES(/maps FILES
 	maps/dpb_norrington.bsp
+	maps/dpb_east.bsp
 )
 
 INSTALL_FILES(/materials/console FILES
@@ -741,6 +742,8 @@ INSTALL_FILES(/materials/VGUI FILES
 	materials/VGUI/skin3.vtf
 	materials/VGUI/skin4.vmt
 	materials/VGUI/skin4.vtf
+	materials/VGUI/gun1.vmt
+	materials/VGUI/gun1.vtf
 )
 
 INSTALL_FILES(/materials/VGUI/gui FILES
@@ -1146,6 +1149,7 @@ INSTALL_FILES(/resource/ui FILES
 	resource/ui/JoinArenaPanel.res
 	resource/ui/ChangeSkinPanel.res
 	resource/ui/ChangeTeamPanel.res
+	resource/ui/ChangeGunPanel.res
 )
 
 INSTALL_FILES(/scripts FILES

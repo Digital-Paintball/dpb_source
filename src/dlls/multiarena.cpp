@@ -239,7 +239,7 @@ void CArena::SetupRound( )
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hSwitchersBlue[i]);
 
-		if (!pPlayer) // person got tired of waiting, apparently. asshat
+		if (!pPlayer)
 			continue;
 
 		pPlayer->ResetFragCount(); // all your scores are die when you switch teams. sorry
@@ -346,11 +346,25 @@ void CArena::SetupRound( )
 		m_willEnd = ( gpGlobals->curtime + m_flMinutes * 60 );
 
 	}
+	for (int i = 0; i < iPlayersCount; i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+			
+		if (!pPlayer)
+		{
+			m_hPlayers.FastRemove(i);
+			continue;
+		}
+		if (this->HasPlayer(pPlayer)) 
+		{
+			ClientPrint( pPlayer, HUD_PRINTCENTER, "GET READY!" );
+		}
+	}
 }
 
 void CArena::BeginThink( )
 {
-
+	m_State = CArenaShared::GS_INPROGRESS;
 	int iPlayersCount = m_hPlayers.Count();
 	for (int i = 0; i < iPlayersCount; i++)
 	{
@@ -389,8 +403,6 @@ void CArena::TimesUpThink()
 
 void CArena::KeepTimeThink() // jeff
 {
-	m_State = CArenaShared::GS_INPROGRESS;
-
 	int iPlayersCount = m_hPlayers.Count();
 	for (int i = 0; i < iPlayersCount; i++)
 	{

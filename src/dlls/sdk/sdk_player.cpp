@@ -297,7 +297,6 @@ void CSDKPlayer::CheatImpulseCommands( int iImpulse )
 	EquipSuit();
 
 	GiveNamedItem( "weapon_blazer" );
-	GiveNamedItem( "weapon_blowback" );
 
 	// Give the player everything!
 	GiveAmmo( 300, AMMO_PAINT );
