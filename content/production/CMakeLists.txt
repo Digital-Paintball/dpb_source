@@ -731,6 +731,25 @@ INSTALL_FILES(/materials/textures FILES
 	materials/textures/asphalt-dark.vmt
 	materials/textures/splat.vtf  
 	materials/textures/splat.vmt  
+	materials/textures/overlay_healthygrass.vmt
+	materials/textures/overlay_healthygrass.vtf
+	materials/textures/healthygrassshort.vtf
+	materials/textures/BLENDplaingrass_healthygrassshort.vmt
+	materials/textures/healthygrassshort.vmt
+	materials/textures/overlay_unhealthygrass.vtf
+	materials/textures/overlay_unhealthygrass.vmt
+	materials/textures/overlay_dirt.vmt
+	materials/textures/overlay_dirt1.vtf
+	materials/textures/overlay_dirt2.vmt
+	materials/textures/overlay_dirt2.vtf
+	materials/textures/overlay_dirt3.vtf
+	materials/textures/overlay_dirt3.vmt
+	materials/textures/overlay_skid1.vmt
+	materials/textures/overlay_skid1.vtf
+	materials/textures/overlay_skid2-onshorthealthy.vmt
+	materials/textures/overlay_skid2.vtf
+	materials/textures/overlay_skid3.vmt
+	materials/textures/overlay_skid3.vtf
 )
 
 INSTALL_FILES(/materials/VGUI FILES
