@@ -320,7 +320,13 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 
 		if ( gr && gr->IsConnected( i ) )
 		{
-			if (UTIL_PlayerByIndex(i)->GetArena() != C_Arena::GetArena(m_iViewingArena))
+			// NOTE: THIS IS NOT THE WAY TODO IT, FIXED IN "afterigf" branch
+			C_BasePlayer *pPlayer = UTIL_PlayerByIndex(i);
+
+			if( !pPlayer )
+				continue;
+
+			if( pPlayer->GetArena() != C_Arena::GetArena(m_iViewingArena) )
 				continue;
 
 			// add the player to the list
