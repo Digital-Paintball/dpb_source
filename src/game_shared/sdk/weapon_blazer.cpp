@@ -87,6 +87,10 @@ bool CWeaponBlazer::Reload( )
 	if ( !iResult )
 		return false;
 
+#ifdef CLIENT_DLL
+				WeaponSound( RELOAD );
+#endif
+
 	m_iReloadStage = ACT_VM_RELOAD1;
 
 	pPlayer->SetAnimation( PLAYER_RELOAD );
@@ -123,16 +127,13 @@ void CWeaponBlazer::CheckReload( void )
 			{
 				DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
 #ifdef CLIENT_DLL
-				WeaponSound( RELOAD );
+				WeaponSound( RELOAD2 );
 #endif
 				m_iReloadStage = ACT_VM_RELOAD2;
 				break;
 			}
 		case ACT_VM_RELOAD2:
 			{
-#ifdef CLIENT_DLL
-				WeaponSound( RELOAD2 );
-#endif
 				if (pOwner->m_nButtons & IN_RELOAD)
 				{
 					DefaultReload( GetMaxClip1(), GetMaxClip2(), ACT_VM_RELOAD2 );
