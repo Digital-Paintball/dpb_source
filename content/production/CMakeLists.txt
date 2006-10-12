@@ -32,6 +32,7 @@ INSTALL_FILES(/DownloadLists FILES
 INSTALL_FILES(/maps FILES
 	maps/dpb_norrington.bsp
 	maps/dpb_east.bsp
+	maps/dpb_city.bsp
 )
 
 INSTALL_FILES(/materials/console FILES
@@ -509,6 +510,18 @@ INSTALL_FILES(/materials/norrington FILES
 	materials/norrington/blendgrasspine.vmt
 	materials/norrington/pineline.vmt
 )
+
+INSTALL_FILES(/materials/city FILES
+	materials/city/cityarcade.vmt
+	materials/city/cityarcade.vtf
+	materials/city/cityfade.vmt
+	materials/city/cityfade.vtf
+	materials/city/citylight.vmt
+	materials/city/citylight.vtf
+	materials/city/cityshop.vmt
+	materials/city/cityshop.vtf
+)
+
 
 INSTALL_FILES(/materials/sprites FILES
 	materials/sprites/pb.vtf
