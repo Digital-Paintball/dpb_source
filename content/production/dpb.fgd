@@ -1,35 +1,56 @@
 @include "base.fgd"
 
-@BaseClass = Target 
-[ 
-	target(target_destination) : "Target" 
-]
-
 @BaseClass = TeamNum
 [
 	TeamNum(choices) : "Team Number (int)" : 0 =
 	[
+		0 : "None"
 		1 : "Blue"
 		2 : "Red"
 	]
 ]
 
-@PointClass base(Angles) size(-4 -4 -4, 4 4 4) color(0 180 0) = info_viewpoint : 
+@PointClass base(Angles) size(-4 -4 -4, 4 4 4) color(0 180 0) = dpb_viewpoint : 
 	"This entity adds viewpoints for the player to spawn into when first joining the game."
 [
 ]
 
-@PointClass base(Angles, TeamNum) studio("models/player/player.mdl") = info_player_teamspawn :
-	"This entity marks the start point for players. One of these needs to be placed for each team member. " +
+@PointClass base(Angles, TeamNum) studio("models/player/player.mdl") = dpb_spawnpoint :
+	"This entity marks the start point for players in an arena. One of these needs to be placed for each team member. " +
 	"20 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
 [
 ]
 
-
-@SolidClass base(Trigger) = game_arena :
+@SolidClass base(Trigger) = dpb_arena :
 	"This is a playing arena that a game is going on inside of. Don't overlap them. If a player is inside this area," +
-	"he is either playing or spectating the specified game. If omitted, everybody will be playing the same game."
+	"he is either playing or spectating the specified game."
 [
-	ArenaName(string) : "Arena Name" : : "This name will appear on the scoreboard and elsewhere."
-	RoundTime(float) : "Round time" : 3 : "How many minutes will a round last? 0 or empty for no round time."
+	arenaname(string) : "Arena Name" : : "This name will appear when joining the arena."
+
+	roundtime(float) : "Round Time" : 3 : "Defines how many minutes the round will last. 0 or empty for no round time."
+
+	gameplay(choices) : "Gameplay Type" : 0 : "Defines the gameplay type of the arena." =
+	[
+		0 : "Deathmatch"
+		1 : "CTF"
+		2 : "Center-Flag"
+	]
+]
+
+@PointClass base(Angles) studio("models/player/player.mdl") = dpb_arena_spawnpoint :
+	"This entity marks the start point for players outside of an arena." +
+	"Should be placed at least 128 units away from each other and surrounding walls."
+[
+]
+
+@PointClass base(Angles, TeamNum) size(-8 -8 -35, 8 8 35) color(255 0 0) = dpb_flag :
+	"This entity places a flag in an arena. " + 
+	"For CTF, both a Red and Blue flag needs to be placed." + 
+	"For Center-Flag, a single None flag needs to be placed."
+[
+]
+
+@SolidClass base(TeamNum) = dpb_flagcapture :
+	"This is where flags are to be taken too when captured."
+[
 ]
