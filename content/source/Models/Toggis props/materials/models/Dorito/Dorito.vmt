@@ -1,6 +1,0 @@
-"vertexlitgeneric" {
-    "$basetexture" "models\Dorito\Dorito"
-    "$envmapcontrast" 1.000000
-    "$envmaptint" "[ 0.5020 0.5020 0.5020 ]"
-    "$surfaceprop" "rubber"
-}
