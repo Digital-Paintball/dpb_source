@@ -1,7 +1,0 @@
-"vertexlitgeneric" {
-    "$basetexture" "models\Plank\Plank"
-    "$envmapcontrast" 1.000000
-    "$envmap" "env_cubemap"
-    "$envmaptint" "[ 0.5020 0.5020 0.5020 ]"
-    "$surfaceprop" "wood"
-}
