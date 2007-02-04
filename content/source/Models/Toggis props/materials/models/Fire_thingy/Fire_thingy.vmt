@@ -1,0 +1,6 @@
+"vertexlitgeneric" {
+    "$basetexture" "models\Fire_thingy\Fire_thingy"
+    "$envmapcontrast" 1
+    "$envmaptint" "[ 0.5020 0.5020 0.5020 ]"
+    "$surfaceprop" "solidmetal"
+}

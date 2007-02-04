@@ -1,0 +1,8 @@
+"SDK_PostProcess"
+{
+	// You can use "mat_reloadmaterial post" to apply changes to these parameters at runtime.
+	$filterSize 1.3
+	$sharpenFactor 10	// 0.7 makes more sense on planet earth, but this is a lot more obvious.
+	
+	"$basetexture" "_rt_FullFrameFB"
+}
