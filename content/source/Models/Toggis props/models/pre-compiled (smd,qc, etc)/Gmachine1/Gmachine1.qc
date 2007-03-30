@@ -2,11 +2,9 @@ $modelname "props\Gmachine1\Gmachine1.mdl"
 $cdmaterials "models\Gmachine1\"
 $surfaceprop "metal"
 $staticprop
+$scale 0.2
 
 $model "Body" "Gmachine1.smd"
-
-
-
 
 
 $shadowlod

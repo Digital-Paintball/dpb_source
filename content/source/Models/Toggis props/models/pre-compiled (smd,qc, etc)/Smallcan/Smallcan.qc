@@ -2,6 +2,7 @@ $modelname "props\Smallcan\Smallcan.mdl"
 $cdmaterials "models\Smallcan\"
 $surfaceprop "rubber"
 $staticprop
+$scale 0.3
 
 $model "Body" "Smallcan.smd"
 

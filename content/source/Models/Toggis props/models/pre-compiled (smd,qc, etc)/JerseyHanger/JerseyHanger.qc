@@ -2,6 +2,7 @@ $modelname "props\JerseyHanger\JerseyHanger.mdl"
 $cdmaterials "models\JerseyHanger\"
 $surfaceprop "Wood"
 $staticprop
+$scale 0.2
 
 $model "Body" "JerseyHanger.smd"
 

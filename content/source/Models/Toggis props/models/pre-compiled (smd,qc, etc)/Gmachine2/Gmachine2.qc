@@ -2,6 +2,8 @@ $modelname "props\Gmachine2\Gmachine2.mdl"
 $cdmaterials "models\Gmachine2\"
 $surfaceprop "Wood"
 $staticprop
+$scale 0.2
+
 
 $model "Body" "Gmachine2.smd"
 

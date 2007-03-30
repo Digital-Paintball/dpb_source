@@ -2,6 +2,8 @@ $modelname "props\Burrito\Burrito.mdl"
 $cdmaterials "models\Burrito\"
 $surfaceprop "rubber"
 $staticprop
+$scale 0.3
+
 
 $model "Body" "Burrito.smd"
 

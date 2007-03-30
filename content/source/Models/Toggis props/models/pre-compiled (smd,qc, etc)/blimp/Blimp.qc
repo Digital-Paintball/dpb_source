@@ -2,6 +2,7 @@ $modelname "props\blimps\blimp.mdl"
 $cdmaterials "models\Blimp\"
 $surfaceprop "rubber"
 $staticprop
+$scale 0.0625
 
 $model "Body" "blimp.smd"
 

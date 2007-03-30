@@ -2,6 +2,7 @@ $modelname "props\Airhockey\Airhockey.mdl"
 $cdmaterials "models\Airhockey\"
 $surfaceprop "Wood"
 $staticprop
+$scale 0.4
 
 $model "Body" "Airhockey.smd"
 

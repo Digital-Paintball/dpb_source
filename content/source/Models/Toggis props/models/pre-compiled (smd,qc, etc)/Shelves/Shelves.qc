@@ -2,6 +2,7 @@ $modelname "props\Shelves\Shelves.mdl"
 $cdmaterials "models\Shelves\"
 $surfaceprop "Wood"
 $staticprop
+$scale 0.2
 
 $model "Body" "Shelves.smd"
 

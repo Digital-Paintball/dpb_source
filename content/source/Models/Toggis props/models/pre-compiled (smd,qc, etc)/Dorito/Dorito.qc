@@ -2,6 +2,7 @@ $modelname "props\Doritos\Dorito.mdl"
 $cdmaterials "models\Dorito\"
 $surfaceprop "rubber"
 $staticprop
+$scale 0.35
 
 $model "Body" "Dorito.smd"
 

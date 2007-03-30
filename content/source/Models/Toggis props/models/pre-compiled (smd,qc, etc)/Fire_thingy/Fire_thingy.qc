@@ -2,6 +2,7 @@ $modelname "props\Fire_thingy\Fire_thingy.mdl"
 $cdmaterials "models\Fire_thingy\"
 $surfaceprop "solidmetal"
 $staticprop
+$scale 0.2
 
 $model "Body" "Fire_thingy.smd"
 
