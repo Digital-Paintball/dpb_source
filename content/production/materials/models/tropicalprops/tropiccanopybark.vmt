@@ -1,0 +1,4 @@
+"vertexlitgeneric" {
+    "$basetexture" "models\tropicalprops\tropiccanopybark"
+    "$surfaceprop" "wood"
+}

@@ -1,0 +1,11 @@
+"WorldVertexTransition"
+{
+	"$basetexture" "tropical/tropicsandblue"
+	"$basetexture2" "tropical/tropicsanddry"
+	"%tooltexture" "tropical/blendtropicsandblue_tooltexture"
+	"$basetexturetransform" "center .5 .5 scale 1 1 rotate 0  translate 0 0" 
+   	"$basetexturetransform2" "center .5 .5 scale 1 1 rotate 0 translate 0 0" 
+	"$surfaceprop" "sand"
+	"%keywords" "tropical"
+        "%detailtype" "tropic_shell"
+}

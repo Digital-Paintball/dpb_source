@@ -1,0 +1,14 @@
+"LightMappedGeneric"
+ {
+  "$baseTexture" "tropical/caustic_"
+	"$translucent" 1
+  "Proxies" 
+       { 
+         "AnimatedTexture" 
+         { 
+            "animatedTextureVar" "$basetexture" 
+            "animatedTextureFrameNumVar" "$frame" 
+            "animatedTextureFrameRate" "5" 
+         }
+    } 
+ }

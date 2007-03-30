@@ -1,0 +1,13 @@
+// envmaptint_fix
+"LightmappedGeneric"
+{
+	"$basetexture" "tropical/tropicsanddry"
+	"$bumpmap" "Nature/sandfloor009a_normal"
+	"$surfaceprop" "sand"
+	"%keywords" "tropical"
+	"$normalmapalphaenvmapmask" 1
+	"$envmapcontrast" 1
+	"$envmapsaturation" 1
+	"$envmaptint" "[ .80 .80 .80 ]"
+	"$envmap" "env_cubemap"
+}

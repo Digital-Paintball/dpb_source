@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"tropical/tropiccanopyline"
+	"$translucent"			1
+	"$alphatest"			 1
+
+}
+

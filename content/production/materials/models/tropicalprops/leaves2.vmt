@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"models/tropicalprops/leaves2"
+	"$translucent"			1
+	"$alphatest"			 1
+"$model" 1
+	"$nocull"				 1
+
+}
+

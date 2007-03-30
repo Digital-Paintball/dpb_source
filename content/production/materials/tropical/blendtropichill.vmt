@@ -1,0 +1,11 @@
+"WorldVertexTransition"
+{
+	"$basetexture" "tropical/tropicrock"
+	"$basetexture2" "tropical/tropicgrass"
+	"%tooltexture" "tropical/tropicrock"
+	"$basetexturetransform" "center .5 .5 scale 1 1 rotate 0  translate 0 0" 
+   	"$basetexturetransform2" "center .5 .5 scale 4 4 rotate 0 translate 0 0"
+        "%detailtype" "tropic_hill" 
+	"$surfaceprop" "sand"
+	"%keywords" "tropical"
+}
