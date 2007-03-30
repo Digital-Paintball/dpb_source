@@ -1,0 +1,6 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "weapons\Hoppers\dpb_gravhopper_main"
+	"$surfaceprop" "default"
+	"keywords" "grav"
+}

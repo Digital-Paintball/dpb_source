@@ -1,0 +1,6 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "weapons\Regulators/reg_stabilizer_black"
+	"$surfaceprop" "default"
+	"keywords" "Steb"
+}

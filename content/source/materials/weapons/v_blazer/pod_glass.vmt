@@ -1,0 +1,6 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "Weapons\pod_glass"
+	"$surfaceprop" "default"
+	"keywords" "plid"
+}
