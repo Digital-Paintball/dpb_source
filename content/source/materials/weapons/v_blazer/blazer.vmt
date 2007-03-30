@@ -1,9 +1,0 @@
-"vertexlitgeneric"
-{
-	"$baseTexture" "Weapons\v_blazer/blazer"
-	"$envmap" "env_cubemap"
-	"$envmaptint" ".3 .3 .3"
-	"$envmapmask" "Weapons\v_blazer/blazer_spec"
-	"$surfaceprop" "metal"
-	"keywords" "blazer"
-}
