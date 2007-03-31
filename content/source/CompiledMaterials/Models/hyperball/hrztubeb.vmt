@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+
+	"$baseTexture"			"models/hyperball/hrztubeb"
+	"$bumpmap"			"models/hyperball/hrztubeb_normal"
+	"$envmap" 				"env_cubemap"
+ 	"$envmaptint" 			"[.32 .32 .32]"
+	"$normalmapalphaenvmapmask" 	"1"
+}

@@ -1,0 +1,9 @@
+"VertexLitGeneric"
+{
+	"$baseTexture"			"models/supair/Cylinder/Cylinder1"
+ 	"$bumpmap" 			"models/supair/Cylinder/Cylinder1_normal"
+	"$envmap" 				"env_cubemap"
+ 	"$envmaptint" 			"[.27 .27 .27]"
+	"$normalmapalphaenvmapmask" 	"1"
+	
+}

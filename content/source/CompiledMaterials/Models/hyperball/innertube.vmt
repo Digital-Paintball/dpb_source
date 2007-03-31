@@ -1,0 +1,10 @@
+"VertexLitGeneric"
+{
+
+	"$baseTexture"			"models/hyperball/innertube"
+	"$bumpmap"			"models/hyperball/innertube_normal"
+	"$envmap" 				"env_cubemap"
+ 	"$envmaptint" 			"[.32 .32 .32]"
+	"$normalmapalphaenvmapmask" 	"1"
+
+}
