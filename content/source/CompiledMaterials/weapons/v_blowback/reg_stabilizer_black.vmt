@@ -1,0 +1,8 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "weapons\Regulators/reg_stabilizer_black"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.5 .5 .5]"
+	"$surfaceprop" "default"
+	"keywords" "Steb"
+}

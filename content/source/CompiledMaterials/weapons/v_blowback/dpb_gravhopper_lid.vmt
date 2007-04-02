@@ -1,0 +1,8 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "weapons\Hoppers/dpb_gravhopper_lid"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.3 .3 .3]"
+	"$surfaceprop" "default"
+	"keywords" "Lid"
+}

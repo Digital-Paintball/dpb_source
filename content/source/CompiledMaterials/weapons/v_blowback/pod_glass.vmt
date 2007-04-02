@@ -1,0 +1,8 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "Weapons\pod_glass"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.3 .3 .3]"
+	"$surfaceprop" "default"
+	"keywords" "plid"
+}

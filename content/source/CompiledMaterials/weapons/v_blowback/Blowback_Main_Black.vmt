@@ -1,0 +1,9 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "Weapons\v_blowback/Blowback_Main_Black"
+	"$envmap" "env_cubemap"
+	"$envmaptint" ".[5 .5 .5]"
+	"$envmapmask" "Weapons\v_blowback/Blowback_Main_Spec"
+	"$surfaceprop" "default"
+	"keywords" "Blowback"
+}

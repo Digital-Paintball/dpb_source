@@ -1,0 +1,9 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "weapons\Barrells/Barrel2"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.5 .5 .5]"
+	"$envmapmask" "Weapons\Barrells/Barrel2_spec"
+	"$surfaceprop" "default"
+	"keywords" "Barrel"
+}

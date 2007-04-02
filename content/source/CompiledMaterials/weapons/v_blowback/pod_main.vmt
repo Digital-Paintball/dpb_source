@@ -1,0 +1,9 @@
+"vertexlitgeneric"
+{
+	"$baseTexture" "Weapons/pod_main"
+	"$bumpmap" "Weapons/pod_main_normal"
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[.1 .1 .1]"
+	"$surfaceprop" "default"
+	"keywords" "pod"
+}
