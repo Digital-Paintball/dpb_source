@@ -149,7 +149,7 @@ IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
 	}
 
 	//-----------------------------------------------------------------------------
-	// Purpose: TF2 Specific Client Commands
+	// Purpose: 
 	// Input  :
 	// Output :
 	//-----------------------------------------------------------------------------

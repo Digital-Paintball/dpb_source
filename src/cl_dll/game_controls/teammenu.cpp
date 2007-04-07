@@ -24,7 +24,10 @@
 
 #include "IGameUIFuncs.h" // for key bindings
 #include <igameresources.h>
+
+#ifndef _XBOX
 extern IGameUIFuncs *gameuifuncs; // for key binding details
+#endif
 
 #include <cl_dll/iviewport.h>
 
@@ -215,7 +218,6 @@ void CTeamMenu::LoadMapPage( const char *mapName )
 	{
 		// its a ascii char file
 		m_pMapInfo->SetText( reinterpret_cast<char *>( memBlock ) );
-		
 	}
 	else
 	{

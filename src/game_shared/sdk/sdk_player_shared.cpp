@@ -23,11 +23,6 @@
 
 ConVar sv_showimpacts("sv_showimpacts", "0", FCVAR_REPLICATED, "Shows client (red) and server (blue) bullet impact point" );
 
-BEGIN_PREDICTION_DATA( CSDKPlayer )
-	DEFINE_PRED_FIELD( m_flCycle, FIELD_FLOAT, FTYPEDESC_OVERRIDE | FTYPEDESC_PRIVATE | FTYPEDESC_NOERRORCHECK ),
-	DEFINE_PRED_FIELD( m_iShotsFired, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),   
-END_PREDICTION_DATA()
-
 void DispatchEffect( const char *pName, const CEffectData &data );
 
 CWeaponSDKBase* CSDKPlayer::SDKAnim_GetActiveWeapon()

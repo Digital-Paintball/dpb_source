@@ -21,6 +21,11 @@
 #include "vgui_controls/controls.h"
 #include "vgui/cursor.h"
 
+#ifdef _XBOX
+#include "xbox/xbox_platform.h"
+#include "xbox/xbox_win32stubs.h"
+#endif
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -54,6 +59,8 @@ static ConVar m_mouseaccel1( "m_mouseaccel1", "0", FCVAR_ARCHIVE, "Windows mouse
 static ConVar m_mouseaccel2( "m_mouseaccel2", "0", FCVAR_ARCHIVE, "Windows mouse acceleration secondary threshold (4x movement).", true, 0, false, 0.0f );
 static ConVar m_mousespeed( "m_mousespeed", "1", FCVAR_ARCHIVE, "Windows mouse speed factor (range 1 to 20).", true, 1, true, 20 );
 
+ConVar cl_mouselook( "cl_mouselook", "1", FCVAR_ARCHIVE | FCVAR_NOT_CONNECTED, "Set to 1 to use mouse for look, 0 for keyboard look. Cannot be set while connected to a server." );
+
 ConVar cl_mouseenable( "cl_mouseenable", "1" );
 
 // From other modules...
@@ -61,7 +68,7 @@ void GetVGUICursorPos( int& x, int& y );
 void SetVGUICursorPos( int x, int y );
 
 //-----------------------------------------------------------------------------
-// Purpose: Hides cursor and starts accumulation/recentering
+// Purpose: Hides cursor and starts accumulation/re-centering
 //-----------------------------------------------------------------------------
 void CInput::ActivateMouse (void)
 {
@@ -254,14 +261,15 @@ void CInput::MouseEvent( int mstate, bool down )
 			continue;
 
 		// Only fire changed buttons
-		if ( (mstate & (1<<i)) && !(m_nMouseOldButtons & (1<<i)) )
+		int nBit = 1 << i;
+		if ( (mstate & nBit) && !(m_nMouseOldButtons & nBit) )
 		{
-			engine->Key_Event (K_MOUSE1 + i, down);
+			engine->Key_Event( K_MOUSE1 + i, 1 );
 		}
-		if ( !(mstate & (1<<i)) && (m_nMouseOldButtons & (1<<i)) )
+		if ( !(mstate & nBit) && (m_nMouseOldButtons & nBit) )
 		{
 			// Force 0 instead of down, because MouseMove calls this with down set to true.
-			engine->Key_Event (K_MOUSE1 + i, 0);
+			engine->Key_Event( K_MOUSE1 + i, 0 );
 		}
 	}	
 	
@@ -395,6 +403,7 @@ void CInput::ApplyMouse( QAngle& viewangles, CUserCmd *cmd, float mouse_x, float
 	if (!(in_strafe.state & 1))
 	{
 		viewangles[PITCH] += m_pitch.GetFloat() * mouse_y;
+
 		// Check pitch bounds
 		if (viewangles[PITCH] > cl_pitchdown.GetFloat())
 		{
@@ -555,8 +564,10 @@ void CInput::GetFullscreenMousePos( int *mx, int *my, int *unclampedx /*=NULL*/,
 	// Now need to add back in mid point of viewport
 	//
 
-	current_posx += ScreenWidth()  / 2;
-	current_posy += ScreenHeight() / 2;
+	int w, h;
+	vgui::surface()->GetScreenSize( w, h );
+	current_posx += w  / 2;
+	current_posy += h / 2;
 
 	if ( unclampedx )
 	{

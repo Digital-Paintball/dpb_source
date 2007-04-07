@@ -38,11 +38,15 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+#ifndef _XBOX
 extern IGameUIFuncs *gameuifuncs; // for key binding details
+#endif
 
 // void DuckMessage(const char *str); // from vgui_teamfortressviewport.cpp
 
 ConVar spec_scoreboard( "spec_scoreboard", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+
+CSpectatorGUI *g_pSpectatorGUI = NULL;
 
 static char *s_SpectatorModes[] = { "#Spec_Mode0", "#Spec_Mode1", "#Spec_Mode2", "#Spec_Mode3", "#Spec_Mode4", "#Spec_Mode5", "" };
 
@@ -53,6 +57,8 @@ ConVar cl_spec_mode(
 	"1",
 	FCVAR_ARCHIVE | FCVAR_USERINFO,
 	"spectator mode" );
+
+
 
 //-----------------------------------------------------------------------------
 // Purpose: left and right buttons pointing buttons
@@ -101,9 +107,9 @@ CSpectatorMenu::CSpectatorMenu( IViewPort *pViewPort ) : Frame( NULL, PANEL_SPEC
 	m_pViewOptions->SetText("#Spec_Modes");
 	m_pConfigSettings->SetText("#Spec_Options");
 
-	m_pPlayerList->SetOpenDirection( ComboBox::UP );
-	m_pViewOptions->SetOpenDirection( ComboBox::UP );
-	m_pConfigSettings->SetOpenDirection( ComboBox::UP );
+	m_pPlayerList->SetOpenDirection( Menu::UP );
+	m_pViewOptions->SetOpenDirection( Menu::UP );
+	m_pConfigSettings->SetOpenDirection( Menu::UP );
 
 	// create view config menu
 	CommandMenu * menu = new CommandMenu(m_pViewOptions, "spectatormenu", gViewPortInterface);
@@ -137,7 +143,7 @@ void CSpectatorMenu::ApplySchemeSettings(IScheme *pScheme)
 void CSpectatorMenu::PerformLayout()
 {
 	int w,h;
-	surface()->GetScreenSize(w, h);
+	GetHudSize(w, h);
 
 	// fill the screen
 	SetSize(w,GetTall());
@@ -164,7 +170,7 @@ void CSpectatorMenu::OnTextChanged(KeyValues *data)
 		{
 			const char *player = kv->GetString("player");
 
-			int currentPlayerNum = GetSpectatorTargetPlayer();
+			int currentPlayerNum = GetSpectatorTarget();
 			const char *currentPlayerName = GameResources()->GetPlayerName( currentPlayerNum );
 
 			if ( !FStrEq( currentPlayerName, player ) )
@@ -225,21 +231,18 @@ void CSpectatorMenu::ShowPanel(bool bShow)
 		SetKeyBoardInputEnabled( false );
 	}
 
-	// during HLTV broadcast, some interacitve elements are disabled
-	if ( engine->IsHLTV() && engine->IsPlayingDemo() )
-	{
-		m_pLeftButton->SetVisible( true );
-		m_pRightButton->SetVisible( true );
-		m_pPlayerList->SetVisible( true );
-		m_pViewOptions->SetVisible( true );
-	}
-	else
-	{
-		m_pLeftButton->SetVisible( false );
-		m_pRightButton->SetVisible( false );
-		m_pPlayerList->SetVisible( false );
-		m_pViewOptions->SetVisible( false );
-	}
+	bool bIsEnabled = true;
+	
+	 if ( engine->IsHLTV() && HLTVCamera()->IsPVSLocked() )
+	 {
+		 // when wattching HLTV with a locked PVS, some elements are disabled
+		 bIsEnabled = false;
+	 }
+	
+	m_pLeftButton->SetVisible( bIsEnabled );
+	m_pRightButton->SetVisible( bIsEnabled );
+	m_pPlayerList->SetVisible( bIsEnabled );
+	m_pViewOptions->SetVisible( bIsEnabled );
 }
 
 
@@ -255,30 +258,6 @@ int CSpectatorMenu::PlayerAddItem( int itemID, wchar_t *name, KeyValues *data )
 		return m_pPlayerList->AddItem( name, data ) + 1; 
 	}
 }
-
-/*
-void CBottomBar::OnKeyCodePressed(KeyCode code)
-{
-	if ( m_iChooseTeamKey!=KEY_NONE && m_iChooseTeamKey == code )
-	{
-		// gViewPortInterface->GetSpectatorInterface()->HideGUI();
-
-		if( m_bChooseTeamCommand )
-		{
-			engine->ClientCmd("chooseteam");
-		}
-		else
-		{
-			engine->ClientCmd("changeteam");
-		}
-	}
-	else
-	{
-		Panel::OnKeyCodePressed( code ); // chain this to our parent, note its meant to be Panel:: NOT BaseClass:: !!
-										 // (as the baseclass is a frame which doesn't chain up)
-	}
-} */
-
 
 void CSpectatorMenu::SetPlayerNameText(const wchar_t *text )
 {
@@ -306,6 +285,7 @@ CSpectatorGUI::CSpectatorGUI(IViewPort *pViewPort) : Frame( NULL, PANEL_SPECGUI 
 	m_bSpecScoreboard = false;
 
 	m_pViewPort = pViewPort;
+	g_pSpectatorGUI = this;
 
 	// initialize dialog
 	SetVisible(false);
@@ -346,7 +326,7 @@ CSpectatorGUI::CSpectatorGUI(IViewPort *pViewPort) : Frame( NULL, PANEL_SPECGUI 
 //-----------------------------------------------------------------------------
 CSpectatorGUI::~CSpectatorGUI()
 {
-	
+	g_pSpectatorGUI = NULL;
 }
 
 //-----------------------------------------------------------------------------
@@ -370,14 +350,15 @@ void CSpectatorGUI::ApplySchemeSettings(IScheme *pScheme)
 //-----------------------------------------------------------------------------
 void CSpectatorGUI::PerformLayout()
 {
-	int w,h;
-	surface()->GetScreenSize(w, h);
-
+	int w,h,x,y;
+	GetHudSize(w, h);
+	
 	// fill the screen
 	SetBounds(0,0,w,h);
 
 	// stretch the bottom bar across the screen
-	m_pBottomBarBlank->SetSize(w,GetTall());
+	m_pBottomBarBlank->GetPos(x,y);
+	m_pBottomBarBlank->SetSize( w, h - y );
 }
 
 //-----------------------------------------------------------------------------
@@ -463,21 +444,24 @@ void CSpectatorGUI::ShowPanel(bool bShow)
 	}
 }
 
-
+bool CSpectatorGUI::ShouldShowPlayerLabel( int specmode )
+{
+	return ( (specmode == OBS_MODE_IN_EYE) ||	(specmode == OBS_MODE_CHASE) );
+}
 //-----------------------------------------------------------------------------
-// Purpose: Updates the gui, rearragnes elements
+// Purpose: Updates the gui, rearranges elements
 //-----------------------------------------------------------------------------
 void CSpectatorGUI::Update()
 {
 	int wide, tall;
 	int bx, by, bwide, btall;
 
-	surface()->GetScreenSize(wide, tall);
+	GetHudSize(wide, tall);
 	m_pTopBar->GetBounds( bx, by, bwide, btall );
 
 	IGameResources *gr = GameResources();
 	int specmode = GetSpectatorMode();
-	int playernum = GetSpectatorTargetPlayer();
+	int playernum = GetSpectatorTarget();
 
 	IViewPortPanel *overview = gViewPortInterface->FindPanelByName( PANEL_OVERVIEW );
 
@@ -509,11 +493,11 @@ void CSpectatorGUI::Update()
 		m_pTopBar->SetPos( 0, 0 );
 	}
 
-	m_pPlayerLabel->SetVisible( (specmode == OBS_MODE_IN_EYE) || (specmode == OBS_MODE_CHASE) );
+	m_pPlayerLabel->SetVisible( ShouldShowPlayerLabel(specmode) );
 
 	// update player name filed, text & color
 
-	if ( playernum > 0 && gr)
+	if ( playernum > 0 && playernum <= gpGlobals->maxClients && gr )
 	{
 		Color c = gr->GetTeamColor( gr->GetTeam(playernum) ); // Player's team color
 
@@ -523,7 +507,7 @@ void CSpectatorGUI::Update()
 		wcscpy( playerText, L"Unable to find #Spec_PlayerItem*" );
 		memset( playerName, 0x0, sizeof( playerName ) * sizeof( wchar_t ) );
 
-		localize()->ConvertANSIToUnicode( gr->GetPlayerName( playernum ), playerName, sizeof( playerName ) );
+		localize()->ConvertANSIToUnicode( UTIL_SafeName(gr->GetPlayerName( playernum )), playerName, sizeof( playerName ) );
 		int iHealth = gr->GetHealth( playernum );
 		if ( iHealth > 0  && gr->IsAlive(playernum) )
 		{
@@ -537,30 +521,39 @@ void CSpectatorGUI::Update()
 
 		m_pPlayerLabel->SetText( playerText );
 	}
+	else
+	{
+		m_pPlayerLabel->SetText( L"" );
+	}
 
 	// update extra info field
-	wchar_t string1[1024];
-/*	if ( gViewPortInterface->GetClientDllInterface()->IsHLTVMode() ) TODO
-	{
-		char numplayers[6];
-		wchar_t wNumPlayers[6];
+	wchar_t szEtxraInfo[1024];
+	wchar_t szTitleLabel[1024];
+	char tempstr[128];
 
-		Q_snprintf(numplayers,6,"%i", 666); // TODO show HLTV spectator number
-		localize()->ConvertANSIToUnicode(numplayers,wNumPlayers,sizeof(wNumPlayers));
-		localize()->ConstructString( string1,sizeof( string1 ), localize()->Find("#Spectators" ),1, wNumPlayers );
+	if ( engine->IsHLTV() )
+	{
+		// set spectator number and HLTV title
+		Q_snprintf(tempstr,sizeof(tempstr),"Spectators : %d", HLTVCamera()->GetNumSpectators() );
+		localize()->ConvertANSIToUnicode(tempstr,szEtxraInfo,sizeof(szEtxraInfo));
+		
+		Q_strncpy( tempstr, HLTVCamera()->GetTitleText(), sizeof(tempstr) );
+		localize()->ConvertANSIToUnicode(tempstr,szTitleLabel,sizeof(szTitleLabel));
 	}
-	else */
+	else
 	{
 		// otherwise show map name
-		char mapname[255];
-		Q_FileBase( engine->GetLevelName(), mapname, sizeof(mapname) );
+		Q_FileBase( engine->GetLevelName(), tempstr, sizeof(tempstr) );
 
 		wchar_t wMapName[64];
-		localize()->ConvertANSIToUnicode(mapname,wMapName,sizeof(wMapName));
-		localize()->ConstructString( string1,sizeof( string1 ), localize()->Find("#Spec_Map" ),1, wMapName );
+		localize()->ConvertANSIToUnicode(tempstr,wMapName,sizeof(wMapName));
+		localize()->ConstructString( szEtxraInfo,sizeof( szEtxraInfo ), localize()->Find("#Spec_Map" ),1, wMapName );
+
+		localize()->ConvertANSIToUnicode( "" ,szTitleLabel,sizeof(szTitleLabel));
 	}
 
-	SetLabelText("extrainfo", string1 );
+	SetLabelText("extrainfo", szEtxraInfo );
+	SetLabelText("titlelabel", szTitleLabel );
 }
 
 
@@ -599,7 +592,7 @@ void CSpectatorMenu::Update( void )
 
 		wchar_t playerText[ 80 ], playerName[ 64 ], *team, teamText[ 64 ];
 		char localizeTeamName[64];
-		localize()->ConvertANSIToUnicode( gr->GetPlayerName(iPlayerIndex), playerName, sizeof( playerName ) );
+		localize()->ConvertANSIToUnicode( UTIL_SafeName( gr->GetPlayerName(iPlayerIndex) ), playerName, sizeof( playerName ) );
 		const char * teamname = gr->GetTeamName( gr->GetTeam(iPlayerIndex) );
 		if ( teamname )
 		{	
@@ -625,7 +618,7 @@ void CSpectatorMenu::Update( void )
 	}
 
 	// make sure the player combo box is up to date
-	int playernum = GetSpectatorTargetPlayer();
+	int playernum = GetSpectatorTarget();
 	const char *selectedPlayerName = gr->GetPlayerName( playernum );
 	for ( iPlayerIndex=0; iPlayerIndex<m_pPlayerList->GetItemCount(); ++iPlayerIndex )
 	{
@@ -714,10 +707,13 @@ CON_COMMAND( spec_next, "Spectate next player" )
 	if ( !pPlayer || !pPlayer->IsObserver() )
 		return;
 
-	if ( engine->IsHLTV() && engine->IsPlayingDemo() )
+	if ( engine->IsHLTV() )
 	{
 		// handle the command clientside
-		HLTVCamera()->SpecNextPlayer( false );
+		if ( !HLTVCamera()->IsPVSLocked() )
+		{
+			HLTVCamera()->SpecNextPlayer( false );
+		}
 	}
 	else
 	{
@@ -732,10 +728,13 @@ CON_COMMAND( spec_prev, "Spectate previous player" )
 	if ( !pPlayer || !pPlayer->IsObserver() )
 		return;
 
-	if ( engine->IsHLTV() && engine->IsPlayingDemo() )
+	if ( engine->IsHLTV() )
 	{
 		// handle the command clientside
-		HLTVCamera()->SpecNextPlayer( true );
+		if ( !HLTVCamera()->IsPVSLocked() )
+		{
+			HLTVCamera()->SpecNextPlayer( true );
+		}
 	}
 	else
 	{
@@ -750,18 +749,42 @@ CON_COMMAND( spec_mode, "Set spectator mode" )
 	if ( !pPlayer || !pPlayer->IsObserver() )
 		return;
 
-	int mode = 0;
-
-	if ( engine->Cmd_Argc() == 2 )
-		mode = Q_atoi( engine->Cmd_Argv(1) );
-
-	if ( engine->IsHLTV() && engine->IsPlayingDemo() )
+	if ( engine->IsHLTV() )
 	{
-		// handle the command clientside
-		HLTVCamera()->SetMode( mode );
+		if ( HLTVCamera()->IsPVSLocked() )
+		{
+			// in locked mode we can only switch between first and 3rd person
+			HLTVCamera()->ToggleChaseAsFirstPerson();
+		}
+		else
+		{
+			// we can choose any mode, not loked to PVS
+			int mode;
+
+			if ( engine->Cmd_Argc() == 2 )
+			{
+				// set specifc mode
+				mode = Q_atoi( engine->Cmd_Argv(1) );
+			}
+			else
+			{
+				// set next mode 
+				mode = HLTVCamera()->GetMode()+1;
+
+				if ( mode > OBS_MODE_ROAMING )
+					mode = OBS_MODE_IN_EYE;
+			}
+			
+			// handle the command clientside
+			HLTVCamera()->SetMode( mode );
+		}
+
+			// turn off auto director once user tried to change view settings
+		HLTVCamera()->SetAutoDirector( false );
 	}
 	else
 	{
+		// we spectate on a game server, forward command
 		ForwardSpecCmdToServer();
 	}
 }
@@ -776,10 +799,13 @@ CON_COMMAND( spec_player, "Spectate player by name" )
 	if ( engine->Cmd_Argc() != 2 )
 		return;
 
-	if ( engine->IsHLTV() && engine->IsPlayingDemo() )
+	if ( engine->IsHLTV() )
 	{
-		// handle the command clientside
-		HLTVCamera()->SpecNamedPlayer( engine->Cmd_Argv(1) );
+		// we can only switch primary spectator targets is PVS isnt locked by auto-director
+		if ( !HLTVCamera()->IsPVSLocked() )
+		{
+			HLTVCamera()->SpecNamedPlayer( engine->Cmd_Argv(1) );
+		}
 	}
 	else
 	{

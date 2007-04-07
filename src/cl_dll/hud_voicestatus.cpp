@@ -15,6 +15,8 @@
 #include "c_playerresource.h"
 
 
+ConVar *sv_alltalk = NULL;
+
 //=============================================================================
 // Icon for the local player using voice
 //=============================================================================
@@ -56,7 +58,10 @@ CHudVoiceSelfStatus::CHudVoiceSelfStatus( const char *pName ) :
 void CHudVoiceSelfStatus::ApplySchemeSettings(vgui::IScheme *pScheme)
 {
 	BaseClass::ApplySchemeSettings( pScheme );
+
+#ifdef HL2MP
 	SetBgColor( Color( 0, 0, 0, 0 ) );
+#endif
 }
 
 void CHudVoiceSelfStatus::VidInit( void )
@@ -140,7 +145,10 @@ CHudVoiceStatus::CHudVoiceStatus( const char *pName ) :
 void CHudVoiceStatus::ApplySchemeSettings(vgui::IScheme *pScheme)
 {
 	BaseClass::ApplySchemeSettings( pScheme );
+
+#ifdef HL2MP
 	SetBgColor( Color( 0, 0, 0, 0 ) );
+#endif
 }
 
 void CHudVoiceStatus::Init( void )
@@ -206,6 +214,9 @@ void CHudVoiceStatus::Paint()
 		iFontHeight = surface()->GetFontTall( m_NameFont );
 	}
 
+	if ( !sv_alltalk )
+		sv_alltalk = cvar->FindVar( "sv_alltalk" );
+
 	//draw everyone in the list!
 	for( i = m_SpeakingList.Head(); i != m_SpeakingList.InvalidIndex(); i = m_SpeakingList.Next(i) )
 	{
@@ -217,7 +228,40 @@ void CHudVoiceStatus::Paint()
 
 		const char *pName = g_PR ? g_PR->GetPlayerName(playerIndex) : "unknown";
 		wchar_t szconverted[ 64 ];
-		localize()->ConvertANSIToUnicode( pName, szconverted, sizeof(szconverted)  );
+
+		// Add the location, if any
+		bool usedLocation = false;
+		if ( sv_alltalk && !sv_alltalk->GetBool() )
+		{
+			C_BasePlayer *pPlayer = UTIL_PlayerByIndex( playerIndex );
+			if ( pPlayer )
+			{
+				const char *asciiLocation = pPlayer->GetLastKnownPlaceName();
+				if ( asciiLocation && *asciiLocation )
+				{
+					const wchar_t *unicodeLocation = vgui::localize()->Find( asciiLocation );
+					if ( unicodeLocation && *unicodeLocation )
+					{
+						wchar_t *formatStr = vgui::localize()->Find( "#Voice_UseLocation" );
+						if ( formatStr )
+						{
+							wchar_t unicodeName[ 64 ];
+							vgui::localize()->ConvertANSIToUnicode( pName, unicodeName, sizeof( unicodeName ) );
+
+							vgui::localize()->ConstructString( szconverted, sizeof( szconverted ),
+								formatStr, 2, unicodeName, unicodeLocation );
+
+							usedLocation = true;
+						}
+					}
+				}
+			}
+		}
+
+		if ( !usedLocation )
+		{
+			localize()->ConvertANSIToUnicode( pName, szconverted, sizeof(szconverted)  );
+		}
 
 		// Draw the item background
 		surface()->DrawSetColor( c );
@@ -233,10 +277,11 @@ void CHudVoiceStatus::Paint()
 
 		// write as much of the name as will fit, truncate the rest and add ellipses
 		int iNameLength = wcslen(szconverted);
+		const wchar_t *pszconverted = szconverted;
 		int iTextWidthCounter = 0;
 		for( int j=0;j<iNameLength;j++ )
 		{
-			iTextWidthCounter += surface()->GetCharacterWidth( m_NameFont, pName[j] );
+			iTextWidthCounter += surface()->GetCharacterWidth( m_NameFont, pszconverted[j] );
 
 			if( iTextWidthCounter > iTextSpace )
 			{	

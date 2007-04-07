@@ -123,19 +123,19 @@ public:
 
 	void *operator new( size_t nBytes )
 	{
-		void *pResult = ::operator new( nBytes );
+		MEM_ALLOC_CREDIT();
+		void *pResult = g_pMemAlloc->Alloc( nBytes );
 		memset( pResult, 0, nBytes );
 		return pResult;
 	};
 
-#if defined(_DEBUG) || defined(USE_MEM_DEBUG)
 	void *operator new( size_t nBytes, int nBlockUse, const char *pFileName, int nLine )
 	{
-		void *pResult = ::operator new( nBytes, nBlockUse, pFileName, nLine );
+		MEM_ALLOC_CREDIT();
+		void *pResult = g_pMemAlloc->Alloc( nBytes, pFileName, nLine );
 		memset( pResult, 0, nBytes );
 		return pResult;
 	}
-#endif
 
 private:
 	CAI_BaseNPC *m_pOuter;

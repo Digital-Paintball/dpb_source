@@ -10,6 +10,7 @@
 #include "ammodef.h"
 #include "SoundEmitterSystem/isoundemittersystembase.h"
 #include "physics_saverestore.h"
+#include "datacache/imdlcache.h"
 
 
 #if !defined( CLIENT_DLL )
@@ -17,6 +18,7 @@
 // Game DLL Headers
 #include "soundent.h"
 #include "eventqueue.h"
+#include "fmtstr.h"
 
 #ifdef HL2MP
 	#include "hl2mp_gamerules.h"
@@ -26,6 +28,7 @@
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
+
 
 CBaseCombatWeapon::CBaseCombatWeapon()
 {
@@ -75,6 +78,22 @@ CBaseCombatWeapon::~CBaseCombatWeapon( void )
 #endif
 }
 
+void CBaseCombatWeapon::Activate( void )
+{
+	BaseClass::Activate();
+
+#ifndef CLIENT_DLL
+	if ( GetOwnerEntity() )
+		return;
+
+	if ( g_pGameRules->IsAllowedToSpawn( this ) == false )
+	{
+		UTIL_Remove( this );
+		return;
+	}
+#endif
+
+}
 //-----------------------------------------------------------------------------
 // Purpose: Set mode to world model and start falling to the ground
 //-----------------------------------------------------------------------------
@@ -115,6 +134,11 @@ void CBaseCombatWeapon::Spawn( void )
 	SetModel( GetWorldModel() );
 
 #if !defined( CLIENT_DLL )
+	if( IsXbox() )
+	{
+		AddEffects( EF_ITEM_BLINK );
+	}
+
 	FallInit();
 	SetCollisionGroup( COLLISION_GROUP_WEAPON );
 	m_takedamage = DAMAGE_EVENTS_ONLY;
@@ -134,6 +158,8 @@ void CBaseCombatWeapon::Spawn( void )
 	// Use more efficient bbox culling on the client. Otherwise, it'll setup bones for most
 	// characters even when they're not in the frustum.
 	AddEffects( EF_BONEMERGE_FASTCULL );
+
+	m_iHudHintCount = 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -430,6 +456,14 @@ const char *CBaseCombatWeapon::GetShootSound( int iIndex ) const
 }
 
 //-----------------------------------------------------------------------------
+// Purpose:
+//-----------------------------------------------------------------------------
+int CBaseCombatWeapon::GetRumbleEffect() const
+{
+	return GetWpnData().iRumbleEffect;
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
 CBaseCombatCharacter	*CBaseCombatWeapon::GetOwner() const
@@ -446,7 +480,7 @@ void CBaseCombatWeapon::SetOwner( CBaseCombatCharacter *owner )
 	m_hOwner = owner;
 	
 #ifndef CLIENT_DLL
-	UpdateTransmitState();
+	DispatchUpdateTransmitState();
 #else
 	UpdateVisibility();
 #endif
@@ -527,6 +561,9 @@ float CBaseCombatWeapon::GetWeaponIdleTime( void )
 	return m_flTimeWeaponIdle;
 }
 
+#if !defined( CLIENT_DLL )
+void WeaponManager_AmmoMod( CBaseCombatWeapon *pWeapon );
+#endif
 
 //-----------------------------------------------------------------------------
 // Purpose: Drop/throw the weapon with the given velocity.
@@ -539,6 +576,7 @@ void CBaseCombatWeapon::Drop( const Vector &vecVelocity )
 	// a game_weapon_manager does a cleanup on surplus weapons in the
 	// world.
 	SetRemoveable( true );
+	WeaponManager_AmmoMod( this );
 
 	//If it was dropped then there's no need to respawn it.
 	AddSpawnFlags( SF_NORESPAWN );
@@ -555,6 +593,11 @@ void CBaseCombatWeapon::Drop( const Vector &vecVelocity )
 	SetThink( &CBaseCombatWeapon::SetPickupTouch );
 	SetTouch(NULL);
 
+	if( hl2_episodic.GetBool() )
+	{
+		RemoveSpawnFlags( SF_WEAPON_NO_PLAYER_PICKUP );
+	}
+
 	IPhysicsObject *pObj = VPhysicsGetObject();
 	if ( pObj != NULL )
 	{
@@ -566,9 +609,22 @@ void CBaseCombatWeapon::Drop( const Vector &vecVelocity )
 		SetAbsVelocity( vecVelocity );
 	}
 
+	CBaseEntity *pOwner = GetOwnerEntity();
+
 	SetNextThink( gpGlobals->curtime + 1.0f );
 	SetOwnerEntity( NULL );
 	SetOwner( NULL );
+
+	// If we're not allowing to spawn due to the gamerules,
+	// remove myself when I'm dropped by an NPC.
+	if ( pOwner && pOwner->IsNPC() )
+	{
+		if ( g_pGameRules->IsAllowedToSpawn( this ) == false )
+		{
+			UTIL_Remove( this );
+			return;
+		}
+	}
 #endif
 }
 
@@ -580,9 +636,31 @@ void CBaseCombatWeapon::Drop( const Vector &vecVelocity )
 void CBaseCombatWeapon::OnPickedUp( CBaseCombatCharacter *pNewOwner )
 {
 #if !defined( CLIENT_DLL )
+	RemoveEffects( EF_ITEM_BLINK );
+
 	if( pNewOwner->IsPlayer() )
 	{
 		m_OnPlayerPickup.FireOutput(pNewOwner, this);
+
+		// Play the pickup sound for 1st-person observers
+		CRecipientFilter filter;
+		for ( int i=1; i <= gpGlobals->maxClients; ++i )
+		{
+			CBasePlayer *player = UTIL_PlayerByIndex(i);
+			if ( player && !player->IsAlive() && player->GetObserverMode() == OBS_MODE_IN_EYE )
+			{
+				filter.AddRecipient( player );
+			}
+		}
+		if ( filter.GetRecipientCount() )
+		{
+			CBaseEntity::EmitSound( filter, pNewOwner->entindex(), "Player.PickupWeapon" );
+		}
+
+		// Robin: We don't want to delete weapons the player has picked up, so 
+		// clear the name of the weapon. This prevents wildcards that are meant 
+		// to find NPCs finding weapons dropped by the NPCs as well.
+		SetName( NULL_STRING );
 	}
 	else
 	{
@@ -655,11 +733,46 @@ void CBaseCombatWeapon::DefaultTouch( CBaseEntity *pOther )
 	if ( !pPlayer )
 		return;
 
+	if( HasSpawnFlags(SF_WEAPON_NO_PLAYER_PICKUP) )
+		return;
+
 	if (pPlayer->BumpWeapon(this))
 	{
 		OnPickedUp( pPlayer );
 	}
 #endif
+}
+
+//---------------------------------------------------------
+// It's OK for base classes to override this completely 
+// without calling up. (sjb)
+//---------------------------------------------------------
+bool CBaseCombatWeapon::ShouldDisplayHUDHint()
+{
+	if( UsesSecondaryAmmo() && HasSecondaryAmmo() )
+	{
+		return true;
+	}
+
+	if( !UsesSecondaryAmmo() && HasPrimaryAmmo() )
+	{
+		return true;
+	}
+
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CBaseCombatWeapon::DisplayAltFireHudHint()
+{
+#if !defined( CLIENT_DLL )
+	CFmtStr hint;
+	hint.sprintf( "#valve_hint_alt_%s", GetClassname() );
+	UTIL_HudHintText( GetOwner(), hint.Access() );
+	m_iHudHintCount++;
+	m_bHudHintDisplayed = true;
+#endif//CLIENT_DLL
 }
 
 void CBaseCombatWeapon::SetPickupTouch( void )
@@ -695,6 +808,8 @@ void CBaseCombatWeapon::Equip( CBaseCombatCharacter *pOwner )
 	SetOwnerEntity( pOwner );
 
 	// Break any constraint I might have to the world.
+	RemoveEffects( EF_ITEM_BLINK );
+
 #if !defined( CLIENT_DLL )
 	if ( m_pConstraint != NULL )
 	{
@@ -863,7 +978,7 @@ bool CBaseCombatWeapon::IsViewModelSequenceFinished( void )
 	CBaseViewModel *vm = pOwner->GetViewModel( m_nViewModelIndex );
 	if ( vm == NULL )
 	{
-		//Assert( false );
+		Assert( false );
 		return false;
 	}
 
@@ -1111,7 +1226,26 @@ bool CBaseCombatWeapon::DefaultDeploy( char *szViewModel, char *szWeaponModel, i
 	m_flNextPrimaryAttack	= gpGlobals->curtime + SequenceDuration();
 	m_flNextSecondaryAttack	= gpGlobals->curtime + SequenceDuration();
 
+	
+	if( m_iHudHintCount < WEAPON_ALTFIRE_HUD_HINT_COUNT )
+	{
+		m_bHudHintDisplayed = false;
+		m_flHudHintPollTime = gpGlobals->curtime + 5.0f;
+	}
+	else
+	{
+		// Set this to prevent the polling.
+		m_bHudHintDisplayed = true;
+	}
+
 	SetWeaponVisible( true );
+
+/*
+
+This code is disabled for now, because moving through the weapons in the carousel 
+selects and deploys each weapon as you pass it. (sjb)
+
+*/
 
 #ifndef CLIENT_DLL
 	// Cancel any pending hide events
@@ -1126,6 +1260,7 @@ bool CBaseCombatWeapon::DefaultDeploy( char *szViewModel, char *szWeaponModel, i
 //-----------------------------------------------------------------------------
 bool CBaseCombatWeapon::Deploy( )
 {
+	MDLCACHE_CRITICAL_SECTION();
 	return DefaultDeploy( (char*)GetViewModel(), (char*)GetWorldModel(), GetDrawActivity(), (char*)GetAnimPrefix() );
 }
 
@@ -1212,6 +1347,31 @@ void CBaseCombatWeapon::InputHideWeapon( inputdata_t &inputdata )
 void CBaseCombatWeapon::ItemPreFrame( void )
 {
 	MaintainIdealActivity();
+
+#ifndef CLIENT_DLL
+	// If we haven't displayed the hint enough times yet, it's time to try to 
+	// display the hint, and the player is not standing still, try to show a hud hint.
+	// If the player IS standing still, assume they could change away from this weapon at
+	// any second.
+	if( !m_bHudHintDisplayed && gpGlobals->curtime > m_flHudHintPollTime && GetOwner() && GetOwner()->IsPlayer() )
+	{
+		CBasePlayer *pPlayer = (CBasePlayer*)(GetOwner());
+
+		if( pPlayer && pPlayer->GetStickDist() > 0.0f )
+		{
+			// If the player is moving, they're unlikely to switch away from the current weapon
+			// the moment this weapon displays its HUD hint.
+			if( ShouldDisplayHUDHint() )
+			{
+				DisplayAltFireHudHint();
+			}
+		}
+		else
+		{
+			m_flHudHintPollTime = gpGlobals->curtime + 1.0f;
+		}
+	}
+#endif
 }
 
 //====================================================================================
@@ -1286,7 +1446,7 @@ void CBaseCombatWeapon::ItemPostFrame( void )
 			//			We really need to hold onto the edge trigger and only clear the condition when the gun has fired its
 			//			first shot.  Right now that's too much of an architecture change -- jdw
 			
-			// If the firing button was just pressed, reset the firing time
+			// If the firing button was just pressed, or the alt-fire just released, reset the firing time
 			if ( pOwner && pOwner->m_afButtonPressed & IN_ATTACK )
 			{
 				 m_flNextPrimaryAttack = gpGlobals->curtime;
@@ -1381,7 +1541,6 @@ const WeaponProficiencyInfo_t *CBaseCombatWeapon::GetProficiencyValues()
 	COMPILE_TIME_ASSERT( ARRAYSIZE(defaultWeaponProficiencyTable) == WEAPON_PROFICIENCY_PERFECT + 1);
 	return defaultWeaponProficiencyTable;
 }
-
 
 //-----------------------------------------------------------------------------
 // Purpose: Base class default for getting firerate
@@ -1546,6 +1705,7 @@ bool CBaseCombatWeapon::DefaultReload( int iClipSize1, int iClipSize2, int iActi
 		( ( CBasePlayer * )pOwner)->SetAnimation( PLAYER_RELOAD );
 	}
 
+	MDLCACHE_CRITICAL_SECTION();
 	float flSequenceEndTime = gpGlobals->curtime + SequenceDuration();
 	pOwner->SetNextAttack( flSequenceEndTime );
 	m_flNextPrimaryAttack = m_flNextSecondaryAttack = flSequenceEndTime;
@@ -1738,7 +1898,8 @@ void CBaseCombatWeapon::PrimaryAttack( void )
 
 	FireBulletsInfo_t info;
 	info.m_vecSrc	 = pPlayer->Weapon_ShootPosition( );
-	info.m_vecDirShooting = pPlayer->GetAutoaimVector( AUTOAIM_5DEGREES );	
+	
+	info.m_vecDirShooting = pPlayer->GetAutoaimVector( AUTOAIM_SCALE_DEFAULT );
 
 	// To make the firing framerate independent, we may have to fire more than one bullet here on low-framerate systems, 
 	// especially if the weapon we're firing has a really fast rate of fire.
@@ -1816,6 +1977,7 @@ void CBaseCombatWeapon::MaintainIdealActivity( void )
 //-----------------------------------------------------------------------------
 bool CBaseCombatWeapon::SetIdealActivity( Activity ideal )
 {
+	MDLCACHE_CRITICAL_SECTION();
 	int	idealSequence = SelectWeightedSequence( ideal );
 
 	if ( idealSequence == -1 )
@@ -1916,20 +2078,27 @@ class CGameWeaponManager : public CBaseEntity
 {
 	DECLARE_CLASS( CGameWeaponManager, CBaseEntity );
 
+
 #if !defined( CLIENT_DLL )
 	DECLARE_DATADESC();
 #endif
 
 public:
 	void Spawn();
+	CGameWeaponManager()
+	{
+		m_flAmmoMod = 1.0f;
+	}
 
 #if !defined( CLIENT_DLL )
 	void Think();
 	void InputSetMaxPieces( inputdata_t &inputdata );
+	void InputSetAmmoModifier( inputdata_t &inputdata );
 #endif
 
 	string_t	m_iszWeaponName;
 	int			m_iMaxPieces;
+	float		m_flAmmoMod;
 };
 
 #if !defined( CLIENT_DLL )
@@ -1939,16 +2108,48 @@ BEGIN_DATADESC( CGameWeaponManager )
 //fields	
 	DEFINE_KEYFIELD( m_iszWeaponName, FIELD_STRING, "weaponname" ),
 	DEFINE_KEYFIELD( m_iMaxPieces, FIELD_INTEGER, "maxpieces" ),
+	DEFINE_KEYFIELD( m_flAmmoMod, FIELD_FLOAT, "ammomod" ),
 // funcs
 	DEFINE_FUNCTION( Think ),
 // inputs
 	DEFINE_INPUTFUNC( FIELD_INTEGER, "SetMaxPieces", InputSetMaxPieces ),
+	DEFINE_INPUTFUNC( FIELD_FLOAT, "SetAmmoModifier", InputSetAmmoModifier ),
 
 END_DATADESC()
 
 #endif
 
 LINK_ENTITY_TO_CLASS( game_weapon_manager, CGameWeaponManager );
+
+#if !defined( CLIENT_DLL )
+void WeaponManager_AmmoMod( CBaseCombatWeapon *pWeapon )
+{
+	CGameWeaponManager *pWeaponManager = (CGameWeaponManager *)gEntList.FindEntityByClassname( NULL, "game_weapon_manager" );
+
+	while ( pWeaponManager )
+	{
+		if ( pWeaponManager->m_iszWeaponName == pWeapon->m_iClassname )
+		{
+			int iNewClip = (int)(pWeapon->m_iClip1 * pWeaponManager->m_flAmmoMod);
+			int iNewRandomClip = iNewClip + RandomInt( -2, 2 );
+
+			if ( iNewRandomClip > pWeapon->GetMaxClip1() )
+			{
+				iNewRandomClip = pWeapon->GetMaxClip1();
+			}
+			else if ( iNewRandomClip <= 0 )
+			{
+				//Drop at least one bullet.
+				iNewRandomClip = 1;
+			}
+
+			pWeapon->m_iClip1 = iNewRandomClip;
+		}
+		
+		pWeaponManager = (CGameWeaponManager *)gEntList.FindEntityByClassname( pWeaponManager, "game_weapon_manager" );
+	}
+}
+#endif
 
 //---------------------------------------------------------
 //---------------------------------------------------------
@@ -2039,6 +2240,10 @@ void CGameWeaponManager::Think()
 				{
 					fRemovedOne = true;
 				}
+				else if ( UTIL_DistApprox( pPlayer->GetAbsOrigin(), pWeapon->GetAbsOrigin() ) > (30*12) )
+				{
+					fRemovedOne = true;
+				}
 
 				if( fRemovedOne )
 				{
@@ -2071,7 +2276,14 @@ void CGameWeaponManager::InputSetMaxPieces( inputdata_t &inputdata )
 	m_iMaxPieces = inputdata.value.Int();
 }
 
-#endif	// ! CLIENT_DLL
+//---------------------------------------------------------
+//---------------------------------------------------------
+void CGameWeaponManager::InputSetAmmoModifier( inputdata_t &inputdata )
+{
+	m_flAmmoMod = inputdata.value.Float();
+}
+
+#else
 
 BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 
@@ -2103,6 +2315,7 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 	DEFINE_FIELD( m_fFireDuration, FIELD_FLOAT ),
 	DEFINE_FIELD( m_iszName, FIELD_INTEGER ),		
 	DEFINE_FIELD( m_bFiresUnderwater, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_bAltFiresUnderwater, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_fMinRange1, FIELD_FLOAT ),		
 	DEFINE_FIELD( m_fMinRange2, FIELD_FLOAT ),		
 	DEFINE_FIELD( m_fMaxRange1, FIELD_FLOAT ),		
@@ -2114,15 +2327,15 @@ BEGIN_PREDICTION_DATA( CBaseCombatWeapon )
 
 	//DEFINE_PHYSPTR( m_pConstraint ),
 
-
-#if defined( CLIENT_DLL )
 	// DEFINE_FIELD( m_iOldState, FIELD_INTEGER ),
 	// DEFINE_FIELD( m_bJustRestored, FIELD_BOOLEAN ),
-#endif
+
 	// DEFINE_FIELD( m_OnPlayerPickup, COutputEvent ),
 	// DEFINE_FIELD( m_pConstraint, FIELD_INTEGER ),
 
 END_PREDICTION_DATA()
+
+#endif	// ! CLIENT_DLL
 
 // Special hack since we're aliasing the name C_BaseCombatWeapon with a macro on the client
 IMPLEMENT_NETWORKCLASS_ALIASED( BaseCombatWeapon, DT_BaseCombatWeapon )
@@ -2148,6 +2361,7 @@ BEGIN_DATADESC( CBaseCombatWeapon )
 	DEFINE_FIELD( m_iClip1, FIELD_INTEGER ),
 	DEFINE_FIELD( m_iClip2, FIELD_INTEGER ),
 	DEFINE_FIELD( m_bFiresUnderwater, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_bAltFiresUnderwater, FIELD_BOOLEAN ),
 	DEFINE_FIELD( m_fMinRange1, FIELD_FLOAT ),
 	DEFINE_FIELD( m_fMinRange2, FIELD_FLOAT ),
 	DEFINE_FIELD( m_fMaxRange1, FIELD_FLOAT ),
@@ -2179,6 +2393,9 @@ BEGIN_DATADESC( CBaseCombatWeapon )
 
 	DEFINE_PHYSPTR( m_pConstraint ),
 
+	DEFINE_FIELD( m_iHudHintCount,	FIELD_INTEGER ),
+	DEFINE_FIELD( m_bHudHintDisplayed, FIELD_BOOLEAN ),
+	DEFINE_FIELD( m_flHudHintPollTime, FIELD_TIME ),
 
 	// Just to quiet classcheck.. this field exists only on the client
 //	DEFINE_FIELD( m_iOldState, FIELD_INTEGER ),
@@ -2226,6 +2443,7 @@ void* SendProxy_SendActiveLocalWeaponDataTable( const SendProp *pProp, const voi
 	
 	return NULL;
 }
+REGISTER_SEND_PROXY_NON_MODIFIED_POINTER( SendProxy_SendActiveLocalWeaponDataTable );
 
 //-----------------------------------------------------------------------------
 // Purpose: Only send the LocalWeaponData to the player carrying the weapon
@@ -2247,6 +2465,7 @@ void* SendProxy_SendLocalWeaponDataTable( const SendProp *pProp, const void *pSt
 	
 	return NULL;
 }
+REGISTER_SEND_PROXY_NON_MODIFIED_POINTER( SendProxy_SendLocalWeaponDataTable );
 #endif
 
 //-----------------------------------------------------------------------------

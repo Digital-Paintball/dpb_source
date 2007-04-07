@@ -96,7 +96,6 @@ public:
 	CArenaRecipientFilter( CArena* pArena, bool isReliable = false );
 };
 
-
 //-----------------------------------------------------------------------------
 // Purpose: Simple class to create a filter for all players ( unreliable )
 //-----------------------------------------------------------------------------
@@ -189,6 +188,25 @@ public:
 		float attenuation = SNDLVL_TO_ATTN( level );
 		Filter( origin, attenuation );
 	}
+
+	CPASAttenuationFilter( CBaseEntity *entity, const char *lookupSound, HSOUNDSCRIPTHANDLE& handle ) :
+		CPASFilter( static_cast<const Vector&>(entity->GetSoundEmissionOrigin()) )
+	{
+		soundlevel_t level = CBaseEntity::LookupSoundLevel( lookupSound, handle );
+		float attenuation = SNDLVL_TO_ATTN( level );
+		Filter( entity->GetSoundEmissionOrigin(), attenuation );
+	}
+
+	CPASAttenuationFilter( const Vector& origin, const char *lookupSound, HSOUNDSCRIPTHANDLE& handle ) :
+		CPASFilter( origin )
+	{
+		soundlevel_t level = CBaseEntity::LookupSoundLevel( lookupSound, handle );
+		float attenuation = SNDLVL_TO_ATTN( level );
+		Filter( origin, attenuation );
+	}
+
+
+	
 
 public:
 	void Filter( const Vector& origin, float attenuation = ATTN_NORM );

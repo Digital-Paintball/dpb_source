@@ -79,7 +79,7 @@ public:
 // Purpose: The basic player movement interface
 //-----------------------------------------------------------------------------
 
-class IGameMovement
+abstract_class IGameMovement
 {
 public:
 	virtual			~IGameMovement( void ) {}

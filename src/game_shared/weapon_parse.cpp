@@ -16,6 +16,7 @@
 
 // The sound categories found in the weapon classname.txt files
 // This needs to match the WeaponSound_t enum in weapon_parse.h
+#if !defined(_STATIC_LINKED) || defined(CLIENT_DLL)
 const char *pWeaponSoundCategories[ NUM_SHOOT_SOUND_TYPES ] = 
 {
 	"empty",
@@ -34,14 +35,19 @@ const char *pWeaponSoundCategories[ NUM_SHOOT_SOUND_TYPES ] =
 	"special2",
 	"special3"
 };
+#else
+extern const char *pWeaponSoundCategories[ NUM_SHOOT_SOUND_TYPES ];
+#endif
 
 
 // Item flags that we parse out of the file.
-struct
+typedef struct
 {
 	const char *m_pFlagName;
 	int m_iFlagValue;
-} g_ItemFlags[] =
+} itemFlags_t;
+#if !defined(_STATIC_LINKED) || defined(CLIENT_DLL)
+itemFlags_t g_ItemFlags[7] =
 {
 	{ "ITEM_FLAG_SELECTONEMPTY",	ITEM_FLAG_SELECTONEMPTY },
 	{ "ITEM_FLAG_NOAUTORELOAD",		ITEM_FLAG_NOAUTORELOAD },
@@ -51,6 +57,9 @@ struct
 	{ "ITEM_FLAG_DOHITLOCATIONDMG", ITEM_FLAG_DOHITLOCATIONDMG },
 	{ "ITEM_FLAG_NOAMMOPICKUPS",	ITEM_FLAG_NOAMMOPICKUPS }
 };
+#else
+extern itemFlags_t g_ItemFlags[7];
+#endif
 
 
 static CUtlDict< FileWeaponInfo_t*, unsigned short > m_WeaponInfoDatabase;
@@ -144,8 +153,9 @@ void PrecacheFileWeaponInfoDatabase( IFileSystem *filesystem, const unsigned cha
 	if ( m_WeaponInfoDatabase.Count() )
 		return;
 
+#if !defined( _XBOX )
 	FileFindHandle_t findHandle;
-	const char *pFilename = filesystem->FindFirstEx( "scripts/weapon_*.txt", "MOD", &findHandle );
+	const char *pFilename = filesystem->FindFirstEx( "scripts/weapon_*.txt", IsXbox() ? "XGAME" : "GAME", &findHandle );
 	while ( pFilename != NULL )
 	{
 		char fileBase[512];
@@ -162,6 +172,37 @@ void PrecacheFileWeaponInfoDatabase( IFileSystem *filesystem, const unsigned cha
 		pFilename = filesystem->FindNext( findHandle );
 	}
 	filesystem->FindClose( findHandle );
+#else
+#define WEAPON_SCRIPT_MANIFEST_FILE		"scripts/_weapon_manifest.txt"
+
+	// Use a manifest file on the xbox
+	KeyValues *manifest = new KeyValues( "weaponscripts" );
+	if ( manifest->LoadFromFile( filesystem, WEAPON_SCRIPT_MANIFEST_FILE, "XGAME" ) )
+	{
+		for ( KeyValues *sub = manifest->GetFirstSubKey(); sub != NULL ; sub = sub->GetNextKey() )
+		{
+			if ( !Q_stricmp( sub->GetName(), "file" ) )
+			{
+				char fileBase[512];
+				Q_FileBase( sub->GetString(), fileBase, sizeof(fileBase) );
+				WEAPON_FILE_INFO_HANDLE tmp;
+#ifdef CLIENT_DLL
+				if ( ReadWeaponDataFromFileForSlot( filesystem, fileBase, &tmp, pICEKey ) )
+				{
+					gWR.LoadWeaponSprites( tmp );
+				}
+#else
+				ReadWeaponDataFromFileForSlot( filesystem, fileBase, &tmp, pICEKey );
+#endif
+			}
+			else
+			{
+				Error( "Expecting 'file', got %s\n", sub->GetName() );
+			}
+		}
+	}
+	manifest->deleteThis();
+#endif
 }
 
 KeyValues* ReadEncryptedKVFile( IFileSystem *filesystem, const char *szFilenameWithoutExtension, const unsigned char *pICEKey )
@@ -183,6 +224,7 @@ KeyValues* ReadEncryptedKVFile( IFileSystem *filesystem, const char *szFilenameW
 
 	if ( !pKV->LoadFromFile( filesystem, szFullName, pSearchPath ) ) // try to load the normal .txt file first
 	{
+#ifndef _XBOX
 		if ( pICEKey )
 		{
 			Q_snprintf(szFullName,sizeof(szFullName), "%s.ctx", szFilenameWithoutExtension); // fall back to the .ctx file
@@ -218,9 +260,13 @@ KeyValues* ReadEncryptedKVFile( IFileSystem *filesystem, const char *szFilenameW
 		}
 		else
 		{
-				pKV->deleteThis();
-				return NULL;
+			pKV->deleteThis();
+			return NULL;
 		}
+#else
+		pKV->deleteThis();
+		return NULL;
+#endif
 	}
 
 	return pKV;
@@ -283,6 +329,7 @@ FileWeaponInfo_t::FileWeaponInfo_t()
 	iDefaultClip1 = 0;
 	iDefaultClip2 = 0;
 	iWeight = 0;
+	iRumbleEffect = -1;
 	bAutoSwitchTo = false;
 	bAutoSwitchFrom = false;
 	iFlags = 0;
@@ -326,6 +373,8 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 	iDefaultClip1 = pKeyValuesData->GetInt( "default_clip", iMaxClip1 );		// amount of primary ammo placed in the primary clip when it's picked up
 	iDefaultClip2 = pKeyValuesData->GetInt( "default_clip2", iMaxClip2 );		// amount of secondary ammo placed in the secondary clip when it's picked up
 	iWeight = pKeyValuesData->GetInt( "weight", 0 );
+
+	iRumbleEffect = pKeyValuesData->GetInt( "rumble", -1 );
 	
 	// LAME old way to specify item flags.
 	// Weapon scripts should use the flag names.
@@ -354,12 +403,20 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 
 #if defined(_DEBUG) && defined(HL2_CLIENT_DLL)
 	// make sure two weapons aren't in the same slot & position
-	if (g_bUsedWeaponSlots[iSlot][iPosition])
+	if ( iSlot >= MAX_WEAPON_SLOTS ||
+		iPosition >= MAX_WEAPON_POSITIONS )
 	{
-		Msg( "Weapon slot info: %s (%d, %d)\n", szPrintName, iSlot, iPosition );
-		Warning( "Duplicately assigned weapon to slots in selection hud\n" );
+		Warning( "Invalid weapon slot or position [slot %d/%d max], pos[%d/%d max]\n",
+			iSlot, MAX_WEAPON_SLOTS - 1, iPosition, MAX_WEAPON_POSITIONS - 1 );
 	}
-	g_bUsedWeaponSlots[iSlot][iPosition] = true;
+	else
+	{
+		if (g_bUsedWeaponSlots[iSlot][iPosition])
+		{
+			Warning( "Duplicately assigned weapon slots in selection hud:  %s (%d, %d)\n", szPrintName, iSlot, iPosition );
+		}
+		g_bUsedWeaponSlots[iSlot][iPosition] = true;
+	}
 #endif
 
 	// Primary ammo used

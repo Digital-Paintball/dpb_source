@@ -1,16 +1,17 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//====== Copyright © 1996-2005, Valve Corporation, All rights reserved. =====//
 //
 // Purpose: Client-side CBasePlayer.
 //
 //			- Manages the player's flashlight effect.
 //
-//=============================================================================//
+//===========================================================================//
 #include "cbase.h"
 #include "c_baseplayer.h"
 #include "flashlighteffect.h"
 #include "weapon_selection.h"
 #include "history_resource.h"
 #include "iinput.h"
+#include "input.h"
 #include "view.h"
 #include "iviewrender.h"
 #include "iclientmode.h"
@@ -31,6 +32,9 @@
 #include "particles_simple.h"
 #include "fx_water.h"
 #include "hltvcamera.h"
+#include "toolframework/itoolframework.h"
+#include "toolframework_client.h"
+#include "view_scene.h"
 #include "c_multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -41,6 +45,13 @@
 #undef CBasePlayer	
 #endif
 
+int g_nKillCamMode = OBS_MODE_NONE;
+int g_nKillCamTarget1 = 0;
+int g_nKillCamTarget2 = 0;
+int g_nUsedPrediction = 1;
+
+extern ConVar mp_forcecamera; // in gamevars_shared.h
+
 #define FLASHLIGHT_DISTANCE		1000
 #define MAX_VGUI_INPUT_MODE_SPEED 30
 #define MAX_VGUI_INPUT_MODE_SPEED_SQ (MAX_VGUI_INPUT_MODE_SPEED*MAX_VGUI_INPUT_MODE_SPEED)
@@ -49,17 +60,15 @@ static Vector WALL_MIN(-WALL_OFFSET,-WALL_OFFSET,-WALL_OFFSET);
 static Vector WALL_MAX(WALL_OFFSET,WALL_OFFSET,WALL_OFFSET);
 
 extern ConVar default_fov;
+#ifndef _XBOX
 extern ConVar sensitivity;
+#endif
+
+static C_BasePlayer *s_pLocalPlayer = NULL;
 
 static ConVar	cl_customsounds ( "cl_customsounds", "0", 0, "Enable customized player sound playback" );
 static ConVar	spec_track		( "spec_track", "0", 0, "Tracks an entity in spec mode" );
-
-#ifdef CS_BETA
-	static ConVar	cl_smooth		( "cl_smooth", "0", 0, "Smooth view/eye origin after prediction errors" );
-#else
-	static ConVar	cl_smooth		( "cl_smooth", "1", 0, "Smooth view/eye origin after prediction errors" );
-#endif
-
+static ConVar	cl_smooth		( "cl_smooth", "1", 0, "Smooth view/eye origin after prediction errors" );
 static ConVar	cl_smoothtime	( 
 	"cl_smoothtime", 
 	"0.1", 
@@ -70,15 +79,14 @@ static ConVar	cl_smoothtime	(
 	 );
 
 ConVar zoom_sensitivity_ratio( "zoom_sensitivity_ratio", "1.0", 0, "Additional mouse sensitivity scale factor applied when FOV is zoomed in." );
-
-void RecvProxy_LifeState( const CRecvProxyData *pData, void *pStruct, void *pOut );
-
 void RecvProxy_FOV( const CRecvProxyData *pData, void *pStruct, void *pOut );
 void RecvProxy_DefaultFOV( const CRecvProxyData *pData, void *pStruct, void *pOut );
 
 void RecvProxy_LocalVelocityX( const CRecvProxyData *pData, void *pStruct, void *pOut );
 void RecvProxy_LocalVelocityY( const CRecvProxyData *pData, void *pStruct, void *pOut );
 void RecvProxy_LocalVelocityZ( const CRecvProxyData *pData, void *pStruct, void *pOut );
+
+void RecvProxy_ObserverTarget( const CRecvProxyData *pData, void *pStruct, void *pOut );
 
 // -------------------------------------------------------------------------------- //
 // RecvTable for CPlayerState.
@@ -91,13 +99,13 @@ void RecvProxy_LocalVelocityZ( const CRecvProxyData *pData, void *pStruct, void 
 
 BEGIN_RECV_TABLE_NOBASE( CPlayerLocalData, DT_Local )
 	RecvPropArray3( RECVINFO_ARRAY(m_chAreaBits), RecvPropInt(RECVINFO(m_chAreaBits[0]))),
+	RecvPropArray3( RECVINFO_ARRAY(m_chAreaPortalBits), RecvPropInt(RECVINFO(m_chAreaPortalBits[0]))),
 	RecvPropInt(RECVINFO(m_iHideHUD)),
 
 	// View
-	RecvPropInt(RECVINFO(m_iFOV), 0, RecvProxy_FOV),
+	
 	RecvPropFloat(RECVINFO(m_flFOVRate)),
-	RecvPropInt(RECVINFO(m_iDefaultFOV), 0, RecvProxy_DefaultFOV),
-
+	
 	RecvPropInt		(RECVINFO(m_bDucked)),
 	RecvPropInt		(RECVINFO(m_bDucking)),
 	RecvPropInt		(RECVINFO(m_bInDuckJump)),
@@ -106,7 +114,6 @@ BEGIN_RECV_TABLE_NOBASE( CPlayerLocalData, DT_Local )
 	RecvPropFloat	(RECVINFO(m_flJumpTime)),
 	RecvPropFloat	(RECVINFO(m_flFallVelocity)),
 //	RecvPropInt		(RECVINFO(m_nOldButtons)),
-	RecvPropVector	(RECVINFO(m_vecClientBaseVelocity)),
 	RecvPropVector	(RECVINFO(m_vecPunchAngle)),
 	RecvPropVector	(RECVINFO(m_vecPunchAngleVel)),
 	RecvPropInt		(RECVINFO(m_bDrawViewmodel)),
@@ -139,6 +146,13 @@ BEGIN_RECV_TABLE_NOBASE( CPlayerLocalData, DT_Local )
 	RecvPropFloat( RECVINFO( m_fog.end ) ),
 	RecvPropFloat( RECVINFO( m_fog.farz ) ),
 
+	RecvPropInt( RECVINFO( m_fog.colorPrimaryLerpTo ) ),
+	RecvPropInt( RECVINFO( m_fog.colorSecondaryLerpTo ) ),
+	RecvPropFloat( RECVINFO( m_fog.startLerpTo ) ),
+	RecvPropFloat( RECVINFO( m_fog.endLerpTo ) ),
+	RecvPropFloat( RECVINFO( m_fog.lerptime ) ),
+	RecvPropFloat( RECVINFO( m_fog.duration ) ),
+
 	// audio data
 	RecvPropVector( RECVINFO( m_audio.localSound[0] ) ),
 	RecvPropVector( RECVINFO( m_audio.localSound[1] ) ),
@@ -151,7 +165,6 @@ BEGIN_RECV_TABLE_NOBASE( CPlayerLocalData, DT_Local )
 	RecvPropInt( RECVINFO( m_audio.soundscapeIndex ) ),
 	RecvPropInt( RECVINFO( m_audio.localBits ) ),
 	RecvPropEHandle( RECVINFO( m_audio.ent ) ),
-
 END_RECV_TABLE()
 
 // -------------------------------------------------------------------------------- //
@@ -183,8 +196,6 @@ END_RECV_TABLE()
 
 		RecvPropVector		( RECVINFO( m_vecBaseVelocity ) ),
 
-		RecvPropArray		( RecvPropEHandle( RECVINFO( m_hViewModel[0] ) ), m_hViewModel ),
-		
 		RecvPropEHandle		( RECVINFO( m_hConstraintEntity)),
 		RecvPropVector		( RECVINFO( m_vecConstraintCenter) ),
 		RecvPropFloat		( RECVINFO( m_flConstraintRadius )),
@@ -209,19 +220,24 @@ END_RECV_TABLE()
 
 		RecvPropDataTable(RECVINFO_DT(pl), 0, &REFERENCE_RECV_TABLE(DT_PlayerState), DataTableRecvProxy_StaticDataTable),
 
+		RecvPropInt		(RECVINFO(m_iFOV), 0, RecvProxy_FOV),
+		RecvPropInt		(RECVINFO(m_iDefaultFOV), 0, RecvProxy_DefaultFOV),
+
 		RecvPropEHandle( RECVINFO(m_hVehicle) ),
-		RecvPropInt		(RECVINFO(m_MoveType) ),
 		RecvPropFloat	(RECVINFO(m_flLeaning)),
+		RecvPropEHandle( RECVINFO(m_hUseEntity) ),
 
 		RecvPropInt		(RECVINFO(m_iHealth)),
-		RecvPropInt		(RECVINFO(m_lifeState), 0, RecvProxy_LifeState),
+		RecvPropInt		(RECVINFO(m_lifeState)),
 
 		RecvPropFloat	(RECVINFO(m_flMaxspeed)),
 		RecvPropInt		(RECVINFO(m_fFlags)),
 
+
 		RecvPropInt		(RECVINFO(m_iObserverMode) ),
-		RecvPropEHandle	(RECVINFO(m_hObserverTarget) ),
-		RecvPropArray	(RecvPropEHandle( RECVINFO( m_hObserverViewModel[0] ) ), m_hObserverViewModel ),
+		RecvPropEHandle	(RECVINFO(m_hObserverTarget), RecvProxy_ObserverTarget ),
+		RecvPropArray	( RecvPropEHandle( RECVINFO( m_hViewModel[0] ) ), m_hViewModel ),
+		
 
 		RecvPropString( RECVINFO(m_szLastPlaceName) ),
 
@@ -245,7 +261,6 @@ BEGIN_PREDICTION_DATA_NO_BASE( CPlayerLocalData )
 	DEFINE_FIELD( m_nStepside, FIELD_INTEGER ),
 
 	DEFINE_PRED_FIELD( m_iHideHUD, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
-	DEFINE_PRED_FIELD( m_iFOV, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD_TOL( m_vecPunchAngle, FIELD_VECTOR, FTYPEDESC_INSENDTABLE, 0.125f ),
 	DEFINE_PRED_FIELD_TOL( m_vecPunchAngleVel, FIELD_VECTOR, FTYPEDESC_INSENDTABLE, 0.125f ),
 	DEFINE_PRED_FIELD( m_bDrawViewmodel, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
@@ -262,7 +277,6 @@ BEGIN_PREDICTION_DATA_NO_BASE( CPlayerLocalData )
 	DEFINE_PRED_FIELD_TOL( m_flFallVelocity, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, 0.5f ),
 //	DEFINE_PRED_FIELD( m_nOldButtons, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_FIELD( m_nOldButtons, FIELD_INTEGER ),
-	DEFINE_PRED_FIELD( m_vecClientBaseVelocity, FIELD_VECTOR, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_flStepSize, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
 
 END_PREDICTION_DATA()	
@@ -272,14 +286,16 @@ BEGIN_PREDICTION_DATA( C_BasePlayer )
 	DEFINE_PRED_TYPEDESCRIPTION( m_Local, CPlayerLocalData ),
 	DEFINE_PRED_TYPEDESCRIPTION( pl, CPlayerState ),
 
+	DEFINE_PRED_FIELD( m_iFOV, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
+
 	DEFINE_PRED_FIELD( m_hVehicle, FIELD_EHANDLE, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD_TOL( m_flMaxspeed, FIELD_FLOAT, FTYPEDESC_INSENDTABLE, 0.5f ),
 	DEFINE_PRED_FIELD( m_iHealth, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_fOnTarget, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_nNextThinkTick, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
-	DEFINE_PRED_FIELD( m_lifeState, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
-	DEFINE_PRED_FIELD( m_nWaterLevel, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
-
+	DEFINE_PRED_FIELD( m_lifeState, FIELD_CHARACTER, FTYPEDESC_INSENDTABLE ),
+	DEFINE_PRED_FIELD( m_nWaterLevel, FIELD_CHARACTER, FTYPEDESC_INSENDTABLE ),
+	
 	DEFINE_PRED_FIELD_TOL( m_vecBaseVelocity, FIELD_VECTOR, FTYPEDESC_INSENDTABLE, 0.05 ),
 
 	DEFINE_FIELD( m_nButtons, FIELD_INTEGER ),
@@ -313,14 +329,11 @@ END_PREDICTION_DATA()
 
 LINK_ENTITY_TO_CLASS( player, C_BasePlayer );
 
-
 // -------------------------------------------------------------------------------- //
 // Functions.
 // -------------------------------------------------------------------------------- //
 C_BasePlayer::C_BasePlayer() : m_iv_vecViewOffset( "C_BasePlayer::m_iv_vecViewOffset" )
 {
-	CONSTRUCT_PREDICTABLE( C_BasePlayer );
-
 	AddVar( &m_vecViewOffset, &m_iv_vecViewOffset, LATCH_SIMULATION_VAR );
 
 	SetViewOffset( VEC_VIEW );
@@ -343,14 +356,14 @@ C_BasePlayer::C_BasePlayer() : m_iv_vecViewOffset( "C_BasePlayer::m_iv_vecViewOf
 	
 	ResetObserverMode();
 
+	m_vecPredictionError.Init();
+	m_flPredictionErrorTime = 0;
+
 	m_surfaceProps = 0;
 	m_pSurfaceData = NULL;
 	m_surfaceFriction = 1.0f;
 	m_chTextureType = 0;
 }
-
-C_BasePlayer *g_pLocalPlayer = NULL;
-
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -358,9 +371,9 @@ C_BasePlayer *g_pLocalPlayer = NULL;
 C_BasePlayer::~C_BasePlayer()
 {
 	DeactivateVguiScreen( m_pCurrentVguiScreen.Get() );
-	if ( this == g_pLocalPlayer )
+	if ( this == s_pLocalPlayer )
 	{
-		g_pLocalPlayer = NULL;
+		s_pLocalPlayer = NULL;
 	}
 
 	if (m_pFlashlight)
@@ -382,7 +395,7 @@ void C_BasePlayer::Spawn( void )
 	int effects = GetEffects() & EF_NOSHADOW;
 	SetEffects( effects );
 
-	m_Local.m_iFOV	= 0;	// init field of view.
+	m_iFOV	= 0;	// init field of view.
 
     SetModel( "models/player.mdl" );
 
@@ -457,11 +470,13 @@ bool C_BasePlayer::IsHLTV() const
 
 CBaseEntity	*C_BasePlayer::GetObserverTarget() const	// returns players targer or NULL
 {
-	if ( engine->IsHLTV() && IsLocalPlayer() )
+#ifndef _XBOX
+	if ( IsHLTV() )
 	{
-		return HLTVCamera()->GetObserverTarget();
+		return HLTVCamera()->GetPrimaryTarget();
 	}
-
+#endif
+	
 	if ( GetObserverMode() == OBS_MODE_ROAMING )
 	{
 		return NULL;	// no target in roaming mode
@@ -472,6 +487,27 @@ CBaseEntity	*C_BasePlayer::GetObserverTarget() const	// returns players targer o
 	}
 }
 
+// Called from Recv Proxy, mainly to reset tone map scale
+void C_BasePlayer::SetObserverTarget( EHANDLE hObserverTarget )
+{
+	// If the observer target is changing to an entity that the client doesn't know about yet,
+	// it can resolve to NULL.  If the client didn't have an observer target before, then
+	// comparing EHANDLEs directly will see them as equal, since it uses Get(), and compares
+	// NULL to NULL.  To combat this, we need to check against GetEntryIndex() and
+	// GetSerialNumber().
+	if ( hObserverTarget.GetEntryIndex() != m_hObserverTarget.GetEntryIndex() ||
+		hObserverTarget.GetSerialNumber() != m_hObserverTarget.GetSerialNumber())
+	{
+		// Init based on the new handle's entry index and serial number, so that it's Get()
+		// has a chance to become non-NULL even if it currently resolves to NULL.
+		m_hObserverTarget.Init( hObserverTarget.GetEntryIndex(), hObserverTarget.GetSerialNumber() );
+
+		if ( IsLocalPlayer() )
+		{
+			ResetToneMapping(1.0);
+		}
+	}
+}
 CBaseEntity	*C_BasePlayer::GetObserverTargetPlayer() const
 {
     return GetObserverTarget();
@@ -479,10 +515,12 @@ CBaseEntity	*C_BasePlayer::GetObserverTargetPlayer() const
 
 int C_BasePlayer::GetObserverMode() const 
 { 
-	if ( engine->IsHLTV() && IsLocalPlayer() )
+#ifndef _XBOX
+	if ( IsHLTV() )
 	{
-		return HLTVCamera()->GetObserverMode();
+		return HLTVCamera()->GetMode();
 	}
+#endif
 
 	return m_iObserverMode; 
 }
@@ -576,7 +614,7 @@ void C_BasePlayer::SetVehicleRole( int nRole )
 		return;
 
 	// HL2 has only a player in a vehicle.
-	if ( nRole > VEHICLE_DRIVER )
+	if ( nRole > VEHICLE_ROLE_DRIVER )
 		return;
 
 	char szCmd[64];
@@ -607,10 +645,25 @@ void C_BasePlayer::PostDataUpdate( DataUpdateType_t updateType )
 	// This has to occur here as opposed to OnDataChanged so that EHandles to the player created
 	//  on this same frame are not stomped because prediction thinks there
 	//  isn't a local player yet!!!
+
+	if ( updateType == DATA_UPDATE_CREATED )
+	{
+		// Make sure s_pLocalPlayer is correct
+
+		int iLocalPlayerIndex = engine->GetLocalPlayer();
+
+		if ( g_nKillCamMode )
+			iLocalPlayerIndex = g_nKillCamTarget1;
+
+		if ( iLocalPlayerIndex == index )
+		{
+			Assert( s_pLocalPlayer == NULL );
+			s_pLocalPlayer = this;
+		}
+	}
+
 	if ( IsLocalPlayer() )
 	{
-		// Make sure g_pLocalPlayer is correct
-		g_pLocalPlayer = this;
 		SetSimulatedEveryTick( true );
 	}
 	else
@@ -631,7 +684,7 @@ void C_BasePlayer::PostDataUpdate( DataUpdateType_t updateType )
 	// Only care about this for local player
 	if ( IsLocalPlayer() )
 	{
-		default_fov.SetValue( m_Local.m_iDefaultFOV );
+		default_fov.SetValue( m_iDefaultFOV );
 
 		//Update our FOV, including any zooms going on
 		int iDefaultFOV = default_fov.GetInt();
@@ -641,26 +694,33 @@ void C_BasePlayer::PostDataUpdate( DataUpdateType_t updateType )
 		// Don't let it go too low
 		localFOV = max( min_fov, localFOV );
 
+		gHUD.m_flFOVSensitivityAdjust = 1.0f;
+#ifndef _XBOX
 		if ( gHUD.m_flMouseSensitivityFactor )
 		{
 			gHUD.m_flMouseSensitivity = sensitivity.GetFloat() * gHUD.m_flMouseSensitivityFactor;
 		}
 		else
+#endif
 		{
 			// No override, don't use huge sensitivity
 			if ( localFOV == iDefaultFOV )
-			{  
+			{
+#ifndef _XBOX
 				// reset to saved sensitivity
 				gHUD.m_flMouseSensitivity = 0;
+#endif
 			}
 			else
 			{  
 				// Set a new sensitivity that is proportional to the change from the FOV default and scaled
 				//  by a separate compensating factor
-				gHUD.m_flMouseSensitivity = 
-					sensitivity.GetFloat() * // regular sensitivity
+				gHUD.m_flFOVSensitivityAdjust = 
 					((float)localFOV / (float)iDefaultFOV) * // linear fov downscale
 					zoom_sensitivity_ratio.GetFloat(); // sensitivity scale factor
+#ifndef _XBOX
+				gHUD.m_flMouseSensitivity = gHUD.m_flFOVSensitivityAdjust * sensitivity.GetFloat(); // regular sensitivity
+#endif
 			}
 		}
 
@@ -672,17 +732,12 @@ void C_BasePlayer::PostDataUpdate( DataUpdateType_t updateType )
 			m_flOldPlayerZ = GetLocalOrigin().z;
 		}
 	}
-	else
+
+	// If we are updated while paused, allow the player origin to be snapped by the
+	//  server if we receive a packet from the server
+	if ( engine->IsPaused() )
 	{
-// FIXME: BUG BUG: HACK HACK:  okay, you get the point
-// when we finally fix the delta encoding relative to multiple
-// players and the baseline, we can remove this
-#if defined( CLIENT_DLL )
-		for ( int i = 0 ; i < MAX_VIEWMODELS; i++ )
-		{
-			m_hViewModel[ i ] = NULL;
-		}
-#endif
+		ResetLatched();
 	}
 }
 
@@ -729,10 +784,12 @@ void C_BasePlayer::OnRestore()
 //-----------------------------------------------------------------------------
 void C_BasePlayer::OnDataChanged( DataUpdateType_t updateType )
 {
+#if !defined( NO_ENTITY_PREDICTION )
 	if ( IsLocalPlayer() )
 	{
 		SetPredictionEligible( true );
 	}
+#endif
 
 	BaseClass::OnDataChanged( updateType );
 
@@ -740,7 +797,7 @@ void C_BasePlayer::OnDataChanged( DataUpdateType_t updateType )
 	if ( IsLocalPlayer() )
 	{
 		// Reset engine areabits pointer
-		( *render->GetAreaBits() ) = m_Local.m_chAreaBits;
+		render->SetAreaState( m_Local.m_chAreaBits, m_Local.m_chAreaPortalBits );
 
 		// Check for Ammo pickups.
 		for ( int i = 0; i < MAX_AMMO_TYPES; i++ )
@@ -879,6 +936,24 @@ void C_BasePlayer::CreateMove( float flInputSampleTime, CUserCmd *pCmd )
 		{
 			pVehicle->UpdateViewAngles( this, pCmd );
 			engine->SetViewAngles( pCmd->viewangles );
+		}
+	}
+	else 
+	{
+#ifndef _XBOX
+		if ( joy_autosprint.GetBool() )
+#endif
+		{
+			if ( input->KeyState( &in_joyspeed ) != 0.0f )
+			{
+				pCmd->buttons |= IN_SPEED;
+			}
+		}
+
+		CBaseCombatWeapon *pWeapon = GetActiveWeapon();
+		if ( pWeapon )
+		{
+			pWeapon->CreateMove( flInputSampleTime, pCmd, m_vecOldViewAngles );
 		}
 	}
 
@@ -1043,8 +1118,8 @@ void C_BasePlayer::CreateWaterEffects( void )
 	m_pWaterEmitter->SetSortOrigin( offset );
 
 	PMaterialHandle	hMaterial[2];
-	hMaterial[0] = g_ParticleMgr.GetPMaterial( "effects/fleck_cement1" );
-	hMaterial[1] = g_ParticleMgr.GetPMaterial( "effects/fleck_cement2" );
+	hMaterial[0] = ParticleMgr()->GetPMaterial( "effects/fleck_cement1" );
+	hMaterial[1] = ParticleMgr()->GetPMaterial( "effects/fleck_cement2" );
 
 	SimpleParticle	*pParticle;
 
@@ -1095,10 +1170,23 @@ void C_BasePlayer::OverrideView( CViewSetup *pSetup )
 {
 }
 
+bool C_BasePlayer::ShouldInterpolate()
+{
+	// always interpolate myself
+	if ( IsLocalPlayer() )
+		return true;
+#ifndef _XBOX
+	// always interpolate entity if followed by HLTV
+	if ( HLTVCamera()->GetCameraMan() == this )
+		return true;
+#endif
+	return BaseClass::ShouldInterpolate();
+}
+
 
 bool C_BasePlayer::ShouldDraw()
 {
-	return ( !IsLocalPlayer() || input->CAM_IsThirdPerson() || (GetObserverMode() == OBS_MODE_DEATHCAM ) ) &&
+	return ( !IsLocalPlayer() || C_BasePlayer::ShouldDrawLocalPlayer() || (GetObserverMode() == OBS_MODE_DEATHCAM ) ) &&
 		   BaseClass::ShouldDraw();
 }
 
@@ -1138,7 +1226,7 @@ void C_BasePlayer::CalcChaseCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 
 	C_BasePlayer *player = ToBasePlayer( target );
 	
-	if ( player )
+	if ( player && player->IsAlive() )
 	{
 		if( player->GetFlags() & FL_DUCKING )
 		{
@@ -1157,7 +1245,11 @@ void C_BasePlayer::CalcChaseCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 
 	QAngle viewangles;
 
-	if ( IsLocalPlayer() )
+	if ( GetObserverMode() == OBS_MODE_IN_EYE )
+	{
+		viewangles = eyeAngles;
+	}
+	else if ( IsLocalPlayer() )
 	{
 		engine->GetViewAngles( viewangles );
 	}
@@ -1176,9 +1268,9 @@ void C_BasePlayer::CalcChaseCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	VectorMA(origin, -m_flObserverChaseDistance, forward, viewpoint );
 
 	trace_t trace;
-	C_BaseEntity::EnableAbsRecomputations( false ); // HACK don't recompute positions while doing RayTrace
+	C_BaseEntity::PushEnableAbsRecomputations( false ); // HACK don't recompute positions while doing RayTrace
 	UTIL_TraceHull( origin, viewpoint, WALL_MIN, WALL_MAX, MASK_SOLID, target, COLLISION_GROUP_NONE, &trace );
-	C_BaseEntity::EnableAbsRecomputations( true );
+	C_BaseEntity::PopEnableAbsRecomputations();
 
 	if (trace.fraction < 1.0)
 	{
@@ -1257,7 +1349,7 @@ void C_BasePlayer::CalcInEyeCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 
 	if( engine->IsHLTV() )
 	{
-		if ( GetFlags() & FL_DUCKING )
+		if ( target->GetFlags() & FL_DUCKING )
 		{
 			eyeOrigin += VEC_DUCK_VIEW;
 		}
@@ -1268,7 +1360,11 @@ void C_BasePlayer::CalcInEyeCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	}
 	else
 	{
-		eyeOrigin += m_vecViewOffset;
+		Vector offset = m_vecViewOffset;
+#ifdef HL2MP
+		offset = target->GetViewOffset();
+#endif
+		eyeOrigin += offset; // hack hack
 	}
 
 	// Apply punch angle
@@ -1279,7 +1375,14 @@ void C_BasePlayer::CalcInEyeCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 
 void C_BasePlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float& fov)
 {
-	CBaseEntity	* killer = GetObserverTarget();
+	CBaseEntity	* pKiller = NULL; 
+
+	if ( mp_forcecamera.GetInt() == OBS_ALLOW_ALL )
+	{
+		// if mp_forcecamera is off let user see killer or look around
+		pKiller = GetObserverTarget();
+		eyeAngles = EyeAngles();
+	}
 
 	float interpolation = ( gpGlobals->curtime - m_flDeathTime ) / DEATH_ANIMATION_TIME;
 	interpolation = clamp( interpolation, 0.0f, 1.0f );
@@ -1287,7 +1390,7 @@ void C_BasePlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	m_flObserverChaseDistance += gpGlobals->frametime*48.0f;
 	m_flObserverChaseDistance = clamp( m_flObserverChaseDistance, 16, CHASE_CAM_DISTANCE );
 
-	QAngle aForward = eyeAngles = EyeAngles();
+	QAngle aForward = eyeAngles;
 	Vector origin = EyePosition();			
 
 	IRagdoll *pRagdoll = GetRepresentativeRagdoll();
@@ -1297,9 +1400,9 @@ void C_BasePlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 		origin.z += VEC_DEAD_VIEWHEIGHT.z; // look over ragdoll, not through
 	}
 	
-	if ( killer && killer->IsPlayer() && (killer != this) ) 
+	if ( pKiller && pKiller->IsPlayer() && (pKiller != this) ) 
 	{
-		Vector vKiller = killer->EyePosition() - origin;
+		Vector vKiller = pKiller->EyePosition() - origin;
 		QAngle aKiller; VectorAngles( vKiller, aKiller );
 		InterpolateAngles( aForward, aKiller, eyeAngles, interpolation );
 	};
@@ -1311,9 +1414,9 @@ void C_BasePlayer::CalcDeathCamView(Vector& eyeOrigin, QAngle& eyeAngles, float&
 	VectorMA( origin, -m_flObserverChaseDistance, vForward, eyeOrigin );
 
 	trace_t trace; // clip against world
-	C_BaseEntity::EnableAbsRecomputations( false ); // HACK don't recompute positions while doing RayTrace
+	C_BaseEntity::PushEnableAbsRecomputations( false ); // HACK don't recompute positions while doing RayTrace
 	UTIL_TraceHull( origin, eyeOrigin, WALL_MIN, WALL_MAX, MASK_SOLID, this, COLLISION_GROUP_NONE, &trace );
-	C_BaseEntity::EnableAbsRecomputations( true );
+	C_BaseEntity::PopEnableAbsRecomputations();
 
 	if (trace.fraction < 1.0)
 	{
@@ -1338,7 +1441,7 @@ C_BaseCombatWeapon *C_BasePlayer::GetActiveWeaponForSelection( void )
 C_BaseAnimating* C_BasePlayer::GetRenderedWeaponModel()
 {
 	// Attach to either their weapon model or their view model.
-	if ( input->CAM_IsThirdPerson() || this != C_BasePlayer::GetLocalPlayer() )
+	if ( ShouldDrawLocalPlayer() || !IsLocalPlayer() )
 	{
 		return GetActiveWeapon();
 	}
@@ -1348,8 +1451,22 @@ C_BaseAnimating* C_BasePlayer::GetRenderedWeaponModel()
 	}
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: Gets a pointer to the local player, if it exists yet.
+// Output : C_BasePlayer
+//-----------------------------------------------------------------------------
+C_BasePlayer *C_BasePlayer::GetLocalPlayer( void )
+{
+	return s_pLocalPlayer;
+}
 
-
+//-----------------------------------------------------------------------------
+// Purpose: single place to decide whether the local player should draw
+//-----------------------------------------------------------------------------
+bool C_BasePlayer::ShouldDrawLocalPlayer()
+{
+	return input->CAM_IsThirdPerson() || ( ToolsEnabled() && ToolFramework_IsThirdPersonCamera() );
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -1357,7 +1474,7 @@ C_BaseAnimating* C_BasePlayer::GetRenderedWeaponModel()
 //-----------------------------------------------------------------------------
 bool C_BasePlayer::IsLocalPlayer( void ) const
 {
-	return ( index == engine->GetLocalPlayer() ? true : false );
+	return ( GetLocalPlayer() == this );
 }
 
 int	C_BasePlayer::GetUserID( void )
@@ -1390,6 +1507,7 @@ void C_BasePlayer::UpdateClientData( void )
 // Prediction stuff
 void C_BasePlayer::PreThink( void )
 {
+#if !defined( NO_ENTITY_PREDICTION )
 	ItemPreFrame();
 
 	UpdateClientData();
@@ -1404,12 +1522,13 @@ void C_BasePlayer::PreThink( void )
 	{
 		m_Local.m_flFallVelocity = -GetAbsVelocity().z;
 	}
-
+#endif
 	RegenerateStamina();
 }
 
 void C_BasePlayer::PostThink( void )
 {
+#if !defined( NO_ENTITY_PREDICTION )
 	if ( IsAlive())
 	{
 		// do weapon stuff
@@ -1431,7 +1550,34 @@ void C_BasePlayer::PostThink( void )
 
 	// Even if dead simulate entities
 	SimulatePlayerSimulatedEntities();
+#endif
 }
+
+//-----------------------------------------------------------------------------
+// Purpose: send various tool messages - viewoffset, and base class messages (flex and bones)
+//-----------------------------------------------------------------------------
+void C_BasePlayer::GetToolRecordingState( KeyValues *msg )
+{
+	if ( !ToolsEnabled() )
+		return;
+
+	VPROF_BUDGET( "C_BasePlayer::GetToolRecordingState", VPROF_BUDGETGROUP_TOOLS );
+
+	BaseClass::GetToolRecordingState( msg );
+
+	msg->SetInt( "baseplayer", 1 );
+	msg->SetInt( "localplayer", IsLocalPlayer() ? 1 : 0 );
+	msg->SetString( "playername", GetPlayerName() );
+
+	static CameraRecordingState_t state;
+	state.m_flFOV = GetFOV();
+
+	float flZNear = view->GetZNear();
+	float flZFar = view->GetZFar();
+	CalcView( state.m_vecEyePosition, state.m_vecEyeAngles, flZNear, flZFar, state.m_flFOV );
+	msg->SetPtr( "camera", &state );
+}
+
 
 //-----------------------------------------------------------------------------
 // Purpose: Simulate the player for this frame
@@ -1463,15 +1609,16 @@ C_BaseViewModel *C_BasePlayer::GetViewModel( int index /*= 0*/ )
 {
 	Assert( index >= 0 && index < MAX_VIEWMODELS );
 
-	C_BaseViewModel *vm;
+	C_BaseViewModel *vm = m_hViewModel[ index ];
 	
 	if ( GetObserverMode() == OBS_MODE_IN_EYE )
 	{
-		vm = m_hObserverViewModel[ index ];
-	}
-	else
-	{
-		vm = m_hViewModel[ index ];
+		C_BasePlayer *target =  ToBasePlayer( GetObserverTarget() );
+
+		if ( target && target != this )
+		{
+			vm = target->GetViewModel( index );
+		}
 	}
 
 	return vm;
@@ -1482,7 +1629,7 @@ C_BaseCombatWeapon	*C_BasePlayer::GetActiveWeapon( void ) const
 	const C_BasePlayer *fromPlayer = this;
 
 	// if localplayer is in InEye spectator mode, return weapon on chased player
-	if ( (fromPlayer == g_pLocalPlayer) && ( GetObserverMode() == OBS_MODE_IN_EYE) )
+	if ( (fromPlayer == GetLocalPlayer()) && ( GetObserverMode() == OBS_MODE_IN_EYE) )
 	{
 		C_BaseEntity *target =  GetObserverTarget();
 
@@ -1499,7 +1646,7 @@ C_BaseCombatWeapon	*C_BasePlayer::GetActiveWeapon( void ) const
 // Autoaim
 // set crosshair position to point to enemey
 //=========================================================
-Vector C_BasePlayer::GetAutoaimVector( float flDelta )
+Vector C_BasePlayer::GetAutoaimVector( float flScale )
 {
 	// Never autoaim a predicted weapon (for now)
 	Vector	forward;
@@ -1509,6 +1656,7 @@ Vector C_BasePlayer::GetAutoaimVector( float flDelta )
 
 void C_BasePlayer::PlayPlayerJingle()
 {
+#ifndef _XBOX
 	// Find player sound for shooter
 	player_info_t info;
 	engine->GetPlayerInfo( entindex(), &info );
@@ -1553,6 +1701,7 @@ void C_BasePlayer::PlayPlayerJingle()
 	ep.m_SoundLevel = SNDLVL_NORM;
 
 	C_BaseEntity::EmitSound( filter, GetSoundSourceIndex(), ep );
+#endif
 }
 
 // Stuff for prediction
@@ -1578,12 +1727,13 @@ void C_BasePlayer::ResetAutoaim( void )
 
 bool C_BasePlayer::ShouldPredict( void )
 {
+#if !defined( NO_ENTITY_PREDICTION )
 	// Do this before calling into baseclass so prediction data block gets allocated
 	if ( IsLocalPlayer() )
 	{
 		return true;
 	}
-
+#endif
 	return false;
 }
 
@@ -1593,6 +1743,7 @@ bool C_BasePlayer::ShouldPredict( void )
 //-----------------------------------------------------------------------------
 void C_BasePlayer::PhysicsSimulate( void )
 {
+#if !defined( NO_ENTITY_PREDICTION )
 	VPROF( "C_BasePlayer::PhysicsSimulate" );
 	// If we've got a moveparent, we must simulate that first.
 	CBaseEntity *pMoveParent = GetMoveParent();
@@ -1607,7 +1758,7 @@ void C_BasePlayer::PhysicsSimulate( void )
 
 	m_nSimulationTick = gpGlobals->tickcount;
 
-	if ( g_pLocalPlayer != this )
+	if ( !IsLocalPlayer() )
 		return;
 
 	C_CommandContext *ctx = GetCommandContext();
@@ -1635,6 +1786,7 @@ void C_BasePlayer::PhysicsSimulate( void )
 		this, 
 		&ctx->cmd, 
 		MoveHelper() );
+#endif
 }
 
 const QAngle& C_BasePlayer::GetPunchAngle()
@@ -1685,7 +1837,17 @@ bool C_BasePlayer::IsUseableEntity( CBaseEntity *pEntity, unsigned int requiredC
 //-----------------------------------------------------------------------------
 float C_BasePlayer::GetFOV( void )
 {
-	float fFOV = m_Local.m_iFOV;
+	if ( GetObserverMode() == OBS_MODE_IN_EYE )
+	{
+		C_BasePlayer *pTargetPlayer = dynamic_cast<C_BasePlayer*>( GetObserverTarget() );
+
+		if ( pTargetPlayer )
+		{
+			return pTargetPlayer->GetFOV();
+		}
+	}
+
+	float fFOV = m_iFOV;
 
 	// Allow our vehicle to override our FOV if it's currently at the default FOV.
 	IClientVehicle *pVehicle = GetVehicle();
@@ -1699,48 +1861,25 @@ float C_BasePlayer::GetFOV( void )
 		fFOV = default_fov.GetInt();
 	}
 
-	//See if we need to lerp the values
-	if ( ( fFOV != m_Local.m_iFOVStart ) && ( m_Local.m_flFOVRate > 0.0f ) )
+	//See if we need to lerp the values for local player
+	if ( IsLocalPlayer() && ( fFOV != m_iFOVStart ) && (m_Local.m_flFOVRate > 0.0f ) )
 	{
-		float deltaTime = (float)( gpGlobals->curtime - m_Local.m_flFOVTime ) / m_Local.m_flFOVRate;
+		float deltaTime = (float)( gpGlobals->curtime - m_flFOVTime ) / m_Local.m_flFOVRate;
 
 		if ( deltaTime >= 1.0f )
 		{
 			//If we're past the zoom time, just take the new value and stop lerping
-			m_Local.m_iFOVStart = fFOV;
+			m_iFOVStart = fFOV;
 		}
 		else
 		{
-			fFOV = SimpleSplineRemapVal( deltaTime, 0.0f, 1.0f, m_Local.m_iFOVStart, fFOV );
+			fFOV = SimpleSplineRemapVal( deltaTime, 0.0f, 1.0f, m_iFOVStart, fFOV );
 		}
 	}
 
 	return fFOV;
 }
 
-//-----------------------------------------------------------------------------
-// Purpose: Decodes lifestate and notes when it changes
-// Input  : *pStruct - ( C_BaseEntity * ) used to flag animtime is changine
-//			*pVarData - 
-//			*pIn - 
-//			objectID - 
-//-----------------------------------------------------------------------------
-void RecvProxy_LifeState( const CRecvProxyData *pData, void *pStruct, void *pOut )
-{
-	C_BaseEntity *pEntity = ( C_BaseEntity * )pStruct;
-
-	Assert( pOut == &pEntity->m_lifeState );
-	Assert( pEntity->IsPlayer() );
-
-	C_BasePlayer *pPlayer = (C_BasePlayer*)pEntity;
-
-	int iNewState = pData->m_Value.m_Int;
-
-	if (pEntity->m_lifeState == LIFE_ALIVE && iNewState > LIFE_ALIVE)
-		pPlayer->Killed();
-
-	pEntity->m_lifeState = iNewState;
-}
 
 //-----------------------------------------------------------------------------
 // Purpose: Called when the FOV changes from the server-side
@@ -1750,28 +1889,20 @@ void RecvProxy_LifeState( const CRecvProxyData *pData, void *pStruct, void *pOut
 //-----------------------------------------------------------------------------
 void RecvProxy_FOV( const CRecvProxyData *pData, void *pStruct, void *pOut )
 {
-	CPlayerLocalData *pPlayerData = (CPlayerLocalData *) pStruct;
+	C_BasePlayer *pPlayer = (C_BasePlayer *) pStruct;
 
 	//Hold onto the old FOV as our starting point
 	int iNewFov = pData->m_Value.m_Int;
-	if ( pPlayerData->m_iFOV == iNewFov )
+
+	if ( pPlayer->m_iFOV == iNewFov )
 		return;
 
 	// Get the true current FOV of the player at this point
-	C_BasePlayer *pPlayer = C_BasePlayer::GetLocalPlayer();
-	if ( pPlayer != NULL )
-	{
-		pPlayerData->m_iFOVStart = pPlayer->GetFOV();
-	}
-	else
-	{
-		// At connect time, it can get in here b/c it's receiving baselines for other players.
-		pPlayerData->m_iFOVStart = ( pPlayerData->m_iFOV == 0 ) ? default_fov.GetInt() : pPlayerData->m_iFOV;
-	}
-
+	pPlayer->m_iFOVStart = pPlayer->GetFOV();
+	
 	//Get our start time for the zoom
-	pPlayerData->m_flFOVTime = gpGlobals->curtime;
-	pPlayerData->m_iFOV = iNewFov;
+	pPlayer->m_flFOVTime = gpGlobals->curtime;
+	pPlayer->m_iFOV = iNewFov;
 }
 
 //-----------------------------------------------------------------------------
@@ -1782,17 +1913,17 @@ void RecvProxy_FOV( const CRecvProxyData *pData, void *pStruct, void *pOut )
 //-----------------------------------------------------------------------------
 void RecvProxy_DefaultFOV( const CRecvProxyData *pData, void *pStruct, void *pOut )
 {
-	CPlayerLocalData *pPlayerData = (CPlayerLocalData *) pStruct;
+	C_BasePlayer *pPlayer = (C_BasePlayer *) pStruct;
 
 	//Hold onto the old FOV as our starting point
 	int iNewFov = pData->m_Value.m_Int;
 	
-	if ( pPlayerData->m_iDefaultFOV != iNewFov )
+	if ( pPlayer->m_iDefaultFOV != iNewFov )
 	{
 		// Don't lerp
-		pPlayerData->m_flFOVRate = 0.0f;
+		pPlayer->m_Local.m_flFOVRate = 0.0f;
 
-		pPlayerData->m_iDefaultFOV = iNewFov;
+		pPlayer->m_iDefaultFOV = iNewFov;
 	}
 }
 
@@ -1846,6 +1977,20 @@ void RecvProxy_LocalVelocityZ( const CRecvProxyData *pData, void *pStruct, void 
 		pPlayer->SetLocalVelocity( vecVelocity );
 	}
 }
+
+void RecvProxy_ObserverTarget( const CRecvProxyData *pData, void *pStruct, void *pOut )
+{
+	C_BasePlayer *pPlayer = (C_BasePlayer *) pStruct;
+
+	Assert( pPlayer );
+
+	EHANDLE hTarget;
+
+	RecvProxy_IntToEHandle( pData, pStruct, &hTarget );
+
+	pPlayer->SetObserverTarget( hTarget );
+}
+
 //-----------------------------------------------------------------------------
 // Purpose: Remove this player from a vehicle
 //-----------------------------------------------------------------------------
@@ -1860,7 +2005,7 @@ void C_BasePlayer::LeaveVehicle( void )
 	Assert( pVehicle );
 
 	int nRole = pVehicle->GetPassengerRole( this );
-	Assert( nRole >= 0 );
+	Assert( nRole != VEHICLE_ROLE_NONE );
 
 	SetParent( NULL );
 
@@ -1909,30 +2054,44 @@ float C_BasePlayer::GetFinalPredictedTime() const
 
 void C_BasePlayer::NotePredictionError( const Vector &vDelta )
 {
-	ResetLatched();
-	m_vecPredictionError = vDelta;
-	m_flPredictionErrorTime = gpGlobals->curtime;
-}
+#if !defined( NO_ENTITY_PREDICTION )
+	Vector vOldDelta;
 
+	GetPredictionErrorSmoothingVector( vOldDelta );
+
+	// sum all errors within smoothing time
+	m_vecPredictionError = vDelta + vOldDelta;
+
+	// remember when last error happened
+	m_flPredictionErrorTime = gpGlobals->curtime;
+ 
+	ResetLatched(); 
+#endif
+}
 
 void C_BasePlayer::GetPredictionErrorSmoothingVector( Vector &vOffset )
 {
-	vOffset.Init( 0, 0, 0 );
-
+#if !defined( NO_ENTITY_PREDICTION )
 	if ( engine->IsPlayingDemo() || !cl_smooth.GetInt() || !cl_predict.GetBool() )
-		return;
-
-	float errorAmount = RemapVal(
-		gpGlobals->curtime, 
-		m_flPredictionErrorTime,
-		m_flPredictionErrorTime + cl_smoothtime.GetFloat(),
-		1,
-		0 );
-		
-	if ( errorAmount >= 0 && errorAmount <= 1 )
 	{
-		vOffset = m_vecPredictionError * errorAmount;
+		vOffset.Init();
+		return;
 	}
+
+	float errorAmount = ( gpGlobals->curtime - m_flPredictionErrorTime ) / cl_smoothtime.GetFloat();
+
+	if ( errorAmount >= 1.0f )
+	{
+		vOffset.Init();
+		return;
+	}
+	
+	errorAmount = 1.0f - errorAmount;
+
+	vOffset = m_vecPredictionError * errorAmount;
+#else
+	vOffset.Init();
+#endif
 }
 
 

@@ -6,6 +6,8 @@
 // $Date:         $
 // $NoKeywords: $
 //=============================================================================//
+
+
 #include "cbase.h"
 #include "clientmode_shared.h"
 #include "iinput.h"
@@ -26,6 +28,7 @@
 #include "particlemgr.h"
 #include "c_vguiscreen.h"
 #include "c_team.h"
+#include "c_rumble.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -47,6 +50,21 @@ CON_COMMAND( hud_reloadscheme, "Reloads hud layout and animation scripts." )
 
 	mode->ReloadScheme();
 }
+
+#ifdef _XBOX
+static void __MsgFunc_XBoxRumble( bf_read &msg )
+{
+	unsigned char waveformIndex;
+	unsigned char rumbleData;
+	unsigned char rumbleFlags;
+
+	waveformIndex = msg.ReadByte();
+	rumbleData = msg.ReadByte();
+	rumbleFlags = msg.ReadByte();
+
+	RumbleEffect( waveformIndex, rumbleData, rumbleFlags );
+}
+#endif//_XBOX
 
 static void __MsgFunc_VGUIMenu( bf_read &msg )
 {
@@ -97,6 +115,7 @@ ClientModeShared::ClientModeShared()
 	m_pViewport = NULL;
 	m_pChatElement = NULL;
 	m_pWeaponSelection = NULL;
+	m_nRootSize[ 0 ] = m_nRootSize[ 1 ] = -1;
 }
 
 //-----------------------------------------------------------------------------
@@ -119,8 +138,12 @@ void ClientModeShared::ReloadScheme( void )
 //-----------------------------------------------------------------------------
 void ClientModeShared::Init()
 {
-	m_pChatElement = ( CBaseHudChat * )GET_HUDELEMENT( CHudChat );
-	Assert( m_pChatElement );
+	if ( IsPC() )
+	{
+		m_pChatElement = ( CBaseHudChat * )GET_HUDELEMENT( CHudChat );
+		Assert( m_pChatElement );
+	}
+
 	m_pWeaponSelection = ( CBaseHudWeaponSelection * )GET_HUDELEMENT( CHudWeaponSelection );
 	Assert( m_pWeaponSelection );
 
@@ -133,12 +156,16 @@ void ClientModeShared::Init()
 	gameeventmanager->AddListener( this, "player_team", false );
 	gameeventmanager->AddListener( this, "server_cvar", false );
 	gameeventmanager->AddListener( this, "player_changename", false );
-
+#ifndef _XBOX
 	HLTVCamera()->Init();
-
+#endif
 	m_CursorNone = vgui::dc_none;
 
 	HOOK_MESSAGE( VGUIMenu );
+
+#ifdef _XBOX
+	HOOK_MESSAGE( XBoxRumble );
+#endif //_XBOX
 }
 
 
@@ -278,7 +305,7 @@ bool ClientModeShared::ShouldDrawCrosshair( void )
 //-----------------------------------------------------------------------------
 bool ClientModeShared::ShouldDrawLocalPlayer( C_BasePlayer *pPlayer )
 {
-	if ( ( pPlayer->index == render->GetViewEntity() ) && !::input->CAM_IsThirdPerson() )
+	if ( ( pPlayer->index == render->GetViewEntity() ) && !C_BasePlayer::ShouldDrawLocalPlayer() )
 		return false;
 
 	return true;
@@ -310,17 +337,10 @@ void ClientModeShared::PreRender( CViewSetup *pSetup )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void ClientModeShared::PostRenderWorld()
-{
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
 void ClientModeShared::PostRender()
 {
 	// Let the particle manager simulate things that haven't been simulated.
-	g_ParticleMgr.PostRender();
+	ParticleMgr()->PostRender();
 }
 
 void ClientModeShared::PostRenderVGui()
@@ -332,7 +352,14 @@ void ClientModeShared::PostRenderVGui()
 //-----------------------------------------------------------------------------
 void ClientModeShared::Update()
 {
-	m_pViewport->SetVisible( cl_drawhud.GetBool() );
+	if ( m_pViewport->IsVisible() != cl_drawhud.GetBool() )
+	{
+		m_pViewport->SetVisible( cl_drawhud.GetBool() );
+	}
+
+#ifdef _XBOX
+	UpdateRumbleEffects();
+#endif//_XBOX
 }
 
 //-----------------------------------------------------------------------------
@@ -427,6 +454,7 @@ vgui::Panel *ClientModeShared::GetMessagePanel()
 {
 	if ( m_pChatElement && m_pChatElement->GetInputPanel() && m_pChatElement->GetInputPanel()->IsVisible() )
 		return m_pChatElement->GetInputPanel();
+
 	return NULL;
 }
 
@@ -440,7 +468,6 @@ void ClientModeShared::StartMessageMode( int iMessageModeType )
 	{
 		return;
 	}
-
 	if ( m_pChatElement )
 	{
 		m_pChatElement->StartMessageMode( iMessageModeType );
@@ -463,7 +490,6 @@ void ClientModeShared::LevelInit( const char *newmap )
 
 	// we have to fake this event clientside, because clients connect after that
 	IGameEvent *event = gameeventmanager->CreateEvent( "game_newmap" );
-
 	if ( event )
 	{
 		event->SetString("mapname", newmap );
@@ -490,7 +516,6 @@ void ClientModeShared::LevelShutdown( void )
 	{
 		m_pChatElement->LevelShutdown();
 	}
-
 	if ( s_hVGuiContext != DEFAULT_VGUI_CONTEXT )
 	{
 		vgui::ivgui()->DestroyContext( s_hVGuiContext );
@@ -546,7 +571,16 @@ void ClientModeShared::Layout()
 	if( ( pRoot = VGui_GetClientDLLRootPanel() ) != NULL )
 	{
 		vgui::ipanel()->GetSize(pRoot, wide, tall);
+
+		bool changed = wide != m_nRootSize[ 0 ] || tall != m_nRootSize[ 1 ];
+		m_nRootSize[ 0 ] = wide;
+		m_nRootSize[ 1 ] = tall;
+
 		m_pViewport->SetBounds(0, 0, wide, tall);
+		if ( changed )
+		{
+			ReloadScheme();
+		}
 	}
 }
 
@@ -570,7 +604,6 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 
 		hudChat->Printf( "%s has joined the game\n", event->GetString("name") );
 	}
-
 	else if ( Q_strcmp( "player_disconnect", eventname ) == 0 )
 	{
 		C_BasePlayer *pPlayer = USERID2PLAYER( event->GetInt("userid") );
@@ -582,18 +615,22 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 			pPlayer->GetPlayerName(),
 			event->GetString("reason") );
 	}
-
 	else if ( Q_strcmp( "player_team", eventname ) == 0 )
 	{
 		C_BasePlayer *pPlayer = USERID2PLAYER( event->GetInt("userid") );
+		if ( !hudChat )
+			return;
+		if ( !pPlayer )
+			return;
 
-		if ( !hudChat || !pPlayer )
+		bool bDisconnected = event->GetBool("disconnect");
+
+		if ( bDisconnected )
 			return;
 
 		int team = event->GetInt( "team" );
 
 		C_Team *pTeam = GetGlobalTeam( team );
-		
 		if ( pTeam )
 		{
 			hudChat->Printf( "Player %s joined team %s\n", pPlayer->GetPlayerName(), pTeam->Get_Name() );
@@ -603,7 +640,6 @@ void ClientModeShared::FireGameEvent( IGameEvent *event )
 			hudChat->Printf( "Player %s joined team %i\n", pPlayer->GetPlayerName(), team );
 		}
 	}
-
 	else if ( Q_strcmp( "player_changename", eventname ) == 0 )
 	{
 		if ( !hudChat )

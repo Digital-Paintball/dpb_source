@@ -12,11 +12,14 @@
 #include "IEffects.h"
 #include "vphysics/object_hash.h"
 #include "IceKey.H"
+#include "checksum_crc.h"
 
 #ifdef CLIENT_DLL
 	#include "c_te_effect_dispatch.h"
 #else
 	#include "te_effect_dispatch.h"
+
+bool NPC_CheckBrushExclude( CBaseEntity *pEntity, CBaseEntity *pBrush );
 #endif
 
 
@@ -112,6 +115,77 @@ Vector UTIL_YawToVector( float yaw )
 	SinCos( angle, &ret.y, &ret.x );
 
 	return ret;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Helper function get get determinisitc random values for shared/prediction code
+// Input  : seedvalue - 
+//			*module - 
+//			line - 
+// Output : static int
+//-----------------------------------------------------------------------------
+static int SeedFileLineHash( int seedvalue, const char *sharedname, int additionalSeed )
+{
+	CRC32_t retval;
+
+	CRC32_Init( &retval );
+
+	CRC32_ProcessBuffer( &retval, (void *)&seedvalue, sizeof( int ) );
+	CRC32_ProcessBuffer( &retval, (void *)&additionalSeed, sizeof( int ) );
+	CRC32_ProcessBuffer( &retval, (void *)sharedname, Q_strlen( sharedname ) );
+	
+	CRC32_Final( &retval );
+
+	return (int)( retval );
+}
+
+float SharedRandomFloat( const char *sharedname, float flMinVal, float flMaxVal, int additionalSeed /*=0*/ )
+{
+	Assert( CBaseEntity::GetPredictionRandomSeed() != -1 );
+
+	int seed = SeedFileLineHash( CBaseEntity::GetPredictionRandomSeed(), sharedname, additionalSeed );
+	RandomSeed( seed );
+	return RandomFloat( flMinVal, flMaxVal );
+}
+
+int SharedRandomInt( const char *sharedname, int iMinVal, int iMaxVal, int additionalSeed /*=0*/ )
+{
+	Assert( CBaseEntity::GetPredictionRandomSeed() != -1 );
+
+	int seed = SeedFileLineHash( CBaseEntity::GetPredictionRandomSeed(), sharedname, additionalSeed );
+	RandomSeed( seed );
+	return RandomInt( iMinVal, iMaxVal );
+}
+
+Vector SharedRandomVector( const char *sharedname, float minVal, float maxVal, int additionalSeed /*=0*/ )
+{
+	Assert( CBaseEntity::GetPredictionRandomSeed() != -1 );
+
+	int seed = SeedFileLineHash( CBaseEntity::GetPredictionRandomSeed(), sharedname, additionalSeed );
+	RandomSeed( seed );
+	// HACK:  Can't call RandomVector/Angle because it uses rand() not vstlib Random*() functions!
+	// Get a random vector.
+	Vector random;
+	random.x = RandomFloat( minVal, maxVal );
+	random.y = RandomFloat( minVal, maxVal );
+	random.z = RandomFloat( minVal, maxVal );
+	return random;
+}
+
+QAngle SharedRandomAngle( const char *sharedname, float minVal, float maxVal, int additionalSeed /*=0*/ )
+{
+	Assert( CBaseEntity::GetPredictionRandomSeed() != -1 );
+
+	int seed = SeedFileLineHash( CBaseEntity::GetPredictionRandomSeed(), sharedname, additionalSeed );
+	RandomSeed( seed );
+
+	// HACK:  Can't call RandomVector/Angle because it uses rand() not vstlib Random*() functions!
+	// Get a random vector.
+	Vector random;
+	random.x = RandomFloat( minVal, maxVal );
+	random.y = RandomFloat( minVal, maxVal );
+	random.z = RandomFloat( minVal, maxVal );
+	return QAngle( random.x, random.y, random.z );
 }
 
 
@@ -227,6 +301,12 @@ bool CTraceFilterOnlyNPCsAndPlayer::ShouldHitEntity( IHandleEntity *pServerEntit
 	if ( CTraceFilterSimple::ShouldHitEntity(pServerEntity, contentsMask) )
 	{
 		CBaseEntity *pEntity = EntityFromEntityHandle( pServerEntity );
+#ifdef CSTRIKE_DLL
+#ifndef CLIENT_DLL
+		if ( pEntity->Classify() == CLASS_PLAYER_ALLY )
+			return true; // CS hostages are CLASS_PLAYER_ALLY but not IsNPC()
+#endif // !CLIENT_DLL
+#endif // CSTRIKE_DLL
 		return (pEntity->IsNPC() || pEntity->IsPlayer());
 	}
 	return false;
@@ -240,6 +320,10 @@ bool CTraceFilterNoNPCsOrPlayer::ShouldHitEntity( IHandleEntity *pServerEntity, 
 	if ( CTraceFilterSimple::ShouldHitEntity(pServerEntity, contentsMask) )
 	{
 		CBaseEntity *pEntity = EntityFromEntityHandle( pServerEntity );
+#ifndef CLIENT_DLL
+		if ( pEntity->Classify() == CLASS_PLAYER_ALLY )
+			return false; // CS hostages are CLASS_PLAYER_ALLY but not IsNPC()
+#endif
 		return (!pEntity->IsNPC() && !pEntity->IsPlayer());
 	}
 	return false;
@@ -296,8 +380,8 @@ void CTraceFilterSimpleList::AddEntityToIgnore( IHandleEntity *pEntity )
 //-----------------------------------------------------------------------------
 // Purpose: Custom trace filter used for NPC LOS traces
 //-----------------------------------------------------------------------------
-CTraceFilterLOS::CTraceFilterLOS( IHandleEntity *pHandleEntity, int collisionGroup ) :
-		CTraceFilterSimple( pHandleEntity, collisionGroup )
+CTraceFilterLOS::CTraceFilterLOS( IHandleEntity *pHandleEntity, int collisionGroup, IHandleEntity *pHandleEntity2 ) :
+		CTraceFilterSkipTwoEntities( pHandleEntity, pHandleEntity2, collisionGroup )
 {
 }
 
@@ -379,6 +463,15 @@ public:
 				return false;
 		}
 
+#ifndef CLIENT_DLL
+		if ( m_pEntity->IsNPC() )
+		{
+			if ( NPC_CheckBrushExclude( m_pEntity, pTestEntity ) == true )
+				 return false;
+
+		}
+#endif
+
 		return BaseClass::ShouldHitEntity( pHandleEntity, contentsMask );
 	}
 
@@ -450,8 +543,16 @@ void UTIL_TraceEntity( CBaseEntity *pEntity, const Vector &vecAbsStart, const Ve
 	enginetrace->SweepCollideable( pCollision, vecAbsStart, vecAbsEnd, pCollision->GetCollisionAngles(), mask, pFilter, ptr );
 }
 
+// ----
+// This is basically a regular TraceLine that uses the FilterEntity filter.
+void UTIL_TraceLineFilterEntity( CBaseEntity *pEntity, const Vector &vecAbsStart, const Vector &vecAbsEnd, 
+					   unsigned int mask, int nCollisionGroup, trace_t *ptr )
+{
+	CTraceFilterEntity traceFilter( pEntity, nCollisionGroup );
+	UTIL_TraceLine( vecAbsStart, vecAbsEnd, mask, &traceFilter, ptr );
+}
 
-void UTIL_ClipTraceToPlayers( const CBasePlayer *ignore, const Vector& vecAbsStart, const Vector& vecAbsEnd, unsigned int mask, trace_t *tr )
+void UTIL_ClipTraceToPlayers( const Vector& vecAbsStart, const Vector& vecAbsEnd, unsigned int mask, ITraceFilter *filter, trace_t *tr )
 {
 	trace_t playerTrace;
 	Ray_t ray;
@@ -463,13 +564,17 @@ void UTIL_ClipTraceToPlayers( const CBasePlayer *ignore, const Vector& vecAbsSta
 	for ( int k = 1; k <= gpGlobals->maxClients; ++k )
 	{
 		CBasePlayer *player = UTIL_PlayerByIndex( k );
-		if ( !player || player == ignore || !player->IsAlive() )
+
+		if ( !player || !player->IsAlive() )
 			continue;
 
 #ifdef CLIENT_DLL
 		if ( player->IsDormant() )
 			continue;
 #endif // CLIENT_DLL
+
+		if ( filter && filter->ShouldHitEntity( player, mask ) == false )
+			continue;
 
 		float range = DistanceToRay( player->WorldSpaceCenter(), vecAbsStart, vecAbsEnd );
 		if ( range < 0.0f || range > maxRange )
@@ -495,7 +600,11 @@ void UTIL_Tracer( const Vector &vecStart, const Vector &vecEnd, int iEntIndex,
 	CEffectData data;
 	data.m_vStart = vecStart;
 	data.m_vOrigin = vecEnd;
+#ifdef CLIENT_DLL
+	data.m_hEntity = ClientEntityList().EntIndexToHandle( iEntIndex );
+#else
 	data.m_nEntIndex = iEntIndex;
+#endif
 	data.m_flScale = flVelocity;
 
 	// Flags
@@ -555,8 +664,23 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 		// Normal blood impact
 		UTIL_BloodImpact( origin, direction, color, amount );
 	}
-}				
+}	
 
+//-----------------------------------------------------------------------------
+// Purpose: Returns low violence settings
+//-----------------------------------------------------------------------------
+static ConVar	violence_hblood( "violence_hblood","1", 0, "Draw human blood" );
+static ConVar	violence_hgibs( "violence_hgibs","1", 0, "Show human gib entities" );
+static ConVar	violence_ablood( "violence_ablood","1", 0, "Draw alien blood" );
+static ConVar	violence_agibs( "violence_agibs","1", 0, "Show alien gib entities" );
+
+bool UTIL_IsLowViolence( void )
+{
+	if ( !violence_hblood.GetBool() || !violence_ablood.GetBool() || !violence_hgibs.GetBool() || !violence_agibs.GetBool() )
+		return true;
+
+	return false;
+}
 
 bool UTIL_ShouldShowBlood( int color )
 {
@@ -564,19 +688,11 @@ bool UTIL_ShouldShowBlood( int color )
 	{
 		if ( color == BLOOD_COLOR_RED )
 		{
-			ConVar const *hblood = cvar->FindVar( "violence_hblood" );
-			if ( hblood && hblood->GetInt() != 0 )
-			{	
-				return true;
-			}
+			return violence_hblood.GetBool();
 		}
 		else
 		{
-			ConVar const *ablood = cvar->FindVar( "violence_ablood" );
-			if ( ablood && ablood->GetInt() != 0 )
-			{
-				return true;
-			}
+			return violence_ablood.GetBool();
 		}
 	}
 	return false;
@@ -717,6 +833,7 @@ void UTIL_StringToColor32( color32 *color, const char *pString )
 	color->a = tmp[3];
 }
 
+#ifndef _XBOX
 void UTIL_DecodeICE( unsigned char * buffer, int size, const unsigned char *key)
 {
 	if ( !key )
@@ -744,7 +861,7 @@ void UTIL_DecodeICE( unsigned char * buffer, int size, const unsigned char *key)
 	// copy encrypted data back to original buffer
 	Q_memcpy( buffer, temp, size-bytesLeft );
 }
-
+#endif
 
 // work-around since client header doesn't like inlined gpGlobals->curtime
 float IntervalTimer::Now( void ) const

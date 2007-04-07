@@ -377,6 +377,12 @@ void CPASAttenuationFilter::Filter( const Vector& origin, float attenuation /*= 
 			continue;
 		}
 
+#ifndef _XBOX
+		// never remove the HLTV bot
+		if ( player->IsHLTV() )
+			continue;
+#endif
+
 		VectorSubtract( player->EarPosition(), origin, vecRelative );
 		distance = VectorLength( vecRelative );
 		maxAudible = ( 2 * SOUND_NORMAL_CLIP_DIST ) / attenuation;

@@ -26,6 +26,7 @@
 	#include <ctype.h>
 	#include "voice_gamemgr.h"
 	#include "iscorer.h"
+	#include "hltvdirector.h"
 	#include "team.h"
 	
 #endif
@@ -48,7 +49,15 @@ ConVar	mp_timelimit( "mp_timelimit",
 					  "0",
 					  FCVAR_NOTIFY|FCVAR_REPLICATED,
 					  "game time per map in minutes" );
+
+#ifdef GAME_DLL
+
+ConVar	tv_delaymapchange( "tv_delaymapchange",
+					 "0",
+					 0,
+					 "Delays map change until broadcast is complete" );
 					  					  
+#endif
 
 
 //=========================================================

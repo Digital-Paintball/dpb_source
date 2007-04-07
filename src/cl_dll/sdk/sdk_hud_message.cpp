@@ -59,6 +59,7 @@ void CHudGameMessage::VidInit( void )
 	// Store off a reference to our icon
 	// *** You need to put a defined texture here, otherwise no icon will appear
 	m_pIcon = gHUD.GetIcon( "dmg_cold" );
+
 	m_pText[0] = '\0';
  
 	// *** Fade all out immediately

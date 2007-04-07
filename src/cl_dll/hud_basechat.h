@@ -121,12 +121,17 @@ public:
 	virtual void	Paint( void );
 	virtual void	OnTick( void );
 	virtual void	Reset();
-
+#ifdef _XBOX
+	virtual bool	ShouldDraw();
+#endif
 	vgui::Panel		*GetInputPanel( void );
 
 	static int		m_nLineCounter;
 
 	virtual int		GetChatInputOffset( void );
+
+	// IGameEventListener interface:
+	virtual void FireGameEvent( IGameEvent *event);
 
 protected:
 	CBaseHudChatLine		*FindUnusedChatLine( void );

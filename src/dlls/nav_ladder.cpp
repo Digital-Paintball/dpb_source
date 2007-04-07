@@ -270,6 +270,35 @@ bool CNavLadder::IsConnected( const CNavArea *area, LadderDirectionType dir ) co
 
 
 //--------------------------------------------------------------------------------------------------------------
+void CNavLadder::SetDir( NavDirType dir )
+{
+	m_dir = dir;
+
+	m_normal.Init();
+	AddDirectionVector( &m_normal, m_dir, 1.0f );	// worst-case, we have the NavDirType as a normal
+
+	Vector from = (m_top + m_bottom) * 0.5f + m_normal * 5.0f;
+	Vector to = from - m_normal * 32.0f;
+
+	trace_t result;
+	UTIL_TraceLine( from, to, MASK_PLAYERSOLID_BRUSHONLY, NULL, COLLISION_GROUP_NONE, &result );
+
+	if (result.fraction != 1.0f)
+	{
+		bool climbableSurface = physprops->GetSurfaceData( result.surface.surfaceProps )->game.climbable != 0;
+		if ( !climbableSurface )
+		{
+			climbableSurface = (result.contents & CONTENTS_LADDER) != 0;
+		}
+		if ( climbableSurface )
+		{
+			m_normal = result.plane.normal;
+		}
+	}
+}
+
+
+//--------------------------------------------------------------------------------------------------------------
 void CNavLadder::DrawLadder( void ) const
 {
 	CBasePlayer *player = UTIL_GetListenServerHost();
@@ -287,7 +316,7 @@ void CNavLadder::DrawLadder( void ) const
 	eyeDir.NormalizeInPlace();
 	bool isSelected = ( this == TheNavMesh->GetSelectedLadder() );
 	bool isMarked = ( this == TheNavMesh->GetMarkedLadder() );
-	bool isFront = DotProduct2D( eyeDir, m_dirVector ) > 0;
+	bool isFront = DotProduct2D( eyeDir, GetNormal().AsVector2D() ) > 0;
 
 	if ( TheNavMesh->IsPlaceMode() )
 	{
@@ -321,68 +350,14 @@ void CNavLadder::DrawLadder( void ) const
 		ladderColor = NavSelectedColor;
 	}
 
-	Vector absMin = m_bottom;
-	Vector absMax = m_top;
+	Vector right(0, 0, 0), up( 0, 0, 0 );
+	VectorVectors( GetNormal(), right, up );
+	right *= m_width * 0.5f;
 
-	Vector left( 0, 0, 0), right(0, 0, 0);
-	AddDirectionVector( &left, DirectionLeft( m_dir ), m_width*0.5f );
-	AddDirectionVector( &right, DirectionRight( m_dir ), m_width*0.5f );
-
-	absMin.x += min( left.x, right.x );
-	absMin.y += min( left.y, right.y );
-
-	absMax.x += max( left.x, right.x );
-	absMax.y += max( left.y, right.y );
-
-	Vector bottomLeft, bottomRight;
-	Vector topLeft, topRight;
-
-	topLeft.z = topRight.z = m_top.z;
-	bottomLeft.z = bottomRight.z = m_bottom.z;
-	switch ( m_dir )
-	{
-	case NORTH:
-		topLeft.x = absMin.x;
-		topLeft.y = absMin.y;
-		bottomLeft.x = absMin.x;
-		bottomLeft.y = absMin.y;
-		topRight.x = absMax.x;
-		topRight.y = absMin.y;
-		bottomRight.x = absMax.x;
-		bottomRight.y = absMin.y;
-		break;
-	case SOUTH:
-		topLeft.x = absMin.x;
-		topLeft.y = absMax.y;
-		bottomLeft.x = absMin.x;
-		bottomLeft.y = absMax.y;
-		topRight.x = absMax.x;
-		topRight.y = absMax.y;
-		bottomRight.x = absMax.x;
-		bottomRight.y = absMax.y;
-		break;
-	case EAST:
-		topLeft.x = absMax.x;
-		topLeft.y = absMin.y;
-		bottomLeft.x = absMax.x;
-		bottomLeft.y = absMin.y;
-		topRight.x = absMax.x;
-		topRight.y = absMax.y;
-		bottomRight.x = absMax.x;
-		bottomRight.y = absMax.y;
-		break;
-	case WEST:
-	default:
-		topLeft.x = absMin.x;
-		topLeft.y = absMin.y;
-		bottomLeft.x = absMin.x;
-		bottomLeft.y = absMin.y;
-		topRight.x = absMin.x;
-		topRight.y = absMax.y;
-		bottomRight.x = absMin.x;
-		bottomRight.y = absMax.y;
-		break;
-	}
+	Vector bottomLeft = m_bottom - right;
+	Vector bottomRight = m_bottom + right;
+	Vector topLeft = m_top - right;
+	Vector topRight = m_top + right;
 
 	int bgcolor[4];
 	if ( 4 == sscanf( nav_area_bgcolor.GetString(), "%d %d %d %d", &(bgcolor[0]), &(bgcolor[1]), &(bgcolor[2]), &(bgcolor[3]) ) )
@@ -405,8 +380,8 @@ void CNavLadder::DrawLadder( void ) const
 	while ( bottomRight.z < topRight.z )
 	{
 		NavDrawLine( bottomRight, bottomLeft, ladderColor );
-		bottomRight.z += GenerationStepSize/2;
-		bottomLeft.z += GenerationStepSize/2;
+		bottomRight += up * (GenerationStepSize/2);
+		bottomLeft += up * (GenerationStepSize/2);
 	}
 
 	// Draw connector lines ---------------------------------------------------
@@ -547,7 +522,7 @@ void CNavLadder::Load( FileHandle_t file, unsigned int version )
 
 	// load direction
 	filesystem->Read( &m_dir, sizeof(m_dir), file );
-	DirectionToVector2D( m_dir, &m_dirVector );
+	SetDir( m_dir ); // regenerate the surface normal
 
 	// load dangling status
 	if ( version == 6 )
@@ -631,3 +606,28 @@ bool CNavLadder::IsInUse( const CBasePlayer *ignore ) const
 	IsLadderFreeFunctor	isLadderFree( this, ignore );
 	return !ForEachPlayer( isLadderFree );
 }
+
+//--------------------------------------------------------------------------------------------------------------
+Vector CNavLadder::GetPosAtHeight( float height ) const
+{
+	if ( height < m_bottom.z )
+	{
+		return m_bottom;
+	}
+
+	if ( height > m_top.z )
+	{
+		return m_top;
+	}
+
+	if ( m_top.z == m_bottom.z )
+	{
+		return m_top;
+	}
+
+	float percent = ( height - m_bottom.z ) / ( m_top.z - m_bottom.z );
+
+	return m_top * percent + m_bottom * ( 1.0f - percent );
+}
+
+//--------------------------------------------------------------------------------------------------------------

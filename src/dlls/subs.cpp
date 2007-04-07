@@ -17,7 +17,6 @@
 // Landmark class
 void CPointEntity::Spawn( void )
 {
-	BaseClass::Spawn();
 	SetSolid( SOLID_NONE );
 //	UTIL_SetSize(this, vec3_origin, vec3_origin);
 }
@@ -39,10 +38,10 @@ void CNullEntity::Spawn( void )
 }
 LINK_ENTITY_TO_CLASS(info_null,CNullEntity);
 
-class CBaseSpawnPoint : public CPointEntity
+class CBaseDMStart : public CPointEntity
 {
 public:
-	DECLARE_CLASS( CBaseSpawnPoint, CPointEntity );
+	DECLARE_CLASS( CBaseDMStart, CPointEntity );
 
 	bool IsTriggered( CBaseEntity *pEntity );
 
@@ -53,7 +52,7 @@ public:
 private:
 };
 
-BEGIN_DATADESC( CBaseSpawnPoint )
+BEGIN_DATADESC( CBaseDMStart )
 
 	DEFINE_KEYFIELD( m_Master, FIELD_STRING, "master" ),
 
@@ -61,11 +60,11 @@ END_DATADESC()
 
 
 // These are the new entry points to entities. 
-LINK_ENTITY_TO_CLASS(info_player_spawn,CBaseSpawnPoint);
+LINK_ENTITY_TO_CLASS(info_player_deathmatch,CBaseDMStart);
 LINK_ENTITY_TO_CLASS(info_player_start,CPointEntity);
 LINK_ENTITY_TO_CLASS(info_landmark,CPointEntity);
 
-bool CBaseSpawnPoint::IsTriggered( CBaseEntity *pEntity )
+bool CBaseDMStart::IsTriggered( CBaseEntity *pEntity )
 {
 	bool master = UTIL_IsMasterTriggered( m_Master, pEntity );
 
@@ -111,7 +110,8 @@ void FireTargets( const char *targetName, CBaseEntity *pActivator, CBaseEntity *
 
 	for (;;)
 	{
-		pTarget = gEntList.FindEntityByName( pTarget, targetName, pActivator );
+		CBaseEntity *pSearchingEntity = pActivator;
+		pTarget = gEntList.FindEntityByName( pTarget, targetName, pSearchingEntity, pActivator, pCaller );
 		if ( !pTarget )
 			break;
 
@@ -284,6 +284,14 @@ void CBaseToggle::AngularMove( const QAngle &vecDestAngle, float flSpeed )
 	
 	// divide by speed to get time to reach dest
 	float flTravelTime = vecDestDelta.Length() / flSpeed;
+
+	const float MinTravelTime = 0.01f;
+	if ( flTravelTime < MinTravelTime )
+	{
+		// If we only travel for a short time, we can fail WillSimulateGamePhysics()
+		flTravelTime = MinTravelTime;
+		flSpeed = vecDestDelta.Length() / flTravelTime;
+	}
 
 	// set m_flNextThink to trigger a call to AngularMoveDone when dest is reached
 	SetMoveDoneTime( flTravelTime );

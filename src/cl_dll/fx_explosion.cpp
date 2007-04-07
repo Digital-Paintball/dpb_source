@@ -127,6 +127,12 @@ private:
 //Singleton static member definition
 C_BaseExplosionEffect	C_BaseExplosionEffect::m_instance;
 
+C_BaseExplosionEffect::C_BaseExplosionEffect( void ) : m_Material_Smoke( NULL ), m_Material_FireCloud( NULL )
+{
+	m_Material_Embers[0] = NULL;
+	m_Material_Embers[1] = NULL;
+}
+
 //Singleton accessor
 C_BaseExplosionEffect &BaseExplosionEffect( void )
 { 
@@ -217,6 +223,13 @@ void C_BaseExplosionEffect::CreateCore( void )
 	pSimple->SetSortOrigin( m_vecOrigin );
 	pSimple->SetNearClip( 64, 128 );
 
+	pSimple->GetBinding().SetBBox( m_vecOrigin - Vector( 128, 128, 128 ), m_vecOrigin + Vector( 128, 128, 128 ) );
+	
+	if ( m_Material_Smoke == NULL )
+	{
+		m_Material_Smoke = pSimple->GetPMaterial( "particle/particle_noisesphere" );
+	}
+
 	//FIXME: Better sampling area
 	offset = m_vecOrigin + ( m_vecDirection * 32.0f );
 
@@ -225,7 +238,15 @@ void C_BaseExplosionEffect::CreateCore( void )
 	
 	Vector	tint;
 	float	luminosity;
-	UTIL_GetNormalizedColorTintAndLuminosity( worldLight, &tint, &luminosity );
+	if ( worldLight == vec3_origin )
+	{
+		tint = vec3_origin;
+		luminosity = 0.0f;
+	}
+	else
+	{
+		UTIL_GetNormalizedColorTintAndLuminosity( worldLight, &tint, &luminosity );
+	}
 
 	// We only take a portion of the tint
 	tint = (tint * 0.25f)+(Vector(0.75f,0.75f,0.75f));
@@ -241,14 +262,14 @@ void C_BaseExplosionEffect::CreateCore( void )
 
 		for ( i = 0; i < 4; i++ )
 		{
-			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( "particle/particle_noisesphere" ), m_vecOrigin );
+			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_Smoke, m_vecOrigin );
 
 			if ( pParticle != NULL )
 			{
 				pParticle->m_flLifetime = 0.0f;
 
-	#ifdef TF2_CLIENT_DLL
-				pParticle->m_flDieTime	= random->RandomFloat( 0.5f, 1.0f );
+	#ifdef _XBOX
+				pParticle->m_flDieTime	= 1.0f;
 	#else
 				pParticle->m_flDieTime	= random->RandomFloat( 2.0f, 3.0f );
 	#endif
@@ -290,22 +311,20 @@ void C_BaseExplosionEffect::CreateCore( void )
 		// Inner core
 		//
 
+#ifndef _XBOX
+
 		for ( i = 0; i < 8; i++ )
 		{
 			offset.Random( -16.0f, 16.0f );
 			offset += m_vecOrigin;
 
-			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( "particle/particle_noisesphere" ), offset );
+			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_Smoke, offset );
 
 			if ( pParticle != NULL )
 			{
 				pParticle->m_flLifetime = 0.0f;
 
-	#ifdef TF2_CLIENT_DLL
 				pParticle->m_flDieTime	= random->RandomFloat( 0.5f, 1.0f );
-	#else
-				pParticle->m_flDieTime	= random->RandomFloat( 0.5f, 1.0f );
-	#endif
 
 				pParticle->m_vecVelocity.Random( -spread, spread );
 				pParticle->m_vecVelocity += ( m_vecDirection * random->RandomFloat( 1.0f, 6.0f ) );
@@ -338,6 +357,7 @@ void C_BaseExplosionEffect::CreateCore( void )
 				pParticle->m_flRollDelta	= random->RandomFloat( -8.0f, 8.0f );
 			}
 		}
+#endif // !_XBOX
 
 		//
 		// Ground ring
@@ -348,20 +368,25 @@ void C_BaseExplosionEffect::CreateCore( void )
 
 		Vector	forward;
 
-#ifndef TF2_CLIENT_DLL
-		float	yaw;
 
+#ifndef _XBOX 
 		int	numRingSprites = 32;
+#else
+		int	numRingSprites = 8;
+#endif
+
+		float flIncr = (2*M_PI) / (float) numRingSprites; // Radians
+		float flYaw = 0.0f;
 
 		for ( i = 0; i < numRingSprites; i++ )
 		{
-			yaw = ( (float) i / (float) numRingSprites ) * 360.0f;
-			forward = ( vRight * sin( DEG2RAD( yaw) ) ) + ( vUp * cos( DEG2RAD( yaw ) ) );
-			VectorNormalize( forward );
+			flYaw += flIncr;
+			SinCos( flYaw, &forward.y, &forward.x );
+			forward.z = 0.0f;
 
 			offset = ( RandomVector( -4.0f, 4.0f ) + m_vecOrigin ) + ( forward * random->RandomFloat( 8.0f, 16.0f ) );
 
-			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( "particle/particle_noisesphere" ), offset );
+			pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_Smoke, offset );
 
 			if ( pParticle != NULL )
 			{
@@ -396,22 +421,31 @@ void C_BaseExplosionEffect::CreateCore( void )
 				pParticle->m_flRollDelta	= random->RandomFloat( -8.0f, 8.0f );
 			}
 		}
-#endif
+
 	}
+
+#ifndef _XBOX
 
 	//
 	// Embers
 	//
+
+	if ( m_Material_Embers[0] == NULL )
+	{
+		m_Material_Embers[0] = pSimple->GetPMaterial( "effects/fire_embers1" );
+	}
+
+	if ( m_Material_Embers[1] == NULL )
+	{
+		m_Material_Embers[1] = pSimple->GetPMaterial( "effects/fire_embers2" );
+	}
 
 	for ( i = 0; i < 16; i++ )
 	{
 		offset.Random( -32.0f, 32.0f );
 		offset += m_vecOrigin;
 
-		static char	text[64];
-		Q_snprintf( text, sizeof( text ), "effects/fire_embers%d", random->RandomInt( 1, 2 ) );
-
-		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( text ), offset );
+		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_Embers[random->RandomInt(0,1)], offset );
 
 		if ( pParticle != NULL )
 		{
@@ -450,17 +484,29 @@ void C_BaseExplosionEffect::CreateCore( void )
 			pParticle->m_flRollDelta	= random->RandomFloat( -8.0f, 8.0f );
 		}
 	}
+#endif // !_XBOX
 
 	//
 	// Fireballs
 	//
 
-	for ( i = 0; i < 32; i++ )
+	if ( m_Material_FireCloud == NULL )
+	{
+		m_Material_FireCloud = pSimple->GetPMaterial( "effects/fire_cloud2" );
+	}
+
+#ifndef _XBOX
+	int numFireballs = 32;
+#else
+	int numFireballs = 16;
+#endif
+
+	for ( i = 0; i < numFireballs; i++ )
 	{
 		offset.Random( -48.0f, 48.0f );
 		offset += m_vecOrigin;
 
-		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( "effects/fire_cloud2" ), offset );
+		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_FireCloud, offset );
 
 		if ( pParticle != NULL )
 		{
@@ -514,15 +560,16 @@ void C_BaseExplosionEffect::CreateDebris( void )
 	//
 
 	CSmartPtr<CTrailParticles> pSparkEmitter	= CTrailParticles::Create( "CreateDebris 1" );
-	TrailParticle	*tParticle;
-
-	if ( !pSparkEmitter )
+	if ( pSparkEmitter == NULL )
 	{
 		assert(0);
 		return;
 	}
 
-	PMaterialHandle hMaterial = pSparkEmitter->GetPMaterial( "effects/fire_cloud2" );
+	if ( m_Material_FireCloud == NULL )
+	{
+		m_Material_FireCloud = pSparkEmitter->GetPMaterial( "effects/fire_cloud2" );
+	}
 
 	pSparkEmitter->SetSortOrigin( m_vecOrigin );
 	
@@ -530,15 +577,24 @@ void C_BaseExplosionEffect::CreateDebris( void )
 	pSparkEmitter->SetFlag( bitsPARTICLE_TRAIL_VELOCITY_DAMPEN );
 	pSparkEmitter->SetVelocityDampen( 8.0f );
 	
+	// Set our bbox, don't auto-calculate it!
+	pSparkEmitter->GetBinding().SetBBox( m_vecOrigin - Vector( 128, 128, 128 ), m_vecOrigin + Vector( 128, 128, 128 ) );
+
+#ifndef _XBOX
 	int		numSparks = random->RandomInt( 8, 16 );
+#else
+	int		numSparks = random->RandomInt( 2, 4 );
+#endif
+
 	Vector	dir;
 	float	spread = 1.0f;
+	TrailParticle	*tParticle;
 
 	// Dump out sparks
 	int i;
 	for ( i = 0; i < numSparks; i++ )
 	{
-		tParticle = (TrailParticle *) pSparkEmitter->AddParticle( sizeof(TrailParticle), hMaterial, m_vecOrigin );
+		tParticle = (TrailParticle *) pSparkEmitter->AddParticle( sizeof(TrailParticle), m_Material_FireCloud, m_vecOrigin );
 
 		if ( tParticle == NULL )
 			break;
@@ -558,6 +614,7 @@ void C_BaseExplosionEffect::CreateDebris( void )
 		Color32Init( tParticle->m_color, 255, 255, 255, 255 );
 	}
 
+#ifndef _XBOX
 	//
 	// Chunks
 	//
@@ -572,13 +629,21 @@ void C_BaseExplosionEffect::CreateDebris( void )
 
 	// Setup our collision information
 	fleckEmitter->m_ParticleCollision.Setup( m_vecOrigin, &m_vecDirection, 0.9f, 512, 1024, 800, 0.5f );
-
-	PMaterialHandle	hMaterialArray[2];
 	
+	// Limit our bbox
+	fleckEmitter->GetBinding().SetBBox( m_vecOrigin - Vector(128,128,128), m_vecOrigin + Vector(128,128,128) );
+
+	// FIXME: Cache?
+	PMaterialHandle	hMaterialArray[2];
 	hMaterialArray[0] = fleckEmitter->GetPMaterial( "effects/fleck_cement1" );
 	hMaterialArray[1] = fleckEmitter->GetPMaterial( "effects/fleck_cement2" );
 
+#ifdef _XBOX
+	int	numFlecks = random->RandomInt( 8, 16 );
+#else	
 	int	numFlecks = random->RandomInt( 16, 32 );
+#endif // _XBOX
+
 
 	// Dump out flecks
 	for ( i = 0; i < numFlecks; i++ )
@@ -619,6 +684,7 @@ void C_BaseExplosionEffect::CreateDebris( void )
 		pParticle->m_uchColor[1] = min( 1.0f, 0.25f*colorRamp )*255.0f;
 		pParticle->m_uchColor[2] = min( 1.0f, 0.25f*colorRamp )*255.0f;
 	}
+#endif // !_XBOX
 }
 
 //-----------------------------------------------------------------------------
@@ -1049,12 +1115,7 @@ void C_WaterExplosionEffect::CreateDebris( void )
 		{
 			pParticle->m_flLifetime = 0.0f;
 
-#ifdef TF2_CLIENT_DLL
-			pParticle->m_flDieTime	= random->RandomFloat( 0.5f, 1.0f );
-#else
 			pParticle->m_flDieTime	= random->RandomFloat( 2.0f, 3.0f );
-#endif
-
 			pParticle->m_vecVelocity.Random( -spread, spread );
 			pParticle->m_vecVelocity += ( m_vecDirection * random->RandomFloat( 1.0f, 6.0f ) );
 			
@@ -1098,9 +1159,9 @@ void C_WaterExplosionEffect::CreateMisc( void )
 	int i;
 	float	flScale = 2.0f;
 
-	PMaterialHandle	hMaterial = g_ParticleMgr.GetPMaterial( "effects/splash2" );
+	PMaterialHandle	hMaterial = ParticleMgr()->GetPMaterial( "effects/splash2" );
 
-#if 1
+#ifndef _XBOX
 
 	int		numDrops = 32;
 	float	length = 0.1f;
@@ -1180,6 +1241,7 @@ void C_WaterExplosionEffect::CreateMisc( void )
 	CSmartPtr<CSplashParticle> pSimple = CSplashParticle::Create( "splish" );
 	pSimple->SetSortOrigin( m_vecWaterSurface );
 	pSimple->SetClipHeight( m_vecWaterSurface.z );
+	pSimple->GetBinding().SetBBox( m_vecWaterSurface-(Vector(32.0f, 32.0f, 32.0f)*flScale), m_vecWaterSurface+(Vector(32.0f, 32.0f, 32.0f)*flScale) );
 
 	SimpleParticle	*pParticle;
 
@@ -1286,6 +1348,11 @@ void C_MegaBombExplosionEffect::CreateCore( void )
 
 	SimpleParticle	*pParticle;
 
+	if ( m_Material_FireCloud == NULL )
+	{
+		m_Material_FireCloud = pSimple->GetPMaterial( "effects/fire_cloud2" );
+	}
+
 	//
 	// Fireballs
 	//
@@ -1295,7 +1362,7 @@ void C_MegaBombExplosionEffect::CreateCore( void )
 		offset.Random( -48.0f, 48.0f );
 		offset += m_vecOrigin;
 
-		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), pSimple->GetPMaterial( "effects/fire_cloud2" ), offset );
+		pParticle = (SimpleParticle *) pSimple->AddParticle( sizeof( SimpleParticle ), m_Material_FireCloud, offset );
 
 		if ( pParticle != NULL )
 		{

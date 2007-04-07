@@ -153,7 +153,7 @@ void CClientScoreBoardDialog::ApplySchemeSettings( IScheme *pScheme )
 	{
 		int wide, tall;
 		imageList->GetImage(i)->GetSize(wide, tall);
-		imageList->GetImage(i)->SetSize(scheme()->GetProportionalScaledValue(wide), scheme()->GetProportionalScaledValue(tall));
+		imageList->GetImage(i)->SetSize(scheme()->GetProportionalScaledValueEx( GetScheme(),wide), scheme()->GetProportionalScaledValueEx( GetScheme(),tall));
 	}
 
 	m_pPlayerList->SetImageList(imageList, false);
@@ -203,8 +203,15 @@ void CClientScoreBoardDialog::FireGameEvent( IGameEvent *event )
 
 	else if ( Q_strcmp(type, "server_spawn") == 0 )
 	{
-		SetControlString("ServerName", event->GetString("hostname") );
-		MoveLabelToFront("ServerName");
+		// We'll post the message ourselves instead of using SetControlString()
+		// so we don't try to translate the hostname.
+		const char *hostname = event->GetString( "hostname" );
+		Panel *control = FindChildByName( "ServerName" );
+		if ( control )
+		{
+			PostMessage( control, new KeyValues( "SetText", "text", hostname ) );
+		}
+		control->MoveToFront();
 	}
 
 	if( IsVisible() )
@@ -215,6 +222,8 @@ void CClientScoreBoardDialog::FireGameEvent( IGameEvent *event )
 bool CClientScoreBoardDialog::NeedsUpdate( void )
 {
 	return (m_fNextUpdateTime < gpGlobals->curtime);
+		
+
 }
 
 //-----------------------------------------------------------------------------
@@ -314,7 +323,7 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 	int selectedRow = -1;
 
 	// walk all the players and make sure they're in the scoreboard
-	for ( int i = 1; i < gpGlobals->maxClients; i++ )
+	for ( int i = 1; i <= gpGlobals->maxClients; ++i )
 	{
 		IGameResources *gr = GameResources();
 
@@ -430,10 +439,10 @@ void CClientScoreBoardDialog::AddHeader()
 	m_iSectionId = 1;
 	m_pPlayerList->AddSection(m_iSectionId, "");
 	m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "Splats", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
-	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),NAME_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "Splats", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),SCORE_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "#PlayerPing", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),PING_WIDTH) );
+	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValueEx( GetScheme(),VOICE_WIDTH) );
 
 	m_iSectionId = 2; //first team;
 	m_iTeamSections[TEAM_BLUE]			= AddSection(TYPE_TEAM, TEAM_BLUE);
@@ -456,7 +465,7 @@ int CClientScoreBoardDialog::AddSection(int teamType, int teamNumber)
 		// setup the team name
 		wchar_t *teamName = localize()->Find( gr->GetTeamName(teamNumber) );
 		wchar_t name[64];
-       
+		
 		if (!teamName)
 		{
 			localize()->ConvertANSIToUnicode(gr->GetTeamName(teamNumber), name, sizeof(name));
@@ -467,17 +476,17 @@ int CClientScoreBoardDialog::AddSection(int teamType, int teamNumber)
 		m_pPlayerList->SetSectionAlwaysVisible(m_iSectionId);
 		m_pPlayerList->SetFgColor(gr->GetTeamColor(teamNumber));
 
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", teamName, 0, scheme()->GetProportionalScaledValue(NAME_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "0", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValue(VOICE_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", teamName, 0, scheme()->GetProportionalScaledValueEx( GetScheme(),NAME_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),SCORE_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),PING_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValueEx( GetScheme(),VOICE_WIDTH) );
 	}
 	else if ( teamType == TYPE_UNASSIGNED )
 	{
 		m_pPlayerList->AddSection(m_iSectionId, "");
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "#Unassigned", 0, scheme()->GetProportionalScaledValue(NAME_WIDTH));
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "", 0, scheme()->GetProportionalScaledValue(SCORE_WIDTH) );
-		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValue(PING_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "name", "#Unassigned", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),NAME_WIDTH));
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "score", "", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),SCORE_WIDTH) );
+		m_pPlayerList->AddColumnToSection(m_iSectionId, "ping", "", 0, scheme()->GetProportionalScaledValueEx( GetScheme(),PING_WIDTH) );
 	}
 	m_iSectionId++; //increment for next
 	return m_iSectionId - 1;

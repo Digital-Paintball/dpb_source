@@ -62,6 +62,8 @@ public:
 	virtual int GetTopBarHeight() { return m_pTopBar->GetTall(); }
 	virtual int GetBottomBarHeight() { return m_pBottomBarBlank->GetTall(); }
 	
+	virtual bool ShouldShowPlayerLabel( int specmode );
+	
 protected:
 
 	void SetLabelText(const char *textEntryName, const char *text);
@@ -141,5 +143,7 @@ private:
 	IViewPort *m_pViewPort;
 	int m_iDuckKey;
 };
+
+extern CSpectatorGUI * g_pSpectatorGUI;
 
 #endif // SPECTATORGUI_H

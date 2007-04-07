@@ -31,6 +31,17 @@ char g_szPrelocalisedMenuString[MAX_MENU_STRING];
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+//
+//-----------------------------------------------------
+//
+
+DECLARE_HUDELEMENT( CHudMenu );
+DECLARE_HUD_MESSAGE( CHudMenu, ShowMenu );
+
+//
+//-----------------------------------------------------
+//
+
 char* ConvertCRtoNL( char *str )
 {
 	for ( char *ch = str; *ch != 0; ch++ )
@@ -39,12 +50,6 @@ char* ConvertCRtoNL( char *str )
 	return str;
 }
 
-//
-//-----------------------------------------------------
-//
-
-DECLARE_HUDELEMENT( CHudMenu );
-DECLARE_HUD_MESSAGE( CHudMenu, ShowMenu );
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -345,6 +350,46 @@ void CHudMenu::ProcessText( void )
 		m_nHeight += l->height;
 	}
 }
+//-----------------------------------------------------------------------------
+// Purpose: Local method to hide a menu, mirroring code found in
+//          MsgFunc_ShowMenu.
+//-----------------------------------------------------------------------------
+void CHudMenu::HideMenu( void )
+{
+	m_bMenuTakesInput = false;
+	m_flShutoffTime = gpGlobals->realtime + m_flOpenCloseTime;
+	g_pClientMode->GetViewportAnimationController()->StartAnimationSequence("MenuClose");
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: Local method to bring up a menu, mirroring code found in
+//          MsgFunc_ShowMenu.
+//
+//   takes two values:
+//		menuName  : menu name string 
+//		validSlots: a bitfield describing the valid keys
+//-----------------------------------------------------------------------------
+void CHudMenu::ShowMenu( const char * menuName, int validSlots )
+{
+	m_flShutoffTime = -1;
+	m_bitsValidSlots = validSlots;
+	m_fWaitingForMore = 0;
+
+	Q_strncpy( g_szPrelocalisedMenuString, menuName, sizeof( g_szPrelocalisedMenuString ) );
+
+	g_pClientMode->GetViewportAnimationController()->StartAnimationSequence("MenuOpen");
+	m_nSelectedItem = -1;
+
+	// we have the whole string, so we can localise it now
+	char szMenuString[MAX_MENU_STRING];
+	Q_strncpy( szMenuString, ConvertCRtoNL( hudtextmessage->BufferedLocaliseTextString( g_szPrelocalisedMenuString ) ), sizeof( szMenuString ) );
+	vgui::localize()->ConvertANSIToUnicode( szMenuString, g_szMenuString, sizeof( g_szMenuString ) );
+	
+	ProcessText();
+
+	m_bMenuDisplayed = true;
+	m_bMenuTakesInput = true;
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Message handler for ShowMenu message
@@ -403,10 +448,7 @@ void CHudMenu::MsgFunc_ShowMenu( bf_read &msg)
 	}
 	else
 	{
-		m_bMenuTakesInput = false;
-		m_flShutoffTime = gpGlobals->realtime + m_flOpenCloseTime;
-		g_pClientMode->GetViewportAnimationController()->StartAnimationSequence("MenuClose");
-		//m_bMenuDisplayed = false; // no valid slots means that the menu should be turned off
+		HideMenu();
 	}
 
 	m_fWaitingForMore = NeedMore;
@@ -425,7 +467,7 @@ void CHudMenu::ApplySchemeSettings(vgui::IScheme *pScheme)
 	int screenWide, screenTall;
 	int x, y;
 	GetPos(x, y);
-	vgui::surface()->GetScreenSize(screenWide, screenTall);
+	GetHudSize(screenWide, screenTall);
 	SetBounds(0, y, screenWide, screenTall - y);
 
 	ProcessText();

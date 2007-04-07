@@ -35,6 +35,19 @@ enum
 	WINDOW_BORDER_WIDTH=1
 };
 
+vgui::Panel *HTML_NoJavascript_Factory()
+{
+	return new HTML( NULL, NULL, false );
+}
+
+vgui::Panel *HTML_Javascript_Factory()
+{
+	return new HTML( NULL, NULL, true );
+}
+
+//DECLARE_BUILD_FACTORY_CUSTOM_ALIAS( HTML, HTML_NoJavascript, HTML_NoJavascript_Factory );
+//DECLARE_BUILD_FACTORY_CUSTOM_ALIAS( HTML, HTML_Javascript, HTML_Javascript_Factory );
+
 //-----------------------------------------------------------------------------
 // Purpose: Constructor
 //-----------------------------------------------------------------------------
@@ -84,6 +97,7 @@ HTML::~HTML()
 void HTML::ApplySchemeSettings(IScheme *pScheme)
 {
     BaseClass::ApplySchemeSettings(pScheme);
+	SetBgColor(pScheme->GetColor("HTML.BgColor", GetBgColor()));
 	SetBorder(pScheme->GetBorder( "BrowserBorder"));
 	BrowserResize();
 }
@@ -141,6 +155,30 @@ void HTML::PaintBackground()
 
 			picture->SetPos(0,0);
 			picture->Paint();
+		}
+
+		// If we have scrollbars, we need to draw the bg color under them, since the browser
+		// bitmap is a checkerboard under them, and they are transparent in the in-game client
+		if ( m_iScrollBorderX > 0 || m_iScrollBorderY > 0 )
+		{
+			int w, h;
+			GetSize( w, h );
+			IBorder *border = GetBorder();
+			int left = 0, top = 0, right = 0, bottom = 0;
+			if ( border )
+			{
+				border->GetInset( left, top, right, bottom );
+			}
+
+			surface()->DrawSetColor( GetBgColor() );
+			if ( m_iScrollBorderX )
+			{
+				surface()->DrawFilledRect( w-m_iScrollBorderX - right, top, w - right, h - bottom );
+			}
+			if ( m_iScrollBorderY )
+			{
+				surface()->DrawFilledRect( left, h-m_iScrollBorderY - bottom, w-m_iScrollBorderX - right, h - bottom );
+			}
 		}
 	}
 }

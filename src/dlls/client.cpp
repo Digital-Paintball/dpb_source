@@ -43,7 +43,6 @@ extern int giPrecacheGrunt;
 extern CBaseEntity*	FindPickerEntity( CBasePlayer* pPlayer );
 
 ConVar  *sv_cheats = NULL;
-
 /*
 ============
 ClientKill
@@ -151,7 +150,8 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 		pPlayer->CheckChatText( p, 127 );	// though the buffer szTemp that p points to is 256, 
 											// chat text is capped to 127 in CheckChatText above
 
-		Assert( STRING( pPlayer->pl.netname ) );
+		Assert( strlen( pPlayer->GetPlayerName() ) > 0 );
+
 		bSenderDead = ( pPlayer->m_lifeState != LIFE_ALIVE );
 	}
 	else
@@ -165,7 +165,7 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 	if ( g_pGameRules )
 	{
 		pszFormat = g_pGameRules->GetChatFormat( teamonly, pPlayer );
-		pszPrefix = g_pGameRules->GetChatPrefix( teamonly, pPlayer );
+		pszPrefix = g_pGameRules->GetChatPrefix( teamonly, pPlayer );	
 		pszLocation = g_pGameRules->GetChatLocation( teamonly, pPlayer );
 	}
 
@@ -361,7 +361,7 @@ CON_COMMAND_F( cast_hull, "Tests hull collision detection", FCVAR_CHEAT )
 			tr.m_pEnt->GetAbsOrigin().x, tr.m_pEnt->GetAbsOrigin().y, tr.m_pEnt->GetAbsOrigin().z,
 			tr.m_pEnt->GetAbsAngles().x, tr.m_pEnt->GetAbsAngles().y, tr.m_pEnt->GetAbsAngles().z );
 		DevMsg(1, "Hit: hitbox %d, hitgroup %d, physics bone %d, solid %d, surface %s, surfaceprop %s\n", tr.hitbox, tr.hitgroup, tr.physicsbone, tr.m_pEnt->GetSolid(), tr.surface.name, physprops->GetPropName( tr.surface.surfaceProps ) );
-		NDebugOverlay::SweptBox( start, tr.endpos, -extents, extents, vec3_angle, 0, 0, 255, false, 10 );
+		NDebugOverlay::SweptBox( start, tr.endpos, -extents, extents, vec3_angle, 0, 0, 255, 0, 10 );
 		Vector end = tr.endpos;// - tr.plane.normal * DotProductAbs( tr.plane.normal, extents );
 		NDebugOverlay::Line( end, end + tr.plane.normal * 24, 255, 255, 64, false, 10 );
 	}
@@ -443,13 +443,13 @@ void KillTargets( const char *pKillTargetName )
 	CBaseEntity *pentKillTarget = NULL;
 
 	DevMsg( 2, "KillTarget: %s\n", pKillTargetName );
-	pentKillTarget = gEntList.FindEntityByName( NULL, pKillTargetName, NULL );
+	pentKillTarget = gEntList.FindEntityByName( NULL, pKillTargetName );
 	while ( pentKillTarget )
 	{
 		UTIL_Remove( pentKillTarget );
 
 		DevMsg( 2, "killing %s\n", STRING( pentKillTarget->m_iClassname ) );
-		pentKillTarget = gEntList.FindEntityByName( pentKillTarget, pKillTargetName, NULL );
+		pentKillTarget = gEntList.FindEntityByName( pentKillTarget, pKillTargetName );
 	}
 }
 
@@ -555,7 +555,11 @@ void CC_Player_Kill( void )
 	CBasePlayer *pPlayer = UTIL_GetCommandClient();
 	if (pPlayer)
 	{
+#ifdef _DEBUG
 		if ( engine->Cmd_Argc() > 1	)
+#else
+		if ( engine->Cmd_Argc() > 1 && !g_pGameRules->IsMultiplayer() )
+#endif
 		{
 			// Find the matching netname
 			for ( int i = 1; i <= gpGlobals->maxClients; i++ )
@@ -632,7 +636,7 @@ void CC_Player_Give( void )
 		// Dirty hack to avoid suit playing it's pickup sound
 		if ( !stricmp( item_to_give, "item_suit" ) )
 		{
-			pPlayer->EquipSuit();
+			pPlayer->EquipSuit( false );
 			return;
 		}
 
@@ -657,7 +661,7 @@ void CC_Player_FOV( void )
 		}
 		else
 		{
-			ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs( "\"fov\" is \"%d\"\n", (int)pPlayer->m_Local.m_iFOV ) );
+			ClientPrint( pPlayer, HUD_PRINTCONSOLE, UTIL_VarArgs( "\"fov\" is \"%d\"\n", pPlayer->GetFOV() ) );
 		}
 	}
 }
@@ -1031,6 +1035,102 @@ void CC_SwitchTeams (void)
 
 ConCommand changeteam("changeteam", CC_SwitchTeams, "Change what team you're on.", FCVAR_GAMEDLL);
 
+static bool IsInGroundList( CBaseEntity *ent, CBaseEntity *ground )
+{
+	if ( !ground || !ent )
+		return false;
+
+	groundlink_t *root = ( groundlink_t * )ground->GetDataObject( GROUNDLINK );
+	if ( root )
+	{
+		groundlink_t *link = root->nextLink;
+		while ( link != root )
+		{
+			CBaseEntity *other = link->entity;
+			if ( other == ent )
+				return true;
+			link = link->nextLink;
+		}
+	}
+
+	return false;
+
+}
+
+static int DescribeGroundList( CBaseEntity *ent )
+{
+	if ( !ent )
+		return 0;
+
+	int c = 1;
+
+	Msg( "%i : %s (ground %i %s)\n", ent->entindex(), ent->GetClassname(), 
+		ent->GetGroundEntity() ? ent->GetGroundEntity()->entindex() : -1,
+		ent->GetGroundEntity() ? ent->GetGroundEntity()->GetClassname() : "NULL" );
+	groundlink_t *root = ( groundlink_t * )ent->GetDataObject( GROUNDLINK );
+	if ( root )
+	{
+		groundlink_t *link = root->nextLink;
+		while ( link != root )
+		{
+			CBaseEntity *other = link->entity;
+			if ( other )
+			{
+				Msg( "  %02i:  %i %s\n", c++, other->entindex(), other->GetClassname() );
+
+				if ( other->GetGroundEntity() != ent )
+				{
+					Assert( 0 );
+					Msg( "   mismatched!!!\n" );
+				}
+			}
+			else
+			{
+				Assert( 0 );
+				Msg( "  %02i:  NULL link\n", c++ );
+			}
+			link = link->nextLink;
+		}
+	}
+
+	if ( ent->GetGroundEntity() != NULL )
+	{
+		Assert( IsInGroundList( ent, ent->GetGroundEntity() ) );
+	}
+
+	return c - 1;
+}
+
+void CC_GroundList_f(void)
+{
+	if ( engine->Cmd_Argc() == 2 )
+	{
+		int idx = atoi( engine->Cmd_Argv(1) );
+
+		CBaseEntity *ground = CBaseEntity::Instance( idx );
+		if ( ground )
+		{
+			DescribeGroundList( ground );
+		}
+	}
+	else
+	{
+		CBaseEntity *ent = NULL;
+		int linkCount = 0;
+		while ( (ent = gEntList.NextEnt(ent)) != NULL )
+		{
+			linkCount += DescribeGroundList( ent );
+		}
+
+		extern int groundlinksallocated;
+		Assert( linkCount == groundlinksallocated );
+
+		Msg( "--- %i links\n", groundlinksallocated );
+	}
+}
+
+static ConCommand groundlist("groundlist", CC_GroundList_f, "Display ground entity list <index>" );
+
 //-----------------------------------------------------------------------------
 // Purpose: called each time a player uses a "cmd" command
 // Input  : *pEdict - the player who issued the command
@@ -1064,7 +1164,7 @@ void ClientCommand( CBasePlayer *pPlayer )
 	
 	if ( FStrEq( pcmd, "killtarget" ) )
 	{
-		if ( g_pDeveloper->GetInt() )
+		if ( g_pDeveloper->GetBool() && sv_cheats->GetBool() && UTIL_IsCommandIssuedByServerAdmin() )
 		{
 			ConsoleKillTarget(pPlayer, engine->Cmd_Argv(1));
 		}
@@ -1080,21 +1180,24 @@ void ClientCommand( CBasePlayer *pPlayer )
 	} 
 	else if ( FStrEq( pcmd, "te" ) )
 	{
-		if ( FStrEq( engine->Cmd_Argv(1), "stop" ) )
+		if ( sv_cheats->GetBool() && UTIL_IsCommandIssuedByServerAdmin() )
 		{
-			// Destroy it
-			//
-			CBaseEntity *ent = gEntList.FindEntityByClassname( NULL, "te_tester" );
-			while ( ent )
+			if ( FStrEq( engine->Cmd_Argv(1), "stop" ) )
 			{
-				CBaseEntity *next = gEntList.FindEntityByClassname( ent, "te_tester" );
-				UTIL_Remove( ent );
-				ent = next;
+				// Destroy it
+				//
+				CBaseEntity *ent = gEntList.FindEntityByClassname( NULL, "te_tester" );
+				while ( ent )
+				{
+					CBaseEntity *next = gEntList.FindEntityByClassname( ent, "te_tester" );
+					UTIL_Remove( ent );
+					ent = next;
+				}
 			}
-		}
-		else
-		{
-			CTempEntTester::Create( pPlayer->WorldSpaceCenter(), pPlayer->EyeAngles(), engine->Cmd_Argv(1), engine->Cmd_Argv(2) );
+			else
+			{
+				CTempEntTester::Create( pPlayer->WorldSpaceCenter(), pPlayer->EyeAngles(), engine->Cmd_Argv(1), engine->Cmd_Argv(2) );
+			}
 		}
 	}
 	else 

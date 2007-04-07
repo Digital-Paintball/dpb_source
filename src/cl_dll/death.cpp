@@ -35,7 +35,7 @@ public:
 
 	virtual void CHudDeathNotice::ApplySchemeSettings( vgui::IScheme *scheme );
 
-	void FireGameEvent( IGameEvent *event );
+	void FireGameEvent( KeyValues * event);
 
 private:
 	CHudTexture			*m_iconD_skull;  // sprite index of skull icon
@@ -89,7 +89,6 @@ struct DeathNoticeItem {
 static int DEATHNOTICE_DISPLAY_TIME = 6;
 
 // Robin HACKHACK: HL2 doesn't use deathmsgs, so I just forced these down below our minimap.
-// It should be positioned by TF2/HL2 separately, and TF2 should position it according to the minimap position
 #define DEATHNOTICE_TOP		YRES( 140 )	// Was: 20
 
 DeathNoticeItem rgDeathNoticeList[ MAX_DEATHNOTICES + 1 ];
@@ -179,18 +178,14 @@ void CHudDeathNotice::Paint()
 
 		// Draw victims name
 		surface()->DrawSetTextPos( x, y );
-		const wchar_t *p = victim;
-		while ( *p )
-		{
-			surface()->DrawUnicodeChar( *p++ );
-		}
+		surface()->DrawUnicodeString( victim );
 	}
 }
 
 //-----------------------------------------------------------------------------
 // Purpose: This message handler may be better off elsewhere
 //-----------------------------------------------------------------------------
-void CHudDeathNotice::FireGameEvent( IGameEvent *event )
+void CHudDeathNotice::FireGameEvent( KeyValues * event)
 {
 	// Got message during connection
 	if ( !g_PR )
@@ -270,3 +265,7 @@ void CHudDeathNotice::FireGameEvent( IGameEvent *event )
 
 	Msg( "\n" );
 }
+
+
+
+

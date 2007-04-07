@@ -84,6 +84,7 @@ private:
 	int		m_iCurrentHistorySlot;
 	bool	m_bDoNotDraw;
 	wchar_t m_wcsAmmoFullMsg[16];
+	bool	m_bNeedsDraw;
 
 	CPanelAnimationVarAliasType( float, m_flHistoryGap, "history_gap", "42", "proportional_float" );
 	CPanelAnimationVarAliasType( float, m_flIconInset, "icon_inset", "28", "proportional_float" );

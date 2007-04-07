@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 
+
 #include "cbase.h"
 #include <stdio.h>
 
@@ -25,7 +26,9 @@
 
 #include "cdll_util.h"
 #include "IGameUIFuncs.h" // for key bindings
+#ifndef _XBOX
 extern IGameUIFuncs *gameuifuncs; // for key binding details
+#endif
 #include <cl_dll/iviewport.h>
 
 #include <stdlib.h> // MAX_PATH define
@@ -61,7 +64,7 @@ CClassMenu::CClassMenu(IViewPort *pViewPort) : Frame(NULL, PANEL_CLASS)
 	// info window about this class
 	m_pPanel = new Panel( this, "ClassInfo" );
 
-	LoadControlSettings("Resource/UI/ClassMenu.res");
+	LoadControlSettings( "Resource/UI/ClassMenu.res" );
 }
 
 //-----------------------------------------------------------------------------

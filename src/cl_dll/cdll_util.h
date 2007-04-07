@@ -42,8 +42,8 @@ namespace vgui
 enum ImageFormat;
 enum ShakeCommand_t;
 
+extern bool g_MakingDevShots;
 
-void	SetScreenSize( void );
 // ScreenHeight returns the height of the screen, in pixels
 int		ScreenHeight( void );
 // ScreenWidth returns the width of the screen, in pixels
@@ -64,18 +64,19 @@ void	UTIL_SetOrigin( C_BaseEntity *entity, const Vector &vecOrigin );
 void	UTIL_ScreenShake( const Vector &center, float amplitude, float frequency, float duration, float radius, ShakeCommand_t eCommand, bool bAirShake=false );
 byte	*UTIL_LoadFileForMe( const char *filename, int *pLength );
 void	UTIL_FreeFile( byte *buffer );
-void	UTIL_MakeSafeName( const char *oldName, char *newName, int newNameBufSize );
+void	UTIL_MakeSafeName( const char *oldName, char *newName, int newNameBufSize );	///< Cleans up player names for putting in vgui controls (cleaned names can be up to original*2+1 in length)
+const char *UTIL_SafeName( const char *oldName );	///< Wraps UTIL_MakeSafeName, and returns a static buffer
 
 // Fade out an entity based on distance fades
 unsigned char UTIL_ComputeEntityFade( C_BaseEntity *pEntity, float flMinDist, float flMaxDist, float flFadeScale );
 
 client_textmessage_t	*TextMessageGet( const char *pName );
 
-const char	*VarArgs( const char *format, ... );
+char	*VarArgs( char *format, ... );
 	
 
 // Get the entity the local player is spectating (can be a player or a ragdoll entity).
-int GetSpectatorTarget();
+int		GetSpectatorTarget();
 
 // Get the player that the local player is spectating.
 int		GetSpectatorTargetPlayer();
@@ -101,32 +102,6 @@ enum
 	LIGHT_INDEX_PLAYER_BRIGHT = 0x20000000,
 	LIGHT_INDEX_MUZZLEFLASH = 0x40000000,
 };
-
-
-
-// These are accessed by appropriate macros
-float	SharedRandomFloat( const char *filename, int line, float flMinVal, float flMaxVal, int additionalSeed = 0 );
-int		SharedRandomInt( const char *filename, int line, int iMinVal, int iMaxVal, int additionalSeed = 0 );
-Vector	SharedRandomVector( const char *filename, int line, float minVal, float maxVal, int additionalSeed = 0 );
-QAngle	SharedRandomAngle( const char *filename, int line, float minVal, float maxVal, int additionalSeed = 0 );
-
-#define SHARED_RANDOMFLOAT_SEED( minval, maxval, seed ) \
-	SharedRandomFloat( __FILE__, __LINE__, minval, maxval, seed )
-#define SHARED_RANDOMINT_SEED( minval, maxval, seed ) \
-	SharedRandomInt( __FILE__, __LINE__, minval, maxval, seed )
-#define SHARED_RANDOMVECTOR_SEED( minval, maxval, seed ) \
-	SharedRandomVector( __FILE__, __LINE__, minval, maxval, seed )
-#define SHARED_RANDOMANGLE_SEED( minval, maxval, seed ) \
-	SharedRandomAngle( __FILE__, __LINE__, minval, maxval, seed )
-
-#define SHARED_RANDOMFLOAT( minval, maxval ) \
-	SharedRandomFloat( __FILE__, __LINE__, minval, maxval, 0 )
-#define SHARED_RANDOMINT( minval, maxval ) \
-	SharedRandomInt( __FILE__, __LINE__, minval, maxval, 0 )
-#define SHARED_RANDOMVECTOR( minval, maxval ) \
-	SharedRandomVector( __FILE__, __LINE__, minval, maxval, 0 )
-#define SHARED_RANDOMANGLE( minval, maxval ) \
-	SharedRandomAngle( __FILE__, __LINE__, minval, maxval, 0 )
 
 void UTIL_PrecacheOther( const char *szClassname );
 

@@ -113,7 +113,7 @@ CBasePlayer *BotPutInServer( bool bFrozen )
 	pPlayer->Spawn();
 
 	CArena *pBestArena = NULL;
-	int iBestArenaPlayers;
+	int iBestArenaPlayers = 0;
 	for (int i = 0; i < CArena::GetArenaNumber(); i++)
 	{
 		CArena *pArena = CArena::GetArena(i);

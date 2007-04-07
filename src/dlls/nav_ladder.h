@@ -70,8 +70,8 @@ public:
 	Vector m_bottom;								///< world coords of the top of the ladder
 	float m_length;									///< the length of the ladder
 	float m_width;
-	NavDirType m_dir;								///< which way the ladder faces (ie: surface normal of climbable side)
-	Vector2D m_dirVector;							///< unit vector representation of m_dir
+
+	Vector GetPosAtHeight( float height ) const;	///< Compute x,y coordinate of the ladder at a given height
 
 	CNavArea *m_topForwardArea;						///< the area at the top of the ladder
 	CNavArea *m_topLeftArea;					
@@ -96,7 +96,14 @@ public:
 
 	bool IsInUse( const CBasePlayer *ignore = NULL ) const;	///< return true if someone is on this ladder (other than 'ignore')
 
+	void SetDir( NavDirType dir );
+	NavDirType GetDir( void ) const;
+	const Vector &GetNormal( void ) const;
+
 private:
+	NavDirType m_dir;								///< which way the ladder faces (ie: surface normal of climbable side)
+	Vector m_normal;								///< surface normal of the ladder surface (or Vector-ized m_dir, if the traceline fails)
+
 	enum LadderConnectionType						///< Ladder connection directions, to facilitate iterating over connections
 	{
 		LADDER_TOP_FORWARD = 0,
@@ -114,6 +121,20 @@ private:
 	unsigned int m_id;								///< unique area ID
 };
 typedef CUtlLinkedList< CNavLadder *, int > NavLadderList;
+
+
+//--------------------------------------------------------------------------------------------------------------
+inline NavDirType CNavLadder::GetDir( void ) const
+{
+	return m_dir;
+}
+
+
+//--------------------------------------------------------------------------------------------------------------
+inline const Vector &CNavLadder::GetNormal( void ) const
+{
+	return m_normal;
+}
 
 
 #endif // _NAV_LADDER_H_

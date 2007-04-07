@@ -150,7 +150,7 @@ void CTextWindow::ShowIndex( const char *entry)
 		{
 			player_info_t info;
 			engine->GetPlayerInfo( engine->GetLocalPlayer(), &info );
-			ShowURL( VarArgs(data, info.guid) );
+			ShowURL( VarArgs((char*)data, info.guid) );
 		}
 		else
 		{

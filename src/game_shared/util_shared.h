@@ -50,6 +50,18 @@ float		UTIL_VecToYaw			(const matrix3x4_t& matrix, const Vector &vec);
 float		UTIL_VecToPitch			(const matrix3x4_t& matrix, const Vector &vec);
 Vector		UTIL_YawToVector		( float yaw );
 
+//-----------------------------------------------------------------------------
+// Shared random number generators for shared/predicted code:
+// whenever generating random numbers in shared/predicted code, these functions
+// have to be used. Each call should specify a unique "sharedname" string that
+// seeds the random number generator. In loops make sure the "additionalSeed"
+// is increased with the loop counter, otherwise it will always return the
+// same random number
+//-----------------------------------------------------------------------------
+float	SharedRandomFloat( const char *sharedname, float flMinVal, float flMaxVal, int additionalSeed = 0 );
+int		SharedRandomInt( const char *sharedname, int iMinVal, int iMaxVal, int additionalSeed = 0 );
+Vector	SharedRandomVector( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0 );
+QAngle	SharedRandomAngle( const char *sharedname, float minVal, float maxVal, int additionalSeed = 0 );
 
 //-----------------------------------------------------------------------------
 // Standard collision filters...
@@ -103,7 +115,9 @@ public:
 	
 	CTraceFilterSimple( const IHandleEntity *passentity, int collisionGroup );
 	virtual bool ShouldHitEntity( IHandleEntity *pServerEntity, int contentsMask );
-	virtual void SetPassEntity( IHandleEntity *pPassEntity ) { m_pPassEnt = pPassEntity; }
+	virtual void SetPassEntity( const IHandleEntity *pPassEntity ) { m_pPassEnt = pPassEntity; }
+
+	const IHandleEntity *GetPassEntity( void ){ return m_pPassEnt;}
 
 private:
 	const IHandleEntity *m_pPassEnt;
@@ -164,10 +178,10 @@ public:
 //-----------------------------------------------------------------------------
 // Purpose: Custom trace filter used for NPC LOS traces
 //-----------------------------------------------------------------------------
-class CTraceFilterLOS : public CTraceFilterSimple
+class CTraceFilterLOS : public CTraceFilterSkipTwoEntities
 {
 public:
-	CTraceFilterLOS( IHandleEntity *pHandleEntity, int collisionGroup );
+	CTraceFilterLOS( IHandleEntity *pHandleEntity, int collisionGroup, IHandleEntity *pHandleEntity2 = NULL );
 	bool ShouldHitEntity( IHandleEntity *pServerEntity, int contentsMask );
 };
 
@@ -182,10 +196,16 @@ inline void UTIL_TraceLine( const Vector& vecAbsStart, const Vector& vecAbsEnd, 
 	Ray_t ray;
 	ray.Init( vecAbsStart, vecAbsEnd );
 	CTraceFilterSimple traceFilter( ignore, collisionGroup );
+
 	enginetrace->TraceRay( ray, mask, &traceFilter, ptr );
+	
 	if( r_visualizetraces.GetBool() )
 	{
+#ifdef CLIENT_DLL
 		DebugDrawLine( ptr->startpos, ptr->endpos, 255, 0, 0, true, -1.0f );
+#else
+		DebugDrawLine( ptr->startpos, ptr->endpos, 0, 0, 255, true, -1.0f );
+#endif
 	}
 }
 
@@ -194,10 +214,17 @@ inline void UTIL_TraceLine( const Vector& vecAbsStart, const Vector& vecAbsEnd, 
 {
 	Ray_t ray;
 	ray.Init( vecAbsStart, vecAbsEnd );
+
 	enginetrace->TraceRay( ray, mask, pFilter, ptr );
+
+
 	if( r_visualizetraces.GetBool() )
 	{
+#ifdef CLIENT_DLL
 		DebugDrawLine( ptr->startpos, ptr->endpos, 255, 0, 0, true, -1.0f );
+#else
+		DebugDrawLine( ptr->startpos, ptr->endpos, 0, 0, 255, true, -1.0f );
+#endif	
 	}
 }
 
@@ -208,10 +235,16 @@ inline void UTIL_TraceHull( const Vector &vecAbsStart, const Vector &vecAbsEnd, 
 	Ray_t ray;
 	ray.Init( vecAbsStart, vecAbsEnd, hullMin, hullMax );
 	CTraceFilterSimple traceFilter( ignore, collisionGroup );
+
 	enginetrace->TraceRay( ray, mask, &traceFilter, ptr );
+
 	if( r_visualizetraces.GetBool() )
 	{
+#ifdef CLIENT_DLL
 		DebugDrawLine( ptr->startpos, ptr->endpos, 255, 255, 0, true, -1.0f );
+#else
+		DebugDrawLine( ptr->startpos, ptr->endpos, 0, 255, 255, true, -1.0f );
+#endif	
 	}
 }
 
@@ -220,10 +253,16 @@ inline void UTIL_TraceHull( const Vector &vecAbsStart, const Vector &vecAbsEnd, 
 {
 	Ray_t ray;
 	ray.Init( vecAbsStart, vecAbsEnd, hullMin, hullMax );
+
 	enginetrace->TraceRay( ray, mask, pFilter, ptr );
+
 	if( r_visualizetraces.GetBool() )
 	{
+#ifdef CLIENT_DLL
 		DebugDrawLine( ptr->startpos, ptr->endpos, 255, 255, 0, true, -1.0f );
+#else
+		DebugDrawLine( ptr->startpos, ptr->endpos, 0, 255, 255, true, -1.0f );
+#endif	
 	}
 }
 
@@ -231,10 +270,16 @@ inline void UTIL_TraceRay( const Ray_t &ray, unsigned int mask,
 						  const IHandleEntity *ignore, int collisionGroup, trace_t *ptr )
 {
 	CTraceFilterSimple traceFilter( ignore, collisionGroup );
+
 	enginetrace->TraceRay( ray, mask, &traceFilter, ptr );
+	
 	if( r_visualizetraces.GetBool() )
 	{
+#ifdef CLIENT_DLL
 		DebugDrawLine( ptr->startpos, ptr->endpos, 255, 0, 0, true, -1.0f );
+#else
+		DebugDrawLine( ptr->startpos, ptr->endpos, 0, 0, 255, true, -1.0f );
+#endif
 	}
 }
 
@@ -256,10 +301,11 @@ inline int UTIL_PointContents( const Vector &vec )
 void UTIL_TraceModel( const Vector &vecStart, const Vector &vecEnd, const Vector &hullMin, 
 					  const Vector &hullMax, CBaseEntity *pentModel, int collisionGroup, trace_t *ptr );
 
-void UTIL_ClipTraceToPlayers( const CBasePlayer *ignore, const Vector& vecAbsStart, const Vector& vecAbsEnd, unsigned int mask, trace_t *tr );
+void UTIL_ClipTraceToPlayers( const Vector& vecAbsStart, const Vector& vecAbsEnd, unsigned int mask, ITraceFilter *filter, trace_t *tr );
 
 void		UTIL_Tracer( const Vector &vecStart, const Vector &vecEnd, int iEntIndex = 0, int iAttachment = TRACER_DONT_USE_ATTACHMENT, float flVelocity = 0, bool bWhiz = false, const char *pCustomTracerName = NULL);
 
+bool		UTIL_IsLowViolence( void );
 bool		UTIL_ShouldShowBlood( int bloodColor );
 void		UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, int amount );
 
@@ -428,9 +474,20 @@ public:
 		return (Now() > m_timestamp);
 	}
 
+	float GetElapsedTime( void ) const
+	{
+		return Now() - m_timestamp + m_duration;
+	}
+
 	float GetRemainingTime( void ) const
 	{
 		return (m_timestamp - Now());
+	}
+
+	/// return original countdown time
+	float GetCountdownDuration( void ) const
+	{
+		return (m_timestamp > 0.0f) ? m_duration : 0.0f;
 	}
 
 private:

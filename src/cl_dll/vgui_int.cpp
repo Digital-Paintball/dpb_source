@@ -33,8 +33,12 @@
 
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
+#include "FileSystem.h"
 
 using namespace vgui;
+
+void MP3Player_Create( vgui::VPANEL parent );
+void MP3Player_Destroy();
 
 #include <vgui/IInputInternal.h>
 vgui::IInputInternal *g_InputInternal = NULL;
@@ -156,45 +160,71 @@ bool VGui_Startup( CreateInterfaceFn appSystemFactory )
 //-----------------------------------------------------------------------------
 void VGui_CreateGlobalPanels( void )
 {
-	VPANEL gameParent = enginevgui->GetPanel( PANEL_CLIENTDLL );
+	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
-	VPANEL uiParent = enginevgui->GetPanel( PANEL_GAMEUIDLL );  // jeff - add panel for all ui
+#if defined( TRACK_BLOCKING_IO )
+#if !defined( _XBOX )
+	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_GAMEDLL );
+#else
+	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_ROOT );
+#endif
+#endif
+//	VPANEL uiParent = enginevgui->GetPanel( PANEL_GAMEUIDLL );  // jeff - add panel for all ui
 	VPANEL cViewPort = g_pClientMode->GetViewport()->GetVPanel(); // jeff, get vguiviewport
 	//console->Create( parent );
 	// Part of game
-	ChangeTeam->Create( gameParent);
-	ChangeSkin->Create( gameParent);
-	ChangeGun->Create( gameParent);
-	JoinArena->Create( gameParent );  // jeff - this is the join arena panel
+	ChangeTeam->Create( gameToolParent);
+	ChangeSkin->Create( gameToolParent);
+	ChangeGun->Create( gameToolParent);
+	JoinArena->Create( gameToolParent );  // jeff - this is the join arena panel
 	MyHud->Create( cViewPort );  // jeff - this is the hud panel
-	textmessage->Create( gameParent );
-	internalCenterPrint->Create( gameParent );
-	loadingdisc->Create( gameParent );
-	messagechars->Create( gameParent );
+	textmessage->Create( gameToolParent );
+	internalCenterPrint->Create( gameToolParent );
+#ifndef _XBOX
+	loadingdisc->Create( gameToolParent );
+	messagechars->Create( gameToolParent );
+#endif
 
 	// Debugging or related tool
 	fps->Create( toolParent );
+#if defined( TRACK_BLOCKING_IO )
+	iopanel->Create( gameDLLPanel );
+#endif
+#ifndef _XBOX
 	netgraphpanel->Create( toolParent );
-	debugoverlaypanel->Create( toolParent );
+#endif
+	debugoverlaypanel->Create( gameToolParent );
+
+#ifndef _XBOX
+	// Create mp3 player off of tool parent panel
+	MP3Player_Create( toolParent );
+#endif
 }
 
 void VGui_Shutdown()
 {
 	VGUI_DestroyClientDLLRootPanel();
-
-	debugoverlaypanel->Destroy();
+#ifndef _XBOX
+	MP3Player_Destroy();
 	netgraphpanel->Destroy();
+#endif
+	debugoverlaypanel->Destroy();
+#if defined( TRACK_BLOCKING_IO )
+	iopanel->Destroy();
+#endif
 	fps->Destroy();
 	ChangeTeam->Destroy();
 	ChangeSkin->Destroy();
 	ChangeGun->Destroy();
 	JoinArena->Destroy(); // jeff - keep it clean
 	MyHud->Destroy();
+
+#ifndef _XBOX
 	messagechars->Destroy();
 	loadingdisc->Destroy();
+#endif
 	internalCenterPrint->Destroy();
 	textmessage->Destroy();
-	//console->Destroy();
 
 	if ( g_pClientMode )
 	{
@@ -206,6 +236,7 @@ void VGui_Shutdown()
 	vgui::ivgui()->RunFrame();
 }
 
+static ConVar cl_showpausedimage( "cl_showpausedimage", "1", 0, "Show the 'Paused' image when game is paused." );
 
 //-----------------------------------------------------------------------------
 // Things to do before rendering vgui stuff...
@@ -213,16 +244,21 @@ void VGui_Shutdown()
 void VGui_PreRender()
 {
 	VPROF( "VGui_PreRender" );
-
+#ifndef _XBOX
 	loadingdisc->SetLoadingVisible( engine->IsDrawingLoadingImage() && !engine->IsPlayingDemo() );
-	loadingdisc->SetPausedVisible( engine->IsPaused() && !engine->IsTakingScreenshot() && !engine->IsPlayingDemo() );
+	loadingdisc->SetPausedVisible( !enginevgui->IsGameUIVisible() && cl_showpausedimage.GetBool() && engine->IsPaused() && !engine->IsTakingScreenshot() && !engine->IsPlayingDemo() );
+#endif
+}
+
+void VGui_PostRender()
+{
 }
 
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Input  : cl_panelanimation - 
 //-----------------------------------------------------------------------------
-CON_COMMAND( cl_panelanimation, "Shows panel animation variables: <panelname | blanak for all panels>." )
+CON_COMMAND( cl_panelanimation, "Shows panel animation variables: <panelname | blank for all panels>." )
 {
 	if ( engine->Cmd_Argc() == 2 )
 	{
@@ -231,5 +267,16 @@ CON_COMMAND( cl_panelanimation, "Shows panel animation variables: <panelname | b
 	else
 	{
 		PanelAnimationDumpVars( NULL );
+	}
+}
+
+void GetHudSize( int& w, int &h )
+{
+	vgui::surface()->GetScreenSize( w, h );
+
+	VPANEL hudParent = enginevgui->GetPanel( PANEL_CLIENTDLL );
+	if ( hudParent )
+	{
+		vgui::ipanel()->GetSize( hudParent, w, h );
 	}
 }

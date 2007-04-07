@@ -11,6 +11,7 @@
 #include <vgui/ILocalize.h>
 #include <vgui/ISurface.h>
 #include "iclientmode.h"
+#include "vgui_controls/AnimationController.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -33,6 +34,7 @@ CHudHistoryResource::CHudHistoryResource( const char *pElementName ) :
 	SetParent( pParent );
 	m_bDoNotDraw = true;
 	m_wcsAmmoFullMsg[0] = 0;
+	m_bNeedsDraw = false;
 	SetHiddenBits( HIDEHUD_MISCSTATUS );
 }
 
@@ -153,13 +155,18 @@ void CHudHistoryResource::AddToHistory( int iType, const char *szName, int iCoun
 //-----------------------------------------------------------------------------
 void CHudHistoryResource::AddIconToHistory( int iType, int iId, C_BaseCombatWeapon *weapon, int iCount, CHudTexture *icon )
 {
-	if ( m_bDoNotDraw )
-		return;
+	m_bNeedsDraw = true;
 
 	// Check to see if the pic would have to be drawn too high. If so, start again from the bottom
 	if ( (m_flHistoryGap * m_iCurrentHistorySlot) > GetTall() )
 	{
 		m_iCurrentHistorySlot = 0;
+	}
+
+	// If the history resource is appearing, slide the hint message element down
+	if ( m_iCurrentHistorySlot == 0 )
+	{
+		g_pClientMode->GetViewportAnimationController()->StartAnimationSequence( "HintMessageLower" ); 
 	}
 
 	// ensure the size 
@@ -196,7 +203,7 @@ void CHudHistoryResource::AddIconToHistory( int iType, int iId, C_BaseCombatWeap
 //-----------------------------------------------------------------------------
 void CHudHistoryResource::MsgFunc_ItemPickup( bf_read &msg )
 {
-	char szName[2048];
+	char szName[1024];
 	
 	msg.ReadString( szName, sizeof(szName) );
 
@@ -222,15 +229,16 @@ void CHudHistoryResource::MsgFunc_AmmoDenied( bf_read &msg )
 	}
 
 	// see if there are any denied ammo icons, if so refresh their timer
-	{for ( int i = 0; i < m_PickupHistory.Count(); i++ )
+	for ( int i = 0; i < m_PickupHistory.Count(); i++ )
 	{
 		if ( m_PickupHistory[i].type == HISTSLOT_AMMODENIED && m_PickupHistory[i].iId == iAmmo )
 		{
 			// it's already in the list, refresh
 			m_PickupHistory[i].DisplayTime = gpGlobals->curtime + (hud_drawhistory_time.GetFloat() / 2.0f);
+			m_bNeedsDraw = true;
 			return;
 		}
-	}}
+	}
 
 	// add into the list
 	AddToHistory( HISTSLOT_AMMODENIED, iAmmo, 0 );
@@ -248,14 +256,19 @@ void CHudHistoryResource::CheckClearHistory( void )
 	}
 
 	m_iCurrentHistorySlot = 0;
+
+	// Slide the hint message element back up
+	g_pClientMode->GetViewportAnimationController()->StartAnimationSequence( "HintMessageRaise" ); 
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
+// Purpose: Save CPU cycles by letting the HUD system early cull
+// costly traversal.  Called per frame, return true if thinking and 
+// painting need to occur.
 //-----------------------------------------------------------------------------
 bool CHudHistoryResource::ShouldDraw( void )
 {
-	return ( CHudElement::ShouldDraw() );
+	return ( ( m_iCurrentHistorySlot > 0 || m_bNeedsDraw ) && CHudElement::ShouldDraw() );
 }
 
 //-----------------------------------------------------------------------------
@@ -263,15 +276,16 @@ bool CHudHistoryResource::ShouldDraw( void )
 //-----------------------------------------------------------------------------
 void CHudHistoryResource::Paint( void )
 {
-	if (m_bDoNotDraw)
+	if ( m_bDoNotDraw )
 	{
 		// this is to not draw things until the first rendered
 		m_bDoNotDraw = false;
 		return;
 	}
 
-	if ( !m_iCurrentHistorySlot )
-		return;
+	// set when drawing should occur
+	// will be set if valid drawing does occur
+	m_bNeedsDraw = false;
 
 	int wide, tall;
 	GetSize( wide, tall );
@@ -282,7 +296,8 @@ void CHudHistoryResource::Paint( void )
 		{
 			m_PickupHistory[i].DisplayTime = min( m_PickupHistory[i].DisplayTime, gpGlobals->curtime + hud_drawhistory_time.GetFloat() );
 			if ( m_PickupHistory[i].DisplayTime <= gpGlobals->curtime )
-			{  // pic drawing time has expired
+			{  
+				// pic drawing time has expired
 				memset( &m_PickupHistory[i], 0, sizeof(HIST_ITEM) );
 				CheckClearHistory();
 				continue;
@@ -351,6 +366,12 @@ void CHudHistoryResource::Paint( void )
 			if ( !itemIcon )
 				continue;
 
+			if ( clr[3] )
+			{
+				// valid drawing will occur
+				m_bNeedsDraw = true;
+			}
+
 			int ypos = tall - (m_flHistoryGap * (i + 1));
 			int xpos = wide - itemIcon->Width() - m_flIconInset;
 
@@ -367,11 +388,7 @@ void CHudHistoryResource::Paint( void )
 				vgui::surface()->DrawSetTextFont( m_hNumberFont );
 				vgui::surface()->DrawSetTextColor( clr );
 				vgui::surface()->DrawSetTextPos( wide - m_flTextInset, ypos );
-
-				for ( int ch = 0; text[ch] != 0; ch++ )
-				{
-					vgui::surface()->DrawUnicodeChar( text[ ch ] );
-				}
+				vgui::surface()->DrawUnicodeString( text );
 			}
 			else if ( bUseAmmoFullMsg )
 			{
@@ -381,11 +398,7 @@ void CHudHistoryResource::Paint( void )
 				vgui::surface()->DrawSetTextFont( m_hTextFont );
 				vgui::surface()->DrawSetTextColor( clr );
 				vgui::surface()->DrawSetTextPos( wide - m_flTextInset, ypos );
-
-				for ( int ch = 0; m_wcsAmmoFullMsg[ch] != 0; ch++ )
-				{
-					vgui::surface()->DrawUnicodeChar( m_wcsAmmoFullMsg[ ch ] );
-				}
+				vgui::surface()->DrawUnicodeString( m_wcsAmmoFullMsg );
 			}
 		}
 	}

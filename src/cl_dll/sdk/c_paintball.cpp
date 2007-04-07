@@ -302,3 +302,25 @@ void C_Paintball::GetColorModulation( float* color )
 {
 	color[0] = color[1] = color[2] = 1.0f;
 }
+
+//Tony; missing virtuals!
+const matrix3x4_t &C_Paintball::RenderableToWorldTransform()
+{
+	// Setup our transform.
+	static matrix3x4_t mat;
+	AngleMatrix( GetRenderAngles(), GetRenderOrigin(), mat );
+	return mat;
+}
+
+bool C_Paintball::GetAttachment( int number, matrix3x4_t &matrix )
+{
+	MatrixCopy( RenderableToWorldTransform(), matrix );
+	return true;
+}
+
+bool C_Paintball::GetAttachment( int number, Vector &origin, QAngle &angles )
+{
+	origin = m_vecPosition;
+	angles = vec3_angle;
+	return true;
+}

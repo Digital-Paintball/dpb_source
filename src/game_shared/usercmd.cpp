@@ -13,7 +13,6 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-// TF2 specific, need enough space for OBJ_LAST items from tf_shareddefs.h
 #define WEAPON_SUBTYPE_BITS	6
 
 //-----------------------------------------------------------------------------
@@ -311,12 +310,7 @@ void ReadUsercmd( bf_read *buf, CUserCmd *move, CUserCmd *from )
 #if defined( HL2_DLL )
 	if ( buf->ReadOneBit() )
 	{
-		int count = buf->ReadShort();
-		if (count < 0) {
-			Msg("Ignoring strange entitygroundcontact count: %d\n", count);
-			return; // why can this be less than 0, Valve? change to ReadWord()???
-		}
-		move->entitygroundcontact.SetCount( count );
+		move->entitygroundcontact.SetCount( buf->ReadShort() );
 
 		int i;
 		for (i = 0; i < move->entitygroundcontact.Count(); i++)

@@ -38,6 +38,8 @@
 ConVar r_FadeProps( "r_FadeProps", "1" );
 
 #endif
+bool g_MakingDevShots = false;
+extern ConVar cl_leveloverview;
 
 //-----------------------------------------------------------------------------
 // Purpose: Performs a var args printf into a static return buffer
@@ -45,7 +47,7 @@ ConVar r_FadeProps( "r_FadeProps", "1" );
 //			... - 
 // Output : char
 //-----------------------------------------------------------------------------
-const char *VarArgs( const char *format, ... )
+char *VarArgs( char *format, ... )
 {
 	va_list		argptr;
 	static char		string[1024];
@@ -214,31 +216,14 @@ client_textmessage_t *TextMessageGet( const char *pName )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
-typedef struct
-{
-	int		m_nWidth;
-	int		m_nHeight;
-} SCREENINFO;
-
-static SCREENINFO g_ScreenInfo;
-
-//-----------------------------------------------------------------------------
-// Purpose: 
-//-----------------------------------------------------------------------------
-void SetScreenSize( void )
-{
-	engine->GetScreenSize( g_ScreenInfo.m_nWidth, g_ScreenInfo.m_nHeight );
-}
-
-//-----------------------------------------------------------------------------
 // Purpose: ScreenHeight returns the height of the screen, in pixels
 // Output : int
 //-----------------------------------------------------------------------------
 int ScreenHeight( void )
 {
-	return g_ScreenInfo.m_nHeight;
+	int w, h;
+	GetHudSize( w, h );
+	return h;
 }
 
 //-----------------------------------------------------------------------------
@@ -247,7 +232,9 @@ int ScreenHeight( void )
 //-----------------------------------------------------------------------------
 int ScreenWidth( void )
 {
-	return g_ScreenInfo.m_nWidth;
+	int w, h;
+	GetHudSize( w, h );
+	return w;
 }
 
 //-----------------------------------------------------------------------------
@@ -340,7 +327,7 @@ void UTIL_Tracer( const Vector &vecStart, const Vector &vecEnd, int iEntIndex, i
 	CEffectData data;
 	data.m_vStart = vecStart;
 	data.m_vOrigin = vecEnd;
-	data.m_nEntIndex = iEntIndex;
+	data.m_hEntity = ClientEntityList().EntIndexToHandle( iEntIndex );
 	data.m_flScale = flVelocity;
 
 	// Flags
@@ -365,6 +352,8 @@ void UTIL_Tracer( const Vector &vecStart, const Vector &vecEnd, int iEntIndex, i
 		DispatchEffect( "Tracer", data );
 	}
 }
+
+
 //------------------------------------------------------------------------------
 // Purpose : Creates both an decal and any associated impact effects (such
 //			 as flecks) for the given iDamageType and the trace's end position
@@ -408,110 +397,6 @@ void UTIL_Smoke( const Vector &origin, const float scale, const float framerate 
 void UTIL_SetOrigin( C_BaseEntity *entity, const Vector &vecOrigin )
 {
 	entity->SetLocalOrigin( vecOrigin );
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Helper function get get determinisitc random values for shared/prediction code
-// Input  : seedvalue - 
-//			*module - 
-//			line - 
-// Output : static int
-//-----------------------------------------------------------------------------
-static int SeedFileLineHash( int seedvalue, const char *module, int line, int additionalSeed )
-{
-	CRC32_t retval;
-
-	CRC32_Init( &retval );
-
-	CRC32_ProcessBuffer( &retval, (void *)&seedvalue, sizeof( int ) );
-	CRC32_ProcessBuffer( &retval, (void *)&additionalSeed, sizeof( int ) );
-	CRC32_ProcessBuffer( &retval, (void *)module, Q_strlen( module ) );
-	CRC32_ProcessBuffer( &retval, (void *)&line, sizeof( int ) );
-
-	CRC32_Final( &retval );
-
-	return (int)( retval );
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Accessed by SHARED_RANDOMFLOAT macro to get c/s neutral random float for prediction
-// Input  : *filename - 
-//			line - 
-//			flMinVal - 
-//			flMaxVal - 
-// Output : float
-//-----------------------------------------------------------------------------
-float SharedRandomFloat( const char *filename, int line, float flMinVal, float flMaxVal, int additionalSeed /*=0*/ )
-{
-	Assert( C_BaseEntity::GetPredictionRandomSeed() != -1 );
-
-	int seed = SeedFileLineHash( C_BaseEntity::GetPredictionRandomSeed(), filename, line, additionalSeed );
-	RandomSeed( seed );
-	return RandomFloat( flMinVal, flMaxVal );
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Accessed by SHARED_RANDOMINT macro to get c/s neutral random int for prediction
-// Input  : *filename - 
-//			line - 
-//			iMinVal - 
-//			iMaxVal - 
-// Output : int
-//-----------------------------------------------------------------------------
-int SharedRandomInt( const char *filename, int line, int iMinVal, int iMaxVal, int additionalSeed /*=0*/ )
-{
-	Assert( C_BaseEntity::GetPredictionRandomSeed() != -1 );
-
-	int seed = SeedFileLineHash( C_BaseEntity::GetPredictionRandomSeed(), filename, line, additionalSeed );
-	RandomSeed( seed );
-	return RandomInt( iMinVal, iMaxVal );
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Accessed by SHARED_RANDOMVECTOR macro to get c/s neutral random Vector for prediction
-// Input  : *filename - 
-//			line - 
-//			minVal - 
-//			maxVal - 
-// Output : Vector
-//-----------------------------------------------------------------------------
-Vector SharedRandomVector( const char *filename, int line, float minVal, float maxVal, int additionalSeed /*=0*/ )
-{
-	Assert( C_BaseEntity::GetPredictionRandomSeed() != -1 );
-
-	int seed = SeedFileLineHash( C_BaseEntity::GetPredictionRandomSeed(), filename, line, additionalSeed );
-	RandomSeed( seed );
-	// HACK:  Can't call RandomVector/Angle because it uses rand() not vstlib Random*() functions!
-	// Get a random vector.
-	Vector random;
-	random.x = RandomFloat( minVal, maxVal );
-	random.y = RandomFloat( minVal, maxVal );
-	random.z = RandomFloat( minVal, maxVal );
-	return random;
-}
-
-//-----------------------------------------------------------------------------
-// Purpose: Accessed by SHARED_RANDOMANGLE macro to get c/s neutral random QAngle for prediction
-// Input  : *filename - 
-//			line - 
-//			minVal - 
-//			maxVal - 
-// Output : QAngle
-//-----------------------------------------------------------------------------
-QAngle SharedRandomAngle( const char *filename, int line, float minVal, float maxVal, int additionalSeed /*=0*/ )
-{
-	Assert( C_BaseEntity::GetPredictionRandomSeed() != -1 );
-
-	int seed = SeedFileLineHash( C_BaseEntity::GetPredictionRandomSeed(), filename, line, additionalSeed );
-	RandomSeed( seed );
-
-	// HACK:  Can't call RandomVector/Angle because it uses rand() not vstlib Random*() functions!
-	// Get a random vector.
-	Vector random;
-	random.x = RandomFloat( minVal, maxVal );
-	random.y = RandomFloat( minVal, maxVal );
-	random.z = RandomFloat( minVal, maxVal );
-	return QAngle( random.x, random.y, random.z );
 }
 
 //#define PRECACHE_OTHER_ONCE
@@ -869,9 +754,12 @@ void UTIL_MakeSafeName( const char *oldName, char *newName, int newNameBufSize )
 		else if( *p == '&' )
 		{
 			//insert another & after this one
-			newName[newpos] = '&';
-			newName[newpos+1] = '&';
-			newpos+=2;
+			if ( newpos+2 < newNameBufSize )
+			{
+				newName[newpos] = '&';
+				newName[newpos+1] = '&';
+				newpos+=2;
+			}
 		}
 		else
 		{
@@ -881,6 +769,22 @@ void UTIL_MakeSafeName( const char *oldName, char *newName, int newNameBufSize )
 	}
 	newName[newpos] = 0;
 }
+
+//-----------------------------------------------------------------------------
+// Purpose: Scans player names and replaces characters that vgui won't
+//          display properly
+// Input  : *oldName - player name to be fixed up
+// Output : *char - static buffer with the safe name
+//-----------------------------------------------------------------------------
+
+const char * UTIL_SafeName( const char *oldName )
+{
+	static char safeName[ MAX_PLAYER_NAME_LENGTH * 2 + 1 ];
+	UTIL_MakeSafeName( oldName, safeName, sizeof( safeName ) );
+
+	return safeName;
+}
+
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -893,7 +797,7 @@ byte *UTIL_LoadFileForMe( const char *filename, int *pLength )
 	byte *buffer;
 
 	FileHandle_t file;
-	file = filesystem->Open( filename, "rb" );
+	file = filesystem->Open( filename, "rb", "GAME" );
 	if ( FILESYSTEM_INVALID_HANDLE == file )
 	{
 		if ( pLength ) *pLength = 0;
@@ -988,6 +892,10 @@ unsigned char UTIL_ComputeEntityFade( C_BaseEntity *pEntity, float flMinDist, fl
 {
 	unsigned char nAlpha = 255;
 
+	// If we're taking devshots, don't fade props at all
+	if ( g_MakingDevShots || cl_leveloverview.GetFloat() > 0 )
+		return 255;
+
 #ifdef _DEBUG
 	if ( r_FadeProps.GetBool() )
 #endif
@@ -1014,7 +922,7 @@ unsigned char UTIL_ComputeEntityFade( C_BaseEntity *pEntity, float flMinDist, fl
 			vecAbsCenter = pEntity->GetRenderOrigin();
 		}
 
-		unsigned char nGlobalAlpha = modelinfo->ComputeLevelScreenFade( vecAbsCenter, flRadius, flFadeScale );
+		unsigned char nGlobalAlpha = IsXbox() ? 255 : modelinfo->ComputeLevelScreenFade( vecAbsCenter, flRadius, flFadeScale );
 		unsigned char nDistAlpha;
 
 		if ( !engine->IsLevelMainMenuBackground() )

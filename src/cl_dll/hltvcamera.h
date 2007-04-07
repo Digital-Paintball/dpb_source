@@ -29,11 +29,20 @@ public:
 	void SetChaseCamParams( float flOffset, float flDistance, float flTheta, float flPhi  );
 	void SpecNextPlayer( bool bInverse );
 	void SpecNamedPlayer( const char *szPlayerName );
-
-	int  GetObserverMode();	// returns current camera mode
-	C_BaseEntity *GetObserverTarget();  // return primary target
+	void ToggleChaseAsFirstPerson();
+	bool IsPVSLocked();
+	void SetAutoDirector( bool bActive );
+	
+	int  GetMode();	// returns current camera mode
+	C_BaseEntity *GetPrimaryTarget();  // return primary target
+	void SetPrimaryTarget( int nEntity); // set the primary obs target
 	C_BaseEntity *GetCameraMan();  // return camera entity if any
 
+	void CreateMove(CUserCmd *cmd);
+	void FixupMovmentParents();
+	void PostEntityPacketReceived();
+	const char* GetTitleText() { return m_szTitleText; }
+	int  GetNumSpectators() { return m_nNumSpectators; }
 			
 protected:
 
@@ -41,6 +50,9 @@ protected:
 	void CalcFixedView( Vector& eyeOrigin, QAngle& eyeAngles, float& fov );
 	void CalcInEyeCamView( Vector& eyeOrigin, QAngle& eyeAngles, float& fov );
 	void CalcRoamingView(Vector& eyeOrigin, QAngle& eyeAngles, float& fov);
+
+	void SmoothCameraAngle( QAngle& targetAngle );
+	void SetCameraAngle( QAngle& targetAngle );
 
 	int			m_nCameraMode; // current camera mode
 	int			m_iCameraMan; // camera man entindex or 0
@@ -55,11 +67,14 @@ protected:
 	float		m_flTheta; // view angle horizontal 
 	float		m_flPhi; // view angle vertical
 	float		m_flInertia; // camera inertia 0..100
+	float		m_flLastAngleUpdateTime;
+	bool		m_bEntityPacketReceived;	// true after a new packet was received
+	int			m_nNumSpectators;
+	char		m_szTitleText[64];
 };
 
-extern C_HLTVCamera *HLTVCamera();	// get Singelton
 
-
+extern C_HLTVCamera *HLTVCamera();	// get Singleton
 
 
 

@@ -9,14 +9,16 @@
 
 # the name of the mod binary (_i486.so is appended to the end)
 NAME=server
+
 # the location of the vcproj that builds the mod
-MOD_PROJ=../dlls/hl_sdk.vcproj
+MOD_PROJ=../dlls/server_scratch-2003.vcproj
 # the name of the mod configuration (typically <proj name>_<build type><build target>)
-MOD_CONFIG=hl_ReleaseSDKWin32
+MOD_CONFIG=server_sdk_ReleaseSDKWin32
 
 # the directory the base binaries (tier0_i486.so, etc) are located
 #GAME_DIR=../../
-GAME_DIR=~/valve/hl2bin/
+#GAME_DIR=~/valve/hl2bin/
+GAME_DIR=~/valve/steam
 
 # compiler options (gcc 3.4.1 or above is required)
 CC=/usr/local/bin/gcc
@@ -28,7 +30,7 @@ CPP_LIB="/usr/local/lib/libstdc++.a /usr/local/lib/libgcc_eh.a"
 USER_CFLAGS=
 
 # link flags for your mod, make sure to include any special libraries here
-LDFLAGS="-lm -ldl $(GAME_DIR)/bin/tier0_i486.so $(GAME_DIR)/bin/vstdlib_i486.so"
+LDFLAGS="-lm -ldl $(GAME_DIR)/bin/tier0_i486.so $(GAME_DIR)/bin/vstdlib_i486.so mathlib_i486.a choreoobjects_i486.a tier1_i486.a"
 
 # XERCES 2.6.0 or above ( http://xml.apache.org/xerces-c/ ) is used by the vcproj to makefile converter
 # it must be installed before being able to run this makefile
@@ -54,7 +56,7 @@ SOURCE_DIR=..
 
 # the CPU target for the build, must be i486 for now
 ARCH=i486
-ARCH_CFLAGS=-mtune=i686 -march=pentium -mmmx -O3
+ARCH_CFLAGS=-mtune=i686 -march=pentium3 -mmmx -O3
 
 # -fpermissive is so gcc 3.4.x doesn't complain about some template stuff
 BASE_CFLAGS=-fpermissive -D_LINUX -DNDEBUG -Dstricmp=strcasecmp -D_stricmp=strcasecmp -D_strnicmp=strncasecmp -Dstrnicmp=strncasecmp -D_snprintf=snprintf -D_vsnprintf=vsnprintf -D_alloca=alloca -Dstrcmpi=strcasecmp

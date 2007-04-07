@@ -48,6 +48,10 @@
 #define FTENT_CHANGERENDERONCOLLIDE	0x01000000	//when we collide with something, change our rendergroup to RENDER_GROUP_OTHER
 #define FTENT_COLLISIONGROUP	0x02000000	// if set, use the C_BaseEntity::GetCollisionGroup when doing collide trace
 
+class C_LocalTempEntity;
+
+typedef int (*pfnDrawHelper)( C_LocalTempEntity *entity, int flags );
+
 //-----------------------------------------------------------------------------
 // Purpose: Should this derive from some other class
 //-----------------------------------------------------------------------------
@@ -69,6 +73,13 @@ public:
 	// Sets the velocity
 	void SetVelocity( const Vector &vecVelocity );
 	const Vector &GetVelocity() const { return m_vecTempEntVelocity; }
+
+	void							SetDrawHelper( pfnDrawHelper helper ) { m_pfnDrawHelper = helper; }
+	void							OnRemoveTempEntity();
+
+protected:
+
+	pfnDrawHelper					m_pfnDrawHelper;
 
 public:
 	int								flags;

@@ -4,6 +4,8 @@
 //
 // $NoKeywords: $
 //=============================================================================//
+
+
 #include "cbase.h"
 #include <KeyValues.h>
 #include "engine/ienginesound.h"
@@ -73,9 +75,11 @@ struct subsoundscapeparams_t
 	bool	wroteDSPVolume;
 };
 
-class C_SoundscapeSystem : public IGameSystem
+class C_SoundscapeSystem : public CBaseGameSystemPerFrame
 {
 public:
+	virtual char const *Name() { return "C_SoundScapeSystem"; }
+
 	C_SoundscapeSystem()
 	{
 		m_nRestoreFrame = -1;
@@ -94,6 +98,9 @@ public:
 	// IClientSystem hooks, not needed
 	virtual void LevelInitPreEntity()
 	{
+		Shutdown();
+		Init();
+
 		TouchSoundFiles();
 	}
 
@@ -125,14 +132,16 @@ public:
 	virtual void SafeRemoveIfDesired() {}
 
 	// Called before rendering
-	virtual void PreRender() {}
+	virtual void PreRender() { }
+
+	// Called after rendering
+	virtual void PostRender() { }
 
 	// IClientSystem hooks used
 	virtual bool Init();
 	virtual void Shutdown();
 	// Gets called each frame
 	virtual void Update( float frametime );
-
 
 	void PrintDebugInfo()
 	{
@@ -251,7 +260,11 @@ void Soundscape_Update( audioparams_t &audio )
 void C_SoundscapeSystem::AddSoundScapeFile( const char *filename )
 {
 	KeyValues *script = new KeyValues( filename );
+#ifndef _XBOX
 	if ( script->LoadFromFile( filesystem, filename ) )
+#else
+	if ( filesystem->LoadKeyValues( *script, IFileSystem::TYPE_SOUNDSCAPE, filename, "GAME" ) )
+#endif
 	{
 		// parse out all of the top level sections and save their names
 		KeyValues *pKeys = script;
@@ -280,8 +293,15 @@ bool C_SoundscapeSystem::Init()
 {
 	m_loopingSoundId = 0;
 
+	const char *mapname = MapName();
+	const char *mapSoundscapeFilename = NULL;
+	if ( mapname && *mapname )
+	{
+		mapSoundscapeFilename = VarArgs( "scripts/soundscapes_%s.txt", mapname );
+	}
+
 	KeyValues *manifest = new KeyValues( SOUNDSCAPE_MANIFEST_FILE );
-	if ( manifest->LoadFromFile( filesystem, SOUNDSCAPE_MANIFEST_FILE, "GAME" ) )
+	if ( filesystem->LoadKeyValues( *manifest, IFileSystem::TYPE_SOUNDSCAPE, SOUNDSCAPE_MANIFEST_FILE, "GAME" ) )
 	{
 		for ( KeyValues *sub = manifest->GetFirstSubKey(); sub != NULL; sub = sub->GetNextKey() )
 		{
@@ -289,11 +309,20 @@ bool C_SoundscapeSystem::Init()
 			{
 				// Add
 				AddSoundScapeFile( sub->GetString() );
+				if ( mapSoundscapeFilename && FStrEq( sub->GetString(), mapSoundscapeFilename ) )
+				{
+					mapSoundscapeFilename = NULL; // we've already loaded the map's soundscape
+				}
 				continue;
 			}
 
 			Warning( "C_SoundscapeSystem::Init:  Manifest '%s' with bogus file type '%s', expecting 'file'\n", 
 				SOUNDSCAPE_MANIFEST_FILE, sub->GetName() );
+		}
+
+		if ( mapSoundscapeFilename && filesystem->FileExists( mapSoundscapeFilename ) )
+		{
+			AddSoundScapeFile( mapSoundscapeFilename );
 		}
 	}
 	else
@@ -417,7 +446,7 @@ static int SoundscapeCompletion( const char *partial, char commands[ COMMAND_COM
 }
 
 static ConCommand Command_Playsoundscape( "playsoundscape", Playsoundscape_f, "Forces a soundscape to play", FCVAR_CHEAT, SoundscapeCompletion );
-CON_COMMAND( stopsoundscape, "Stops all soundscape processing and fades current looping sounds" )
+CON_COMMAND_F( stopsoundscape, "Stops all soundscape processing and fades current looping sounds", FCVAR_CHEAT )
 {
 	g_SoundscapeSystem.StartNewSoundscape( NULL );
 }
@@ -433,7 +462,7 @@ void C_SoundscapeSystem::ForceSoundscape( const char *pSoundscapeName, float rad
 	}
 	else
 	{
-		Msg("Can't find soundscape %s\n", pSoundscapeName );
+		DevWarning("Can't find soundscape %s\n", pSoundscapeName );
 	}
 }
 

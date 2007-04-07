@@ -6,6 +6,7 @@
 
 #include "cbase.h"
 #include "paintball.h"
+#include "IEffects.h"
 
 // Should be last include
 #include "tier0/memdbgon.h"
@@ -17,6 +18,9 @@ void CPaintball::Init( int i )
 
 void CPaintball::Spawn( void )
 {
+//	CDisablePredictionFiltering disabler;
+//	Vector blah(0,0,0);
+//	g_pEffects->Sparks( m_vecPosition, 1, 1, &blah);
 }
 
 void CPaintball::Destroy( void )

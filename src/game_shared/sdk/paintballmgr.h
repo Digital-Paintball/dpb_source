@@ -26,12 +26,17 @@
 #endif
 
 // CPaintballMgr class
-class CPaintballMgr : public CAutoGameSystem
+class CPaintballMgr : public CAutoGameSystemPerFrame
 {
 public:
 	static CPaintballMgr *GetManager() { return &s_PaintballMgr; }
-
-	CPaintballMgr() { m_bInitialized = false; };
+	virtual bool Init() { return true; }
+	virtual void Shutdown() {}
+	virtual bool	IsPerFrame() { return true; }
+	CPaintballMgr() : CAutoGameSystemPerFrame( "PaintballManager" )
+	{ 
+		m_bInitialized = false; 
+	};
 
 	// IGameSystem functions
 	virtual void LevelInitPreEntity();

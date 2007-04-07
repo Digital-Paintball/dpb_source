@@ -70,7 +70,7 @@ public:
 	virtual float GetCurrentMaxGroundSpeed();
 	virtual Activity CalcMainActivity();
 	virtual void DebugShowAnimState( int iStartLine );
-	virtual void ComputeSequences();
+	virtual void ComputeSequences( CStudioHdr *pStudioHdr );
 	virtual void ClearAnimationLayers();
 	
 
@@ -79,24 +79,24 @@ public:
 protected:
 
 	int CalcFireLayerSequence(PlayerAnimEvent_t event);
-	void ComputeFireSequence();
+	void ComputeFireSequence(CStudioHdr *pStudioHdr);
 
-	void ComputeReloadSequence();
+	void ComputeReloadSequence(CStudioHdr *pStudioHdr);
 	int CalcReloadLayerSequence();
 
 	bool IsOuterGrenadePrimed();
-	void ComputeGrenadeSequence();
+	void ComputeGrenadeSequence( CStudioHdr *pStudioHdr );
 	int CalcGrenadePrimeSequence();
 	int CalcGrenadeThrowSequence();
 	int GetOuterGrenadeThrowCounter();
 
-	void ComputeLeanSequence();
+	void ComputeLeanSequence( CStudioHdr *pStudioHdr );
 	int CalcLeanLayerSequence();
 
 	const char* GetWeaponSuffix();
 	bool HandleJumping();
 
-	void UpdateLayerSequenceGeneric( int iLayer, bool &bEnabled, float &flCurCycle, int &iSequence, bool bWaitAtEnd );
+	void UpdateLayerSequenceGeneric( CStudioHdr *pStudioHdr, int iLayer, bool &bEnabled, float &flCurCycle, int &iSequence, bool bWaitAtEnd );
 
 private:
 
@@ -265,13 +265,13 @@ int CSDKPlayerAnimState::CalcReloadLayerSequence()
 
 
 #ifdef CLIENT_DLL
-	void CSDKPlayerAnimState::UpdateLayerSequenceGeneric( int iLayer, bool &bEnabled, float &flCurCycle, int &iSequence, bool bWaitAtEnd )
+	void CSDKPlayerAnimState::UpdateLayerSequenceGeneric( CStudioHdr *pStudioHdr, int iLayer, bool &bEnabled, float &flCurCycle, int &iSequence, bool bWaitAtEnd )
 	{
 		if ( !bEnabled )
 			return;
 
 		// Increment the fire sequence's cycle.
-		flCurCycle += m_pOuter->GetSequenceCycleRate( iSequence ) * gpGlobals->frametime;
+		flCurCycle += m_pOuter->GetSequenceCycleRate( pStudioHdr, iSequence ) * gpGlobals->frametime;
 		if ( flCurCycle > 1 )
 		{
 			if ( bWaitAtEnd )
@@ -290,12 +290,12 @@ int CSDKPlayerAnimState::CalcReloadLayerSequence()
 		// Now dump the state into its animation layer.
 		C_AnimationLayer *pLayer = m_pOuter->GetAnimOverlay( iLayer );
 
-		pLayer->flCycle = flCurCycle;
-		pLayer->nSequence = iSequence;
+		pLayer->m_flCycle = flCurCycle;
+		pLayer->m_nSequence = iSequence;
 
-		pLayer->flPlaybackrate = 1.0;
-		pLayer->flWeight = 1.0f;
-		pLayer->nOrder = iLayer;
+		pLayer->m_flPlaybackRate = 1.0;
+		pLayer->m_flWeight = 1.0f;
+		pLayer->m_nOrder = iLayer;
 	}
 #endif
 
@@ -316,12 +316,12 @@ bool CSDKPlayerAnimState::IsOuterGrenadePrimed()
 }
 
 
-void CSDKPlayerAnimState::ComputeGrenadeSequence()
+void CSDKPlayerAnimState::ComputeGrenadeSequence( CStudioHdr *pStudioHdr )
 {
 #ifdef CLIENT_DLL
 	if ( m_bThrowingGrenade )
 	{
-		UpdateLayerSequenceGeneric( GRENADESEQUENCE_LAYER, m_bThrowingGrenade, m_flGrenadeCycle, m_iGrenadeSequence, false );
+		UpdateLayerSequenceGeneric( pStudioHdr, GRENADESEQUENCE_LAYER, m_bThrowingGrenade, m_flGrenadeCycle, m_iGrenadeSequence, false );
 	}
 	else
 	{
@@ -344,7 +344,7 @@ void CSDKPlayerAnimState::ComputeGrenadeSequence()
 			}
 
 			m_bPrimingGrenade = true;
-			UpdateLayerSequenceGeneric( GRENADESEQUENCE_LAYER, m_bPrimingGrenade, m_flGrenadeCycle, m_iGrenadeSequence, true );
+			UpdateLayerSequenceGeneric( pStudioHdr, GRENADESEQUENCE_LAYER, m_bPrimingGrenade, m_flGrenadeCycle, m_iGrenadeSequence, true );
 			
 			// If we're waiting to throw and we're done playing the prime animation...
 			if ( bThrowPending && m_flGrenadeCycle == 1 )
@@ -405,17 +405,17 @@ int CSDKPlayerAnimState::GetOuterGrenadeThrowCounter()
 }
 
 
-void CSDKPlayerAnimState::ComputeReloadSequence()
+void CSDKPlayerAnimState::ComputeReloadSequence( CStudioHdr *pStudioHdr )
 {
 #ifdef CLIENT_DLL
-	UpdateLayerSequenceGeneric( RELOADSEQUENCE_LAYER, m_bReloading, m_flReloadCycle, m_iReloadSequence, false );
+	UpdateLayerSequenceGeneric( pStudioHdr, RELOADSEQUENCE_LAYER, m_bReloading, m_flReloadCycle, m_iReloadSequence, false );
 #else
 	// Server doesn't bother with different fire sequences.
 #endif
 }
 
 
-void CSDKPlayerAnimState::ComputeLeanSequence()
+void CSDKPlayerAnimState::ComputeLeanSequence( CStudioHdr *pStudioHdr )
 {
 	int iSequence = CalcLeanLayerSequence( );
 	if ( iSequence == -1 )
@@ -428,7 +428,7 @@ void CSDKPlayerAnimState::ComputeLeanSequence()
 	// Use local variables so UpdateLayerSequenceGeneric doesn't clobber values.
 	bool bEnabled = pPlayer->m_flLeaning != 0;
 	float flLean = fabs(pPlayer->m_flLeaning / (sv_maxlean.GetFloat()?sv_maxlean.GetFloat():1));
-	UpdateLayerSequenceGeneric( LEANSEQUENCE_LAYER, bEnabled, flLean, iSequence, true );
+	UpdateLayerSequenceGeneric( pStudioHdr, LEANSEQUENCE_LAYER, bEnabled, flLean, iSequence, true );
 #else
 	CAnimationLayer *pLayer = m_pOuter->GetAnimOverlay( LEANSEQUENCE_LAYER );
 
@@ -646,14 +646,14 @@ void CSDKPlayerAnimState::DebugShowAnimState( int iStartLine )
 }
 
 
-void CSDKPlayerAnimState::ComputeSequences()
+void CSDKPlayerAnimState::ComputeSequences( CStudioHdr *pStudioHdr )
 {
-	BaseClass::ComputeSequences();
+	BaseClass::ComputeSequences( pStudioHdr );
 
-	ComputeFireSequence();
-	ComputeLeanSequence();
-	ComputeReloadSequence();
-	ComputeGrenadeSequence();
+	ComputeFireSequence( pStudioHdr );
+	ComputeLeanSequence( pStudioHdr );
+	ComputeReloadSequence( pStudioHdr );
+	ComputeGrenadeSequence( pStudioHdr );
 }
 
 
@@ -670,10 +670,10 @@ void CSDKPlayerAnimState::ClearAnimationLayers()
 }
 
 
-void CSDKPlayerAnimState::ComputeFireSequence()
+void CSDKPlayerAnimState::ComputeFireSequence( CStudioHdr *pStudioHdr )
 {
 #ifdef CLIENT_DLL
-	UpdateLayerSequenceGeneric( FIRESEQUENCE_LAYER, m_bFiring, m_flFireCycle, m_iFireSequence, false );
+	UpdateLayerSequenceGeneric( pStudioHdr, FIRESEQUENCE_LAYER, m_bFiring, m_flFireCycle, m_iFireSequence, false );
 #else
 	// Server doesn't bother with different fire sequences.
 #endif

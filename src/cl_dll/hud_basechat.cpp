@@ -18,29 +18,14 @@
 #include "vguicenterprint.h"
 #include "vgui/keycode.h"
 #include <KeyValues.h>
+#include "ienginevgui.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
 #define CHAT_WIDTH_PERCENTAGE 0.6f
 
-static void StripEndNewlineFromString( char *str )
-{
-	int s = strlen( str ) - 1;
-	if ( str[s] == '\n' || str[s] == '\r' )
-		str[s] = 0;
-}
-
-// converts all '\r' characters to '\n', so that the engine can deal with the properly
-// returns a pointer to str
-static char* ConvertCRtoNL( char *str )
-{
-	for ( char *ch = str; *ch != 0; ch++ )
-		if ( *ch == '\r' )
-			*ch = '\n';
-	return str;
-}
-
+#ifndef _XBOX
 ConVar hud_saytext_time( "hud_saytext_time", "12", 0 );
 
 //-----------------------------------------------------------------------------
@@ -67,7 +52,16 @@ void CBaseHudChatLine::ApplySchemeSettings(vgui::IScheme *pScheme)
 	BaseClass::ApplySchemeSettings(pScheme);
 
 	m_hFont = pScheme->GetFont( "Default" );
+
+#ifdef HL1_CLIENT_DLL
+	SetBgColor( Color( 0, 0, 0, 0 ) );
+	SetFgColor( Color( 0, 0, 0, 0 ) );
+
+	SetBorder( NULL );
+#else
 	SetBgColor( Color( 0, 0, 0, 100 ) );
+#endif
+
 
 	m_hFontMarlett = pScheme->GetFont( "Marlett" );
 
@@ -202,11 +196,12 @@ void CBaseHudChatLine::Expire( void )
 
 //	Msg( "%s\n", text );
 }
-
+#endif _XBOX
 
 //-----------------------------------------------------------------------------
 // Purpose: The prompt and text entry area for chat messages
 //-----------------------------------------------------------------------------
+#ifndef _XBOX
 CBaseHudChatInputLine::CBaseHudChatInputLine( CBaseHudChat *parent, char const *panelName ) : 
 	vgui::Panel( parent, panelName )
 {
@@ -233,8 +228,13 @@ void CBaseHudChatInputLine::ApplySchemeSettings(vgui::IScheme *pScheme)
 	m_pPrompt->SetContentAlignment( vgui::Label::a_west );
 	m_pPrompt->SetTextInset( 2, 0 );
 
+#ifdef HL1_CLIENT_DLL
+	m_pInput->SetBgColor( Color( 255, 255, 255, 0 ) );
+#else
 	m_pInput->SetFgColor( GetFgColor() );
 	m_pInput->SetBgColor( GetBgColor() );
+#endif
+
 }
 
 void CBaseHudChatInputLine::SetPrompt( const wchar_t *prompt )
@@ -281,6 +281,7 @@ vgui::Panel *CBaseHudChatInputLine::GetInputPanel( void )
 {
 	return m_pInput;
 }
+#endif //_XBOX
 
 int CBaseHudChat::m_nLineCounter = 1;
 //-----------------------------------------------------------------------------
@@ -292,7 +293,7 @@ CBaseHudChat::CBaseHudChat( const char *pElementName )
 	vgui::Panel *pParent = g_pClientMode->GetViewport();
 	SetParent( pParent );
 
-	vgui::HScheme scheme = vgui::scheme()->LoadSchemeFromFile("resource/ClientScheme.res", "ClientScheme");
+	vgui::HScheme scheme = vgui::scheme()->LoadSchemeFromFileEx( enginevgui->GetPanel( PANEL_CLIENTDLL ), "resource/ClientScheme.res", "ClientScheme");
 	SetScheme(scheme);
 
 	m_nMessageMode = 0;
@@ -310,7 +311,10 @@ CBaseHudChat::CBaseHudChat( const char *pElementName )
 		m_pChatInput->SetBounds( 1, h - m_iFontHeight - 1, w-2, m_iFontHeight );
 	}
 
-	vgui::ivgui()->AddTickSignal( GetVPanel() );
+	if ( IsPC() )
+	{
+		vgui::ivgui()->AddTickSignal( GetVPanel() );
+	}
 
 	// (We don't actually want input until they bring up the chat line).
 	MakePopup();
@@ -321,16 +325,23 @@ CBaseHudChat::CBaseHudChat( const char *pElementName )
 
 CBaseHudChat::~CBaseHudChat()
 {
+	if ( IsXbox() )
+		return;
+
+	gameeventmanager->RemoveListener( this );
 }
 
 void CBaseHudChat::CreateChatInputLine( void )
 {
+#ifndef _XBOX
 	m_pChatInput = new CBaseHudChatInputLine( this, "ChatInputLine" );
 	m_pChatInput->SetVisible( false );
+#endif
 }
 
 void CBaseHudChat::CreateChatLines( void )
 {
+#ifndef _XBOX
 	for ( int i = 0; i < CHAT_INTERFACE_LINES; i++ )
 	{
 		char sz[ 32 ];
@@ -338,6 +349,7 @@ void CBaseHudChat::CreateChatLines( void )
 		m_ChatLines[ i ] = new CBaseHudChatLine( this, sz );
 		m_ChatLines[ i ]->SetVisible( false );		
 	}
+#endif
 }
 
 void CBaseHudChat::ApplySchemeSettings( vgui::IScheme *pScheme )
@@ -350,22 +362,41 @@ void CBaseHudChat::ApplySchemeSettings( vgui::IScheme *pScheme )
 	m_nVisibleHeight = 0;
 
 	// Put input area at bottom
-	int w, h;
-	GetSize( w, h );
-	m_pChatInput->SetBounds( 1, h - m_iFontHeight - 1, w-2, m_iFontHeight );
+	if ( m_pChatInput )
+	{
+		int w, h;
+		GetSize( w, h );
+		m_pChatInput->SetBounds( 1, h - m_iFontHeight - 1, w-2, m_iFontHeight );
+	}
 
+#ifdef HL1_CLIENT_DLL
+	SetBgColor( Color( 0, 0, 0, 0 ) );
+	SetFgColor( Color( 0, 0, 0, 0 ) );
+#else
 	SetBgColor( Color( 0, 0, 0, 100 ) );
+#endif
+
 }
 
 void CBaseHudChat::Reset( void )
 {
+#ifndef HL1_CLIENT_DLL
 	m_nVisibleHeight = 0;
 	Clear();
+#endif
 }
 
+#ifdef _XBOX
+bool CBaseHudChat::ShouldDraw()
+{
+	// never think, never draw
+	return false;
+}
+#endif
 
 void CBaseHudChat::Paint( void )
 {
+#ifndef _XBOX
 	if ( m_nVisibleHeight == 0 )
 		return;
 
@@ -377,14 +408,21 @@ void CBaseHudChat::Paint( void )
 
 	vgui::surface()->DrawSetColor( GetFgColor() );
 	vgui::surface()->DrawOutlinedRect( 0, h - m_nVisibleHeight, w, h );
+#endif
 }
 
 void CBaseHudChat::Init( void )
 {
+	if ( IsXbox() )
+		return;
+
 	CreateChatInputLine();
 	CreateChatLines();
+
+	gameeventmanager->AddListener( this, "hltv_chat", false );
 }
 
+#ifndef _XBOX
 static int __cdecl SortLines( void const *line1, void const *line2 )
 {
 	CBaseHudChatLine *l1 = *( CBaseHudChatLine ** )line1;
@@ -410,6 +448,7 @@ static int __cdecl SortLines( void const *line1, void const *line2 )
 
 	return 0;
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // Purpose: Allow inheriting classes to change this spacing behavior
@@ -425,6 +464,7 @@ int CBaseHudChat::GetChatInputOffset( void )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::OnTick( void )
 {
+#ifndef _XBOX
 	int i;
 	for ( i = 0; i < CHAT_INTERFACE_LINES; i++ )
 	{
@@ -502,6 +542,7 @@ void CBaseHudChat::OnTick( void )
 	}
 
 	vgui::surface()->MovePopupToBack( GetVPanel() );
+#endif
 }
 
 // Release build is crashing on long strings...sigh
@@ -516,6 +557,7 @@ void CBaseHudChat::OnTick( void )
 //-----------------------------------------------------------------------------
 int CBaseHudChat::ComputeBreakChar( int width, const char *text, int textlen )
 {
+#ifndef _XBOX
 	CBaseHudChatLine *line = m_ChatLines[ 0 ];
 	vgui::HFont font = line->GetFont();
 
@@ -557,6 +599,9 @@ int CBaseHudChat::ComputeBreakChar( int width, const char *text, int textlen )
 		return lastbreak;
 	}
 	return textlen;
+#else
+	return 0;
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -566,6 +611,7 @@ int CBaseHudChat::ComputeBreakChar( int width, const char *text, int textlen )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::Printf( const char *fmt, ... )
 {
+#ifndef _XBOX
 	// No chat text in single player
 	if ( gpGlobals->maxClients == 1 )
 	{
@@ -696,6 +742,7 @@ void CBaseHudChat::Printf( const char *fmt, ... )
 	
 	CLocalPlayerFilter filter;
 	C_BaseEntity::EmitSound( filter, SOUND_FROM_LOCAL_PLAYER, "HudChat.Message" );
+#endif
 }
 	
 #pragma optimize( "", on )
@@ -705,6 +752,7 @@ void CBaseHudChat::Printf( const char *fmt, ... )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::StartMessageMode( int iMessageModeType )
 {
+#ifndef _XBOX
 	m_nMessageMode = iMessageModeType;
 
 	m_pChatInput->ClearEntry();
@@ -723,6 +771,7 @@ void CBaseHudChat::StartMessageMode( int iMessageModeType )
 	m_pChatInput->SetVisible( true );
 	vgui::surface()->CalculateMouseVisible();
 	m_pChatInput->RequestFocus();
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -730,8 +779,10 @@ void CBaseHudChat::StartMessageMode( int iMessageModeType )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::StopMessageMode( void )
 {
+#ifndef _XBOX
 	SetKeyBoardInputEnabled( false );
 	m_pChatInput->SetVisible( false );
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -740,6 +791,7 @@ void CBaseHudChat::StopMessageMode( void )
 //-----------------------------------------------------------------------------
 CBaseHudChatLine *CBaseHudChat::FindUnusedChatLine( void )
 {
+#ifndef _XBOX
 	for ( int i = 0; i < CHAT_INTERFACE_LINES; i++ )
 	{
 		CBaseHudChatLine *line = m_ChatLines[ i ];
@@ -752,6 +804,9 @@ CBaseHudChatLine *CBaseHudChat::FindUnusedChatLine( void )
 		return line;
 	}
 	return NULL;
+#else
+	return NULL;
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -759,6 +814,7 @@ CBaseHudChatLine *CBaseHudChat::FindUnusedChatLine( void )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::ExpireOldest( void )
 {
+#ifndef _XBOX
 	float oldestTime = 100000000.0f;
 	CBaseHudChatLine *oldest = NULL;
 
@@ -791,10 +847,12 @@ void CBaseHudChat::ExpireOldest( void )
 	}
 
 	oldest->Expire(); 
+#endif
 }
 
 void CBaseHudChat::Send( void )
 {
+#ifndef _XBOX
 	wchar_t szTextbuf[128];
 
 	m_pChatInput->GetMessageText( szTextbuf, sizeof( szTextbuf ) );
@@ -824,6 +882,7 @@ This is a very long string that I am going to attempt to paste into the cs hud c
 	}
 	
 	m_pChatInput->ClearEntry();
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -832,7 +891,11 @@ This is a very long string that I am going to attempt to paste into the cs hud c
 //-----------------------------------------------------------------------------
 vgui::Panel *CBaseHudChat::GetInputPanel( void )
 {
+#ifndef _XBOX
 	return m_pChatInput->GetInputPanel();
+#else
+	return NULL;
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -840,6 +903,7 @@ vgui::Panel *CBaseHudChat::GetInputPanel( void )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::Clear( void )
 {
+#ifndef _XBOX
 	// Kill input prompt
 	StopMessageMode();
 
@@ -855,6 +919,7 @@ void CBaseHudChat::Clear( void )
 
 		line->Expire();
 	}
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -878,4 +943,24 @@ void CBaseHudChat::LevelShutdown( void )
 //-----------------------------------------------------------------------------
 void CBaseHudChat::ChatPrintf( int iPlayerIndex, const char *fmt, ... )
 {
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CBaseHudChat::FireGameEvent( IGameEvent *event )
+{
+#ifndef _XBOX
+	const char *eventname = event->GetName();
+
+	if ( Q_strcmp( "hltv_chat", eventname ) == 0 )
+	{
+		C_BasePlayer *player = C_BasePlayer::GetLocalPlayer();
+
+		if ( !player )
+			return;
+		
+		ChatPrintf( player->entindex(), "(SourceTV) %s", event->GetString( "text" ) );
+	}
+#endif
 }

@@ -123,7 +123,7 @@ public:
 
 // NPCs
 	virtual bool FAllowNPCs( void );
-
+	
 	// Immediately end a multiplayer game
 	virtual void EndMultiplayerGame( void ) { GoToIntermission(); }
 

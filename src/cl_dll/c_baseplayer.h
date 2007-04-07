@@ -26,6 +26,11 @@ class C_BaseViewModel;
 class C_FuncLadder;
 class CFlashlightEffect;
 
+extern int g_nKillCamMode;
+extern int g_nKillCamTarget1;
+extern int g_nKillCamTarget2;
+extern int g_nUsedPrediction; 
+
 class C_CommandContext
 {
 public:
@@ -33,6 +38,13 @@ public:
 
 	CUserCmd		cmd;
 	int				command_number;
+};
+
+class C_PredictionError
+{
+public:
+	float	time;
+	Vector	error;
 };
 
 #define CHASE_CAM_DISTANCE		96.0f
@@ -71,6 +83,8 @@ public:
 
 	virtual void	MakeTracer( const Vector &vecTracerSrc, const trace_t &tr, int iTracerType );
 
+	virtual void	GetToolRecordingState( KeyValues *msg );
+
 	void	SetAnimationExtension( const char *pExtension );
 
 	C_BaseViewModel		*GetViewModel( int viewmodelindex = 0 );
@@ -78,7 +92,7 @@ public:
 
 	// View model prediction setup
 	virtual void		CalcView( Vector &eyeOrigin, QAngle &eyeAngles, float &zNear, float &zFar, float &fov );
-	void				CalcViewModelView( const Vector& eyeOrigin, const QAngle& eyeAngles);
+	virtual void		CalcViewModelView( const Vector& eyeOrigin, const QAngle& eyeAngles);
 	
 
 	// Handle view smoothing when going up stairs
@@ -91,12 +105,12 @@ public:
 	virtual void			Weapon_DropPrimary( void ) {}
 
 	virtual float			GetPredictedSpread();
-
-	virtual Vector			GetAutoaimVector( float flDelta  );
+	virtual Vector			GetAutoaimVector( float flScale );
 	void					SetSuitUpdate(char *name, int fgroup, int iNoRepeat);
 
 	// Input handling
 	virtual void	CreateMove( float flInputSampleTime, CUserCmd *pCmd );
+	virtual void	AvoidPhysicsProps( CUserCmd *pCmd );
 	
 	virtual void	PlayerUse( void );
 	CBaseEntity		*FindUseEntity( void );
@@ -108,10 +122,12 @@ public:
 
 	// observer mode
 	virtual int			GetObserverMode() const;
-	virtual CBaseEntity	*GetObserverTarget() const;			// This can return a non-player entity (like a ragdoll entity).
+	virtual CBaseEntity	*GetObserverTarget() const;
 	virtual CBaseEntity	*GetObserverTargetPlayer() const;	// This will return the player that they're observering (even
 															// if m_hObserverTarget is actually a ragdoll.
 
+	void			SetObserverTarget( EHANDLE hObserverTarget );
+	
 	bool	CanSprint( void );
 	void	StartSprinting( void );
 	void	StopSprinting( void );
@@ -122,6 +138,7 @@ public:
 	bool IsObserver() const;
 	bool IsHLTV() const;
 	void ResetObserverMode();
+	bool IsBot( void ) const { return false; }
 
 	// Eye position..
 	virtual Vector		 EyePosition();
@@ -151,7 +168,7 @@ public:
 
 	// Returns the view model if this is the local player. If you're in third person or 
 	// this is a remote player, it returns the active weapon
-	// (and its appropriate left/right weapon if this is TF2).
+	// 
 	virtual C_BaseAnimating*	GetRenderedWeaponModel();
 
 	virtual bool				IsOverridingViewmodel( void ) { return false; };
@@ -174,16 +191,19 @@ public:
 	bool						IsLocalPlayer( void ) const;
 
 	// Global/static methods
+	static bool					ShouldDrawLocalPlayer();
 	static C_BasePlayer			*GetLocalPlayer( void );
 	int							GetUserID( void );
 
 	// Called by the view model if its rendering is being overridden.
 	virtual bool		ViewModel_IsTransparent( void );
 
+#if !defined( NO_ENTITY_PREDICTION )
 	void						AddToPlayerSimulationList( C_BaseEntity *other );
 	void						SimulatePlayerSimulatedEntities( void );
 	void						RemoveFromPlayerSimulationList( C_BaseEntity *ent );
 	void						ClearPlayerSimulationList( void );
+#endif
 
 	virtual void				PhysicsSimulate( void );
 	virtual unsigned int	PhysicsSolidMaskForEntity( void ) const { return MASK_PLAYERSOLID; }
@@ -219,8 +239,11 @@ public:
 	void						ViewPunchReset( float tolerance = 0 );
 
 	void						UpdateButtonState( int nUserCmdButtonMask );
+	int							GetImpulse( void ) const;
 
 	virtual void				Simulate();
+
+	virtual bool				ShouldInterpolate();
 
 	virtual bool				ShouldDraw();
 	virtual int					DrawModel( int flags );
@@ -265,6 +288,7 @@ public:
 
 	// Get the command number associated with the current usercmd we're running (if in predicted code).
 	int CurrentCommandNumber() const;
+	const CUserCmd *GetCurrentUserCommand() const;
 
 	const QAngle& GetPunchAngle();
 	void SetPunchAngle( const QAngle &angle );
@@ -282,16 +306,21 @@ public:
 
 	virtual void UpdateStepSound( surfacedata_t *psurface, const Vector &vecOrigin, const Vector &vecVelocity  );
 	virtual void PlayStepSound( Vector &vecOrigin, surfacedata_t *psurface, float fvol, bool force );
+	virtual surfacedata_t * GetFootstepSurface( const Vector &origin, const char *surfaceName );
 
 	// Called by prediction when it detects a prediction correction.
 	// vDelta is the line from where the client had predicted the player to at the usercmd in question,
 	// to where the server says the client should be at said usercmd.
 	void NotePredictionError( const Vector &vDelta );
-
+	
 	// Called by the renderer to apply the prediction error smoothing.
 	void GetPredictionErrorSmoothingVector( Vector &vOffset ); 
 
 	virtual void ExitLadder() {}
+
+	surfacedata_t *GetSurfaceData( void ) { return m_pSurfaceData; }
+
+	void SetLadderNormal( Vector vecLadderNormal ) { m_vecLadderNormal = vecLadderNormal; }
 
 public:
 	int m_StuckLast;
@@ -301,6 +330,12 @@ public:
 
 	// Data common to all other players, too
 	CPlayerState			pl;
+
+	// Player FOV values
+	int						m_iFOV;				// field of view
+	int						m_iFOVStart;		// starting value of the FOV changing over time (client only)
+	float					m_flFOVTime;		// starting time of the FOV zoom
+	int						m_iDefaultFOV;		// default FOV if no other zooms are occurring
 
 	// For weapon prediction
 	bool			m_fOnTarget;		//Is the crosshair on a target?
@@ -372,6 +407,7 @@ private:
 	// Vehicle stuff.
 	EHANDLE			m_hVehicle;
 	EHANDLE			m_hOldVehicle;
+	EHANDLE			m_hUseEntity;
 	
 	float			m_flMaxspeed;
 	int				m_iHealth;
@@ -388,8 +424,7 @@ private:
 
 	float			m_flSwimSoundTime;
 	Vector			m_vecLadderNormal;
-	CHandle< C_FuncLadder >	m_hLadder;
-
+	
 	QAngle			m_vecOldViewAngles;
 
 	bool			m_bWasFrozen;
@@ -406,13 +441,13 @@ private:
 	typedef CHandle<C_BaseCombatWeapon> CBaseCombatWeaponHandle;
 	CNetworkVar( CBaseCombatWeaponHandle, m_hLastWeapon );
 
+#if !defined( NO_ENTITY_PREDICTION )
 	CUtlVector< CHandle< C_BaseEntity > > m_SimulatedByThisPlayer;
+#endif
 
 	// players own view models, left & right hand
 	CHandle< C_BaseViewModel >	m_hViewModel[ MAX_VIEWMODELS ];		
-	// view models of other player how is spectated in eyes
-	CHandle< C_BaseViewModel >	m_hObserverViewModel[ MAX_VIEWMODELS ]; 
-
+	
 	float					m_flOldPlayerZ;
 	float					m_flOldPlayerViewOffsetZ;
 	
@@ -429,19 +464,27 @@ private:
 
 	friend class CPrediction;
 
-	// HACK FOR TF2 Prediction
 	friend class CTFGameMovementRecon;
 	friend class CGameMovement;
 	friend class CTFGameMovement;
 	friend class CHL1GameMovement;
 	friend class CCSGameMovement;
 	friend class CHL2GameMovement;
+	friend class CDODGameMovement;
+	
+	// Accessors for gamemovement
+	float GetStepSize( void ) const { return m_Local.m_flStepSize; }
 
 	float m_flNextAvoidanceTime;
 	float m_flAvoidanceRight;
 	float m_flAvoidanceForward;
 	float m_flAvoidanceDotForward;
 	float m_flAvoidanceDotRight;
+
+protected:
+	virtual bool IsDucked( void ) const { return m_Local.m_bDucked; }
+	virtual bool IsDucking( void ) const { return m_Local.m_bDucking; }
+	virtual float GetFallVelocity( void ) { return m_Local.m_flFallVelocity; }
 
 	float m_flLaggedMovementValue;
 
@@ -450,8 +493,8 @@ private:
 	// the errors not be so jerky.
 	Vector m_vecPredictionError;
 	float m_flPredictionErrorTime;
-
-	char m_szLastPlaceName[16];	// received from the server
+	
+	char m_szLastPlaceName[MAX_PLACE_NAME_LENGTH];	// received from the server
 
 	// Texture names and surface data, used by CGameMovement
 	int				m_surfaceProps;
@@ -465,11 +508,11 @@ public:
 
 	float GetLaggedMovementValue( void ){ return m_flLaggedMovementValue;	}
 	bool  ShouldGoSouth( Vector vNPCForward, Vector vNPCRight ); //Such a bad name.
+
+	void SetOldPlayerZ( float flOld ) { m_flOldPlayerZ = flOld;	}
 };
 
 EXTERN_RECV_TABLE(DT_BasePlayer);
-
-extern C_BasePlayer *g_pLocalPlayer;
 
 //-----------------------------------------------------------------------------
 // Inline methods
@@ -492,27 +535,14 @@ inline IClientVehicle *C_BasePlayer::GetVehicle()
 	return pVehicleEnt ? pVehicleEnt->GetClientVehicle() : NULL;
 }
 
-//-----------------------------------------------------------------------------
-// Purpose: Gets a pointer to the local player, if it exists yet.
-// Output : C_BasePlayer
-//-----------------------------------------------------------------------------
-inline C_BasePlayer *C_BasePlayer::GetLocalPlayer( void )
-{
-	return g_pLocalPlayer;
-}
-
 inline bool C_BasePlayer::IsObserver() const 
 { 
-	if ( IsLocalPlayer() )
-	{
-		// we always know it exactly for ourself
-		return (m_iObserverMode != OBS_MODE_NONE); 
-	}
-	else
-	{
-		// assume other players are in observer mode if dead
-		return m_lifeState != LIFE_ALIVE;
-	}
+	return (GetObserverMode() != OBS_MODE_NONE); 
+}
+
+inline int C_BasePlayer::GetImpulse( void ) const 
+{ 
+	return m_nImpulse; 
 }
 
 
@@ -527,5 +557,10 @@ inline int CBasePlayer::CurrentCommandNumber() const
 	return m_pCurrentCommand->command_number;
 }
 
+inline const CUserCmd *CBasePlayer::GetCurrentUserCommand() const
+{
+	Assert( m_pCurrentCommand );
+	return m_pCurrentCommand;
+}
 
 #endif // C_BASEPLAYER_H

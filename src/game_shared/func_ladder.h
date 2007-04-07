@@ -93,12 +93,14 @@ private:
 	bool		m_bDisabled;
 	CNetworkVar( bool,	m_bFakeLadder );
 
-#if !defined( CLIENT_DLL )
+#if defined( GAME_DLL )
 	//-----------------------------------------------------
 	//	Outputs
 	//-----------------------------------------------------
 	COutputEvent	m_OnPlayerGotOnLadder;
 	COutputEvent	m_OnPlayerGotOffLadder;
+
+	virtual int UpdateTransmitState();
 #endif
 };
 

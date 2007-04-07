@@ -23,7 +23,6 @@ IMPLEMENT_CLIENTCLASS_DT(C_BreakableProp, DT_BreakableProp, CBreakableProp)
 	RecvPropFloat( RECVINFO( m_flFadeScale ) ), 
 END_RECV_TABLE()
 
-
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -36,7 +35,6 @@ C_BreakableProp::C_BreakableProp( void )
 	
 	m_takedamage = DAMAGE_YES;
 }
-
 
 //-----------------------------------------------------------------------------
 // Fade out
@@ -52,7 +50,6 @@ void C_BreakableProp::SetFadeMinMax( float fademin, float fademax )
 	m_fadeMinDist = fademin;
 	m_fadeMaxDist = fademax;
 }
-
 
 //-----------------------------------------------------------------------------
 // Copy fade from another breakable prop

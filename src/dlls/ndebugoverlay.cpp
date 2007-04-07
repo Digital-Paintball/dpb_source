@@ -258,5 +258,8 @@ CON_COMMAND( clear_debug_overlays, "clears debug overlays" )
 	}
 	
 	// Clear all engine overlays
-	debugoverlay->ClearAllOverlays();
+	if ( debugoverlay )
+	{
+		debugoverlay->ClearAllOverlays();
+	}
 }

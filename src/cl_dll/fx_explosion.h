@@ -27,14 +27,14 @@ private:
 	static C_BaseExplosionEffect	m_instance;
 
 public:
-					~C_BaseExplosionEffect( void ) {}
+			~C_BaseExplosionEffect( void ) {}
 
 	static	C_BaseExplosionEffect &Instance( void )	{	return m_instance;	}
 
 	virtual void	Create( const Vector &position, float force, float scale, int flags );
 
 protected:
-					C_BaseExplosionEffect( void )	{}
+					C_BaseExplosionEffect( void );
 
 	virtual void	PlaySound( void );
 
@@ -54,6 +54,10 @@ protected:
 	Vector	m_vecDirection;
 	float	m_flForce;
 	int		m_fFlags;
+
+	PMaterialHandle	m_Material_Smoke;
+	PMaterialHandle m_Material_Embers[2];
+	PMaterialHandle m_Material_FireCloud;
 };
 
 //Singleton accessor

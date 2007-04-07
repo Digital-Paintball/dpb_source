@@ -1,9 +1,9 @@
-//========= Copyright © 1996-2001, Valve LLC, All rights reserved. ============
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Player for HL1.
 //
 // $NoKeywords: $
-//=============================================================================
+//=============================================================================//
 
 #include "cbase.h"
 #include "sdk_player.h"
@@ -14,6 +14,7 @@
 #include "viewport_panel_names.h"
 
 extern int gEvilImpulse101;
+
 #define SDK_PLAYER_MODEL "models/player/player.mdl"
 
 
@@ -159,11 +160,11 @@ void CSDKPlayer::LeaveVehicle( const Vector &vecExitPoint, const QAngle &vecExit
 {
 	BaseClass::LeaveVehicle( vecExitPoint, vecExitAngles );
 
-	//teleoprt physics shadow too
-	Vector newPos = GetAbsOrigin();
-	QAngle newAng = GetAbsAngles();
+	//teleport physics shadow too
+	// Vector newPos = GetAbsOrigin();
+	// QAngle newAng = GetAbsAngles();
 
-	Teleport( &newPos, &newAng, &vec3_origin );
+	// Teleport( &newPos, &newAng, &vec3_origin );
 }
 
 void CSDKPlayer::PreThink(void)
@@ -243,6 +244,31 @@ void CSDKPlayer::Event_Killed( const CTakeDamageInfo &info )
 	// because we still want to transmit to the clients in our PVS.
 
 	BaseClass::Event_Killed( info );
+}
+
+void CSDKPlayer::CreateRagdollEntity()
+{
+	// If we already have a ragdoll, don't make another one.
+	CSDKRagdoll *pRagdoll = dynamic_cast< CSDKRagdoll* >( m_hRagdoll.Get() );
+
+	if ( !pRagdoll )
+	{
+		// create a new one
+		pRagdoll = dynamic_cast< CSDKRagdoll* >( CreateEntityByName( "sdk_ragdoll" ) );
+	}
+
+	if ( pRagdoll )
+	{
+		pRagdoll->m_hPlayer = this;
+		pRagdoll->m_vecRagdollOrigin = GetAbsOrigin();
+		pRagdoll->m_vecRagdollVelocity = GetAbsVelocity();
+		pRagdoll->m_nModelIndex = m_nModelIndex;
+		pRagdoll->m_nForceBone = m_nForceBone;
+		pRagdoll->m_vecForce = Vector(0,0,0);
+	}
+
+	// ragdolls will be removed on round restart automatically
+	m_hRagdoll = pRagdoll;
 }
 
 void CSDKPlayer::DoAnimationEvent( PlayerAnimEvent_t event )

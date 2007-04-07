@@ -32,11 +32,12 @@ struct opendata_t
 };
 
 
-class CBasePropDoor : public CDynamicProp
+abstract_class CBasePropDoor : public CDynamicProp
 {
 public:
 
 	DECLARE_CLASS( CBasePropDoor, CDynamicProp );
+	DECLARE_SERVERCLASS();
 
 	CBasePropDoor( void );
 
@@ -191,6 +192,8 @@ private:
 	//float m_flSpeed;			// Rotation speed when opening or closing in degrees per second.
 
 	DECLARE_DATADESC();
+
+	string_t m_SlaveName;
 
 	CHandle< CBasePropDoor > m_hMaster;
 
