@@ -45,17 +45,14 @@ void FinishClientPutInServer( CSDKPlayer *pPlayer )
 	pPlayer->InitialSpawn();
 	pPlayer->Spawn();
 
-	CArena::SpawnPlayer(pPlayer);
-
 	if (!pPlayer->IsBot())
 	{
 		// When the player first joins the server, they
-		pPlayer->m_takedamage = DAMAGE_YES;
-		pPlayer->pl.deadflag = false;
-		pPlayer->m_lifeState = LIFE_ALIVE;
-		pPlayer->RemoveEffects( EF_NODRAW );
-		pPlayer->ChangeTeam( TEAM_UNASSIGNED );
-		pPlayer->SetThink( NULL );
+		pPlayer->SetMoveType(MOVETYPE_NONE);
+		pPlayer->EnableControl(false);
+		pPlayer->AddSolidFlags(FSOLID_NOT_SOLID);
+		pPlayer->m_takedamage = DAMAGE_NO;
+		pPlayer->AddEffects(EF_NODRAW);
 	}
 
 	char sName[128];

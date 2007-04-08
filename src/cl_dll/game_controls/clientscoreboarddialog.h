@@ -15,6 +15,14 @@
 #include <cl_dll/iviewport.h>
 #include <igameevents.h>
 
+enum ScoreboardSections_t // jeff 4/8 updated team code
+{
+	TEAMSECTION_RED = 1,
+	TEAMSECTION_BLUE,
+	TEAMSECTION_UNASSIGNED,
+	TEAMSECTION_COUNT
+};
+
 #define TYPE_NOTEAM			0	// NOTEAM must be zero :)
 #define TYPE_TEAM			1	// a section for a single team	
 #define TYPE_UNASSIGNED		2	// a section for a spectator group
@@ -103,9 +111,9 @@ private:
 	float		m_fNextUpdateTime;
 
 private:
-	int m_iTeamSections[TEAM_COUNT];	//store off the section id's of each team
-	int m_iPlayersOnTeam[TEAM_COUNT];	//store the player counts
-	int m_iLatency[TEAM_COUNT];			//i suppose we could just make a single struct for all this info ;)
+	int m_iTeamSections[TEAMSECTION_COUNT];	//store off the section id's of each team
+	int m_iPlayersOnTeam[TEAMSECTION_COUNT];	//store the player counts
+	int m_iLatency[TEAMSECTION_COUNT];			//i suppose we could just make a single struct for all this info ;)
 
 	// methods
 	void FillScoreBoard();

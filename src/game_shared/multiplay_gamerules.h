@@ -39,7 +39,7 @@ public:
 #else
 
 	CMultiplayRules();
-	virtual ~CMultiplayRules() {}
+	virtual ~CMultiplayRules(); // jeff 4/8 
 
 // GR_Think
 	virtual void Think( void );

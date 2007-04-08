@@ -151,8 +151,8 @@ public:
 	#define MAX_PLAYERS				32  // Absolute max players supported
 #endif
 */
-#define MAX_PLAYERS 72 // Absolute max players supported.
-// Jeff - I'm not afraid of your comment, ywb. MAX_PLAYERS 72! RAWR
+#define MAX_PLAYERS 48 // Absolute max players supported.
+// Jeff - I'm not afraid of your comment, ywb. MAX_PLAYERS 48! RAWR
 
 #define MAX_PLACE_NAME_LENGTH		18
 
@@ -160,12 +160,13 @@ public:
 // Team Defines
 enum eteams_list
 {
-    TEAM_UNASSIGNED = 0,    // not assigned to a team
-    TEAM_BLUE = 1,			// These values are important, don't change.
-    TEAM_RED = 2,           // jeff - they weren't kidding
-    TEAM_SPECTATOR,
+	TEAM_UNASSIGNED = 0,		// viewing from a viewpoint
+    TEAM_INGAME,				// in the game, waiting for an arena
+    TEAM_SPECTATOR,				// flying around etc
     TEAM_COUNT
 };
+
+#define TEAM_PLAY_COUNT			2
 
 #define MAX_TEAMS				32	// Max number of teams in a game
 #define MAX_TEAM_NAME_LENGTH	32	// Max length of a team's name

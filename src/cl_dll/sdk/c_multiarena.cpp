@@ -9,14 +9,54 @@
 #include "clientscoreboarddialog.h"
 #include "hud_macros.h"
 
+#include "c_playerresource.h"
+#include "c_team.h" // jeff 4/8 - revamped team code
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
+
+void RecvProxyArrayLength_Arena_TeamArray( void *pStruct, int objectID, int currentArrayLength ) // jeff 4/8 - revamped team code
+{
+}
+
+void SetTeamRef( C_Arena *pArena, int iTeamID, int iTeamRef ) // jeff 4/8 - revamped team code
+{
+	if( !pArena )
+		return;
+
+	EHANDLE Parent;
+	IntToHandle( &Parent, iTeamRef );
+
+	if( !Parent.IsValid() )
+		return;
+
+	C_Team *pTeam = dynamic_cast< C_Team* >( Parent.Get( ) );
+
+	if( !pTeam )
+		return;
+
+	pArena->SetTeam( iTeamID, pTeam );
+}
+
+void RecvProxy_Arena_TeamList( const CRecvProxyData *pData, void *pStruct, void *pOut ) // jeff 4/8 - revamped team code
+{
+	SetTeamRef( ( C_Arena* )pStruct, pData->m_iElement, pData->m_Value.m_Int );
+}
+
 
 IMPLEMENT_CLIENTCLASS_DT( C_Arena, DT_Arena, CArena )
 	RecvPropInt( RECVINFO( m_State ) ),
 	RecvPropInt( RECVINFO( m_iID ) ),
 	RecvPropInt( RECVINFO( m_iRedTeamScore ) ),
 	RecvPropInt( RECVINFO( m_iBlueTeamScore ) ),
+
+	RecvPropArray2( 
+		RecvProxyArrayLength_Arena_TeamArray,
+		RecvPropInt("team_element", 0, SIZEOF_IGNORE, 0, RecvProxy_Arena_TeamList), 
+		ARENATEAM_COUNT, 
+		0, 
+		"team_array"),
+	
 END_RECV_TABLE()
 
 CUtlVector<C_Arena*> C_Arena::s_hArenas;
@@ -67,6 +107,8 @@ C_Arena::C_Arena( )
 	m_iRedTeamScore=0;
 	m_iBlueTeamScore=0;
 	HOOK_MESSAGE(Arena);
+
+	memset(m_pTeams, NULL, sizeof( m_pTeams ) ); // jeff revamped team code 4/8 
 }
 
 C_Arena::~C_Arena( )
@@ -94,4 +136,26 @@ bool C_Arena::HasPlayer(C_BasePlayer *pPlayer)
 		return m_bHasLocalPlayer;
 	else
 		return false;
+}
+
+Color g_ArenaTeamColors[ ARENATEAM_COUNT ] = {
+	COLOR_RED,
+	COLOR_BLUE
+};
+
+Color C_Arena::GetTeamColor( int iPlayerID )
+{
+	if( g_PR->GetTeam( iPlayerID ) == TEAM_INGAME )
+	{
+		return g_ArenaTeamColors[ g_PR->GetArenaTeamID( iPlayerID ) ];
+	}
+	else
+	{
+		return g_PR->GetTeamColor( iPlayerID );
+	}
+}
+
+void C_Arena::SetTeam( int iTeamID, C_Team *pTeam )
+{
+	m_pTeams[ iTeamID ] = pTeam;
 }

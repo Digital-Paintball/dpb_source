@@ -53,6 +53,19 @@ END_SEND_TABLE()
 LINK_ENTITY_TO_CLASS( team_manager, CTeam );
 
 //-----------------------------------------------------------------------------
+// Purpose: Get a pointer to the specified team manager
+//-----------------------------------------------------------------------------
+CTeam *g_pTeams[ TEAM_COUNT ];
+
+CTeam *GetGlobalTeam( int iIndex )
+{
+	if ( iIndex < 0 || iIndex >= TEAM_COUNT )
+		return NULL;
+
+	return g_pTeams[ iIndex ];
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: Needed because this is an entity, but should never be used
 //-----------------------------------------------------------------------------
 CTeam::CTeam( void )
@@ -105,7 +118,7 @@ void CTeam::Init( const char *pName, int iNumber, CArena *pArena )
 	Q_strncpy( m_szTeamname.GetForModify(), pName, MAX_TEAM_NAME_LENGTH );
 	m_iTeamNum = iNumber;
 
-	AssertMsg(pArena, "Team initialized with NULL arena.");
+	// AssertMsg(pArena, "Team initialized with NULL arena.");
 	SetArena(pArena);
 }
 
@@ -149,7 +162,7 @@ void CTeam::InitializeSpawnpoints( void )
 void CTeam::AddSpawnpoint( CTeamSpawnPoint *pSpawnpoint )
 {
 	m_aSpawnPoints.AddToTail( pSpawnpoint );
-	GetArena()->CalculateSpawnAvg();
+	//GetArena()->CalculateSpawnAvg();
 }
 
 //-----------------------------------------------------------------------------
@@ -235,11 +248,12 @@ void CTeam::AddPlayer( CBasePlayer *pPlayer )
 	m_aPlayers.AddToTail( pPlayer );
 	NetworkStateChanged();
 
-	if (m_iTeamNum == TEAM_RED)
-		pPlayer->m_nSkin = pPlayer->m_iSkin; // random->RandomInt( 0, 3 ); // jeff, make it not random anymore
-	else if (m_iTeamNum == TEAM_BLUE)
-		pPlayer->m_nSkin = pPlayer->m_iSkin + 4; // random->RandomInt( 4, 7 );
+	CArena *pArena = GetArena();
+
+	if( pArena )
+		pArena->TeamAddedPlayer( pPlayer );
 }
+
 
 //-----------------------------------------------------------------------------
 // Purpose: Remove this player from the team
@@ -256,7 +270,7 @@ void CTeam::RemovePlayer( CBasePlayer *pPlayer )
 	pPlayer->ResetTeam();
 	NetworkStateChanged();
 
-	GetArena()->CheckForRoundEnd();
+	CheckForRoundEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -277,7 +291,7 @@ CBasePlayer *CTeam::GetPlayer( int iIndex )
 }
 
 //-----------------------------------------------------------------------------
-// Purpose: Player on this team was killed
+// Purpose: Reset players that are alive
 //-----------------------------------------------------------------------------
 void CTeam::ResetPlayersAlive( )
 {
@@ -286,7 +300,7 @@ void CTeam::ResetPlayersAlive( )
 		if (m_aPlayers[i]->IsAlive())
             m_iPlayersAlive++;
 
-	GetArena()->CheckForRoundEnd();
+	CheckForRoundEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -297,7 +311,7 @@ void CTeam::PlayerKilled( CBasePlayer *pPlayer )
 	if (m_aPlayers.HasElement(pPlayer))
 		m_iPlayersAlive--;
 
-	GetArena()->CheckForRoundEnd();
+	CheckForRoundEnd();
 }
 
 //-----------------------------------------------------------------------------
@@ -308,7 +322,7 @@ void CTeam::PlayerSpawn( CBasePlayer *pPlayer )
 	if (m_aPlayers.HasElement(pPlayer))
 		m_iPlayersAlive++;
 
-	GetArena()->CheckForRoundEnd();
+	CheckForRoundEnd();
 }
 
 //------------------------------------------------------------------------------------------------------------------
@@ -334,3 +348,10 @@ int CTeam::GetScore( void )
 	return m_iScore;
 }
 
+void CTeam::CheckForRoundEnd( void )
+{
+	CArena *pArena = GetArena();
+
+	if( pArena )
+		pArena->CheckForRoundEnd();
+}

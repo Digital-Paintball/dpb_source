@@ -47,6 +47,9 @@ public : // IGameResources intreface
 	virtual int		GetTeam( int index );
 	virtual int		GetFrags( int index );
 	virtual int		GetHealth( int index );
+	virtual bool	InArena( int index ); // jeff 4/8 updated team code
+	virtual int		GetArena( int index );
+	virtual int		GetArenaTeamID( int index );
 
 protected:
 	// Data for each player that's propagated to all clients
@@ -59,6 +62,8 @@ protected:
 	int		m_iTeam[MAX_PLAYERS+1];
 	bool	m_bAlive[MAX_PLAYERS+1];
 	int		m_iHealth[MAX_PLAYERS+1];
+	int		m_iArena[MAX_PLAYERS+1]; // jeff 4/8 updated team code.
+	int		m_iArenaTeamID[MAX_PLAYERS+1];
 	Color	m_Colors[MAX_TEAMS];
 
 };

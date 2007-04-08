@@ -23,6 +23,8 @@ IMPLEMENT_CLIENTCLASS_DT_NOBASE(C_PlayerResource, DT_PlayerResource, CPlayerReso
 	RecvPropArray3( RECVINFO_ARRAY(m_iTeam), RecvPropInt( RECVINFO(m_iTeam[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_bAlive), RecvPropInt( RECVINFO(m_bAlive[0]))),
 	RecvPropArray3( RECVINFO_ARRAY(m_iHealth), RecvPropInt( RECVINFO(m_iHealth[0]))),
+	RecvPropArray3( RECVINFO_ARRAY(m_iArena), RecvPropInt( RECVINFO(m_iArena[0]))), // jeff 4/8 revamped team code
+	RecvPropArray3( RECVINFO_ARRAY(m_iArenaTeamID), RecvPropInt( RECVINFO(m_iArenaTeamID[0]))), // jeff 4/8 revamped team code
 END_RECV_TABLE()
 
 C_PlayerResource *g_PR;
@@ -43,14 +45,14 @@ C_PlayerResource::C_PlayerResource()
 	memset( m_iTeam, 0, sizeof( m_iTeam ) );
 	memset( m_bAlive, 0, sizeof( m_bAlive ) );
 	memset( m_iHealth, 0, sizeof( m_iHealth ) );
+	memset( m_iArena, 0, sizeof ( m_iArena ) ); // jeff - more revamped team code
+	memset( m_iArenaTeamID, 0, sizeof( m_iArenaTeamID ) ); // jeff - lots of better team code
 
 	for ( int i=0; i<MAX_TEAMS; i++ )
 	{
 		m_Colors[i] = COLOR_GREY;
 	}
 
-	m_Colors[TEAM_BLUE] = COLOR_BLUE;
-	m_Colors[TEAM_RED] = COLOR_RED;
 	m_Colors[TEAM_UNASSIGNED] = COLOR_YELLOW;
 
 	g_PR = this;
@@ -236,6 +238,28 @@ int	C_PlayerResource::GetHealth( int iIndex )
 
 	return m_iHealth[iIndex];
 }
+
+bool C_PlayerResource::InArena( int index ) // jeff 4/8 revamped team code
+{
+	return ( GetArena( index ) != 0 );
+}
+
+int C_PlayerResource::GetArena( int index ) // jeff 4/8 revamped team code
+{
+	if ( !IsConnected( index ) )
+		return 0; // jeff - sometimes we return zero. make sure to account for this
+
+	return m_iArena[index] - 1;
+}
+
+int C_PlayerResource::GetArenaTeamID( int index ) // jeff 4/8 revamped team code
+{
+	if ( !IsConnected( index ) )
+		return 0;
+
+	return m_iArenaTeamID[index];
+}
+
 
 const Color &C_PlayerResource::GetTeamColor(int index )
 {

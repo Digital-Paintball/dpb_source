@@ -8,6 +8,7 @@
 #include "player.h"
 #include "player_resource.h"
 #include <coordsize.h>
+#include "multiarena.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -23,6 +24,8 @@ IMPLEMENT_SERVERCLASS_ST_NOBASE(CPlayerResource, DT_PlayerResource)
 	SendPropArray3( SENDINFO_ARRAY3(m_iTeam), SendPropInt( SENDINFO_ARRAY(m_iTeam), 4 ) ),
 	SendPropArray3( SENDINFO_ARRAY3(m_bAlive), SendPropInt( SENDINFO_ARRAY(m_bAlive), 1, SPROP_UNSIGNED ) ),
 	SendPropArray3( SENDINFO_ARRAY3(m_iHealth), SendPropInt( SENDINFO_ARRAY(m_iHealth), 8, SPROP_UNSIGNED ) ),
+	SendPropArray3( SENDINFO_ARRAY3(m_iArena), SendPropInt( SENDINFO_ARRAY(m_iArena), 8, SPROP_UNSIGNED ) ),
+	SendPropArray3( SENDINFO_ARRAY3(m_iArenaTeamID), SendPropInt( SENDINFO_ARRAY(m_iArenaTeamID), 8, SPROP_UNSIGNED ) ),
 END_SEND_TABLE()
 
 BEGIN_DATADESC( CPlayerResource )
@@ -60,6 +63,8 @@ void CPlayerResource::Spawn( void )
 		m_bConnected.Set( i, 0 );
 		m_iTeam.Set( i, 0 );
 		m_bAlive.Set( i, 0 );
+		m_iArena.Set( i, 0 );
+		m_iArenaTeamID.Set( i, 0 );
 	}
 
 	SetThink( &CPlayerResource::ResourceThink );
@@ -112,6 +117,20 @@ void CPlayerResource::UpdatePlayerData( void )
 			m_iTeam.Set( i, pPlayer->GetTeamNumber() );
 			m_bAlive.Set( i, pPlayer->IsAlive()?1:0 );
 			m_iHealth.Set(i, max( 0, pPlayer->GetHealth() ) );
+
+			CArena *pArena = pPlayer->GetArena();
+
+			int iArenaID = 0;
+			int iArenaTeamID = 0;
+
+			if( pArena )
+			{
+				iArenaID = pArena->GetArenaID() + 1;
+				iArenaTeamID = pPlayer->GetArenaTeam();
+			}
+				
+			m_iArena.Set( i, iArenaID );
+			m_iArenaTeamID.Set( i, iArenaTeamID );
 
 			// Don't update ping / packetloss everytime
 

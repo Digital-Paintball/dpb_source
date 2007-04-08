@@ -26,16 +26,50 @@ BEGIN_DATADESC( CArena )
 
 END_DATADESC()
 
+int SendProxyArrayLength_Arena_TeamArray(const void *pStruct, int objectID)
+{
+	return ARENATEAM_COUNT;
+}
+
+int GetTeamRef( CArena *pArena, int iTeamID )
+{
+	CTeam *pTeam = pArena->GetTeam( iTeamID );
+
+	if( !pTeam )
+		return 0;
+
+	return HandleToInt( &pTeam->GetRefEHandle() );
+}
+
+void SendProxy_Arena_TeamList(const SendProp *pProp, const void *pStruct, const void *pData, DVariant *pOut, int iElement, int objectID)
+{
+	CArena *pArena = (CArena*)pStruct;
+
+	if( !pArena )
+		return;
+
+	pOut->m_Int = GetTeamRef( pArena, iElement );
+}
+
+
 IMPLEMENT_SERVERCLASS_ST( CArena, DT_Arena )
 	SendPropInt( SENDINFO( m_State ), 2, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO( m_iID ), 4, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO( m_iRedTeamScore ), 4, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO( m_iBlueTeamScore ), 4, SPROP_UNSIGNED ),
+	SendPropArray2(SendProxyArrayLength_Arena_TeamArray,
+		SendPropEHandle( "team_element", 0, 0, SIZEOF_IGNORE, SendProxy_Arena_TeamList ),
+		ARENATEAM_COUNT, 
+		0, 
+		"team_array" ),
+
 END_SEND_TABLE() 
 
 LINK_ENTITY_TO_CLASS(game_arena, CArena);
 
 CUtlVector<CHandle<CArena> > CArena::s_hArenas;
+
+bool CArena::m_bTakenAvg = false;
 
 void CArena::Spawn( )
 {
@@ -63,7 +97,7 @@ void CArena::Spawn( )
 void CArena::AssembleArenas( )
 {
 	CBaseEntity *pList[1024];
-	CArena *pArena;
+	CArena *pArena = NULL;
 	for (int i = 0; i < s_hArenas.Count(); i++)
 	{
 		pArena = s_hArenas[i];
@@ -71,52 +105,51 @@ void CArena::AssembleArenas( )
 		int iResults = UTIL_EntitiesInBox( pList, 1024,
 			pArena->CollisionProp()->OBBMins() + pArena->GetAbsOrigin(),
 			pArena->CollisionProp()->OBBMaxs() + pArena->GetAbsOrigin(), 0 );
-		int j;
-		for (j = 0; j < iResults; j++)
+
+		for (int j = 0; j < iResults; j++)
 		{
 			if (pList[j] == pArena)
 				continue;
+
 			pArena->m_hObjects.AddToTail( pList[j] );
 			pList[j]->SetArena( pArena );
-
-			if (pList[j]->GetStartTeamNumber() == 0)
-				continue;
-
-			if (!pArena->HasTeam(pList[j]->GetStartTeamNumber()))
-			{
-				CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
-				pTeam->Init( pList[j]->GetStartTeamNumber()==1?"Blue":"Red", pList[j]->GetStartTeamNumber(), pArena );
-				pArena->m_hTeams.AddToTail(pTeam);
-				pArena->m_iRedTeamScore = 0;
-				pArena->m_iBlueTeamScore = 0; // reset team scores
-			}
 		}
+
+		for( int j = 0; j < ARENATEAM_COUNT; j++ )
+		{
+			CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
+			pTeam->Init( ( j == ARENATEAM_RED ) ? "Red" : "Blue", j, pArena );
+
+			pArena->m_pTeams[ j ] = pTeam;
+		}
+
+		pArena->m_iRedTeamScore = 0;
+		pArena->m_iBlueTeamScore = 0; // reset team scores
 	}
+}
+
+void CArena::GRThink( void )
+{
+	if( m_bTakenAvg )
+		return;
+
+	for( int i = 0; i < s_hArenas.Count(); i++)
+		s_hArenas[i]->CalculateSpawnAvg();
+	
+	m_bTakenAvg = true;
 }
 
 void CArena::CalculateSpawnAvg()
 {
 	m_vecSpawnAvg = Vector(0, 0, 0);
 
-	if (!GetTeamNumber())
-		return;
-
-	for (int i = 0; i < GetTeamNumber(); i++)
+	for (int i = 0; i < ARENATEAM_COUNT; i++)
 	{
-		m_hTeams[i]->AverageSpawns();
-		m_vecSpawnAvg += m_hTeams[i]->m_vecSpawnAvg;
+		m_pTeams[i]->AverageSpawns();
+		m_vecSpawnAvg += m_pTeams[i]->m_vecSpawnAvg;
 	}
 
-	m_vecSpawnAvg /= GetTeamNumber();
-}
-
-bool CArena::HasTeam(int iTeam)
-{
-	for (int i = 0; i < m_hTeams.Count(); i++)
-		if (m_hTeams[i]->m_iTeamNum == iTeam)
-			return true;
-
-	return false;
+	m_vecSpawnAvg /= ARENATEAM_COUNT;
 }
 
 void CArena::WaitingThink( )
@@ -146,9 +179,9 @@ void CArena::SetupRound( )
 
 	int iTeamsWithPlayers = 0;
 	//Check to see which teams have players at all.
- 	for (i = 0; i < m_hTeams.Count(); i++)
+ 	for (i = 0; i < ARENATEAM_COUNT; i++)
 	{
-		if (m_hTeams[i]->GetNumPlayers() > 0)
+		if (m_pTeams[i]->GetNumPlayers() > 0)
 		{
 			iTeamsWithPlayers += 1;
 		}
@@ -213,8 +246,7 @@ void CArena::SetupRound( )
 		pPlayer->ResetRounds();
 		pPlayer->SetArena(this);
 
-		if (!pPlayer->GetTeam())
-			AssignTeam(pPlayer);
+		AssignTeam(pPlayer);
 
 		CSingleUserRecipientFilter user( pPlayer );
 		user.MakeReliable();
@@ -232,7 +264,7 @@ void CArena::SetupRound( )
 			continue;
 
 		pPlayer->ResetFragCount(); // all your scores are die when you switch teams. sorry
-		SwitchTeam(pPlayer, 1); // red is team #1, blue is team #0. The devel plays on team -1. mwahaha.
+		SwitchTeam( pPlayer, ARENATEAM_RED );
 	}
 	// blue, too
 	for (i = 0; i < m_hSwitchersBlue.Count(); i++)
@@ -243,7 +275,7 @@ void CArena::SetupRound( )
 			continue;
 
 		pPlayer->ResetFragCount(); // all your scores are die when you switch teams. sorry
-		SwitchTeam(pPlayer, 0); 
+		SwitchTeam( pPlayer, ARENATEAM_BLUE );
 	}
 
 
@@ -262,9 +294,9 @@ void CArena::SetupRound( )
 
 	iTeamsWithPlayers = 0;
 	//Check to see which teams have players at all.
- 	for (i = 0; i < m_hTeams.Count(); i++)
+ 	for (i = 0; i < ARENATEAM_COUNT; i++)
 	{
-		if (m_hTeams[i]->GetNumPlayers() > 0)
+		if (m_pTeams[i]->GetNumPlayers() > 0)
 		{
 			iTeamsWithPlayers += 1;
 		}
@@ -285,10 +317,8 @@ void CArena::SetupRound( )
 
 		pPlayer->SetArena(this);
 
-		if (!pPlayer->GetTeam())
+		if (pPlayer->GetArenaTeam() == ARENATEAM_INVALID)
 			AssignTeam(pPlayer);
-
-		Assert(pPlayer->GetTeam());
 
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
@@ -326,9 +356,9 @@ void CArena::SetupRound( )
 			pPlayer->AddRound();
 	}
 
-	for (i = 0; i < m_hTeams.Count(); i++)
+	for (i = 0; i < ARENATEAM_COUNT; i++)
 	{
-		m_hTeams[i]->ResetPlayersAlive();
+		m_pTeams[i]->ResetPlayersAlive();
 	}
 
 	if (!bRoundStarting)
@@ -454,9 +484,9 @@ void CArena::CheckForRoundEnd( )
 	int iTeamsBitmask = 0;	//Bitmask of teams with players alive
 	int	iTeamsAlive = 0;	//Number of teams with players alive
 
- 	for (int i = 0; i < m_hTeams.Count(); i++)
+ 	for (int i = 0; i < ARENATEAM_COUNT; i++)
 	{
-		if (m_hTeams[i]->GetPlayersAlive() > 0)
+		if (m_pTeams[i]->GetPlayersAlive() > 0)
 		{
 			iTeamsBitmask |= (1<<i);
 			iTeamsAlive += 1;
@@ -629,15 +659,15 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 
 void CArena::SwitchQueueAdd( CBasePlayer *pPlayer, int newteam )
 {
-	// TODO - see todo in switchteam
 	CTeam *pTeam = NULL;
-	pTeam = m_hTeams[newteam];
-	if (newteam==1) // red
+	pTeam = m_pTeams[newteam];
+
+	if (newteam==ARENATEAM_RED) // red
 	{
 		m_hSwitchersRed.AddToTail (pPlayer);
 		ClientPrint( pPlayer, HUD_PRINTCENTER, "You will switch to the red team after the end of the round." );
 	}
-	if (newteam==0) // blue
+	if (newteam==ARENATEAM_BLUE) // blue
 	{
 		m_hSwitchersBlue.AddToTail (pPlayer);
 		ClientPrint( pPlayer, HUD_PRINTCENTER, "You will switch to the blue team after the end of the round." );
@@ -646,26 +676,24 @@ void CArena::SwitchQueueAdd( CBasePlayer *pPlayer, int newteam )
 
 void CArena::SwitchTeam( CBasePlayer *pPlayer, int newteam )
 {
-	// at some point, this should check spawns and so forth, and probably account for team balancing. consider it a TODO - jeff
-	CTeam *pTeam = NULL;
-	pTeam = m_hTeams[newteam];
-	pPlayer->ChangeTeam(pTeam->GetTeamNumber());
+	// TODO - jeff at some point, this should check spawns and so forth, and probably account for team balancing.
+	pPlayer->ChangeArenaTeam( newteam );
 }
 
 void CArena::AssignTeam( CBasePlayer *pPlayer )
 {
 	// Pick a team!
 	CTeam *pTeam = NULL;
-	for (int j = 0; j < m_hTeams.Count(); j++)
+	for (int j = 0; j < ARENATEAM_COUNT; j++)
 	{
 		if (!pTeam)
 		{
-			pTeam = m_hTeams[j];
+			pTeam = m_pTeams[j];
 			continue;
 		}
 
-		if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
-			pTeam = m_hTeams[j];
+		if (m_pTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
+			pTeam = m_pTeams[j];
 	}
 
 	if (!pTeam)
@@ -675,7 +703,8 @@ void CArena::AssignTeam( CBasePlayer *pPlayer )
 		return;
 	}
 
-	pPlayer->ChangeTeam(pTeam->GetTeamNumber());
+	pPlayer->ChangeArenaTeam( pTeam->GetTeamNumber() );
+
 }
 
 void CBasePlayer::QuitGame()
@@ -730,29 +759,51 @@ void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 	MessageEnd();
 }
 
-void CArena::SpawnPlayer( CBasePlayer *pPlayer, CArena* pArena )
+void CArena::TeamAddedPlayer( CBasePlayer *pPlayer )
+{
+	if( pPlayer->GetArenaTeam() == ARENATEAM_RED )
+		pPlayer->m_nSkin = pPlayer->m_iSkin; // random->RandomInt( 0, 3 ); // jeff, make it not random anymore
+	else if ( pPlayer->GetArenaTeam() == ARENATEAM_BLUE )
+		pPlayer->m_nSkin = pPlayer->m_iSkin + 4; // random->RandomInt( 4, 7 );
+}
+
+
+extern CUtlVector< CPointEntity* > g_ViewPoints;
+
+CBaseEntity *EntSelectViewPoint( CBasePlayer *pPlayer )
+{
+	if( g_ViewPoints.Count() == 0 )
+		return NULL;
+
+	return g_ViewPoints[ random->RandomInt( 0, g_ViewPoints.Count() ) ];
+}
+
+void CArena::SpawnPlayer( CBasePlayer *pPlayer, CArena *pArena )
 {
 	CBaseEntity *pSpawnSpot = NULL;
 
 	if (pArena)
 		pSpawnSpot = pPlayer->EntSelectStartPoint( pArena );
-
-	if (!pSpawnSpot)
+	else if( pPlayer->GetTeamNumber() == TEAM_UNASSIGNED )
+		pSpawnSpot = EntSelectViewPoint( pPlayer );
+	else
 		pSpawnSpot = pPlayer->EntSelectStartPoint();
 
-	MovePlayer(pPlayer, pSpawnSpot->GetLocalOrigin(), pSpawnSpot->GetLocalAngles());
+	Vector vecOrigin;
+	QAngle vecAngle;
+
+	if( pSpawnSpot )
+	{
+		vecOrigin = pSpawnSpot->GetAbsOrigin();
+		vecAngle = pSpawnSpot->GetAbsAngles();
+	}
+
+	MovePlayer(pPlayer, vecOrigin, vecAngle);
 }
 
 void CArena::MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles)
 {
-	Vector vecDrop = vecOrigin + Vector(0, 0, 64);
-
-	trace_t trace;
-	UTIL_TraceEntity( pPlayer, vecDrop, vecOrigin, MASK_PLAYERSOLID, pPlayer, COLLISION_GROUP_PLAYER_MOVEMENT, &trace );
-			
-	AssertMsg( !trace.allsolid && !trace.startsolid, "CArena::MovePlayer: allsolid or startsolid" );
-
-	pPlayer->SetAbsOrigin( trace.endpos );
+	pPlayer->SetAbsOrigin( vecOrigin );
 	pPlayer->SetAbsAngles( angAngles );
 	pPlayer->SetAbsVelocity( vec3_origin );
 	pPlayer->SnapEyeAngles( angAngles );
@@ -781,33 +832,19 @@ CArena* CArena::GetArena(int i)
 	return s_hArenas[i];
 }
 
-int CArena::GetTeamNumber( )
-{
-	return m_hTeams.Count();
-}
-
 CTeam* CArena::GetTeam(int i)
 {
-	if (i >= m_hTeams.Count() || i < 0)
+	if (i >= ARENATEAM_COUNT || i < 0)
 		return NULL;
 
-	return m_hTeams[i];
-}
-
-CTeam* CArena::GetTeamByNumber(int iTeam)
-{
-	for (int i = 0; i < m_hTeams.Count(); i++)
-		if (m_hTeams[i]->m_iTeamNum == iTeam)
-			return m_hTeams[i];
-
-	return NULL;
+	return m_pTeams[i];
 }
 
 int CArena::GetNumberOfPlayers()
 {
 	int iPlayers = 0;
-	for (int i = 0; i < m_hTeams.Count(); i++)
-		iPlayers += m_hTeams[i]->m_aPlayers.Count();
+	for (int i = 0; i < ARENATEAM_COUNT; i++)
+		iPlayers += m_pTeams[i]->m_aPlayers.Count();
 
 	return iPlayers;
 }

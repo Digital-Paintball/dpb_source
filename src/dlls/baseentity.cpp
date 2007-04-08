@@ -3890,11 +3890,7 @@ void CBaseEntity::ResetTeam( void )
 //-----------------------------------------------------------------------------
 CTeam *CBaseEntity::GetTeam( void ) const
 {
-	CArena* pArena = GetArena();
-	if (!pArena)
-		return NULL;
-
-	return pArena->GetTeamByNumber( m_iTeamNum );
+	return GetGlobalTeam( m_iTeamNum ); // jeff 4/8
 }
 
 

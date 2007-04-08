@@ -24,17 +24,11 @@ void SendProxy_Color32ToInt( const SendProp *pProp, const void *pStruct, const v
 void SendProxy_EHandleToInt( const SendProp *pProp, const void *pStruct, const void *pVarData, DVariant *pOut, int iElement, int objectID)
 {
 	CBaseHandle *pHandle = (CBaseHandle*)pVarData;
-
-	if ( pHandle && pHandle->Get() )
-	{
-		int iSerialNum = pHandle->GetSerialNumber() & (1 << NUM_NETWORKED_EHANDLE_SERIAL_NUMBER_BITS) - 1;
-		pOut->m_Int = pHandle->GetEntryIndex() | (iSerialNum << MAX_EDICT_BITS);
-	}
-	else
-	{
-		pOut->m_Int = INVALID_NETWORKED_EHANDLE_VALUE;
-	}
+	// Jeff {
+	pOut->m_Int = HandleToInt(pHandle);
+	// }
 }
+
 
 void SendProxy_IntAddOne( const SendProp *pProp, const void *pStruct, const void *pVarData, DVariant *pOut, int iElement, int objectID)
 {

@@ -24,6 +24,9 @@ public:
 	DECLARE_DATADESC();
 	DECLARE_CLASS( CArena, CBaseTrigger );
 
+	int GetArenaID( void ) const { return m_iID; }
+	static void GRThink(void);
+
 	void WaitingThink();
 	void BeginThink();
 	void TimesUpThink();
@@ -43,6 +46,8 @@ public:
 	void SwitchTeam(CBasePlayer *pPlayer, int newteam);
 	void SwitchQueueAdd(CBasePlayer *pPlayer, int newteam);
 
+	void TeamAddedPlayer(CBasePlayer *pPlayer);
+
 	static void SpawnPlayer(CBasePlayer *pPlayer, CArena* pArena = NULL);
 	static void MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles);
 
@@ -52,9 +57,6 @@ public:
 	void CalculateSpawnAvg();
 
 	CTeam* GetTeam(int i);
-	CTeam* GetTeamByNumber(int i);
-	int GetTeamNumber();
-	bool HasTeam(int i);
 
 	int GetNumberOfPlayers();
 
@@ -79,12 +81,14 @@ private:
 	CUtlVector<EHANDLE>					m_hObjectives;
 	CUtlVector<CHandle<CBasePlayer> >	m_hPlayers;
 	CUtlVector<CHandle<CBasePlayer> >	m_hSpectators;
-	CUtlVector<CHandle<CTeam> >			m_hTeams;
+	CTeam								*m_pTeams[ ARENATEAM_COUNT ];
 
 	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersRed;	//Those who are about to die... switch teams - Jeff
 	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersBlue;
+	
+	static bool	m_bTakenAvg;
 	Vector		m_vecSpawnAvg;
 
 	// Values which can be set in the FGD
