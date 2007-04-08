@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "3576"
-	"mapversion" "91"
+	"mapversion" "93"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "91"
+	"mapversion" "93"
 	"classname" "worldspawn"
 	"skyname" "sky_day03_06"
 	"maxpropscreenwidth" "-1"
@@ -28118,72 +28118,6 @@ world
 	}
 	group
 	{
-		"id" "13832"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "13490"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "14562"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "13832"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "16736"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "13490"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "17452"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "16736"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "14200"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "13154"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "14925"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "14200"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
 		"id" "19621"
 		editor
 		{
@@ -28375,39 +28309,6 @@ world
 	}
 	group
 	{
-		"id" "55466"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "55067"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "56262"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "55067"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
-		"id" "56667"
-		editor
-		{
-			"color" "220 220 220"
-			"groupid" "56262"
-			"visgroupshown" "1"
-			"visgroupautoshown" "1"
-		}
-	}
-	group
-	{
 		"id" "58810"
 		editor
 		{
@@ -28492,6 +28393,16 @@ world
 		editor
 		{
 			"color" "165 142 0"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	group
+	{
+		"id" "66493"
+		editor
+		{
+			"color" "114 203 0"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 		}
@@ -51122,6 +51033,2062 @@ entity
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[0 8000]"
+	}
+}
+entity
+{
+	"id" "23639"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4005.44 -243.73 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 13000]"
+	}
+}
+entity
+{
+	"id" "23635"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3921.19 -435.143 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 13500]"
+	}
+}
+entity
+{
+	"id" "23631"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3963.44 -775.981 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 14000]"
+	}
+}
+entity
+{
+	"id" "23627"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4097.65 -1114.53 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 14500]"
+	}
+}
+entity
+{
+	"id" "23623"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3812.18 -1019.1 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 15000]"
+	}
+}
+entity
+{
+	"id" "23619"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3886.71 -737.373 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 15500]"
+	}
+}
+entity
+{
+	"id" "23607"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4160.81 -219.311 -32.7297"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -15768]"
+	}
+}
+entity
+{
+	"id" "23543"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4459.65 -3689.35 93.668"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -15268]"
+	}
+}
+entity
+{
+	"id" "23547"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4472.79 -3873.49 164.008"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -14768]"
+	}
+}
+entity
+{
+	"id" "23551"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4866.95 -3805.52 213.463"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -14268]"
+	}
+}
+entity
+{
+	"id" "23555"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4499.11 -3426.49 72.9492"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -13768]"
+	}
+}
+entity
+{
+	"id" "23559"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4494.41 -3036.47 71.153"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -13268]"
+	}
+}
+entity
+{
+	"id" "23563"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4708 -2822.69 152.745"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -12768]"
+	}
+}
+entity
+{
+	"id" "23567"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4583.68 -2629.43 105.255"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -12268]"
+	}
+}
+entity
+{
+	"id" "23571"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4534.19 -2423.5 86.348"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -11768]"
+	}
+}
+entity
+{
+	"id" "23575"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4470.18 -2261.55 61.8996"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -11268]"
+	}
+}
+entity
+{
+	"id" "23579"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4517.41 -2148.92 79.9415"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -10768]"
+	}
+}
+entity
+{
+	"id" "23583"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4451.74 -1831.69 54.8547"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -10268]"
+	}
+}
+entity
+{
+	"id" "23587"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4351.23 -1566.18 16.4599"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -9768]"
+	}
+}
+entity
+{
+	"id" "23591"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4424.52 -1303.67 44.4552"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -9268]"
+	}
+}
+entity
+{
+	"id" "23595"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4373.03 -1014.66 24.7885"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -8768]"
+	}
+}
+entity
+{
+	"id" "23599"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4259.65 -693.644 -20.5443"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -8268]"
+	}
+}
+entity
+{
+	"id" "23603"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4300.28 -478.161 -7.18899"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -7768]"
+	}
+}
+entity
+{
+	"id" "23643"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4385.08 -112.24 21.042"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -7268]"
+	}
+}
+entity
+{
+	"id" "23647"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4631.77 -64.2503 76.6032"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -6768]"
+	}
+}
+entity
+{
+	"id" "23651"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4942.01 -424.309 207.603"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -6268]"
+	}
+}
+entity
+{
+	"id" "23655"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4913.51 -662.118 210.35"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -5768]"
+	}
+}
+entity
+{
+	"id" "23659"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4908.78 -859.98 220.251"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -5268]"
+	}
+}
+entity
+{
+	"id" "23663"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4985.15 -992.732 256.513"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -4768]"
+	}
+}
+entity
+{
+	"id" "23667"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4845.15 -1320.69 205.135"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -4268]"
+	}
+}
+entity
+{
+	"id" "23671"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4966.82 -1518.78 251.613"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -3768]"
+	}
+}
+entity
+{
+	"id" "23675"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-5008.78 -1735.7 267.639"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -3268]"
+	}
+}
+entity
+{
+	"id" "23679"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-5003.36 -1907.17 265.572"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -2768]"
+	}
+}
+entity
+{
+	"id" "23683"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4808.03 -1895.95 190.955"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -2268]"
+	}
+}
+entity
+{
+	"id" "23687"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-5075.96 -3205.76 293.304"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -1768]"
+	}
+}
+entity
+{
+	"id" "23691"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-5046.86 -3440.62 282.185"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -1268]"
+	}
+}
+entity
+{
+	"id" "23695"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4994.02 -3760.09 262.001"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 -768]"
+	}
+}
+entity
+{
+	"id" "23379"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "606.553 -3783.8 129.75"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 0]"
+	}
+}
+entity
+{
+	"id" "23383"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "783.124 -3952.21 194.078"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 500]"
+	}
+}
+entity
+{
+	"id" "23387"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "941.68 -4071.15 239.512"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 1000]"
+	}
+}
+entity
+{
+	"id" "23391"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "259.49 -4101.39 251.065"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 1500]"
+	}
+}
+entity
+{
+	"id" "23395"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-17.3522 -3964.76 198.873"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 2000]"
+	}
+}
+entity
+{
+	"id" "23399"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-699.489 -3977.97 203.919"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 2500]"
+	}
+}
+entity
+{
+	"id" "23403"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-921.223 -4044.35 229.276"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 3000]"
+	}
+}
+entity
+{
+	"id" "23407"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1143.52 -4043.17 228.824"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 3500]"
+	}
+}
+entity
+{
+	"id" "23411"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1263.68 -4195.3 286.939"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 4000]"
+	}
+}
+entity
+{
+	"id" "23415"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-493.716 -4046.62 230.142"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 4500]"
+	}
+}
+entity
+{
+	"id" "23419"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-290.197 -3963.3 198.315"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 5000]"
+	}
+}
+entity
+{
+	"id" "23423"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "114.194 -3781.13 128.727"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 5500]"
+	}
+}
+entity
+{
+	"id" "23427"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "346.016 -3599.3 59.2707"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 6000]"
+	}
+}
+entity
+{
+	"id" "23431"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "381.451 -3649.28 78.364"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 6500]"
+	}
+}
+entity
+{
+	"id" "23435"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "449.336 -4153.28 270.885"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 7000]"
+	}
+}
+entity
+{
+	"id" "23439"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1108.96 -3886.71 269.618"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 7500]"
+	}
+}
+entity
+{
+	"id" "23443"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1091.82 -3480.49 263.072"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 8000]"
+	}
+}
+entity
+{
+	"id" "23483"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1058.32 -3808.22 139.075"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 8500]"
+	}
+}
+entity
+{
+	"id" "23487"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1313.57 -3790.09 132.152"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 9000]"
+	}
+}
+entity
+{
+	"id" "23491"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1363.55 -3589.85 55.661"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 9500]"
+	}
+}
+entity
+{
+	"id" "23495"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1566.57 -3555.57 42.5645"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 10000]"
+	}
+}
+entity
+{
+	"id" "23499"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-1736.93 -3637.63 73.9107"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 10500]"
+	}
+}
+entity
+{
+	"id" "23503"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-2041.74 -3602.71 60.5718"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 11000]"
+	}
+}
+entity
+{
+	"id" "23507"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-2313.93 -3634.45 72.6975"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 11500]"
+	}
+}
+entity
+{
+	"id" "23511"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-2852.2 -3498.76 20.863"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 12000]"
+	}
+}
+entity
+{
+	"id" "23515"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3094.97 -3630.15 71.0556"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 12500]"
+	}
+}
+entity
+{
+	"id" "23519"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3441.48 -3761.79 121.339"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 13000]"
+	}
+}
+entity
+{
+	"id" "23523"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3729.31 -3726.76 107.959"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 13500]"
+	}
+}
+entity
+{
+	"id" "23527"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3621.74 -3945.48 191.507"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 14000]"
+	}
+}
+entity
+{
+	"id" "23531"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-4132.99 -3909 177.574"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 14500]"
+	}
+}
+entity
+{
+	"id" "23535"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3981.79 -3675.27 88.2914"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 15000]"
+	}
+}
+entity
+{
+	"id" "23539"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "-3974.54 -3558.81 43.8046"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 15500]"
+	}
+}
+entity
+{
+	"id" "23319"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "632.277 -202.925 65.2957"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 16000]"
+	}
+}
+entity
+{
+	"id" "23323"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "774.314 -427.403 135.695"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -16268]"
+	}
+}
+entity
+{
+	"id" "23327"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "942.445 -742.449 205.704"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -15768]"
+	}
+}
+entity
+{
+	"id" "23331"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1059.55 -797.255 247.594"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -15268]"
+	}
+}
+entity
+{
+	"id" "23335"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1043.84 -396.93 228.475"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -14768]"
+	}
+}
+entity
+{
+	"id" "23339"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1101.88 -197.757 231.839"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -14268]"
+	}
+}
+entity
+{
+	"id" "23343"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "872.253 -156.923 138.412"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -13768]"
+	}
+}
+entity
+{
+	"id" "23347"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "912.923 -457.431 189.813"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -13268]"
+	}
+}
+entity
+{
+	"id" "23351"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "642.401 -1559.99 91.3963"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -12768]"
+	}
+}
+entity
+{
+	"id" "23355"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "545.735 -1788.83 54.4714"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -12268]"
+	}
+}
+entity
+{
+	"id" "23359"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "714.903 -2117.02 119.092"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -11768]"
+	}
+}
+entity
+{
+	"id" "23363"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "665.112 -2435.8 100.072"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -11268]"
+	}
+}
+entity
+{
+	"id" "23367"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "670.503 -2800.57 102.131"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -10768]"
+	}
+}
+entity
+{
+	"id" "23371"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "614.519 -3066.89 80.7457"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -10268]"
+	}
+}
+entity
+{
+	"id" "23375"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "597.578 -3336.19 74.2745"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -9768]"
+	}
+}
+entity
+{
+	"id" "23447"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1126.29 -3085.87 276.24"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -9268]"
+	}
+}
+entity
+{
+	"id" "23451"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1051.36 -2763.64 247.618"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -8768]"
+	}
+}
+entity
+{
+	"id" "23455"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1117.28 -2513.81 272.796"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -8268]"
+	}
+}
+entity
+{
+	"id" "23459"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1158.15 -2231.86 288.409"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -7768]"
+	}
+}
+entity
+{
+	"id" "23463"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1180.64 -2000.37 297.001"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -7268]"
+	}
+}
+entity
+{
+	"id" "23467"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1145.14 -1728.4 283.44"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -6768]"
+	}
+}
+entity
+{
+	"id" "23471"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1202.94 -1387.36 305.551"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -6268]"
+	}
+}
+entity
+{
+	"id" "23475"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "1053.3 -1104.61 248.356"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -5768]"
+	}
+}
+entity
+{
+	"id" "23479"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"origin" "969.162 -865.596 216.051"
+	editor
+	{
+		"color" "215 172 0"
+		"groupid" "63739"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[500 -5268]"
+	}
+}
+entity
+{
+	"id" "63764"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-1284.97 -1283.06 0.947486"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 3500]"
+	}
+}
+entity
+{
+	"id" "63760"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-1261.12 -454.412 0.947486"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 3000]"
+	}
+}
+entity
+{
+	"id" "63756"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-1859.35 -1732.73 -5.73716"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "63748"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-2478.45 -1634.84 -2.07828"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 1500]"
+	}
+}
+entity
+{
+	"id" "63744"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-2999 -1509.8 0.947486"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 1000]"
+	}
+}
+entity
+{
+	"id" "63740"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-3432.23 -1716.66 0.947486"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 500]"
+	}
+}
+entity
+{
+	"id" "63752"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_foliage/rygpine.mdl"
+	"skin" "0"
+	"origin" "-3744.33 -1582.23 0.947486"
+	editor
+	{
+		"color" "165 142 0"
+		"groupid" "63796"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2000]"
+	}
+}
+entity
+{
+	"id" "66260"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/supair/cylinder.mdl"
+	"skin" "0"
+	"origin" "-423.404 -421.519 6.21322"
+	editor
+	{
+		"color" "114 203 0"
+		"groupid" "66493"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 500]"
+	}
+}
+entity
+{
+	"id" "66337"
+	"classname" "func_detail"
+	solid
+	{
+		"id" "66322"
+		side
+		{
+			"id" "12290"
+			"plane" "(-465 -384 9) (-320 -384 9) (-320 -504 9)"
+			"material" "CITY/RYGPROSHOPCARPETGREEN"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 -1 0 224] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "12289"
+			"plane" "(-465 -504 6) (-320 -504 6) (-320 -384 6)"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 -1 0 224] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "12288"
+			"plane" "(-465 -384 9) (-465 -504 9) (-465 -504 6)"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
+			"uaxis" "[0 1 0 -224] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "12287"
+			"plane" "(-320 -384 6) (-320 -504 6) (-320 -504 9)"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
+			"uaxis" "[0 1 0 -224] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "12286"
+			"plane" "(-320 -384 9) (-465 -384 9) (-465 -384 6)"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "12285"
+			"plane" "(-320 -504 6) (-465 -504 6) (-465 -504 9)"
+			"material" "NORRINGTON/RYGPROSHOPWALL"
+			"uaxis" "[1 0 0 0] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "114 203 0"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	editor
+	{
+		"color" "114 203 0"
+		"groupid" "66493"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2000]"
+	}
+}
+entity
+{
+	"id" "66241"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/supair/block.mdl"
+	"skin" "0"
+	"origin" "-363 -424.519 6.21322"
+	editor
+	{
+		"color" "114 203 0"
+		"groupid" "66493"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "66283"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/supair/halfcyl.mdl"
+	"skin" "0"
+	"origin" "-394 -475.519 6.21322"
+	editor
+	{
+		"color" "114 203 0"
+		"groupid" "66493"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 1000]"
 	}
 }
 entity
@@ -75451,1913 +77418,6 @@ entity
 }
 entity
 {
-	"id" "23639"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4005.44 -243.73 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 13000]"
-	}
-}
-entity
-{
-	"id" "23635"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3921.19 -435.143 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 13500]"
-	}
-}
-entity
-{
-	"id" "23631"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3963.44 -775.981 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 14000]"
-	}
-}
-entity
-{
-	"id" "23627"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4097.65 -1114.53 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 14500]"
-	}
-}
-entity
-{
-	"id" "23623"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3812.18 -1019.1 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 15000]"
-	}
-}
-entity
-{
-	"id" "23619"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3886.71 -737.373 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 15500]"
-	}
-}
-entity
-{
-	"id" "23607"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4160.81 -219.311 -32.7297"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -15768]"
-	}
-}
-entity
-{
-	"id" "23543"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4459.65 -3689.35 93.668"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -15268]"
-	}
-}
-entity
-{
-	"id" "23547"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4472.79 -3873.49 164.008"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -14768]"
-	}
-}
-entity
-{
-	"id" "23551"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4866.95 -3805.52 213.463"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -14268]"
-	}
-}
-entity
-{
-	"id" "23555"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4499.11 -3426.49 72.9492"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -13768]"
-	}
-}
-entity
-{
-	"id" "23559"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4494.41 -3036.47 71.153"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -13268]"
-	}
-}
-entity
-{
-	"id" "23563"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4708 -2822.69 152.745"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -12768]"
-	}
-}
-entity
-{
-	"id" "23567"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4583.68 -2629.43 105.255"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -12268]"
-	}
-}
-entity
-{
-	"id" "23571"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4534.19 -2423.5 86.348"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -11768]"
-	}
-}
-entity
-{
-	"id" "23575"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4470.18 -2261.55 61.8996"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -11268]"
-	}
-}
-entity
-{
-	"id" "23579"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4517.41 -2148.92 79.9415"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -10768]"
-	}
-}
-entity
-{
-	"id" "23583"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4451.74 -1831.69 54.8547"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -10268]"
-	}
-}
-entity
-{
-	"id" "23587"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4351.23 -1566.18 16.4599"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -9768]"
-	}
-}
-entity
-{
-	"id" "23591"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4424.52 -1303.67 44.4552"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -9268]"
-	}
-}
-entity
-{
-	"id" "23595"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4373.03 -1014.66 24.7885"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -8768]"
-	}
-}
-entity
-{
-	"id" "23599"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4259.65 -693.644 -20.5443"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -8268]"
-	}
-}
-entity
-{
-	"id" "23603"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4300.28 -478.161 -7.18899"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -7768]"
-	}
-}
-entity
-{
-	"id" "23643"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4385.08 -112.24 21.042"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -7268]"
-	}
-}
-entity
-{
-	"id" "23647"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4631.77 -64.2503 76.6032"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -6768]"
-	}
-}
-entity
-{
-	"id" "23651"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4942.01 -424.309 207.603"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -6268]"
-	}
-}
-entity
-{
-	"id" "23655"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4913.51 -662.118 210.35"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -5768]"
-	}
-}
-entity
-{
-	"id" "23659"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4908.78 -859.98 220.251"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -5268]"
-	}
-}
-entity
-{
-	"id" "23663"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4985.15 -992.732 256.513"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -4768]"
-	}
-}
-entity
-{
-	"id" "23667"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4845.15 -1320.69 205.135"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -4268]"
-	}
-}
-entity
-{
-	"id" "23671"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4966.82 -1518.78 251.613"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -3768]"
-	}
-}
-entity
-{
-	"id" "23675"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-5008.78 -1735.7 267.639"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -3268]"
-	}
-}
-entity
-{
-	"id" "23679"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-5003.36 -1907.17 265.572"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -2768]"
-	}
-}
-entity
-{
-	"id" "23683"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4808.03 -1895.95 190.955"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -2268]"
-	}
-}
-entity
-{
-	"id" "23687"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-5075.96 -3205.76 293.304"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -1768]"
-	}
-}
-entity
-{
-	"id" "23691"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-5046.86 -3440.62 282.185"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -1268]"
-	}
-}
-entity
-{
-	"id" "23695"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4994.02 -3760.09 262.001"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 -768]"
-	}
-}
-entity
-{
-	"id" "23379"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "606.553 -3783.8 129.75"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 0]"
-	}
-}
-entity
-{
-	"id" "23383"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "783.124 -3952.21 194.078"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 500]"
-	}
-}
-entity
-{
-	"id" "23387"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "941.68 -4071.15 239.512"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 1000]"
-	}
-}
-entity
-{
-	"id" "23391"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "259.49 -4101.39 251.065"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 1500]"
-	}
-}
-entity
-{
-	"id" "23395"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-17.3522 -3964.76 198.873"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 2000]"
-	}
-}
-entity
-{
-	"id" "23399"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-699.489 -3977.97 203.919"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 2500]"
-	}
-}
-entity
-{
-	"id" "23403"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-921.223 -4044.35 229.276"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 3000]"
-	}
-}
-entity
-{
-	"id" "23407"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1143.52 -4043.17 228.824"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 3500]"
-	}
-}
-entity
-{
-	"id" "23411"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1263.68 -4195.3 286.939"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 4000]"
-	}
-}
-entity
-{
-	"id" "23415"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-493.716 -4046.62 230.142"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 4500]"
-	}
-}
-entity
-{
-	"id" "23419"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-290.197 -3963.3 198.315"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 5000]"
-	}
-}
-entity
-{
-	"id" "23423"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "114.194 -3781.13 128.727"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 5500]"
-	}
-}
-entity
-{
-	"id" "23427"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "346.016 -3599.3 59.2707"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 6000]"
-	}
-}
-entity
-{
-	"id" "23431"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "381.451 -3649.28 78.364"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 6500]"
-	}
-}
-entity
-{
-	"id" "23435"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "449.336 -4153.28 270.885"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 7000]"
-	}
-}
-entity
-{
-	"id" "23439"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1108.96 -3886.71 269.618"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 7500]"
-	}
-}
-entity
-{
-	"id" "23443"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1091.82 -3480.49 263.072"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 8000]"
-	}
-}
-entity
-{
-	"id" "23483"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1058.32 -3808.22 139.075"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 8500]"
-	}
-}
-entity
-{
-	"id" "23487"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1313.57 -3790.09 132.152"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 9000]"
-	}
-}
-entity
-{
-	"id" "23491"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1363.55 -3589.85 55.661"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 9500]"
-	}
-}
-entity
-{
-	"id" "23495"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1566.57 -3555.57 42.5645"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 10000]"
-	}
-}
-entity
-{
-	"id" "23499"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-1736.93 -3637.63 73.9107"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 10500]"
-	}
-}
-entity
-{
-	"id" "23503"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-2041.74 -3602.71 60.5718"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 11000]"
-	}
-}
-entity
-{
-	"id" "23507"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-2313.93 -3634.45 72.6975"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 11500]"
-	}
-}
-entity
-{
-	"id" "23511"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-2852.2 -3498.76 20.863"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 12000]"
-	}
-}
-entity
-{
-	"id" "23515"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3094.97 -3630.15 71.0556"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 12500]"
-	}
-}
-entity
-{
-	"id" "23519"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3441.48 -3761.79 121.339"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 13000]"
-	}
-}
-entity
-{
-	"id" "23523"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3729.31 -3726.76 107.959"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 13500]"
-	}
-}
-entity
-{
-	"id" "23527"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3621.74 -3945.48 191.507"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 14000]"
-	}
-}
-entity
-{
-	"id" "23531"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-4132.99 -3909 177.574"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 14500]"
-	}
-}
-entity
-{
-	"id" "23535"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3981.79 -3675.27 88.2914"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 15000]"
-	}
-}
-entity
-{
-	"id" "23539"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "-3974.54 -3558.81 43.8046"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 15500]"
-	}
-}
-entity
-{
-	"id" "23319"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "632.277 -202.925 65.2957"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 16000]"
-	}
-}
-entity
-{
-	"id" "23323"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "774.314 -427.403 135.695"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -16268]"
-	}
-}
-entity
-{
-	"id" "23327"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "942.445 -742.449 205.704"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -15768]"
-	}
-}
-entity
-{
-	"id" "23331"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1059.55 -797.255 247.594"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -15268]"
-	}
-}
-entity
-{
-	"id" "23335"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1043.84 -396.93 228.475"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -14768]"
-	}
-}
-entity
-{
-	"id" "23339"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1101.88 -197.757 231.839"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -14268]"
-	}
-}
-entity
-{
-	"id" "23343"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "872.253 -156.923 138.412"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -13768]"
-	}
-}
-entity
-{
-	"id" "23347"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "912.923 -457.431 189.813"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -13268]"
-	}
-}
-entity
-{
-	"id" "23351"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "642.401 -1559.99 91.3963"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -12768]"
-	}
-}
-entity
-{
-	"id" "23355"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "545.735 -1788.83 54.4714"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -12268]"
-	}
-}
-entity
-{
-	"id" "23359"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "714.903 -2117.02 119.092"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -11768]"
-	}
-}
-entity
-{
-	"id" "23363"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "665.112 -2435.8 100.072"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -11268]"
-	}
-}
-entity
-{
-	"id" "23367"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "670.503 -2800.57 102.131"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -10768]"
-	}
-}
-entity
-{
-	"id" "23371"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "614.519 -3066.89 80.7457"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -10268]"
-	}
-}
-entity
-{
-	"id" "23375"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "597.578 -3336.19 74.2745"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -9768]"
-	}
-}
-entity
-{
-	"id" "23447"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1126.29 -3085.87 276.24"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -9268]"
-	}
-}
-entity
-{
-	"id" "23451"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1051.36 -2763.64 247.618"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -8768]"
-	}
-}
-entity
-{
-	"id" "23455"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1117.28 -2513.81 272.796"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -8268]"
-	}
-}
-entity
-{
-	"id" "23459"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1158.15 -2231.86 288.409"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -7768]"
-	}
-}
-entity
-{
-	"id" "23463"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1180.64 -2000.37 297.001"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -7268]"
-	}
-}
-entity
-{
-	"id" "23467"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1145.14 -1728.4 283.44"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -6768]"
-	}
-}
-entity
-{
-	"id" "23471"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1202.94 -1387.36 305.551"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -6268]"
-	}
-}
-entity
-{
-	"id" "23475"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "1053.3 -1104.61 248.356"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -5768]"
-	}
-}
-entity
-{
-	"id" "23479"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"origin" "969.162 -865.596 216.051"
-	editor
-	{
-		"color" "215 172 0"
-		"groupid" "63739"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[500 -5268]"
-	}
-}
-entity
-{
-	"id" "63764"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-1284.97 -1283.06 0.947486"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 3500]"
-	}
-}
-entity
-{
-	"id" "63760"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-1261.12 -454.412 0.947486"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 3000]"
-	}
-}
-entity
-{
-	"id" "63756"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-1859.35 -1732.73 -5.73716"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 2500]"
-	}
-}
-entity
-{
-	"id" "63748"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-2478.45 -1634.84 -2.07828"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 1500]"
-	}
-}
-entity
-{
-	"id" "63744"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-2999 -1509.8 0.947486"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 1000]"
-	}
-}
-entity
-{
-	"id" "63740"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-3432.23 -1716.66 0.947486"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 500]"
-	}
-}
-entity
-{
-	"id" "63752"
-	"classname" "prop_static"
-	"angles" "0 0 0"
-	"solid" "6"
-	"fademindist" "-1"
-	"fadescale" "1"
-	"model" "models/props_foliage/rygpine.mdl"
-	"skin" "0"
-	"origin" "-3744.33 -1582.23 0.947486"
-	editor
-	{
-		"color" "165 142 0"
-		"groupid" "63796"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[0 2000]"
-	}
-}
-entity
-{
 	"id" "63903"
 	"classname" "move_rope"
 	"MoveSpeed" "64"
@@ -77604,7 +77664,7 @@ entity
 {
 	"id" "64193"
 	"classname" "light"
-	"_light" "255 255 255 200"
+	"_light" "255 255 255 100"
 	"_lightHDR" "-1 -1 -1 1"
 	"_quadratic_attn" "1"
 	"origin" "-2055 -2054 429"
@@ -77729,13 +77789,331 @@ entity
 		"logicalpos" "[0 -3768]"
 	}
 }
+entity
+{
+	"id" "66340"
+	"classname" "prop_static"
+	"angles" "0 270 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-393 -634 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66371"
+	"classname" "prop_static"
+	"angles" "0 270 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-394 -747 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66375"
+	"classname" "prop_static"
+	"angles" "0 270 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-391 -856 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66379"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-285.512 -1159.79 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66395"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-285.512 -1260.79 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66403"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-356 -1290 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66443"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-457 -1290 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66455"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-286 -1059 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66463"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-388 -1060 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66467"
+	"classname" "prop_static"
+	"angles" "0 180 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-502 -1060 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66471"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-414 -1189 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66539"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-946 -1059 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66543"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-946.488 -1159.79 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66547"
+	"classname" "prop_static"
+	"angles" "0 0 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-946.488 -1260.79 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66551"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-876 -1290 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "66555"
+	"classname" "prop_static"
+	"angles" "0 90 0"
+	"solid" "6"
+	"fademindist" "-1"
+	"fadescale" "1"
+	"model" "models/props_field/foldingtable.mdl"
+	"skin" "0"
+	"origin" "-775 -1290 0"
+	editor
+	{
+		"color" "255 255 0"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 2500]"
+	}
+}
+entity
+{
+	"id" "68508"
+	"classname" "env_cubemap"
+	"sides" ""
+	"origin" "-392 -367 89"
+	editor
+	{
+		"color" "0 0 255"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[3000 15500]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-527.045 -1044.99 79.2707]"
-		"look" "[-528.677 -1037.57 79.3634]"
+		"position" "[-738.944 -1025.6 66.7243]"
+		"look" "[-732.294 -1029.26 67.0771]"
 	}
 }
 cordon
