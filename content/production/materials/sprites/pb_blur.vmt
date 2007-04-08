@@ -1,4 +1,4 @@
-"LightMappedGeneric"
+"UnlitGeneric"
 	{
 		$basetexture "sprites/pb_blur"
 		$additive 1
