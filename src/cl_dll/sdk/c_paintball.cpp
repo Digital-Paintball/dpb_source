@@ -225,8 +225,6 @@ int C_Paintball::DrawModel( int flags )
 	if ( render->GetBlend() <= 0.0f )
 		return 0;
 
-	const float flScale = 1.0;
-
 	IMaterial	*pMaterial = pSprite->GetMaterial();
 	if( !pMaterial )
 		return 0;
@@ -287,8 +285,8 @@ int C_Paintball::DrawModel( int flags )
 		DebugDrawLine( vecEffectOrigin, vecPoint, 0, 0, 256, true, -1.0f );
 
 	meshBuilder.End();
-	pMesh->Draw();
 
+	pMesh->Draw();
 	return 1;
 }
 

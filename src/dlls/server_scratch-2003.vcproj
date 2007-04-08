@@ -50,12 +50,12 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				Description="Copying to destination folder"
-				CommandLine="if exist &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot; attrib -r &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
-if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
-if exist &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.pdb&quot; attrib -r &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.pdb&quot;
-if exist &quot;$(TargetDir)&quot;server.pdb copy &quot;$(TargetDir)&quot;server.pdb &quot;e:\steam\steamapps\SourceMods\dpb\bin&quot;
+				CommandLine="if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
+if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
+if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.pdb&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.pdb&quot;
+if exist &quot;$(TargetDir)&quot;server.pdb copy &quot;$(TargetDir)&quot;server.pdb &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin&quot;
 "
-				Outputs="e:\steam\steamapps\SourceMods\dpb\bin\server.dll"/>
+				Outputs="C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll"/>
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="TRUE"
@@ -135,10 +135,10 @@ if exist &quot;$(TargetDir)&quot;server.pdb copy &quot;$(TargetDir)&quot;server.
 			<Tool
 				Name="VCCustomBuildTool"
 				Description="Copying to destination folder"
-				CommandLine="if exist &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot; attrib -r &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
-if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;e:\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
+				CommandLine="if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
+if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll&quot;
 "
-				Outputs="e:\steam\steamapps\SourceMods\dpb\bin\server.dll"/>
+				Outputs="C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\server.dll"/>
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="TRUE"
