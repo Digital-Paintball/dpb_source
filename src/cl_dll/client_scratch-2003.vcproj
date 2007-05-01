@@ -42,17 +42,12 @@
 				DebugInformationFormat="4"
 				CompileAs="0"/>
 			<Tool
-				Name="VCCustomBuildTool"
-				Description="Copying to destination folder"
-				CommandLine="if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll&quot;
-copy &quot;$(TargetDir)&quot;client.dll &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin&quot;
-"
-				Outputs="C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll"/>
+				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="TRUE"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="$(IntDir)/client.dll"
+				OutputFile="C:\Steam\steamapps\SourceMods\dpb\bin/client.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\lib-vc7\public"
@@ -138,7 +133,8 @@ copy &quot;$(TargetDir)&quot;client.dll &quot;C:\Program Files\Steam\steamapps\S
 				CommandLine="if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll&quot;
 copy &quot;$(TargetDir)&quot;client.dll &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin&quot;
 if exist &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.pdb&quot; attrib -r &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.pdb&quot;
-if exist &quot;$(TargetDir)&quot;client.pdb copy &quot;$(TargetDir)&quot;client.pdb &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.pdb&quot;"
+if exist &quot;$(TargetDir)&quot;client.pdb copy &quot;$(TargetDir)&quot;client.pdb &quot;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.pdb&quot;
+"
 				Outputs="C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.dll;C:\Program Files\Steam\steamapps\SourceMods\dpb\bin\client.pdb"/>
 			<Tool
 				Name="VCLinkerTool"
@@ -2862,10 +2858,10 @@ if exist &quot;$(TargetDir)&quot;client.pdb copy &quot;$(TargetDir)&quot;client.
 				RelativePath="..\public\vgui\IImage.h">
 			</File>
 			<File
-				RelativePath="..\public\vgui\IInput.h">
+				RelativePath="iinput.h">
 			</File>
 			<File
-				RelativePath="iinput.h">
+				RelativePath="..\public\vgui\IInput.h">
 			</File>
 			<File
 				RelativePath="..\public\vgui\IInputInternal.h">
@@ -3108,10 +3104,10 @@ if exist &quot;$(TargetDir)&quot;client.pdb copy &quot;$(TargetDir)&quot;client.
 				RelativePath="..\public\tier1\mempool.h">
 			</File>
 			<File
-				RelativePath="..\public\vgui_controls\Menu.h">
+				RelativePath="menu.h">
 			</File>
 			<File
-				RelativePath="menu.h">
+				RelativePath="..\public\vgui_controls\Menu.h">
 			</File>
 			<File
 				RelativePath="..\public\vgui_controls\MenuItem.h">

@@ -28,7 +28,6 @@
 	#include "iscorer.h"
 	#include "hltvdirector.h"
 	#include "team.h"
-	#include "multiarena.h" // jeff 4/8 updated team code
 	
 #endif
 
@@ -67,13 +66,6 @@ bool CMultiplayRules::IsMultiplayer( void )
 {
 	return true;
 }
-
-char *g_pszTeamNames[] =
-{
-	"Viewpoint",		// TEAM_UNASSIGNED
-	"In-Game",			// TEAM_INGAME
-	"Spectators"		// TEAM_SPECTATOR
-};
 
 
 #ifdef CLIENT_DLL
@@ -132,27 +124,7 @@ char *g_pszTeamNames[] =
 				engine->ServerCommand( szCommand );
 			}
 		}
-
-		#ifdef GAME_DLL
-
-		for( int i = 0; i < TEAM_COUNT; i++ )
-		{
-			CTeam *pTeam = static_cast<CTeam*>(CreateEntityByName( "team_manager" ));
-			pTeam->Init( g_pszTeamNames[ i ], i, NULL );
-
-			g_pTeams[ i ] = pTeam;
-		}
-
-		#endif
 	}
-
-	//=========================================================
-	//=========================================================
-	CMultiplayRules::~CMultiplayRules()
-	{
-		memset( g_pTeams, NULL, sizeof( g_pTeams ) );
-	}
-
 
 	//=========================================================
 	//=========================================================
@@ -186,8 +158,6 @@ char *g_pszTeamNames[] =
 			return;
 		}
 
-		CArena::GRThink(); // Jeff - I give you lifeeeeee
-
 		float flTimeLimit = mp_timelimit.GetFloat() * 60;
 		float flFragLimit = fraglimit.GetFloat();
 		
@@ -199,7 +169,7 @@ char *g_pszTeamNames[] =
 
 		if ( flFragLimit )
 		{
-			// check if any player is over the 'frag' limit
+			// check if any player is over the frag limit
 			for ( int i = 1; i <= gpGlobals->maxClients; i++ )
 			{
 				CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );

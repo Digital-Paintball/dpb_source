@@ -1,18 +1,15 @@
+//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//
 // Purpose: Entities dealing with the multi-arena functions.
+//
+// $NoKeywords: $
+//=============================================================================//
 
 #ifndef MULTIARENA_SHARED_H
 #define MULTIARENA_SHARED_H
 #ifdef _WIN32
 #pragma once
 #endif
-
-enum ArenaTeam_t
-{
-	ARENATEAM_INVALID = -1,
-	ARENATEAM_RED = 0,
-	ARENATEAM_BLUE,
-	ARENATEAM_COUNT
-};
 
 class CArenaShared
 {

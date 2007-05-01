@@ -47,8 +47,6 @@ public:
 	virtual void Event_Killed( const CTakeDamageInfo &info );
 	virtual void LeaveVehicle( const Vector &vecExitPoint, const QAngle &vecExitAngles );
 	
-	bool ClientCommand( const char *cmd ); // jeff 4/8 override clientcommand
-
 	CWeaponSDKBase* GetActiveSDKWeapon() const;
 	virtual void	CreateViewModel( int viewmodelindex = 0 );
 

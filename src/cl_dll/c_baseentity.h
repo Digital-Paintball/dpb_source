@@ -549,7 +549,7 @@ public:
 	virtual bool					InSameTeam( C_BaseEntity *pEntity );	// Returns true if the specified entity is on the same team as this one
 	virtual bool					InLocalTeam( void );
 
-	virtual class C_Arena*					GetArena( void ) const;				// Get the arena this entity is in. // jeff 4/8 virtual
+	class C_Arena*					GetArena( void ) const;				// Get the arena this entity is in.
 
 	// ID Target handling
 	virtual bool					IsValidIDTarget( void ) { return false; }

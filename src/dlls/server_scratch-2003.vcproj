@@ -143,7 +143,7 @@ if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="TRUE"
 				AdditionalDependencies="winmm.lib"
-				OutputFile="$(IntDir)/server.dll"
+				OutputFile="C:\Steam\steamapps\SourceMods\dpb\bin/server.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\lib-vc7\public"
@@ -2861,9 +2861,6 @@ if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.
 						<Tool
 							Name="VCCustomBuildTool"/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\viewpoint.cpp">
 				</File>
 				<File
 					RelativePath="..\game_shared\sdk\weapon_basesdkgrenade.cpp">

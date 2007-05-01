@@ -12,11 +12,11 @@
 #include "predicted_viewmodel.h"
 #include "iservervehicle.h"
 #include "viewport_panel_names.h"
-#include "multiarena.h" // jeff 4/8 better teamcode
 
 extern int gEvilImpulse101;
 
 #define SDK_PLAYER_MODEL "models/player/player.mdl"
+
 
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -232,7 +232,6 @@ void CSDKPlayer::InitialSpawn( void )
 	data->SetString( "title", title );		// info panel title
 	data->SetString( "type", "1" );			// show userdata from stringtable entry
 	data->SetString( "msg",	"motd" );		// use this stringtable entry
-	data->SetString( "cmd", "enterworld" ); // set the exit-motd command
 
 	ShowViewPortPanel( PANEL_INFO, true, data );
 
@@ -351,22 +350,4 @@ void CSDKPlayer::FlashlightTurnOff( void )
 int CSDKPlayer::FlashlightIsOn( void )
 {
 	return IsEffectActive( EF_DIMLIGHT );
-}
-
-bool CSDKPlayer::ClientCommand( const char *cmd ) // jeff 4/8 - only spawn users after they've clicked okay on the motd
-{
-	if( stricmp( cmd, "enterworld" ) == 0 )
-	{
-		if( GetTeamNumber() != TEAM_UNASSIGNED )
-			return true;
-
-		ChangeTeam( TEAM_INGAME );
-		Spawn();
-
-		CArena::SpawnPlayer( this, NULL );
-
-		return true;
-	}
-
-	return BaseClass::ClientCommand( cmd );
 }

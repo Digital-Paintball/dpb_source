@@ -110,15 +110,15 @@ bool CEventLog::PrintPlayerEvent( IGameEvent *event )
 
 			const int newTeam = event->GetInt( "team" );
 			const int oldTeam = event->GetInt( "oldteam" );
-			CTeam *team = GetGlobalTeam( newTeam );
-			CTeam *oldteam = GetGlobalTeam( oldTeam );
+			CTeam *team = pArena->GetTeamByNumber( newTeam );
+			CTeam *oldteam = pArena->GetTeamByNumber( oldTeam );
 			
 			UTIL_LogPrintf( "\"%s<%i><%s><%s>\" joined team \"%s\"\n", 
 			pPlayer->GetPlayerName(),
 			pPlayer->GetUserID(),
 			pPlayer->GetNetworkIDString(),
-			oldteam->GetName(),
-			team->GetName() );
+			oldteam?oldteam->GetName():"Unassigned",
+			team?team->GetName():"Unassigned" );
 		}
 
 		return true;

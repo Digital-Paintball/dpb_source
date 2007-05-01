@@ -967,7 +967,7 @@ void CC_QuitGame (void)
 ConCommand quitgame("quitgame", CC_QuitGame, "Quit a game in progress.", FCVAR_GAMEDLL);
 
 //------------------------------------------------------------------------------
-// Jeff - change skin - updated 4/8
+// Jeff - change skin
 //------------------------------------------------------------------------------
 void CC_ChangeSkin (void)
 {
@@ -993,14 +993,14 @@ void CC_ChangeSkin (void)
 
 	if(pTeam) // if we're on a team
 	{
-	if (pTeam->m_iTeamNum == ARENATEAM_RED)
+	if (pTeam->m_iTeamNum == TEAM_RED)
 		pPlayer->m_nSkin = pPlayer->m_iSkin;
-	else if (pTeam->m_iTeamNum == ARENATEAM_BLUE)
+	else if (pTeam->m_iTeamNum == TEAM_BLUE)
 		pPlayer->m_nSkin = pPlayer->m_iSkin + 4; 
 	} 	
 }
 
-ConCommand changeskin("changeskin", CC_ChangeSkin, "Change player appearance.", FCVAR_GAMEDLL); 
+ConCommand changeskin("changeskin", CC_ChangeSkin, "Change player appearance.", FCVAR_GAMEDLL);
 
 //------------------------------------------------------------------------------
 // Jeff - switch teams (YA SCURVY DAWG)

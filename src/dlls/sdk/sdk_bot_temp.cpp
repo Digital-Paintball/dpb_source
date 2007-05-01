@@ -108,11 +108,9 @@ CBasePlayer *BotPutInServer( bool bFrozen )
 	if ( bFrozen )
 		pPlayer->AddEFlags( EFL_BOT_FROZEN );
 
-	pPlayer->ChangeTeam( TEAM_INGAME );
+	pPlayer->ChangeTeam( TEAM_UNASSIGNED );
 	pPlayer->RemoveAllItems( true );
 	pPlayer->Spawn();
-
-	CArena::SpawnPlayer( pPlayer, NULL );
 
 	CArena *pBestArena = NULL;
 	int iBestArenaPlayers = 0;

@@ -505,8 +505,6 @@ CBasePlayer::CBasePlayer( )
 	m_chTextureType = 0;
 	m_chPreviousTextureType = 0;
 
-	ResetArenaTeam();
-
 	m_fDelay = 0.0f;
 	m_fReplayEnd = -1;
 	m_iReplayEntity = 0;
@@ -6377,9 +6375,22 @@ CBaseEntity *CBasePlayer::HasNamedPlayerItem( const char *pszItemName )
 
 void CBasePlayer::ChangeTeam( int iTeamNum )
 {
+	CArena *pArena = GetArena();
+
+	if (!pArena)
+		return;
+
+	if ( !pArena->GetTeamByNumber( iTeamNum ) )
+	{
+		Warning( "CBasePlayer::ChangeTeam( %d ) - invalid team index.\n", iTeamNum );
+		return;
+	}
+
 	// if this is our current team, just abort
 	if ( iTeamNum == GetTeamNumber() )
+	{
 		return;
+	}
 
 	// Immediately tell all clients that he's changing team. This has to be done
 	// first, so that all user messages that follow as a result of the team change
@@ -6401,30 +6412,16 @@ void CBasePlayer::ChangeTeam( int iTeamNum )
 		GetTeam()->RemovePlayer( this );
 	}
 
+	// Are we being added to a team?
+	if ( iTeamNum )
+	{
+		pArena->GetTeamByNumber( iTeamNum )->AddPlayer( this );
+	}
+
 	BaseClass::ChangeTeam( iTeamNum );
 }
 
-void CBasePlayer::ResetArenaTeam( void )
-{
-	m_iArenaTeamID = ARENATEAM_INVALID;
-}
 
-void CBasePlayer::ChangeArenaTeam( int iAreamTeam )
-{
-	CArena *pArena = GetArena();
-
-	if( !pArena )
-		return;
-
-	m_iArenaTeamID = iAreamTeam;
-
-	pArena->GetTeam( iAreamTeam )->AddPlayer( this );
-}
-
-int CBasePlayer::GetArenaTeam( void )
-{
-	return m_iArenaTeamID;
-}
 
 //-----------------------------------------------------------------------------
 // Purpose: Locks a player to the spot; they can't move, shoot, or be hurt

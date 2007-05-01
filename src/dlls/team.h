@@ -73,11 +73,6 @@ public:
 	virtual void SetScore( int iScore );
 	virtual int  GetScore( void );
 
-	//-----------------------------------------------------------------------------
-	// Arena Handling
-	//-----------------------------------------------------------------------------
-	virtual void CheckForRoundEnd( void );
-
 public:
 	CUtlVector< CTeamSpawnPoint * > m_aSpawnPoints;
 	CUtlVector< CBasePlayer * >		m_aPlayers;
@@ -95,8 +90,5 @@ public:
 
 	CNetworkVar( int, m_iTeamNum );			// Which team is this?
 };
-
-extern CTeam *g_pTeams[ TEAM_COUNT ];
-extern CTeam *GetGlobalTeam( int iIndex );
 
 #endif // TEAM_H

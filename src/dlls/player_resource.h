@@ -37,8 +37,6 @@ protected:
 	CNetworkArray( int, m_iTeam, MAX_PLAYERS+1 );
 	CNetworkArray( int, m_bAlive, MAX_PLAYERS+1 );
 	CNetworkArray( int, m_iHealth, MAX_PLAYERS+1 );
-	CNetworkArray( int, m_iArena, MAX_PLAYERS+1 );
-	CNetworkArray( int, m_iArenaTeamID, MAX_PLAYERS+1 );
 		
 	int	m_nUpdateCounter;
 };

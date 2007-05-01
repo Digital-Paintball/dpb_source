@@ -509,9 +509,6 @@ public:
 
 	// Team Handling
 	virtual void			ChangeTeam( int iTeamNum );
-	void					ResetArenaTeam( void );
-	void					ChangeArenaTeam( int iAreamTeam );
-	int						GetArenaTeam( void );
 
 	// say/sayteam allowed?
 	virtual bool			CanSpeak( void ) { return true; }
@@ -987,8 +984,6 @@ protected:
 	float			m_surfaceFriction;
 	char			m_chTextureType;
 	char			m_chPreviousTextureType;	// Separate from m_chTextureType. This is cleared if the player's not on the ground.
-
-	int				m_iArenaTeamID;
 
 	bool			m_bSinglePlayerGameEnding;
 

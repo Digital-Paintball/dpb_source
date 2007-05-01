@@ -17,7 +17,6 @@
 #include "sdk_gamerules.h"
 #include "voice_status.h"
 #include "c_multiarena.h"
-#include "c_playerresource.h" // jeff 4/8 updated team code
 
 #include <vgui/IScheme.h>
 #include <vgui/ILocalize.h>
@@ -326,12 +325,17 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 	// walk all the players and make sure they're in the scoreboard
 	for ( int i = 1; i <= gpGlobals->maxClients; ++i )
 	{
-		if ( g_PR && g_PR->IsConnected( i ) )
+		IGameResources *gr = GameResources();
+
+		if ( gr && gr->IsConnected( i ) )
 		{
-			if( !g_PR->InArena( i ) )
+			// NOTE: THIS IS NOT THE WAY TODO IT, FIXED IN "afterigf" branch
+			C_BasePlayer *pPlayer = UTIL_PlayerByIndex(i);
+
+			if( !pPlayer )
 				continue;
 
-			if ( g_PR->GetArena( g_PR->GetArena( i ) ) != m_iViewingArena )
+			if( pPlayer->GetArena() != C_Arena::GetArena(m_iViewingArena) )
 				continue;
 
 			// add the player to the list
@@ -347,23 +351,13 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 			playerData->SetString("name", newName);
 
 			int itemID = FindItemIDForPlayerIndex( i );
-			int teamSection = TEAMSECTION_UNASSIGNED;
+			int playerTeam = gr->GetTeam(i);
+			int sectionID = m_iTeamSections[playerTeam];
 
-			if( g_PR->GetTeam( i ) == TEAM_INGAME )
-			{
-				if( g_PR->GetArenaTeamID( i ) == ARENATEAM_RED )
-					teamSection = TEAMSECTION_RED;
-				else
-					teamSection = TEAMSECTION_BLUE;
-			}
+			m_iPlayersOnTeam[playerTeam]++;
+			m_iLatency[playerTeam]+=playerData->GetInt("ping");
 
-			int sectionID = m_iTeamSections[teamSection];
-
-			m_iPlayersOnTeam[teamSection]++;
-			m_iLatency[teamSection]+=playerData->GetInt("ping");
-
-			if ( g_PR->IsLocalPlayer( i ) )
-
+			if ( gr->IsLocalPlayer( i ) )
 			{
 				selectedRow = itemID;
 			}
@@ -379,7 +373,7 @@ void CClientScoreBoardDialog::UpdatePlayerInfo()
 			}
 
 			// set the row color based on the players team
-			m_pPlayerList->SetItemFgColor( itemID, C_Arena::GetTeamColor( i ) );
+			m_pPlayerList->SetItemFgColor( itemID, gr->GetTeamColor( playerTeam ) );
 
 			playerData->deleteThis();
 		}
@@ -451,9 +445,9 @@ void CClientScoreBoardDialog::AddHeader()
 	m_pPlayerList->AddColumnToSection(m_iSectionId, "voice", "#PlayerVoice", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, scheme()->GetProportionalScaledValueEx( GetScheme(),VOICE_WIDTH) );
 
 	m_iSectionId = 2; //first team;
-	m_iTeamSections[TEAMSECTION_RED]		= AddSection(TYPE_TEAM, TEAMSECTION_RED);
-	m_iTeamSections[TEAMSECTION_BLUE]		= AddSection(TYPE_TEAM, TEAMSECTION_BLUE);
-	m_iTeamSections[TEAMSECTION_UNASSIGNED]	= AddSection(TYPE_NOTEAM, TEAMSECTION_UNASSIGNED);
+	m_iTeamSections[TEAM_BLUE]			= AddSection(TYPE_TEAM, TEAM_BLUE);
+	m_iTeamSections[TEAM_RED]			= AddSection(TYPE_TEAM, TEAM_RED);
+	m_iTeamSections[TEAM_UNASSIGNED]	= AddSection(TYPE_NOTEAM, TEAM_UNASSIGNED);
 }
 
 //-----------------------------------------------------------------------------
