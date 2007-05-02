@@ -706,7 +706,7 @@ void CArena::QuitPlayer( CBasePlayer *pPlayer )
 
 void CArena::RemoveQuitter( CBasePlayer *pPlayer )
 {
-	if (!m_hPlayers.HasElement(pPlayer) || !m_hQuitters.HasElement(pPlayer))
+	if (!m_hPlayers.HasElement(pPlayer) && !m_hQuitters.HasElement(pPlayer))
 		return;
 
 	m_hPlayers.FindAndRemove(pPlayer);

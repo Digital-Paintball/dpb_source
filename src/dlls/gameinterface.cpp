@@ -2014,7 +2014,8 @@ void CServerGameClients::ClientDisconnect( edict_t *pEdict )
 				g_pGameRules->ClientDisconnected( pEdict );
 			}
 
-			player->QuitGame();
+			if (player->GetArena())
+				player->GetArena()->RemoveQuitter(player);
 		}
 
 		// Make sure all Untouch()'s are called for this client leaving
