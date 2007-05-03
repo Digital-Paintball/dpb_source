@@ -97,6 +97,8 @@ private:
 	enum eteams_list	m_eDesiredTeam;
 	char				m_szDesiredWeapon[DESIRED_WPN_LENGTH];
 	int					m_iDesiredAttachments;	// Bitmask
+
+	int		m_iCredits;
 };
 
 

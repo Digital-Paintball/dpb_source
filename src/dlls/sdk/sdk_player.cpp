@@ -134,6 +134,8 @@ void cc_CreatePredictionError_f()
 
 ConCommand cc_CreatePredictionError( "CreatePredictionError", cc_CreatePredictionError_f, "Create a prediction error", FCVAR_CHEAT );
 
+ConVar sv_credits( "sv_credits", "200", 0, "How many credits do players have?", true, 50, true, 500 );
+
 void CC_Buy_f()
 {
 	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
@@ -158,8 +160,9 @@ CSDKPlayer::CSDKPlayer()
 	SetViewOffset( SDK_PLAYER_VIEW_OFFSET );
 
 	m_iThrowGrenadeCounter = 0;
-}
 
+	m_iCredits = sv_credits.GetInt();
+}
 
 CSDKPlayer::~CSDKPlayer()
 {
@@ -377,6 +380,21 @@ void CSDKPlayer::OrderWeapon(const char* pszWeapon, int iAttachments)
 
 	Q_snprintf(m_szDesiredWeapon, DESIRED_WPN_LENGTH, "weapon_%s", pszWeapon);
 	m_iDesiredAttachments = iAttachments;
+
+	CSDKWeaponInfo* pInfo = CSDKWeaponInfo::GetWeaponInfo(m_szDesiredWeapon);
+	if (!pInfo)
+	{
+		ResetOrder();
+		return;
+	}
+
+	int iCost = pInfo->m_iCost;
+
+	if (iCost > m_iCredits)
+	{
+		ResetOrder();
+		return;
+	}
 }
 
 bool CSDKPlayer::ArenaSpawnOK()
