@@ -58,6 +58,7 @@ public:
 
 	void		ResetOrder();
 	void		OrderWeapon(const char* pszWeapon, int iAttachments);
+	void		OrderAmmo(int iPods);
 	const char*	GetOrderedWeapon();
 	void		DeployArmaments();
 
@@ -97,6 +98,7 @@ private:
 	enum eteams_list	m_eDesiredTeam;
 	char				m_szDesiredWeapon[DESIRED_WPN_LENGTH];
 	int					m_iDesiredAttachments;	// Bitmask
+	int					m_iDesiredPods;
 
 	int		m_iCredits;
 };

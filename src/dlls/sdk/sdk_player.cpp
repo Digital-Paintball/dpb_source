@@ -136,6 +136,8 @@ ConCommand cc_CreatePredictionError( "CreatePredictionError", cc_CreatePredictio
 
 ConVar sv_credits( "sv_credits", "200", 0, "How many credits do players have?", true, 50, true, 500 );
 
+#define AMMO_COST 5
+
 void CC_Buy_f()
 {
 	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
@@ -145,7 +147,13 @@ void CC_Buy_f()
 	if (engine->Cmd_Argc() <= 2)
         pPlayer->ShowViewPortPanel( PANEL_BUY, true );
 	else
-		ToSDKPlayer(pPlayer)->OrderWeapon(engine->Cmd_Argv(1), atoi(engine->Cmd_Argv(2)));
+	{
+		const char* pszWeapon = engine->Cmd_Argv(1);
+		if (Q_strcmp("ammo", pszWeapon) == 0)
+			ToSDKPlayer(pPlayer)->OrderAmmo(atoi(engine->Cmd_Argv(2)));
+		else
+			ToSDKPlayer(pPlayer)->OrderWeapon(pszWeapon, atoi(engine->Cmd_Argv(2)));
+	}
 }
 
 ConCommand CC_Buy( "buy", CC_Buy_f, "Open the buy menu" );
@@ -162,6 +170,7 @@ CSDKPlayer::CSDKPlayer()
 	m_iThrowGrenadeCounter = 0;
 
 	m_iCredits = sv_credits.GetInt();
+	m_iDesiredPods = 2;
 }
 
 CSDKPlayer::~CSDKPlayer()
@@ -364,37 +373,57 @@ void CSDKPlayer::ResetOrder()
 
 void CSDKPlayer::OrderWeapon(const char* pszWeapon, int iAttachments)
 {
-	int iWeaponID = AliasToWeaponID(pszWeapon);
-	if (iWeaponID == WEAPON_NONE)
+	if (Q_strcmp("none", pszWeapon) == 0)
 	{
 		ResetOrder();
 		return;
 	}
+
+	int iWeaponID = AliasToWeaponID(pszWeapon);
+	if (iWeaponID == WEAPON_NONE)
+		return;
 
 	// Insert some better rules about which weapons are allowed here.
 	if (iWeaponID != WEAPON_BLAZER)
-	{
-		ResetOrder();
 		return;
-	}
+
+	char szDesiredWeapon[DESIRED_WPN_LENGTH];
+	Q_snprintf(szDesiredWeapon, DESIRED_WPN_LENGTH, "weapon_%s", pszWeapon);
+
+	CSDKWeaponInfo* pInfo = CSDKWeaponInfo::GetWeaponInfo(szDesiredWeapon);
+	if (!pInfo)
+		return;
+
+	int iCost = pInfo->m_iCost + m_iDesiredPods*AMMO_COST;
+
+	if (iCost > m_iCredits)
+		return;
 
 	Q_snprintf(m_szDesiredWeapon, DESIRED_WPN_LENGTH, "weapon_%s", pszWeapon);
 	m_iDesiredAttachments = iAttachments;
+}
 
+void CSDKPlayer::OrderAmmo(int iPods)
+{
 	CSDKWeaponInfo* pInfo = CSDKWeaponInfo::GetWeaponInfo(m_szDesiredWeapon);
-	if (!pInfo)
-	{
-		ResetOrder();
-		return;
-	}
+	int iWeaponCost;
+	if (pInfo)
+		iWeaponCost = pInfo->m_iCost;
+	else
+		iWeaponCost = 0;
 
-	int iCost = pInfo->m_iCost;
+	if (iPods > 6)
+		iPods = 6;
+
+	if (iPods < 0)
+		iPods = 0;
+
+	int iCost = iWeaponCost + iPods*AMMO_COST;
 
 	if (iCost > m_iCredits)
-	{
-		ResetOrder();
 		return;
-	}
+
+	m_iDesiredPods = iPods;
 }
 
 bool CSDKPlayer::ArenaSpawnOK()
@@ -444,7 +473,16 @@ void CSDKPlayer::SetDesiredTeam( enum eteams_list eTeam, bool bAuto )
 
 void CSDKPlayer::DeployArmaments()
 {
-	GiveAmmo( 300, AMMO_PAINT );
+	if (GetActiveWeapon() && Q_strcmp(GetOrderedWeapon(), GetActiveWeapon()->GetClassname()) != 0)
+	{
+		CBaseCombatWeapon *pWeapon = GetActiveWeapon();
+		if ( pWeapon )
+		{
+			Weapon_Drop( pWeapon, NULL, NULL );
+			UTIL_Remove( pWeapon );
+		}
+	}
+
 	if (GetActiveWeapon())
 	{
 		GetActiveWeapon()->Deploy();
@@ -453,6 +491,9 @@ void CSDKPlayer::DeployArmaments()
 	{
 		GiveNamedItem( GetOrderedWeapon() );
 	}
+
+	RemoveAllAmmo();
+	GiveAmmo( 150*m_iDesiredPods, AMMO_PAINT );
 }
 
 enum eteams_list CSDKPlayer::GetDesiredTeam( void )
