@@ -22,7 +22,7 @@ using namespace vgui;
 CBuyMenu::CBuyMenu(IViewPort *pViewPort) : WizardPanel( NULL, PANEL_BUY )
 {
 	SetScheme("ClientScheme");
-	SetTitle( "#Cstrike_Buy_Menu", true);
+	SetTitle( "#DPB_Buy_Menu", true);
 
 	SetMoveable(false);
 	SetSizeable(false);

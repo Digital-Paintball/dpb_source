@@ -15,6 +15,7 @@
 #include "sdk_playeranimstate.h"
 #include "sdk_shareddefs.h"
 
+#define DESIRED_WPN_LENGTH	256
 
 //=============================================================================
 // >> SDK Game player
@@ -52,6 +53,16 @@ public:
 
 	virtual void	CheatImpulseCommands( int iImpulse );
 
+	void				SetDesiredTeam(enum eteams_list eTeam, bool bAuto = true);
+	enum eteams_list	GetDesiredTeam();
+
+	void		ResetOrder();
+	void		OrderWeapon(const char* pszWeapon, int iAttachments);
+	const char*	GetOrderedWeapon();
+	void		DeployArmaments();
+
+	bool	ArenaSpawnOK();
+
 	CNetworkVar( int, m_iThrowGrenadeCounter );	// used to trigger grenade throw animations.
 	CNetworkQAngle( m_angEyeAngles );	// Copied from EyeAngles() so we can send it to the client.
 	CNetworkVar( int, m_iShotsFired );	// number of shots fired recently
@@ -82,6 +93,10 @@ private:
 	void CreateRagdollEntity();
 
 	ISDKPlayerAnimState *m_PlayerAnimState;
+
+	enum eteams_list	m_eDesiredTeam;
+	char				m_szDesiredWeapon[DESIRED_WPN_LENGTH];
+	int					m_iDesiredAttachments;	// Bitmask
 };
 
 

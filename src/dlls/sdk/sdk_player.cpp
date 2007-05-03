@@ -12,6 +12,10 @@
 #include "predicted_viewmodel.h"
 #include "iservervehicle.h"
 #include "viewport_panel_names.h"
+#include "multiarena.h"
+
+// memdbgon must be the last include file in a .cpp file!!!
+#include "tier0/memdbgon.h"
 
 extern int gEvilImpulse101;
 
@@ -130,6 +134,19 @@ void cc_CreatePredictionError_f()
 
 ConCommand cc_CreatePredictionError( "CreatePredictionError", cc_CreatePredictionError_f, "Create a prediction error", FCVAR_CHEAT );
 
+void CC_Buy_f()
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+
+	if (engine->Cmd_Argc() <= 2)
+        pPlayer->ShowViewPortPanel( PANEL_BUY, true );
+	else
+		ToSDKPlayer(pPlayer)->OrderWeapon(engine->Cmd_Argv(1), atoi(engine->Cmd_Argv(2)));
+}
+
+ConCommand CC_Buy( "buy", CC_Buy_f, "Open the buy menu" );
 
 CSDKPlayer::CSDKPlayer()
 {
@@ -336,6 +353,99 @@ void CSDKPlayer::CheatImpulseCommands( int iImpulse )
 	gEvilImpulse101		= false;
 }
 
+void CSDKPlayer::ResetOrder()
+{
+	m_szDesiredWeapon[0] = '\0';
+	m_iDesiredAttachments = 0;
+}
+
+void CSDKPlayer::OrderWeapon(const char* pszWeapon, int iAttachments)
+{
+	int iWeaponID = AliasToWeaponID(pszWeapon);
+	if (iWeaponID == WEAPON_NONE)
+	{
+		ResetOrder();
+		return;
+	}
+
+	// Insert some better rules about which weapons are allowed here.
+	if (iWeaponID != WEAPON_BLAZER)
+	{
+		ResetOrder();
+		return;
+	}
+
+	Q_snprintf(m_szDesiredWeapon, DESIRED_WPN_LENGTH, "weapon_%s", pszWeapon);
+	m_iDesiredAttachments = iAttachments;
+}
+
+bool CSDKPlayer::ArenaSpawnOK()
+{
+	if (m_eDesiredTeam == TEAM_UNASSIGNED)
+		return false;
+
+	if (m_szDesiredWeapon[0] == '\0')
+		return false;
+
+	return true;
+}
+
+void CSDKPlayer::SetDesiredTeam( enum eteams_list eTeam, bool bAuto )
+{
+	if (!GetArena())
+		return;
+
+	// Unassigned means auto-assign.
+	if (eTeam == TEAM_UNASSIGNED && bAuto)
+	{
+		// Pick a team!
+		CTeam *pTeam = NULL;
+		for (int j = 0; j < GetArena()->GetTeamNumber(); j++)
+		{
+			if (!pTeam)
+			{
+				pTeam = GetArena()->GetTeam(j);
+				continue;
+			}
+
+			if (GetArena()->GetTeam(j)->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
+				pTeam = GetArena()->GetTeam(j);
+		}
+
+		if (!pTeam)
+		{
+			DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
+			Assert(0);
+			return;
+		}
+		m_eDesiredTeam = (enum eteams_list) pTeam->GetTeamNumber();
+	}
+	else
+		m_eDesiredTeam = eTeam;
+}
+
+void CSDKPlayer::DeployArmaments()
+{
+	GiveAmmo( 300, AMMO_PAINT );
+	if (GetActiveWeapon())
+	{
+		GetActiveWeapon()->Deploy();
+	}
+	else
+	{
+		GiveNamedItem( GetOrderedWeapon() );
+	}
+}
+
+enum eteams_list CSDKPlayer::GetDesiredTeam( void )
+{
+	return m_eDesiredTeam;
+}
+
+const char*	CSDKPlayer::GetOrderedWeapon( void )
+{
+	return m_szDesiredWeapon;
+}
 
 void CSDKPlayer::FlashlightTurnOn( void )
 {

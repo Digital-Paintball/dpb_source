@@ -651,7 +651,6 @@ public:
 	void	JoinGame();
 	void	QuitGame();
 
-	void	DeployArmaments();
 private:
 	
 	// For queueing up CUserCmds and running them from PhysicsSimulate

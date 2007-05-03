@@ -9,6 +9,7 @@
 #include "team.h"
 #include "paintballmgr.h"
 #include "viewport_panel_names.h"
+#include "sdk_player.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -197,7 +198,11 @@ void CArena::SetupRound( )
 		RemoveQuitter(pPlayer);
 	}
 
-	//Then add people who have joined the game
+	// Joiners who should be removed from the list because they have joined.
+	// Those not in this list will linger in the joiners list until the next round.
+	CUtlVector<CHandle<CBasePlayer> >	hJoinedJoiners;
+
+	// Discover which players are fit to join the game and add them.
 	for (i = 0; i < m_hJoiners.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
@@ -208,7 +213,14 @@ void CArena::SetupRound( )
 		if (m_hPlayers.HasElement( pPlayer ))
 			continue;
 
+		if (!ToSDKPlayer(pPlayer)->ArenaSpawnOK())
+		{
+			ClientPrint( pPlayer, HUD_PRINTCENTER, "You must select a team with \"changeteam\"." );
+			continue;
+		}
+
 		m_hPlayers.AddToHead( pPlayer );
+		hJoinedJoiners.AddToHead( pPlayer );
 
 		pPlayer->ResetRounds();
 		pPlayer->SetArena(this);
@@ -223,6 +235,17 @@ void CArena::SetupRound( )
 			WRITE_BYTE( m_iID );
 		MessageEnd();
 	}
+
+	// Remove those who have joined from the joiners list.
+	// It happens like this because FindAndRemove() changes list indexes
+	// so it can't be used in the previous loop.
+	for (i = 0; i < hJoinedJoiners.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(hJoinedJoiners[i]);
+
+		m_hJoiners.FindAndRemove( pPlayer );
+	}
+
 	//Then, add people who have switched teams, the scurvy dogs! - jeff
 	for (i = 0; i < m_hSwitchersRed.Count(); i++)
 	{
@@ -248,10 +271,12 @@ void CArena::SetupRound( )
 
 
 	//Empty the queues.
-	m_hJoiners.RemoveAll();
 	m_hQuitters.RemoveAll();
 	m_hSwitchersRed.RemoveAll();
 	m_hSwitchersBlue.RemoveAll();
+
+	// We don't empty joiners because some players who haven't chosen a team/weapon may linger.
+	// The joiners list empties itself as it goes.
 
 	if (m_hPlayers.Count() <= 0)
 	{
@@ -379,7 +404,7 @@ void CArena::BeginThink( )
 		}
 
 		pPlayer->UnlockPlayer();
-		pPlayer->DeployArmaments();
+		ToSDKPlayer(pPlayer)->DeployArmaments();
 		pPlayer->AddRound();
 	}
 
@@ -591,6 +616,12 @@ void CArena::RemoveFromArena( CBasePlayer *pPlayer )
 		return;
 	}
 
+	if (m_hJoiners.HasElement(pPlayer))
+	{
+		m_hJoiners.FindAndRemove(pPlayer);
+		return;
+	}
+
 	pPlayer->ResetFragCount(); // jeff - set their score to zerrrooo
 	pPlayer->SetArena( NULL );
 
@@ -623,12 +654,36 @@ void CArena::JoinPlayer( CBasePlayer *pPlayer )
 			return;
 
 	m_hJoiners.AddToTail( pPlayer );
+	ToSDKPlayer(pPlayer)->SetDesiredTeam( TEAM_UNASSIGNED, false );
 
 	ClientPrint( pPlayer, HUD_PRINTCENTER, UTIL_VarArgs("Added to join queue for Arena #%d\n", m_iID+1) );
+	ClientPrint( pPlayer, HUD_PRINTCENTER, "Please select a team with \"changeteam\"." );	// Remove me when the GUI is done.
 }
 
-void CArena::SwitchQueueAdd( CBasePlayer *pPlayer, int newteam )
+void CArena::ChooseTeam( CBasePlayer *pPlayer, int newteam )
 {
+	if (m_hJoiners.HasElement( pPlayer ))
+	{
+		enum eteams_list eTeam = TEAM_UNASSIGNED;
+		switch (newteam)
+		{
+		case 0:
+			eTeam = TEAM_BLUE;
+			break;
+
+		case 1:
+			eTeam = TEAM_RED;
+			break;
+
+		default:
+			eTeam = TEAM_SPECTATOR;
+			break;
+		}
+
+		ToSDKPlayer(pPlayer)->SetDesiredTeam( eTeam );
+		return;
+	}
+
 	// TODO - see todo in switchteam
 	CTeam *pTeam = NULL;
 	pTeam = m_hTeams[newteam];
@@ -654,28 +709,7 @@ void CArena::SwitchTeam( CBasePlayer *pPlayer, int newteam )
 
 void CArena::AssignTeam( CBasePlayer *pPlayer )
 {
-	// Pick a team!
-	CTeam *pTeam = NULL;
-	for (int j = 0; j < m_hTeams.Count(); j++)
-	{
-		if (!pTeam)
-		{
-			pTeam = m_hTeams[j];
-			continue;
-		}
-
-		if (m_hTeams[j]->m_aPlayers.Count() < pTeam->m_aPlayers.Count())
-			pTeam = m_hTeams[j];
-	}
-
-	if (!pTeam)
-	{
-		DevMsg("ERROR: Arena has no teams! Put some info_player_teamspawns in there.\n");
-		Assert(0);
-		return;
-	}
-
-	pPlayer->ChangeTeam(pTeam->GetTeamNumber());
+	pPlayer->ChangeTeam(ToSDKPlayer(pPlayer)->GetDesiredTeam());
 }
 
 void CBasePlayer::QuitGame()

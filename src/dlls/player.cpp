@@ -359,22 +359,6 @@ inline bool ShouldRunCommandsInContext( const CCommandContext *ctx )
 #endif
 }
 
-void CBasePlayer::DeployArmaments()
-{
-	GiveAmmo( 300, AMMO_PAINT );
-	if (GetActiveWeapon())
-	{
-		GetActiveWeapon()->Deploy();
-	}
-	else
-	{
-		// TODO: Buy all the weapons the player wants to have.
-		// GiveNamedItem( "weapon_marker" );
-		GiveNamedItem( "weapon_blazer" );
-		// GiveNamedItem( "weapon_blowback" );
-	}
-}
-
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Output : CBaseViewModel
