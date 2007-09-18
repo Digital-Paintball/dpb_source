@@ -347,9 +347,20 @@ CAmmoDef* GetAmmoDef()
 
 #ifndef CLIENT_DLL
 
-const char *CSDKGameRules::GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer )
+const char *CSDKGameRules::GetChatPrefix( int iChatMode, CBasePlayer *pPlayer )
 {
-	return NULL;
+	switch( iChatMode )
+	{
+	case MM_SAY:
+		return "(ARENA)";
+
+	case MM_SAY_TEAM:
+		return "(TEAM)";
+
+	default:
+	case MM_SAY_ALL:
+		return "(ALL)";
+	}
 }
 
 #endif
@@ -360,7 +371,7 @@ const char *CSDKGameRules::GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer )
 int CSDKGameRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget )
 {
 #ifndef CLIENT_DLL
-	// half life multiplay has a simple concept of Player Relationships.
+	// half life multiplay has a simple concept of Player Relationships.eam
 	// you are either on another player's team, or you are not.
 	if ( !pPlayer || !pTarget || !pTarget->IsPlayer() || IsTeamplay() == false )
 		return GR_NOTTEAMMATE;
@@ -371,4 +382,22 @@ int CSDKGameRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarge
 #endif
 
 	return GR_NOTTEAMMATE;
+}
+
+
+bool CSDKGameRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode )
+{
+	switch( iChatMode )
+	{
+	case MM_SAY:
+		return pListener->GetArena() == pSpeaker->GetArena();
+
+	case MM_SAY_TEAM:
+		return pListener->GetArena() == pSpeaker->GetArena() &&
+			pListener->GetTeamNumber() == pSpeaker->GetTeamNumber();
+
+	default:
+	case MM_SAY_ALL:
+		return true;
+	}
 }

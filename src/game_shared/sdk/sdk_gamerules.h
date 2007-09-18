@@ -48,6 +48,7 @@ public:
 	virtual bool	ShouldCollide( int collisionGroup0, int collisionGroup1 );
 
 	virtual int		PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget );
+	virtual bool	PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode );
 	virtual bool	IsTeamplay( void ) { return false;	}
 
 #ifdef CLIENT_DLL
@@ -65,7 +66,7 @@ public:
 	virtual void RadiusDamage( const CTakeDamageInfo &info, const Vector &vecSrcIn, float flRadius, int iClassIgnore );
 	virtual void Think();
 
-	virtual const char *GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer );
+	virtual const char *GetChatPrefix( int iChatMode, CBasePlayer *pPlayer );
 
 private:
 

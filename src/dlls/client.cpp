@@ -88,7 +88,7 @@ char * CheckChatText( char *text )
 // or as
 // blah blah blah
 //
-void Host_Say( edict_t *pEdict, bool teamonly )
+void Host_Say( edict_t *pEdict, int chatmode )
 {
 	CBasePlayer *client;
 	int		j;
@@ -97,6 +97,7 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 	char    szTemp[256];
 	const char *cpSay = "say";
 	const char *cpSayTeam = "say_team";
+	const char *cpSayAll = "say_all";
 	const char *pcmd = engine->Cmd_Argv(0);
 	bool bSenderDead = false;
 
@@ -104,7 +105,9 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 	if ( engine->Cmd_Argc() == 0 )
 		return;
 
-	if ( !stricmp( pcmd, cpSay) || !stricmp( pcmd, cpSayTeam ) )
+	if ( !stricmp( pcmd, cpSay) ||
+		 !stricmp( pcmd, cpSayTeam ) || 
+		 !stricmp( pcmd, cpSayAll ) )
 	{
 		if ( engine->Cmd_Argc() >= 2 )
 		{
@@ -162,11 +165,12 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 	const char *pszFormat = NULL;
 	const char *pszPrefix = NULL;
 	const char *pszLocation = NULL;
+
 	if ( g_pGameRules )
 	{
-		pszFormat = g_pGameRules->GetChatFormat( teamonly, pPlayer );
-		pszPrefix = g_pGameRules->GetChatPrefix( teamonly, pPlayer );	
-		pszLocation = g_pGameRules->GetChatLocation( teamonly, pPlayer );
+		pszFormat = g_pGameRules->GetChatFormat( chatmode, pPlayer );
+		pszPrefix = g_pGameRules->GetChatPrefix( chatmode, pPlayer );	
+		pszLocation = g_pGameRules->GetChatLocation( chatmode, pPlayer );
 	}
 
 	const char *pszPlayerName = pPlayer ? pPlayer->GetPlayerName():"Console";
@@ -212,7 +216,7 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 		if ( !(client->IsNetClient()) )	// Not a client ? (should never be true)
 			continue;
 
-		if ( teamonly && g_pGameRules->PlayerCanHearChat( client, pPlayer ) != GR_TEAMMATE )
+		if ( g_pGameRules->PlayerCanHearChat( client, pPlayer, chatmode ) != GR_TEAMMATE )
 			continue;
 
 		if ( !client->CanHearChatFrom( pPlayer ) )
@@ -269,9 +273,11 @@ void Host_Say( edict_t *pEdict, bool teamonly )
 			playerTeam = team->GetName();
 		}
 	}
-		
-	if ( teamonly )
+	
+	if( chatmode == MM_SAY_TEAM )
 		UTIL_LogPrintf( "\"%s<%i><%s><%s>\" say_team \"%s\"\n", playerName, userid, networkID, playerTeam, p );
+	else if( chatmode == MM_SAY_ALL )
+		UTIL_LogPrintf( "\"%s<%i><%s><%s>\" say_all \"%s\"\n", playerName, userid, networkID, playerTeam, p );
 	else
 		UTIL_LogPrintf( "\"%s<%i><%s><%s>\" say \"%s\"\n", playerName, userid, networkID, playerTeam, p );
 
@@ -593,7 +599,7 @@ void CC_Player_Say( void )
 	{
 		if (( pPlayer->LastTimePlayerTalked() + TALK_INTERVAL ) < gpGlobals->curtime) 
 		{
-			Host_Say( pPlayer->edict(), 0 );
+			Host_Say( pPlayer->edict(), MM_SAY );
 			pPlayer->NotePlayerTalked();
 		}
 	}
@@ -602,7 +608,7 @@ void CC_Player_Say( void )
 		Host_Say( NULL, 0 );
 	}
 }
-static ConCommand say("say", CC_Player_Say, "Display player message");
+static ConCommand say("say", CC_Player_Say, "Display player message to arena");
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -613,12 +619,28 @@ void CC_Player_SayTeam( void )
 	{
 		if (( pPlayer->LastTimePlayerTalked() + TALK_INTERVAL ) < gpGlobals->curtime) 
 		{
-			Host_Say( pPlayer->edict(), 1 );
+			Host_Say( pPlayer->edict(), MM_SAY_TEAM );
 			pPlayer->NotePlayerTalked();
 		}
 	}
 }
 static ConCommand say_team("say_team", CC_Player_SayTeam, "Display player message to team");
+
+//------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
+void CC_Player_SayAll( void )
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if (pPlayer)
+	{
+		if (( pPlayer->LastTimePlayerTalked() + TALK_INTERVAL ) < gpGlobals->curtime) 
+		{
+			Host_Say( pPlayer->edict(), MM_SAY_ALL );
+			pPlayer->NotePlayerTalked();
+		}
+	}
+}
+static ConCommand say_all("say_all", CC_Player_SayAll, "Display player message to everyone");
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------

@@ -9,6 +9,7 @@
 #include "ammodef.h"
 #include "tier0/vprof.h"
 #include "KeyValues.h"
+#include "shareddefs.h"
 
 #ifdef CLIENT_DLL
 
@@ -717,12 +718,20 @@ float CGameRules::GetAmmoDamage( CBaseEntity *pAttacker, CBaseEntity *pVictim, i
 
 
 #ifndef CLIENT_DLL
-const char *CGameRules::GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer )
+const char *CGameRules::GetChatPrefix( int iChatMode, CBasePlayer *pPlayer )
 {
-	if ( bTeamOnly )
-		 return "(TEAM)";
-	else
-		return "";
+	switch( iChatMode )
+	{
+	case MM_SAY:
+		return "(ARENA)";
+
+	case MM_SAY_TEAM:
+		return "(TEAM)";
+
+	default:
+	case MM_SAY_ALL:
+		return "(ALL)";
+	}
 }
 
 void CGameRules::ClientSettingsChanged( CBasePlayer *pPlayer )

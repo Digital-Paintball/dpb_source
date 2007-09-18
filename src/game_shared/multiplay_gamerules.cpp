@@ -777,9 +777,12 @@ bool CMultiplayRules::IsMultiplayer( void )
 
 	//=========================================================
 	//=========================================================
-	bool CMultiplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker )
+	bool CMultiplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode )
 	{
-		return ( PlayerRelationship( pListener, pSpeaker ) == GR_TEAMMATE );
+		if( iChatMode == MM_SAY_TEAM )
+			return PlayerRelationship( pListener, pSpeaker ) == GR_TEAMMATE;
+	
+		return true;
 	}
 
 	int CMultiplayRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget )

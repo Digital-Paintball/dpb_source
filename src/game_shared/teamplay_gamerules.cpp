@@ -369,9 +369,12 @@ int CTeamplayRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarg
 //			*pSpeaker - 
 // Output : Returns true on success, false on failure.
 //-----------------------------------------------------------------------------
-bool CTeamplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker )
+bool CTeamplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode )
 {
-	return ( PlayerRelationship( pListener, pSpeaker ) == GR_TEAMMATE );
+	if( iChatMode == MM_SAY_TEAM )
+		return PlayerRelationship( pListener, pSpeaker ) == GR_TEAMMATE;
+
+	return true;
 }
 
 //=========================================================

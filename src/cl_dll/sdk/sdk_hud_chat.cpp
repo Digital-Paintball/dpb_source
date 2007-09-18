@@ -12,11 +12,15 @@
 #include "text_message.h"
 #include "vguicenterprint.h"
 #include "vgui/ILocalize.h"
+#include <igameresources.h>
 
 ConVar cl_showtextmsg( "cl_showtextmsg", "1", 0, "Enable/disable text messages printing on the screen." );
 
+float g_ColorRed[3]     = { 255,  64,  64 };
+float g_ColorBlue[3]	= { 153, 204, 255 };
 float g_ColorGreen[3]	= { 153, 255, 153 };
-float g_ColorYellow[3]	= { 255, 178.5, 0.0 };
+float g_ColorYellow[3]	= { 255, 178,   0 };
+float g_ColorGray[3]	= { 153, 153, 153 };
 
 float *GetClientColor( int clientIndex )
 {
@@ -26,6 +30,22 @@ float *GetClientColor( int clientIndex )
 	}
 	else 
 	{
+		IGameResources *gr = GameResources();
+
+		if( gr == NULL )
+			return g_ColorYellow;
+
+		int team = gr->GetTeam( clientIndex ); // Player's team color
+
+		if( team == TEAM_RED )
+			return g_ColorRed;
+
+		else if( team == TEAM_BLUE )
+			return g_ColorBlue;
+
+		else if( team == TEAM_UNASSIGNED )
+			return g_ColorGray;
+
 		return g_ColorYellow;
 	}	
 }

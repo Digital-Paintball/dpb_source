@@ -23,12 +23,14 @@ namespace vgui
 }
 
 // Message mode types
+/* // Moved to shareddefs.h
 enum
 {
 	MM_NONE = 0,
 	MM_SAY,
 	MM_SAY_TEAM,
-};
+	MM_SAY_ALL,
+};*/
 
 abstract_class IClientMode
 {

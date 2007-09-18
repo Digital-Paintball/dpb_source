@@ -59,7 +59,7 @@ public:
 	virtual bool IsTeamplay( void );
 	virtual bool FPlayerCanTakeDamage( CBasePlayer *pPlayer, CBaseEntity *pAttacker );
 	virtual int PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget );
-	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker );
+	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode );
 	virtual const char *GetTeamID( CBaseEntity *pEntity );
 	virtual bool ShouldAutoAim( CBasePlayer *pPlayer, edict_t *target );
 	virtual int IPointsForKill( CBasePlayer *pAttacker, CBasePlayer *pKilled );

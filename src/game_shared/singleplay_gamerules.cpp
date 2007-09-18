@@ -359,9 +359,9 @@ bool CSingleplayRules::IsMultiplayer( void )
 
 	//=========================================================
 	//=========================================================
-	bool CSingleplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker )
+	bool CSingleplayRules::PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode )
 	{
-		return ( PlayerRelationship( pListener, pSpeaker ) == GR_TEAMMATE );
+		return true;
 	}
 
 	//=========================================================

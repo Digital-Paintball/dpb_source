@@ -759,11 +759,15 @@ void CBaseHudChat::StartMessageMode( int iMessageModeType )
 
 	if ( m_nMessageMode == MM_SAY )
 	{
-		m_pChatInput->SetPrompt( L"Say :" );
+		m_pChatInput->SetPrompt( L"Say (ARENA):" );
 	}
-	else
+	else if ( m_nMessageMode == MM_SAY_TEAM )
 	{
 		m_pChatInput->SetPrompt( L"Say (TEAM) :" );
+	}
+	else if ( m_nMessageMode == MM_SAY_ALL )
+	{
+		m_pChatInput->SetPrompt( L"Say (ALL):" );
 	}
 	
 	vgui::SETUP_PANEL( this );
@@ -876,7 +880,13 @@ This is a very long string that I am going to attempt to paste into the cs hud c
 	if( len > 0 )
 	{
 		char szbuf[144];	// more than 128
-		Q_snprintf( szbuf, sizeof(szbuf), "%s \"%s\"", m_nMessageMode == MM_SAY ? "say" : "say_team", ansi );
+
+		if( m_nMessageMode == MM_SAY )
+			Q_snprintf( szbuf, sizeof(szbuf), "%s \"%s\"", "say", ansi );
+		else if( m_nMessageMode == MM_SAY_TEAM )
+			Q_snprintf( szbuf, sizeof(szbuf), "%s \"%s\"", "say_team", ansi );
+		else
+			Q_snprintf( szbuf, sizeof(szbuf), "%s \"%s\"", "say_all", ansi );
 
 		engine->ClientCmd(szbuf);
 	}

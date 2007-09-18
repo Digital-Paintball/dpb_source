@@ -116,7 +116,7 @@ public:
 // Teamplay stuff	
 	virtual const char *GetTeamID( CBaseEntity *pEntity ) {return "";}
 	virtual int PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget );
-	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker );
+	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode );
 
 	virtual bool PlayTextureSounds( void ) { return FALSE; }
 	virtual bool PlayFootstepSounds( CBasePlayer *pl );

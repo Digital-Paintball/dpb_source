@@ -282,7 +282,7 @@ public:
 // Teamplay stuff
 	virtual const char *GetTeamID( CBaseEntity *pEntity ) = 0;// what team is this entity on?
 	virtual int PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget ) = 0;// What is the player's relationship with this entity?
-	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker ) = 0;
+	virtual bool PlayerCanHearChat( CBasePlayer *pListener, CBasePlayer *pSpeaker, int iChatMode ) = 0;
 
 	virtual int GetTeamIndex( const char *pTeamName ) { return -1; }
 	virtual const char *GetIndexedTeamName( int teamIndex ) { return ""; }
@@ -308,13 +308,14 @@ public:
 	virtual void CreateStandardEntities();
 
 	// Team name, etc shown in chat and dedicated server console
-	virtual const char *GetChatPrefix( bool bTeamOnly, CBasePlayer *pPlayer );
+	virtual const char *GetChatPrefix( int iChatMode, CBasePlayer *pPlayer );
 
 	// Location name shown in chat
-	virtual const char *GetChatLocation( bool bTeamOnly, CBasePlayer *pPlayer ) { return NULL; }
+	virtual const char *GetChatLocation( int iChatMode, CBasePlayer *pPlayer ) { return NULL; }
 
 	// VGUI format string for chat, if desired
-	virtual const char *GetChatFormat( bool bTeamOnly, CBasePlayer *pPlayer ) { return NULL; }
+	virtual const char *GetChatFormat( int iChatMode, CBasePlayer *pPlayer ) { return NULL; }
+
 
 // Whether props that are on fire should get a DLIGHT.
 	virtual bool ShouldBurningPropsEmitLight() { return false; }

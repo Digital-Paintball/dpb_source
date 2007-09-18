@@ -698,4 +698,13 @@ struct EmitSound_t
 
 #define MAX_ACTORS_IN_SCENE 16
 
+// Moved here from iclientmode.h
+enum
+{
+	MM_NONE = 0,
+	MM_SAY,
+	MM_SAY_TEAM,
+	MM_SAY_ALL,
+};
+
 #endif // SHAREDDEFS_H
