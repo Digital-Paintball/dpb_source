@@ -1029,7 +1029,7 @@ void CC_SwitchTeams (void)
 
 	} else // otherwise, add us to the queue
 	{
-		pPlayer->GetArena()->ChooseTeam(pPlayer, atoi( engine->Cmd_Argv(1) ));
+		pPlayer->GetArena()->SwitchQueueAdd(pPlayer, atoi( engine->Cmd_Argv(1) ));
 	}
 }
 

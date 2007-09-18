@@ -40,7 +40,6 @@
 #include "mapoverview.h"
 #include "hud.h"
 #include "NavProgress.h"
-#include "buymenu.h"
 
 // our definition
 #include "baseviewport.h"
@@ -169,7 +168,7 @@ void CBaseViewport::CreateDefaultPanels( void )
 	AddNewPanel( CreatePanelByName( PANEL_NAV_PROGRESS ) );
 	// AddNewPanel( CreatePanelByName( PANEL_TEAM ) );
 	// AddNewPanel( CreatePanelByName( PANEL_CLASS ) );
-	AddNewPanel( CreatePanelByName( PANEL_BUY ) );
+	// AddNewPanel( CreatePanelByName( PANEL_BUY ) );
 #endif
 }
 
@@ -249,10 +248,6 @@ IViewPortPanel* CBaseViewport::CreatePanelByName(const char *szPanelName)
 	else if ( Q_strcmp(PANEL_NAV_PROGRESS, szPanelName) == 0 )
 	{
 		newpanel = new CNavProgress( this );
-	}
-	else if ( Q_strcmp(PANEL_BUY, szPanelName) == 0 )
-	{
-		newpanel = new CBuyMenu( this );
 	}
 #endif
 	

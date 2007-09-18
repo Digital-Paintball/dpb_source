@@ -505,9 +505,6 @@
 				RelativePath="RadioButton.cpp">
 			</File>
 			<File
-				RelativePath=".\RenderImagePanel.cpp">
-			</File>
-			<File
 				RelativePath="RichText.cpp">
 			</File>
 			<File

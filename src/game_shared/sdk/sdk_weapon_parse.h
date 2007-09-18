@@ -25,14 +25,10 @@ public:
 	
 	virtual void Parse( ::KeyValues *pKeyValuesData, const char *szWeaponName );
 
-	static CSDKWeaponInfo* GetWeaponInfo(const char* pszWeaponName);
-
 	// Parameters for FX_FireBullets:
 	int		m_iDamage;
 	int		m_iBullets;
 	float	m_flCycleTime;
-
-	int		m_iCost;
 };
 
 

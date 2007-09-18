@@ -45,7 +45,6 @@ typedef enum
 	Secondary_Mode,
 } SDKWeaponMode;
 
-int AliasToWeaponID( const char *alias );
 const char *WeaponIDToAlias( int id );
 
 class CWeaponSDKBase : public CBaseCombatWeapon

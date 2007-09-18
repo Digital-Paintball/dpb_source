@@ -16,7 +16,6 @@
 #include "player.h"
 #include "team_spawnpoint.h"
 #include "multiarena_shared.h"
-#include "team.h"
 
 class CArena : public CBaseTrigger
 {
@@ -42,7 +41,7 @@ public:
 	bool HasPlayer(CBasePlayer *pPlayer);
 	void AssignTeam(CBasePlayer *pPlayer);
 	void SwitchTeam(CBasePlayer *pPlayer, int newteam);
-	void ChooseTeam(CBasePlayer *pPlayer, int newteam);
+	void SwitchQueueAdd(CBasePlayer *pPlayer, int newteam);
 
 	static void SpawnPlayer(CBasePlayer *pPlayer, CArena* pArena = NULL);
 	static void MovePlayer(CBasePlayer *pPlayer, const Vector &vecOrigin, const QAngle &angAngles);

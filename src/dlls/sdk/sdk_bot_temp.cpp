@@ -148,10 +148,6 @@ CBasePlayer *BotPutInServer( bool bFrozen )
 	if (pBestArena)
 	{
 		pBestArena->JoinPlayer( pPlayer );
-		pPlayer->SetArena(pBestArena);	// So that SetDesiredTeam can auto and will not just return
-		pPlayer->SetDesiredTeam( TEAM_UNASSIGNED );	// Auto
-		pPlayer->OrderWeapon("blazer", 0);
-		pPlayer->OrderAmmo(2);
 	}
 
 	g_CurBotNumber++;
