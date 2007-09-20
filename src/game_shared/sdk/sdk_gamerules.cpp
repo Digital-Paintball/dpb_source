@@ -11,7 +11,6 @@
 #include "KeyValues.h"
 #include "weapon_sdkbase.h"
 
-
 #ifdef CLIENT_DLL
 
 
@@ -19,6 +18,7 @@
 	
 	#include "voice_gamemgr.h"
 	#include "team.h"
+	#include "multiarena.h"
 
 #endif
 
@@ -349,16 +349,25 @@ CAmmoDef* GetAmmoDef()
 
 const char *CSDKGameRules::GetChatPrefix( int iChatMode, CBasePlayer *pPlayer )
 {
+	CArena * pArena = pPlayer->GetArena();
+	static char szArena[128];
+
 	switch( iChatMode )
 	{
 	case MM_SAY:
-		return "(ARENA)";
+		return "";
 
 	case MM_SAY_TEAM:
 		return "(TEAM)";
 
 	default:
 	case MM_SAY_ALL:
+		if( pArena != NULL )
+		{
+			Q_snprintf( szArena, 128, "(ARENA %i)", pArena->GetId() + 1 );
+			return szArena;
+		}
+
 		return "(ALL)";
 	}
 }

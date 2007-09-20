@@ -759,7 +759,7 @@ void CBaseHudChat::StartMessageMode( int iMessageModeType )
 
 	if ( m_nMessageMode == MM_SAY )
 	{
-		m_pChatInput->SetPrompt( L"Say (ARENA):" );
+		m_pChatInput->SetPrompt( L"Say:" );
 	}
 	else if ( m_nMessageMode == MM_SAY_TEAM )
 	{

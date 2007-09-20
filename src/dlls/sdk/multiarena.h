@@ -71,6 +71,8 @@ public:
 	CNetworkVar ( int, m_iBlueTeamScore );
 	// jeff hold team scores
 
+	int GetId() const { return m_iID; }
+
 private:
 	CNetworkVar( int, m_iID );
 	static CUtlVector<CHandle<CArena> >	s_hArenas;

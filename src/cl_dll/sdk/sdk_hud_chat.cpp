@@ -450,6 +450,11 @@ void CHudChat::ChatPrintf( int iPlayerIndex, const char *fmt, ... )
 	{
 		float *flColor = GetClientColor( iPlayerIndex );
 
+		// HACK: no colors if this is an arena message "(ARENA 1)" or "(ALL)"
+		//       a better solution might be to include the message mode
+		if( pmsg[0] == '(' && pmsg[1] == 'A' )
+			flColor = g_ColorYellow;
+
 		line->SetExpireTime();
 	
 		// draw the first x characters in the player color
