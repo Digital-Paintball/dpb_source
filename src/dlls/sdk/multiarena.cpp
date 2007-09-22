@@ -273,6 +273,12 @@ void CArena::SetupRound( )
 	if (iTeamsWithPlayers <= 1)
 		bRoundStarting = false;
 
+	int availableSpawns[MAX_TEAMS];
+	memset( availableSpawns, 0, sizeof(availableSpawns) );
+
+	for( i = 0; i < m_hTeams.Count(); i++ )
+		availableSpawns[i] = m_hTeams[i]->GetNumSpawnpoints();
+
 	for (i = 0; i < m_hPlayers.Count(); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
@@ -290,8 +296,31 @@ void CArena::SetupRound( )
 
 		Assert(pPlayer->GetTeam());
 
+		// find the proper team index
+		int iTeamIndex = -1;
+		for( int j = 0; j < m_hTeams.Count(); j++ )
+		{
+			if( pPlayer->GetTeam() != m_hTeams[j] )
+				continue;
+
+			iTeamIndex = j;
+			break;
+		}
+
+		// we couldn't find the team index?
+		Assert( iTeamIndex != -1 );
+
 		if (!pPlayer->IsAlive())
 			pPlayer->Spawn();
+
+		// limit the number of players that spawn to the number of spawnpoints for that team
+		if( availableSpawns[ iTeamIndex ] <= 0 )
+		{
+			pPlayer->StartObserverMode( 0 );
+			continue;
+		}
+		
+		availableSpawns[ iTeamIndex ]--;
 
 		if (bRoundStarting || pPlayer->Rounds() == -1)
 		{

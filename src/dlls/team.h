@@ -56,6 +56,7 @@ public:
 	virtual void RemoveSpawnpoint( CTeamSpawnPoint *pSpawnpoint );
 	virtual CBaseEntity *SpawnPlayer( CBasePlayer *pPlayer );
 	virtual void AverageSpawns( void );
+	virtual int GetNumSpawnpoints( void ) { return m_aSpawnPoints.Size(); }
 
 	//-----------------------------------------------------------------------------
 	// Players
