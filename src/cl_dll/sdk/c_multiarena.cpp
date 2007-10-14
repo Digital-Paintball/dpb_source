@@ -8,6 +8,7 @@
 #include "c_multiarena.h"
 #include "clientscoreboarddialog.h"
 #include "hud_macros.h"
+#include "vguicenterprint.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -24,6 +25,7 @@ CUtlVector<C_Arena*> C_Arena::s_hArenas;
 void __MsgFunc_Arena(bf_read &msg)
 {
 	C_Arena *pArena;
+	char *pBuf = new char[400];
 
 	switch (msg.ReadByte())
 	{
@@ -49,10 +51,15 @@ void __MsgFunc_Arena(bf_read &msg)
 		pArena = C_Arena::GetArena(msg.ReadByte());
 		pArena->m_iRoundTime = msg.ReadByte(); // Jeff - Clients should know how long they have left.
 		break;
+	case CArenaShared::AE_DEFERRED: // Jeff uh, sorry. arena is full. try another... ?	 
+		pArena = C_Arena::GetArena(msg.ReadByte()); // ODOT : Use names instead of numbers
+		strcpy(pBuf, VarArgs("Arena #%d is currently full.", pArena->GetArenaNumber()));
+		internalCenterPrint->Print(pBuf);
+		//ClientPrint(C_BasePlayer::GetLocalPlayer(), HUD_PRINTCENTER, VarArgs("Arena #%d is currently full.\nYou may continue to wait, or join another arena.", pArena->GetArenaNumber) );
+		break;
 	case CArenaShared::AE_RESET:
 		C_BasePlayer::GetLocalPlayer()->ResetLeaning();
 		pArena = C_Arena::GetArena(msg.ReadByte());
-
 		//Including paintballmgr.h causes crashes for some reason, so I won't bother with this for now.
 //		CPaintballMgr::GetManager()->RemoveBalls( C_BasePlayer::GetLocalPlayer()->GetArena() );
 		break;

@@ -85,7 +85,8 @@ private:
 
 	CUtlVector<CHandle<CBasePlayer> >	m_hJoiners;		//Those who are joining the arena.
 	CUtlVector<CHandle<CBasePlayer> >	m_hQuitters;	//Those who are leaving the arena.
-	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersRed;	//Those who are about to die... switch teams - Jeff
+	CUtlVector<CHandle<CBasePlayer> >	m_hWaiters;		//Those who do not fit in the arena.
+	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersRed;	
 	CUtlVector<CHandle<CBasePlayer> >	m_hSwitchersBlue;
 	Vector		m_vecSpawnAvg;
 

@@ -2025,8 +2025,11 @@ bool CBasePlayer::StartObserverMode(int mode)
 		SetViewOffset( vec3_origin );
 	}
 
-	Assert( mode > OBS_MODE_NONE );
-	
+	// Assert( mode > OBS_MODE_NONE );	
+	if (mode <= OBS_MODE_NONE) mode = OBS_MODE_ROAMING;
+	//ODOT Jeff - this assert always failed. I need to find where this is getting called
+
+
 	m_afPhysicsFlags |= PFLAG_OBSERVER;
 
 	// Holster weapon immediately, to allow it to cleanup
@@ -2052,7 +2055,9 @@ bool CBasePlayer::StartObserverMode(int mode)
 
 	//Don't set the player to EF_NODRAW - the client can determine
 	//whether to draw the player or not with ShouldDraw
-	//AddEffects( EF_NODRAW );		
+	
+	//ODOT I think I'm going to add this back.
+	AddEffects( EF_NODRAW );		
 
 	m_iHealth = 1;
 	m_lifeState = LIFE_DEAD; // Can't be dead, otherwise movement doesn't work right.

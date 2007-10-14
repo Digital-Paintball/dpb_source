@@ -30,8 +30,8 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				Description="Copying to destination folder"
-				CommandLine="if exist &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\client.dll&quot; attrib -r &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\client.dll&quot;&#x0D;&#x0A;copy &quot;$(TargetDir)&quot;client.dll &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin&quot;&#x0D;&#x0A;"
-				Outputs="c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\client.dll"
+				CommandLine="if exist &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin\client.dll&quot; attrib -r &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin\client.dll&quot;&#x0D;&#x0A;copy &quot;$(TargetDir)&quot;client.dll &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin&quot;&#x0D;&#x0A;"
+				Outputs="c:\program files\steam\steamapps\SourceMods\dpb\bin\client.dll"
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -3807,11 +3807,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\public\vgui\IInput.h"
+				RelativePath="iinput.h"
 				>
 			</File>
 			<File
-				RelativePath="iinput.h"
+				RelativePath="..\public\vgui\IInput.h"
 				>
 			</File>
 			<File
@@ -4135,11 +4135,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\public\vgui_controls\Menu.h"
+				RelativePath="menu.h"
 				>
 			</File>
 			<File
-				RelativePath="menu.h"
+				RelativePath="..\public\vgui_controls\Menu.h"
 				>
 			</File>
 			<File

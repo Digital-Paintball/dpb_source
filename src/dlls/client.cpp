@@ -989,6 +989,25 @@ void CC_QuitGame (void)
 ConCommand quitgame("quitgame", CC_QuitGame, "Quit a game in progress.", FCVAR_GAMEDLL);
 
 //------------------------------------------------------------------------------
+// Reset all arenas
+//------------------------------------------------------------------------------
+void CC_ResetGame (void)
+{
+	CBasePlayer *pPlayer = ToBasePlayer( UTIL_GetCommandClient() ); 
+	if ( !pPlayer )
+		return;
+
+	CArena *pArena = pPlayer->GetArena();
+
+	if ( !pArena )
+		return;
+
+	pArena->RoundEnd(-1); // Jeff - trie this..
+}
+
+ConCommand resetgame("resetgame", CC_ResetGame, "Resets current arena", FCVAR_CHEAT);
+
+//------------------------------------------------------------------------------
 // Jeff - change skin
 //------------------------------------------------------------------------------
 void CC_ChangeSkin (void)

@@ -144,7 +144,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 				Description="Copying to destination folder"
-				CommandLine="if exist &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\server.dll&quot; attrib -r &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\server.dll&quot;&#x0D;&#x0A;if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;c:\program files\steam\steamapps\SourceMods\dpb_dev\bin\server.dll&quot;&#x0D;&#x0A;"
+				CommandLine="if exist &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin\server.dll&quot; attrib -r &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;&#x0D;&#x0A;if exist &quot;$(TargetDir)&quot;server.dll copy &quot;$(TargetDir)&quot;server.dll &quot;c:\program files\steam\steamapps\SourceMods\dpb\bin\server.dll&quot;&#x0D;&#x0A;"
 				Outputs="C:\Program Files\Steam\steamapps\SourceMods\dpb_dev\bin\server.dll"
 			/>
 			<Tool

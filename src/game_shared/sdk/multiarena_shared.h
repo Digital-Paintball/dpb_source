@@ -29,6 +29,7 @@ public:
 		AE_VICTORY,	//Specified team won the round
 		AE_TIMEUPDATE, // I have a message for you - it has round time in it. -Jeff
 		AE_TVICTORY, // This team won - Jeff
+		AE_DEFERRED, // Sorry, we've had to put you on hold for whatever reason. -Jeff
 	} arenaevent_t;
 };
 

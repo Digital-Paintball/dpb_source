@@ -160,7 +160,6 @@ void CArena::SetupRound( )
 		m_iRedTeamScore = 0;
 		m_iBlueTeamScore = 0;
 	}
-	// jeff - put message here to notify clients no round - not enough players?
 
 	// Fix things from last round.
 	int iPlayersCount = m_hPlayers.Count();
@@ -198,7 +197,36 @@ void CArena::SetupRound( )
 	}
 
 	//Then add people who have joined the game
-	for (i = 0; i < m_hJoiners.Count(); i++)
+
+	int availableSpawns[MAX_TEAMS];
+	int totalAvailableSpawns = 0;
+	int usedSpawns = 0;
+	memset( availableSpawns, 0, sizeof(availableSpawns) );
+
+	for( i = 0; i < m_hTeams.Count(); i++ )
+	{
+		availableSpawns[i] = m_hTeams[i]->GetNumSpawnpoints();
+		totalAvailableSpawns += availableSpawns[i];
+
+		usedSpawns += m_hTeams[i]->GetNumPlayers(); // m_hTeams is a CTeam
+	}
+	int freeSpawns = totalAvailableSpawns - usedSpawns;
+
+	for (i = 0; i < m_hWaiters.Count(); i++) // shift the waiters into the joiners queue
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hWaiters[i]);
+		if (!pPlayer)
+			continue;
+
+		if (m_hWaiters.HasElement( pPlayer ))
+			continue;
+
+		m_hJoiners.AddToTail( pPlayer );
+	}
+	m_hWaiters.RemoveAll();
+
+	int lastJoiner = 0;
+	for (i = 0; ((i < m_hJoiners.Count()) && (i < freeSpawns)); i++)
 	{
 		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
 
@@ -222,7 +250,29 @@ void CArena::SetupRound( )
 			WRITE_BYTE( CArenaShared::AE_JOIN );
 			WRITE_BYTE( m_iID );
 		MessageEnd();
+		lastJoiner = i;
 	}
+	// There's still going to be some joiners, in here, maybe. Tell them that they are still in line...
+	for (i = lastJoiner; i < m_hJoiners.Count(); i++)
+	{
+		CBasePlayer *pPlayer = ToBasePlayer(m_hJoiners[i]);
+
+		if (!pPlayer)
+			continue;
+
+		if (m_hPlayers.HasElement( pPlayer ))
+			continue;
+
+		m_hWaiters.AddToTail( pPlayer );
+
+		CSingleUserRecipientFilter user( pPlayer );
+		user.MakeReliable();
+		UserMessageBegin( user, "Arena" );
+			WRITE_BYTE( CArenaShared::AE_DEFERRED );
+			WRITE_BYTE( m_iID );
+		MessageEnd();
+	}
+
 	//Then, add people who have switched teams, the scurvy dogs! - jeff
 	for (i = 0; i < m_hSwitchersRed.Count(); i++)
 	{
@@ -272,12 +322,6 @@ void CArena::SetupRound( )
 
 	if (iTeamsWithPlayers <= 1)
 		bRoundStarting = false;
-
-	int availableSpawns[MAX_TEAMS];
-	memset( availableSpawns, 0, sizeof(availableSpawns) );
-
-	for( i = 0; i < m_hTeams.Count(); i++ )
-		availableSpawns[i] = m_hTeams[i]->GetNumSpawnpoints();
 
 	for (i = 0; i < m_hPlayers.Count(); i++)
 	{
@@ -377,7 +421,8 @@ void CArena::SetupRound( )
 	}
 	for (int i = 0; i < iPlayersCount; i++)
 	{
-		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]);
+		// ODOT this has an invalid index sometimes. why?
+		CBasePlayer *pPlayer = ToBasePlayer(m_hPlayers[i]); 
 			
 		if (!pPlayer)
 		{
