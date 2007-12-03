@@ -174,6 +174,7 @@ void Host_Say( edict_t *pEdict, int chatmode )
 	}
 
 	const char *pszPlayerName = pPlayer ? pPlayer->GetPlayerName():"Console";
+	pszLocation = pPlayer? pszLocation : ""; // Jeff - possible fix for crash
 
 	if ( pszPrefix && strlen( pszPrefix ) > 0 )
 	{

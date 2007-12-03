@@ -171,7 +171,8 @@ void CArena::SetupRound( )
 		//Get him out of here!
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+			//m_hPlayers.FastRemove(i); fail!1!
+			//assert(false);
 			continue;
 		}
 
@@ -184,6 +185,11 @@ void CArena::SetupRound( )
 			pPlayer->GetActiveWeapon()->FinishReload();
 		}
 	}
+	
+	// any of these guys null? MURDER DEATH KILL
+	while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 
 	// Remove people who have quit the game
 	for (i = 0; i < m_hQuitters.Count(); i++)
@@ -329,7 +335,7 @@ void CArena::SetupRound( )
 
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+			// m_hPlayers.FastRemove(i);
 			continue;
 		}
 
@@ -398,6 +404,9 @@ void CArena::SetupRound( )
 		if (pPlayer->Rounds() == -1)
 			pPlayer->AddRound();
 	}
+	while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 
 	for (i = 0; i < m_hTeams.Count(); i++)
 	{
@@ -426,7 +435,7 @@ void CArena::SetupRound( )
 			
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+			// m_hPlayers.FastRemove(i); BAD
 			continue;
 		}
 		if (this->HasPlayer(pPlayer)) 
@@ -434,6 +443,9 @@ void CArena::SetupRound( )
 			ClientPrint( pPlayer, HUD_PRINTCENTER, "GET READY!" );
 		}
 	}
+	while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 }
 
 void CArena::BeginThink( )
@@ -448,7 +460,7 @@ void CArena::BeginThink( )
 		//Get him out of here!
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+			//m_hPlayers.FastRemove(i);
 			continue;
 		}
 
@@ -456,6 +468,9 @@ void CArena::BeginThink( )
 		pPlayer->DeployArmaments();
 		pPlayer->AddRound();
 	}
+	while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 
 	if (m_flMinutes)
 	{
@@ -486,7 +501,7 @@ void CArena::KeepTimeThink() // jeff
 		//Get him out of here!
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+		//	m_hPlayers.FastRemove(i);
 			continue;
 		}
 
@@ -502,6 +517,9 @@ void CArena::KeepTimeThink() // jeff
 			WRITE_BYTE( temp );  
 		MessageEnd();
 	}
+		while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 
 
 	DevMsg("%f seconds left in round! Time is %f Started %f, ends %f\n", m_willEnd - gpGlobals->curtime, gpGlobals->curtime, m_startedWhen, m_willEnd);
@@ -556,7 +574,7 @@ void CArena::RoundEnd( int iWinningTeam )
 			
 		if (!pPlayer)
 		{
-			m_hPlayers.FastRemove(i);
+			//m_hPlayers.FastRemove(i);
 			continue;
 		}
 		if (this->HasPlayer(pPlayer)) // we only need to send them this message if they're like, in the arena.
@@ -572,7 +590,9 @@ void CArena::RoundEnd( int iWinningTeam )
 		}
 	}
 
-	
+	while (m_hPlayers.HasElement(NULL))
+		m_hPlayers.FindAndRemove(NULL);
+
 		
 	}
 	if 	((m_State != CArenaShared::GS_INPROGRESS))

@@ -349,8 +349,11 @@ CAmmoDef* GetAmmoDef()
 
 const char *CSDKGameRules::GetChatPrefix( int iChatMode, CBasePlayer *pPlayer )
 {
-	CArena * pArena = pPlayer->GetArena();
+	CArena * pArena;
 	static char szArena[128];
+
+	if(pPlayer)
+		pArena = pPlayer->GetArena();
 
 	switch( iChatMode )
 	{
@@ -362,7 +365,7 @@ const char *CSDKGameRules::GetChatPrefix( int iChatMode, CBasePlayer *pPlayer )
 
 	default:
 	case MM_SAY_ALL:
-		if( pArena != NULL )
+		if( pArena != NULL && pPlayer != NULL )
 		{
 			Q_snprintf( szArena, 128, "(ARENA %i)", pArena->GetId() + 1 );
 			return szArena;
